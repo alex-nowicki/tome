@@ -1,0 +1,12 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import CategoryLayout from "../../../layouts/CategoryLayout.astro";
+
+const categoryPosts = await Astro.glob("./*.md");
+const pageTitle = "People";
+
+---
+
+<BaseLayout pageTitle={pageTitle}>
+    <CategoryLayout posts={categoryPosts} />
+</BaseLayout>
