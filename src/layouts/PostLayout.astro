@@ -1,13 +1,43 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+import SidePanel from "../components/SidePanel.astro";
+import "../styles/post.css";
 const { frontmatter } = Astro.props;
 ---
 
-<BaseLayout pageTitle={frontmatter.title}>
-    <section>
-        <ul>
-            <li>{frontmatter.species}</li>
-        </ul>            
-    </section>
-  <slot />
+<BaseLayout pageTitle="{ frontmatter.title }">
+    <main>
+        <SidePanel />
+        <article>
+            <div class="breadcrumbs">
+                <a href="">Garuda</a>
+                <a href="">People</a>
+                <a href="">Bopha Krol</a>
+            </div>
+            <h1>{frontmatter.title}</h1>
+            <img src="" />
+            <div class="metadata">
+                <h2>Aliases</h2>
+                <p>Bopha de la Rosa</p>
+                <h2>Groups</h2>
+                <ul>
+                    <li>Strays</li>
+                    <li>Agency</li>
+                </ul>
+            </div>
+            <div class="content">
+                <slot />
+                <!-- Slot for MD content -->
+                <h2>Motivation</h2>
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.</p>
+                <p>Lorem ipsum dolor sit amet, cons ectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.</p>
+                <h3>Strengths</h3>
+                <ol>
+                    <li>Smart</li>
+                    <li>Mechanic</li>
+                    <li>Conman</li>
+                </ol>
+            </div>
+        </article>
+    </main>
 </BaseLayout>

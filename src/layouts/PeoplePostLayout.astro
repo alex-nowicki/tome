@@ -1,6 +1,12 @@
 ---
 import PostLayout from "./PostLayout.astro";
+const {frontmatter} = Astro.props;
 ---
-<PostLayout>
+<PostLayout frontmatter="{frontmatter}">
+    {
+        Object.keys(frontmatter.metadata).map((key) => (
+                <p>{key}: {frontmatter.metadata[key]}</p>            
+            ))
+    }
     
 </PostLayout>

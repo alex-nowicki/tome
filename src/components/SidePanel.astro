@@ -1,0 +1,49 @@
+---
+import IconProject from "./icon_project.astro";
+import IconPin from "./icon_pin.astro";
+
+---
+<aside>
+    <div class="project">
+        <p><IconProject /><span>Garuda</span></p>
+        <p><span>change</span><IconProject/></p>
+    </div>
+    
+    <ul class="article-pinned-list">
+        <p><IconPin /><span>Pinned</span></p>
+        <li>Article 1</li>
+        <li>Article 2</li>
+        <li>Article 3</li>
+    </ul>
+    <ul class="article-tree-list accordion">
+        <li>
+            <button class="accordion-toggle" id="article-tree-list-toggle0" type="button" aria-expanded="true" aria-controls="article-tree-list-panel0">
+                <svg class="accordion-icon" viewBox="0 0 24 24">
+                    <line y1="12" x1="0" y2="12" x2="24"></line>
+                    <line y1="12" x1="0" y2="12" x2="24"></line>
+                </svg>
+                <span>People</span>
+            </button>
+            <ul class="article-tree-list-panel accordion-panel" id="article-tree-list-panel0" role="region" aria-labelledby="article-tree-list-toggle0">
+                <li><a href="" class="active">Bopha Krol</a></li>
+                <li><a href="">Snow</a></li>
+            </ul>
+        </li>
+        <hr/>
+        <li>
+            <button class="accordion-toggle" id="article-tree-list-toggle0" type="button" aria-expanded="true" aria-controls="article-tree-list-panel0">
+                <svg class="accordion-icon" viewBox="0 0 24 24">
+                    <line y1="12" x1="0" y2="12" x2="24"></line>
+                    <line y1="12" x1="0" y2="12" x2="24"></line>
+                </svg>
+                <span>Groups</span>
+            </button>
+            <ul class="article-tree-list-panel accordion-panel" id="article-tree-list-panel0" role="region" aria-labelledby="article-tree-list-toggle0">
+                <li><a href="">The Exchange</a></li>
+                <li><a href="">Strays</a></li>
+            </ul>
+        </li>   
+    </ul>
+</aside>
+
+<script src="../scripts/accordion.js"></script>

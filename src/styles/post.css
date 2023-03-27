@@ -1,0 +1,228 @@
+/*
+** VARIABLES
+------------------------------*/
+
+
+/*
+** TYPOGRAPHY
+------------------------------*/
+
+article h1 {
+    font-size: 3rem;
+}
+
+article .metadata h2 {
+    font-size: 0.875rem;
+}
+
+article .metadata p {
+    font-size: 0.875rem;
+}
+
+article .content h2 {
+    font-size: 1.5rem;
+}
+
+article .content h3 {
+    font-size: 1.25rem;
+}
+
+
+
+
+/*
+** LINKS & BUTTONS
+------------------------------*/
+
+
+/*
+** HEADER
+------------------------------*/
+
+
+/*
+** MAIN
+------------------------------*/
+
+main {
+    display: grid;
+    grid-template-columns:  clamp(300px, 360px, 25%) 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+    "aside article";
+}
+
+aside {
+    grid-area: aside;
+
+    padding: 2rem;
+    background-color: var(--gray-100);
+    border-right: 2px solid var(--gray-200);
+}
+
+.article-list {
+    --tree-spacing: 1rem; 
+    --icon-width: 0.75rem; 
+}
+
+.article-list h4 {
+    margin: 0 0 var(--tree-spacing);
+}
+
+.article-list h4 button {
+    font-weight: 600;
+}
+
+.article-list .accordion-icon {
+    width: 0.75rem;
+}
+
+.article-list .accordion-icon line {
+    fill: none;
+    stroke: var(--gray-900);
+    stroke-width: 4px;
+    transform-origin: center;
+    transition: transform 0.2s ease;
+}
+
+button[aria-expanded="false"] > svg.accordion-icon line:first-child {
+    transform: rotate(90deg);
+}
+
+.article-list .accordion-panel {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: calc(var(--tree-spacing) / 2);
+    position: relative;
+    padding-left: calc(var(--tree-spacing) + (var(--icon-width) / 2) - 1px);
+    margin-bottom: var(--tree-spacing);
+}
+
+.article-list .accordion-panel a {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: var(--tree-spacing);
+    padding-left: 0.5rem;
+}
+
+.article-list .accordion-panel a.active::after {
+    content: "";
+    display: block;
+    height: 0.5rem;
+    width: 0.5rem;
+    border-radius: 8rem;
+    background-color: var(--orange);
+    margin-left: 0.5rem;
+}
+
+.article-list .accordion-panel a::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: calc((var(--tree-spacing) * 2) / -2);
+    left: calc(0rem - var(--tree-spacing));
+    width: var(--tree-spacing);
+    height: calc((var(--tree-spacing) * 1.5) + 1px);
+    border: solid var(--gray-300);
+    border-width: 0 0 2px 2px;
+}
+
+.article-list .accordion-panel a:first-child::before {
+    top: calc(var(--tree-spacing) / -2);
+    height: calc(var(--tree-spacing) + 1px);
+}
+
+.article-list hr {
+    border: 1px solid var(--gray-200);
+    margin-bottom: var(--tree-spacing);
+}
+
+article {
+    grid-area: article;
+
+    display: grid;
+    grid-template-columns:  clamp(20%, 320px, 30%) 1fr;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas:
+    "breadcrumbs breadcrumbs"
+    "title title"
+    "metadata content";
+
+    padding: 3rem;;
+}
+
+article .breadcrumbs {
+    grid-area: breadcrumbs;
+}
+
+article .breadcrumbs a {
+    font-size: 0.875rem;
+}
+
+article .breadcrumbs a::after {
+    content: ">";
+    margin: 0 1rem;
+}
+
+article .breadcrumbs a:last-child::after {
+    content: none;
+    margin: 0;
+}
+
+article .tags {
+    grid-area: tags;
+}
+
+article h1 {
+    --spacing: 4rem;
+
+    grid-area: title;
+
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: calc(var(--spacing) * 0.25);
+
+    height: var(--spacing);
+    margin: 0;
+}
+
+article h1::after {
+    content: "";
+    display: flex;
+    flex-grow: 1;
+    height: calc((var(--spacing) / 2) + 2px);
+    margin-top: calc((var(--spacing) / 2) - 2px);
+    border: solid var(--orange);
+    border-width: 4px 4px 0 0;
+}
+
+article img {
+    grid-area: metadata;
+}
+
+article .metadata {
+    grid-area: metadata;
+
+    margin-top: 2rem;
+}
+
+article .content {
+    grid-area: content;
+
+    padding: 2rem 3rem 3rem 3rem;
+    border-left: 2px solid var(--gray-200);
+    border-right: 4px solid var(--orange); 
+}
+
+
+
+
+/*
+** FOOTER
+------------------------------*/
+
+/*
+** MISC
+------------------------------*/  
