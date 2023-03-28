@@ -32,7 +32,7 @@
 
 html {
     font-family: Poppins, sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 400;
     height: 100%;
 }
@@ -45,11 +45,11 @@ body {
     font-weight: 600;
 }
 
-:is(article, aside, div) > *:first-child {
+:is(article, aside, nav, div) > *:first-child {
     margin-top: 0 !important;
 }
 
-:is(article, aside, div) > *:last-child {
+:is(article, aside, nav, div) > *:last-child {
     margin-bottom: 0 !important;
 }
 

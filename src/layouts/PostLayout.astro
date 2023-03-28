@@ -2,12 +2,12 @@
 import BaseLayout from "./BaseLayout.astro";
 import SidePanel from "../components/SidePanel.astro";
 import "../styles/post.css";
-const { frontmatter } = Astro.props;
+const {frontmatter} = Astro.props;
 ---
 
-<BaseLayout pageTitle="{ frontmatter.title }">
+<BaseLayout pageTitle={frontmatter.title}>
     <main>
-        <SidePanel />
+        <SidePanel frontmatter={frontmatter}/>
         <article>
             <div class="breadcrumbs">
                 <a href="">Garuda</a>

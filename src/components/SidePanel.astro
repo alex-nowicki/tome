@@ -1,12 +1,50 @@
 ---
 import IconProject from "./icon_project.astro";
+import IconChange from "./icon_change.astro";
 import IconPin from "./icon_pin.astro";
+import IconShow from "./icon_show.astro";
+import IconPerson from "./icon_person.astro";
+import IconGroup from "./icon_group.astro";
+import IconPlace from "./icon_place.astro";
+import IconEvent from "./icon_event.astro";
+import IconThing from "./icon_thing.astro";
+
+let toTitleCase = function(str){
+    let sentence = str.toLowerCase().split(' ');
+      for(let i = 0; i < sentence.length; i++){
+         sentence[i] = sentence[i][0].toUpperCase() + sentence[i].slice(1);
+      }
+   sentence = sentence.join(" ");
+   return sentence;
+}
+
+const {frontmatter} = Astro.props;
+const activeProject = frontmatter.url.split('/')[1];
+const posts = await Astro.glob('../pages/*/*/*.md');
+const peoplePosts = posts.filter(post => {
+    return post.url.includes(`${activeProject}/people`);
+})
+const groupsPosts = posts.filter(post => {
+    return post.url.includes(`${activeProject}/groups`);
+})
+const placesPosts = posts.filter(post => {
+    return post.url.includes(`${activeProject}/places`);
+})
+const eventsPosts = posts.filter(post => {
+    return post.url.includes(`${activeProject}/events`);
+})
+const thingsPosts = posts.filter(post => {
+    return post.url.includes(`${activeProject}/things`);
+})
+
+
+
 
 ---
-<aside>
+<nav class="sidepanel">
     <div class="project">
-        <p><IconProject /><span>Garuda</span></p>
-        <p><span>change</span><IconProject/></p>
+        <p><IconProject /><span>{toTitleCase(activeProject)}</span></p>
+        <button><span>change</span><IconChange/></button>
     </div>
     
     <ul class="article-pinned-list">
@@ -17,33 +55,90 @@ import IconPin from "./icon_pin.astro";
     </ul>
     <ul class="article-tree-list accordion">
         <li>
-            <button class="accordion-toggle" id="article-tree-list-toggle0" type="button" aria-expanded="true" aria-controls="article-tree-list-panel0">
-                <svg class="accordion-icon" viewBox="0 0 24 24">
-                    <line y1="12" x1="0" y2="12" x2="24"></line>
-                    <line y1="12" x1="0" y2="12" x2="24"></line>
-                </svg>
-                <span>People</span>
-            </button>
+            <div>
+                <a href="../pages/people">
+                    <IconPerson />
+                    <span>People</span>
+                </a>
+                <button class="accordion-toggle" id="article-tree-list-toggle0" type="button" aria-expanded="true" aria-controls="article-tree-list-panel0">
+                    <span>show</span>
+                    <svg class="accordion-icon" viewBox="0 0 24 24">
+                        <line y1="12" x1="0" y2="12" x2="24"></line>
+                        <line y1="12" x1="0" y2="12" x2="24"></line>
+                    </svg>
+                </button>
+            </div>
             <ul class="article-tree-list-panel accordion-panel" id="article-tree-list-panel0" role="region" aria-labelledby="article-tree-list-toggle0">
-                <li><a href="" class="active">Bopha Krol</a></li>
-                <li><a href="">Snow</a></li>
+                {peoplePosts.map((post) => 
+                    <li><a href={post.url}>{post.frontmatter.title}</a></li>
+                )}
             </ul>
         </li>
         <hr/>
         <li>
-            <button class="accordion-toggle" id="article-tree-list-toggle0" type="button" aria-expanded="true" aria-controls="article-tree-list-panel0">
-                <svg class="accordion-icon" viewBox="0 0 24 24">
-                    <line y1="12" x1="0" y2="12" x2="24"></line>
-                    <line y1="12" x1="0" y2="12" x2="24"></line>
-                </svg>
+            <a href="../pages/groups">
+                <IconGroup />
                 <span>Groups</span>
+            </a>
+            <button class="accordion-toggle" id="article-tree-list-toggle0" type="button" aria-expanded="true" aria-controls="article-tree-list-panel0">
+                <span>show</span>
+                <IconShow />
             </button>
             <ul class="article-tree-list-panel accordion-panel" id="article-tree-list-panel0" role="region" aria-labelledby="article-tree-list-toggle0">
-                <li><a href="">The Exchange</a></li>
-                <li><a href="">Strays</a></li>
+                {groupsPosts.map((post) => 
+                    <li><a href={post.url}>{post.frontmatter.title}</a></li>
+                )}
+            </ul>
+        </li>
+        <hr/>
+        <li>
+            <a href="../pages/groups">
+                <IconPlace />
+                <span>Place</span>
+            </a>
+            <button class="accordion-toggle" id="article-tree-list-toggle0" type="button" aria-expanded="true" aria-controls="article-tree-list-panel0">
+                <span>show</span>
+                <IconShow />
+            </button>
+            <ul class="article-tree-list-panel accordion-panel" id="article-tree-list-panel0" role="region" aria-labelledby="article-tree-list-toggle0">
+                {placesPosts.map((post) => 
+                    <li><a href={post.url}>{post.frontmatter.title}</a></li>
+                )}
+            </ul>
+        </li>
+        <hr/> 
+        <li>
+            <a href="../pages/groups">
+                <IconEvent />
+                <span>Events</span>
+            </a>
+            <button class="accordion-toggle" id="article-tree-list-toggle0" type="button" aria-expanded="true" aria-controls="article-tree-list-panel0">
+                <span>show</span>
+                <IconShow />
+            </button>
+            <ul class="article-tree-list-panel accordion-panel" id="article-tree-list-panel0" role="region" aria-labelledby="article-tree-list-toggle0">
+                {eventsPosts.map((post) => 
+                    <li><a href={post.url}>{post.frontmatter.title}</a></li>
+                )}
+            </ul>
+        </li>
+        <hr/> 
+        <li>
+            <a href="../pages/groups">
+                <IconThing />
+                <span>Things</span>
+            </a>
+            <button class="accordion-toggle" id="article-tree-list-toggle0" type="button" aria-expanded="true" aria-controls="article-tree-list-panel0">
+                <span>show</span>
+                <IconShow />
+            </button>
+            <ul class="article-tree-list-panel accordion-panel" id="article-tree-list-panel0" role="region" aria-labelledby="article-tree-list-toggle0">
+                {thingsPosts.map((post) => 
+                    <li><a href={post.url}>{post.frontmatter.title}</a></li>
+                )}
             </ul>
         </li>   
     </ul>
-</aside>
+</nav>
 
 <script src="../scripts/accordion.js"></script>
