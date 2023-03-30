@@ -54,6 +54,7 @@ for (const page of projectPages){
 }
 
 
+
 ---
 <nav class="sidepanel">
     <div class="project accordion">
@@ -71,15 +72,19 @@ for (const page of projectPages){
         </ul>
     </div>
     
-    <ul class="pinned-list">
-        <p class="icon-group"><IconPin /><span>Pinned</span></p>
-        <li><a href="">Article 1</a></li>
-        <li><a href="">Article 2</a></li>
-        <li><a href="">Article 3</a></li>
-    </ul>
-
+    <div class="pins accordion">
+        <div class="accordion-toggle-group">
+            <p class="icon-group"><IconPin /><span>Pinned</span></p>
+            <button class="accordion-toggle" id="pinned-list-toggle1" type="button" aria-expanded="true" aria-controls="pinned-list-panel1">
+                <span>show</span>
+                <IconShow />
+            </button>
+        </div>
+        <ul class="pinned-list accordion-panel" id="pinned-list-panel1" role="region" aria-labelledby="pinned-list-toggle1"></ul>
+    </div>
+    
     <hr />
-
+    
     <ul class="tree-list accordion" data-allow-multiple>
         <li>
             <div class="accordion-toggle-group">
@@ -124,7 +129,7 @@ for (const page of projectPages){
             <div class="accordion-toggle-group">
                 <a class="icon-group" href="../pages/groups">
                     <IconPlace />
-                    <span>Place</span>
+                    <span>Places</span>
                 </a>
                 <button class="accordion-toggle" id="tree-list-toggle3" type="button" aria-expanded="false" aria-controls="tree-list-panel3">
                     <span>show</span>

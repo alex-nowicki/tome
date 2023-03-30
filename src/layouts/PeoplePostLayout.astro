@@ -4,12 +4,5 @@ const {frontmatter} = Astro.props;
 ---
 
 <PostLayout frontmatter={frontmatter}>
-    <p>{frontmatter.title}</p>
-    <p>{frontmatter.url}</p>
-    {
-        Object.keys(frontmatter.metadata).map((key) => (
-                <p>{key}: {frontmatter.metadata[key]}</p>            
-            ))
-    }
-    
+    <slot />
 </PostLayout>

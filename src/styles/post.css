@@ -88,6 +88,10 @@ nav.sidepanel hr {
     margin: var(--spacing) 0;
 }
 
+nav.sidepanel .accordion-panel {
+    flex-flow: column nowrap;
+}
+
 /* Project */
 
 nav.sidepanel .project {
@@ -141,6 +145,16 @@ nav.sidepanel .pinned-list a {
 nav.sidepanel :is(.pinned-list, .tree-list) .icon-group span {
     font-weight: 600;
     margin-left: 0.5rem;
+}
+
+nav.sidepanel .pin-toggle svg {
+    width: 1.25rem;
+}
+
+nav.sidepanel .pin-toggle svg path {
+    fill: var(--gray-400);
+    stroke: var(--gray-400);
+    stroke-width: 1px;
 }
 
 
@@ -219,7 +233,7 @@ article {
     grid-template-areas:
     "breadcrumbs breadcrumbs"
     "title title"
-    "metadata content";
+    "infobox content";
 
     padding: 3rem;;
 }
@@ -271,11 +285,11 @@ article h1::after {
 }
 
 article img {
-    grid-area: metadata;
+    grid-area: infobox;
 }
 
-article .metadata {
-    grid-area: metadata;
+article .infobox {
+    grid-area: infobox;
 
     margin-top: 2rem;
 }
