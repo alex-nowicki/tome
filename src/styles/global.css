@@ -106,6 +106,10 @@ button {
 ** ACCORDIONS
 ------------------------------*/
 
+.accordion-panel {
+    display: flex;
+}
+
 .accordion-panel[hidden] {
     display: none;
 }

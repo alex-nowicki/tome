@@ -53,6 +53,8 @@ main {
 }
 
 nav.sidepanel {
+    --spacing: 0.75rem;
+
     grid-area: nav;
 
     padding: 2rem;
@@ -60,28 +62,53 @@ nav.sidepanel {
     border-right: 2px solid var(--gray-200);
 }
 
-/* Project */
-
-nav.sidepanel :is(.project, .project p, .project button){
+nav.sidepanel :is(.icon-group, .project button){
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
 }
 
+nav.sidepanel ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav.sidepanel a {
+    color: var(--gray-900);
+    text-decoration: none;
+}
+
+nav.sidepanel a:hover {
+    color: var(--orange);
+    text-decoration: underline;
+}
+
+nav.sidepanel hr {
+    border: 1px solid var(--gray-200);
+    margin: var(--spacing) 0;
+}
+
+/* Project */
+
 nav.sidepanel .project {
+    flex-flow: column nowrap;
+}
+
+nav.sidepanel .project .accordion-toggle-group {
+    display: flex;
     justify-content: space-between;
     padding-bottom: 0.5rem;
     border-bottom: 2px solid var(--gray-900);
+}
+
+nav.sidepanel .project p {
+    margin: 0;
 }
 
 nav.sidepanel .project p span {
     font-size: 1.25rem;
     font-weight: 600;
     margin-left: 0.375rem;
-}
-
-nav.sidepanel .project p {
-    margin: 0;
 }
 
 nav.sidepanel .project button span {
@@ -92,95 +119,95 @@ nav.sidepanel .project button span {
 
 nav.sidepanel .project button svg {
     width: 1rem;
-    
 }
 
-
-
-nav.sidepanel ul {
-    list-style: none;
-    padding: 0;
+nav.sidepanel .project-list-panel {
+    margin: 0;
+    padding: 0.5rem;
+    border-bottom: 2px solid var(--gray-300);
+    background-color: var(--gray-200);
 }
 
-nav.sidepanel .article-tree-list {
-    --tree-spacing: 1rem; 
-    --icon-width: 0.75rem; 
+/* Pinned List */
+
+nav.sidepanel .pinned-list p {
+    margin-bottom: var(--spacing);
 }
 
-nav.sidepanel .article-tree-list > li > div {
-    margin: 0 0 var(--tree-spacing);
+nav.sidepanel .pinned-list a {
+    margin-left: calc(var(--spacing) - 2px);
 }
 
-nav.sidepanel ul li a {
+nav.sidepanel :is(.pinned-list, .tree-list) .icon-group span {
     font-weight: 600;
-}
-
-nav.sidepanel .accordion-icon {
-    width: var(--icon-width);
-}
-
-nav.sidepanel .accordion-icon line {
-    fill: none;
-    stroke: var(--gray-900);
-    stroke-width: 4px;
-    transform-origin: center;
-    transition: transform 0.2s ease;
-}
-
-button[aria-expanded="false"] > svg.accordion-icon line:first-child {
-    transform: rotate(90deg);
-}
-
-nav.sidepanel .article-tree-list .accordion-panel {
-    display: flex;
-    flex-flow: column nowrap;
-    gap: calc(var(--tree-spacing) / 2);
-    position: relative;
-    padding-left: calc(var(--tree-spacing) + (var(--icon-width) / 2) - 1px);
-    margin-bottom: var(--tree-spacing);
-}
-
-nav.sidepanel .article-tree-list .accordion-panel a {
-    display: flex;
-    align-items: center;
-    position: relative;
-    height: var(--tree-spacing);
-    padding-left: 0.5rem;
-}
-
-nav.sidepanel .article-tree-list .accordion-panel a.active::after {
-    content: "";
-    display: block;
-    height: 0.5rem;
-    width: 0.5rem;
-    border-radius: 8rem;
-    background-color: var(--orange);
     margin-left: 0.5rem;
 }
 
-nav.sidepanel .article-tree-list .accordion-panel a::before {
+
+/* Tree List */
+
+nav.sidepanel .tree-list .accordion-toggle-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav.sidepanel .tree-list .accordion-toggle span {
+    font-weight: 600;
+    font-size: 0.75rem;
+}
+
+nav.sidepanel .accordion-toggle svg {
+    width: 0.75rem;
+}
+
+nav.sidepanel .accordion-toggle[aria-expanded="true"] > svg {
+    transform: rotate(90deg);
+}
+
+
+
+
+
+
+
+
+
+
+
+nav.sidepanel .tree-list .accordion-panel {
+    flex-flow: column nowrap;
+    position: relative;
+    padding-left: calc(var(--spacing) - 2px);
+    margin: var(--spacing) 0 var(--spacing);
+}
+
+nav.sidepanel :is(.pinned-list a, .tree-list .accordion-panel a) {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: calc(var(--spacing) / 4) var(--spacing);
+    border-left: 2px solid var(--gray-300);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+nav.sidepanel :is(.pinned-list a, .tree-list .accordion-panel a)::before {
     content: "";
     display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: var(--gray-100);
+    border: 2px solid var(--gray-500);
+    border-radius: 10rem;
     position: absolute;
-    top: calc((var(--tree-spacing) * 2) / -2);
-    left: calc(0rem - var(--tree-spacing));
-    width: var(--tree-spacing);
-    height: calc((var(--tree-spacing) * 1.5) + 1px);
-    border: solid var(--gray-300);
-    border-width: 0 0 2px 2px;
+    left: calc(-0.25rem - 1px);
 }
 
-nav.sidepanel .article-tree-list .accordion-panel a:first-child::before {
-    top: calc(var(--tree-spacing) / -2);
-    height: calc(var(--tree-spacing) + 1px);
+nav.sidepanel :is(.pinned-list a, .tree-list .accordion-panel a).active::before {
+    border-color: var(--gray-700);
+    background-color: var(--gray-700);
 }
-
-nav.sidepanel .article-tree-list hr {
-    border: 1px solid var(--gray-200);
-    margin-bottom: var(--tree-spacing);
-}
-
-
 
 
 article {
