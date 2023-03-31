@@ -2,7 +2,78 @@
 import BaseLayout from "./BaseLayout.astro";
 import SidePanel from "../components/SidePanel.astro";
 import "../styles/post.css";
-const {frontmatter} = Astro.props;
+const {frontmatter} = Astro.props;;
+
+
+
+
+// Determine active project and post
+const activeProject = frontmatter.url.split('/')[1];
+const activePost = frontmatter.url;
+
+// Get active post content
+const activePostContent = await Astro.props.compiledContent();
+
+const fullContent = await Astro.props.Content;
+console.log(fullContent);
+
+// Get project posts
+const posts = await Astro.glob('../pages/*/*/*.md');
+const projectPosts = posts.filter(post => {
+    return post.url.includes(`${activeProject}`) && !post.url.includes(`${activePost}`);
+})
+
+// Generate list of search terms
+// let searchArr = projectPosts.map(obj => {
+//     let newObj = {
+//         searchTerms: [],
+//         url: obj.url
+//     }
+//     if (obj.frontmatter.searchTerms){
+//         newObj.searchTerms = obj.frontmatter.searchTerms
+//     }
+//     return newObj;
+// });
+
+let searchArr = [];
+for (const obj of projectPosts) {
+    console.log(obj.frontmatter.searchTerms);
+    if (obj.frontmatter.searchTerms) {
+        for (const term of obj.frontmatter.searchTerms) {
+            searchArr.push({
+                term: term,
+                url: obj.url
+            })
+        }
+    }
+}
+
+searchArr.sort((a, b) => b.term.length - a.term.length);
+
+console.log(searchArr);
+
+let editedPostContent = activePostContent;
+
+// Escape quotation marks
+
+// editedPostContent = editedPostContent.replaceAll("'", "\\'");
+// editedPostContent = editedPostContent.replaceAll('"', '\\"');
+
+console.log(editedPostContent);
+
+// TODO - Handle overwriting of links
+// TODO - Khuyen's den not showing up, probably because of the '
+
+for (const obj of searchArr){
+    let pattern = new RegExp(obj.term, 'ig');
+    editedPostContent = editedPostContent.replaceAll(pattern, `<a href="${obj.url}">$&</a>`);
+}
+
+console.log(editedPostContent);
+
+
+
+
 ---
 
 <BaseLayout pageTitle={frontmatter.title}>
@@ -23,7 +94,7 @@ const {frontmatter} = Astro.props;
                 ))}
             </section>
             <section class="content">
-                {frontmatter.content}
+                <div set:html={editedPostContent}></div>
                 <slot />
                 <!-- Slot for MD content -->
             </section>

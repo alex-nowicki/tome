@@ -1,5 +1,5 @@
 let updatePins = function (arr){
-  let pinnedList = document.querySelector('.pinned-list');
+  let pinnedList = document.querySelector('.pins-panel');
   let markup = arr.map((pin) => 
   `<li><a href="${pin.url}">${pin.title}</a></li>`
   ).join('');
@@ -7,7 +7,9 @@ let updatePins = function (arr){
   pinnedList.innerHTML = markup;
 }
 
-updatePins(JSON.parse(localStorage.getItem('pins')));
+if (localStorage.getItem('pins')){
+  updatePins(JSON.parse(localStorage.getItem('pins')));
+}
 
 document.addEventListener('click', function(event){
 

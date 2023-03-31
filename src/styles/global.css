@@ -111,7 +111,7 @@ button {
 }
 
 .accordion-panel[hidden] {
-    display: none;
+    display: none !important;
 }
 
 

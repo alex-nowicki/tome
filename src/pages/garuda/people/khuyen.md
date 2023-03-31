@@ -1,8 +1,8 @@
 ---
 layout: ../../../layouts/PostLayout.astro
-title: 'Snow'
+title: 'Khuyen'
 info: 
-    Name: 'Snow'
+    Name: 'Khuyen'
     Aliases: ['Severina Niska']
     Age: 38
     Species: 'Human'
@@ -14,13 +14,9 @@ info:
     Children: 'None'
     Affiliations: ['Agency']
     Birthplace: 'Renati, Prosper System'
-searchTerms: ['Snow', 'Snow Niska', 'Severina', 'Severina Niska']
+searchTerms: ['Khuyen']
 
 ---
 
 ## History
-THIS IS SNOW'S POST: Snow met Bopha at the dock. She asked him why his name was Krol and not de la Rosa. He said, "I'm Bopha Krol". They went to visit Khuyen at Khuyen's Den in the Prosper System.
-
-This is lowercase bopha
-
-This is uppercase Bopha
+Snow met Bopha at the dock. She asked him why his name was Krol and not de la Rosa. He said, "I'm Bopha Krol". They went to visit Khuyen at Khuyen's Den in the Prosper System.

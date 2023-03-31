@@ -1,8 +1,7 @@
 ---
 import PostLayout from "./PostLayout.astro";
-const {frontmatter} = Astro.props;
 ---
 
-<PostLayout frontmatter={frontmatter}>
+<PostLayout>
     <slot />
 </PostLayout>

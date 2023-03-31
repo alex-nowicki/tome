@@ -52,6 +52,10 @@ main {
     "nav article";
 }
 
+/*
+** SIDEPANEL
+------------------------------*/
+
 nav.sidepanel {
     --spacing: 0.75rem;
 
@@ -62,10 +66,8 @@ nav.sidepanel {
     border-right: 2px solid var(--gray-200);
 }
 
-nav.sidepanel :is(.icon-group, .project button){
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
+nav.sidepanel p {
+    margin: 0;
 }
 
 nav.sidepanel ul {
@@ -83,68 +85,105 @@ nav.sidepanel a:hover {
     text-decoration: underline;
 }
 
+nav.sidepanel :is(.pins-panel, .tree-panel) a {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: calc(var(--spacing) / 4) var(--spacing);
+    border-left: 2px solid var(--gray-300);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+nav.sidepanel :is(.pins-panel, .tree-panel) a::before {
+    content: "";
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: var(--gray-100);
+    border: 2px solid var(--gray-500);
+    border-radius: 10rem;
+    position: absolute;
+    left: calc(-0.25rem - 1px);
+}
+
+nav.sidepanel :is(.pins-panel, .tree-panel) a.active::before {
+    border-color: var(--gray-700);
+    background-color: var(--gray-700);
+}
+
 nav.sidepanel hr {
     border: 1px solid var(--gray-200);
     margin: var(--spacing) 0;
 }
 
-nav.sidepanel .accordion-panel {
-    flex-flow: column nowrap;
-}
-
-/* Project */
-
-nav.sidepanel .project {
-    flex-flow: column nowrap;
-}
-
-nav.sidepanel .project .accordion-toggle-group {
+nav.sidepanel .accordion-toggle-group {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+nav.sidepanel :is(.icon-group, .accordion-toggle){
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+nav.sidepanel :is(.pins, .tree) .icon-group span {
+    font-weight: 600;
+    margin-left: 0.5rem;
+}
+
+nav.sidepanel :is(.projects, .pins, .tree) .accordion-toggle span {
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-right: 0.375rem; 
+}
+
+nav.sidepanel .accordion-panel {
+    display: flex;
+    flex-flow: column nowrap;
+    margin: var(--spacing) 0 var(--spacing);
+}
+
+
+/* Projects */
+
+nav.sidepanel .projects {
+    flex-flow: column nowrap;
+    margin-bottom: var(--spacing);
+}
+
+nav.sidepanel .projects .accordion-toggle-group {
     padding-bottom: 0.5rem;
     border-bottom: 2px solid var(--gray-900);
 }
 
-nav.sidepanel .project p {
-    margin: 0;
-}
-
-nav.sidepanel .project p span {
+nav.sidepanel .projects .icon-group span {
     font-size: 1.25rem;
     font-weight: 600;
     margin-left: 0.375rem;
 }
 
-nav.sidepanel .project button span {
-    font-size: 0.75rem;
-    font-weight: 600;
+nav.sidepanel .projects .accordion-toggle span {
     margin-right: 0.375rem;
 }
 
-nav.sidepanel .project button svg {
+nav.sidepanel .projects .accordion-toggle svg {
     width: 1rem;
 }
 
-nav.sidepanel .project-list-panel {
+nav.sidepanel .projects-panel {
     margin: 0;
     padding: 0.5rem;
     border-bottom: 2px solid var(--gray-300);
     background-color: var(--gray-200);
 }
 
-/* Pinned List */
+/* Pins */
 
-nav.sidepanel .pinned-list p {
-    margin-bottom: var(--spacing);
-}
-
-nav.sidepanel .pinned-list a {
+nav.sidepanel .pins a {
     margin-left: calc(var(--spacing) - 2px);
-}
-
-nav.sidepanel :is(.pinned-list, .tree-list) .icon-group span {
-    font-weight: 600;
-    margin-left: 0.5rem;
 }
 
 nav.sidepanel .pin-toggle svg {
@@ -158,18 +197,7 @@ nav.sidepanel .pin-toggle svg path {
 }
 
 
-/* Tree List */
-
-nav.sidepanel .tree-list .accordion-toggle-group {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-nav.sidepanel .tree-list .accordion-toggle span {
-    font-weight: 600;
-    font-size: 0.75rem;
-}
+/* Tree */
 
 nav.sidepanel .accordion-toggle svg {
     width: 0.75rem;
@@ -179,49 +207,19 @@ nav.sidepanel .accordion-toggle[aria-expanded="true"] > svg {
     transform: rotate(90deg);
 }
 
-
-
-
-
-
-
-
-
-
-
-nav.sidepanel .tree-list .accordion-panel {
+nav.sidepanel .tree-panel {
     flex-flow: column nowrap;
     position: relative;
     padding-left: calc(var(--spacing) - 2px);
     margin: var(--spacing) 0 var(--spacing);
 }
 
-nav.sidepanel :is(.pinned-list a, .tree-list .accordion-panel a) {
+nav.sidepanel .tree-panel li {
     display: flex;
-    align-items: center;
-    position: relative;
-    padding: calc(var(--spacing) / 4) var(--spacing);
-    border-left: 2px solid var(--gray-300);
-    font-size: 0.875rem;
-    font-weight: 500;
+    flex-flow: row nowrap;
 }
 
-nav.sidepanel :is(.pinned-list a, .tree-list .accordion-panel a)::before {
-    content: "";
-    display: block;
-    width: 0.5rem;
-    height: 0.5rem;
-    background-color: var(--gray-100);
-    border: 2px solid var(--gray-500);
-    border-radius: 10rem;
-    position: absolute;
-    left: calc(-0.25rem - 1px);
-}
 
-nav.sidepanel :is(.pinned-list a, .tree-list .accordion-panel a).active::before {
-    border-color: var(--gray-700);
-    background-color: var(--gray-700);
-}
 
 
 article {

@@ -57,15 +57,15 @@ for (const page of projectPages){
 
 ---
 <nav class="sidepanel">
-    <div class="project accordion">
+    <div class="projects accordion">
         <div class="accordion-toggle-group">
             <p class="icon-group"><IconProject /><span>{toTitleCase(activeProject)}</span></p>
-            <button class="accordion-toggle" id="project-list-toggle1" type="button" aria-expanded="true" aria-controls="project-list-panel1">
+            <button class="accordion-toggle" id="projects-toggle1" type="button" aria-expanded="false" aria-controls="projects-panel1">
                 <span>change</span>
                 <IconChange/>
             </button>
         </div>
-        <ul class="project-list-panel accordion-panel" id="project-list-panel1" role="region" aria-labelledby="project-list-toggle1">
+        <ul class="projects-panel accordion-panel" id="projects-panel1" role="region" aria-labelledby="projects-toggle1" hidden>
             {projects.map((project) =>
                 <li><a href={project.url}>{toTitleCase(project.title)}</a></li>
             )}
@@ -74,30 +74,30 @@ for (const page of projectPages){
     
     <div class="pins accordion">
         <div class="accordion-toggle-group">
-            <p class="icon-group"><IconPin /><span>Pinned</span></p>
-            <button class="accordion-toggle" id="pinned-list-toggle1" type="button" aria-expanded="true" aria-controls="pinned-list-panel1">
+            <p class="icon-group"><IconPin /><span>Pins</span></p>
+            <button class="accordion-toggle" id="pins-toggle1" type="button" aria-expanded="false" aria-controls="pins-panel1">
                 <span>show</span>
                 <IconShow />
             </button>
         </div>
-        <ul class="pinned-list accordion-panel" id="pinned-list-panel1" role="region" aria-labelledby="pinned-list-toggle1"></ul>
+        <ul class="pins-panel accordion-panel" id="pins-panel1" role="region" aria-labelledby="pins-toggle1" hidden></ul>
     </div>
     
     <hr />
     
-    <ul class="tree-list accordion" data-allow-multiple>
+    <ul class="tree accordion" data-allow-multiple>
         <li>
             <div class="accordion-toggle-group">
                 <a class="icon-group" href="../pages/people">
                     <IconPerson />
                     <span>People</span>
                 </a>
-                <button class="accordion-toggle" id="tree-list-toggle1" type="button" aria-expanded="true" aria-controls="tree-list-panel1">
+                <button class="accordion-toggle" id="tree-toggle1" type="button" aria-expanded="true" aria-controls="tree-panel1">
                     <span>show</span>
                     <IconShow />
                 </button>
             </div>
-            <ul class="tree-list-panel accordion-panel" id="tree-list-panel1" role="region" aria-labelledby="tree-list-toggle1">
+            <ul class="tree-panel accordion-panel" id="tree-panel1" role="region" aria-labelledby="tree-toggle1">
                 {peoplePosts.map((post) => 
                     <li>
                         <a href={post.url}>{post.frontmatter.title}</a>
@@ -113,12 +113,12 @@ for (const page of projectPages){
                     <IconGroup />
                     <span>Groups</span>
                 </a>
-                <button class="accordion-toggle" id="tree-list-toggle2" type="button" aria-expanded="false" aria-controls="tree-list-panel2">
+                <button class="accordion-toggle" id="tree-toggle2" type="button" aria-expanded="false" aria-controls="tree-panel2">
                     <span>show</span>
                     <IconShow />
                 </button>
             </div>
-            <ul class="tree-list-panel accordion-panel" id="tree-list-panel2" role="region" aria-labelledby="tree-list-toggle2" hidden>
+            <ul class="tree-panel accordion-panel" id="tree-panel2" role="region" aria-labelledby="tree-toggle2" hidden>
                 {groupsPosts.map((post) => 
                     <li><a href={post.url}>{post.frontmatter.title}</a></li>
                 )}
@@ -131,12 +131,12 @@ for (const page of projectPages){
                     <IconPlace />
                     <span>Places</span>
                 </a>
-                <button class="accordion-toggle" id="tree-list-toggle3" type="button" aria-expanded="false" aria-controls="tree-list-panel3">
+                <button class="accordion-toggle" id="tree-toggle3" type="button" aria-expanded="false" aria-controls="tree-panel3">
                     <span>show</span>
                     <IconShow />
                 </button>
             </div>
-            <ul class="tree-list-panel accordion-panel" id="tree-list-panel3" role="region" aria-labelledby="tree-list-toggle3" hidden>
+            <ul class="tree-panel accordion-panel" id="tree-panel3" role="region" aria-labelledby="tree-toggle3" hidden>
                 {placesPosts.map((post) => 
                     <li><a href={post.url}>{post.frontmatter.title}</a></li>
                 )}
@@ -149,12 +149,12 @@ for (const page of projectPages){
                     <IconEvent />
                     <span>Events</span>
                 </a>
-                <button class="accordion-toggle" id="tree-list-toggle4" type="button" aria-expanded="false" aria-controls="tree-list-panel4">
+                <button class="accordion-toggle" id="tree-toggle4" type="button" aria-expanded="false" aria-controls="tree-panel4">
                     <span>show</span>
                     <IconShow />
                 </button>
             </div>
-            <ul class="tree-list-panel accordion-panel" id="tree-list-panel4" role="region" aria-labelledby="tree-list-toggle4" hidden>
+            <ul class="tree-panel accordion-panel" id="tree-panel4" role="region" aria-labelledby="tree-toggle4" hidden>
                 {eventsPosts.map((post) => 
                     <li><a href={post.url}>{post.frontmatter.title}</a></li>
                 )}
@@ -167,12 +167,12 @@ for (const page of projectPages){
                     <IconThing />
                     <span>Things</span>
                 </a>
-                <button class="accordion-toggle" id="tree-list-toggle5" type="button" aria-expanded="false" aria-controls="tree-list-panel5">
+                <button class="accordion-toggle" id="tree-toggle5" type="button" aria-expanded="false" aria-controls="tree-panel5">
                     <span>show</span>
                     <IconShow />
                 </button>
             </div>
-            <ul class="tree-list-panel accordion-panel" id="tree-list-panel5" role="region" aria-labelledby="tree-list-toggle5" hidden>
+            <ul class="tree-panel accordion-panel" id="tree-panel5" role="region" aria-labelledby="tree-toggle5" hidden>
                 {thingsPosts.map((post) => 
                     <li><a href={post.url}>{post.frontmatter.title}</a></li>
                 )}

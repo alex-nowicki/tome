@@ -14,6 +14,7 @@ info:
     Children: 'None'
     Affiliations: ['Strays', 'Agency']
     Birthplace: 'Renati, Prosper System'
+searchTerms: ['Bopha', 'Bopha Krol', 'Bopha de la Rosa']
 tags: ["people"]
 
 ---
