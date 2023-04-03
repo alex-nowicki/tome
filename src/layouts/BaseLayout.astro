@@ -4,7 +4,7 @@ import Footer from "../components/Footer.astro";
 import "../styles/normalize.css";
 import "../styles/global.css";
 import "../fonts/fonts.css";
-const { pageTitle } = Astro.props;
+const { frontmatter } = Astro.props;
 ---
 
 <html lang="en">
@@ -13,10 +13,10 @@ const { pageTitle } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>{ pageTitle }</title>
+    <title>{ frontmatter.title }</title>
   </head>
   <body>
-    <Header />
+    <Header frontmatter={frontmatter} />
     <slot />
     <Footer />
     <slot name="scripts"/>

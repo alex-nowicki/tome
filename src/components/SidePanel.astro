@@ -2,6 +2,7 @@
 import IconProject from "./icon_project.astro";
 import IconChange from "./icon_change.astro";
 import IconPin from "./icon_pin.astro";
+import IconBookmark from "./icon_bookmark.astro";
 import IconShow from "./icon_show.astro";
 import IconPerson from "./icon_person.astro";
 import IconGroup from "./icon_group.astro";
@@ -9,18 +10,16 @@ import IconPlace from "./icon_place.astro";
 import IconEvent from "./icon_event.astro";
 import IconThing from "./icon_thing.astro";
 
-let toTitleCase = function(str){
-    let sentence = str.toLowerCase().split(' ');
-      for(let i = 0; i < sentence.length; i++){
-         sentence[i] = sentence[i][0].toUpperCase() + sentence[i].slice(1);
-      }
-   sentence = sentence.join(" ");
-   return sentence;
-}
+import { toTitleCase } from '../scripts/helpers.js';
+
+import '../styles/sidepanel.css';
 
 const {frontmatter} = Astro.props;
+
 // Determine active project
 const activeProject = frontmatter.url.split('/')[1];
+const activePost = frontmatter.url;
+console.log(activePost);
 
 // Collect posts and filter by category
 const posts = await Astro.glob('../pages/*/*/*.md');
@@ -74,7 +73,7 @@ for (const page of projectPages){
     
     <div class="pins accordion">
         <div class="accordion-toggle-group">
-            <p class="icon-group"><IconPin /><span>Pins</span></p>
+            <p class="icon-group"><IconBookmark /><span>Bookmarks</span></p>
             <button class="accordion-toggle" id="pins-toggle1" type="button" aria-expanded="false" aria-controls="pins-panel1">
                 <span>show</span>
                 <IconShow />
@@ -99,9 +98,10 @@ for (const page of projectPages){
             </div>
             <ul class="tree-panel accordion-panel" id="tree-panel1" role="region" aria-labelledby="tree-toggle1">
                 {peoplePosts.map((post) => 
-                    <li>
+
+                    <li class={post.url === activePost.url ? post.url : activePost.url}>
                         <a href={post.url}>{post.frontmatter.title}</a>
-                        <button class="pin-toggle"><IconPin /></button>
+                        <button class="pin-toggle"><IconBookmark /></button>
                     </li>
                 )}
             </ul>

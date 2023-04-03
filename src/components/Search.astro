@@ -1,0 +1,36 @@
+---
+import { toTitleCase } from "../scripts/helpers.js"
+
+const {projectPost} = Astro.props
+
+---
+
+<div class="search-group accordion">
+    <form id="search">
+        <input type="search" id="search-field" class="text-field"   minlength="3" placeholder=`Search articles in ${toTitleCase(activeProject)}`></input>
+        <!-- <button id="search-clear" type="button" aria-label="Clear Search">
+            <svg viewbox="0 0 32 32">
+                <line y1="16" x1="0" y2="16" x2="32"/>
+                <line y1="16" x1="0" y2="16" x2="32"/>
+            </svg>
+        </button> -->
+        <button type="button" id="search-submit" class="submit">
+            <svg class="submit-icon-search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <circle cx="9.5" cy="9.5" r="7.5"/>
+                <line x1="14.8" y1="14.8" x2="22" y2="22"/>
+            </svg>
+        </button>
+    </form>
+    <!-- <form id="sort">
+        <label>Sort by</label>
+        <select name="sort" id="sort-select">
+        <option value="byRelevance" hidden>Relevance</option>
+        <option value="byDateAdded" selected="selected">Date Added</option>
+        </select>
+    </form> -->
+    <ul class="results-panel accordion-panel" id="results-panel" role="region" aria-labelledby="results-toggle">
+        {projectPosts.map((post) =>
+            <li><a href={post.url}>{post.frontmatter.title}</a></li>
+        )}
+    </ul>
+</div>

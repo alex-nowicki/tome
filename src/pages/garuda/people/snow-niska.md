@@ -1,8 +1,8 @@
 ---
 layout: ../../../layouts/PostLayout.astro
-title: 'Snow'
+title: 'Snow Niska'
 info: 
-    Name: 'Snow'
+    Name: 'Snow Niska'
     Aliases: ['Severina Niska']
     Age: 38
     Species: 'Human'
@@ -10,7 +10,7 @@ info:
     Profession: 'Patron of the Agency'
     Parents: ['Steve de la Rosa', 'Fay Krol']
     Siblings: 'None'
-    Romantic Partners: 'None'
+    Romantic Partners: 'Bopha'
     Children: 'None'
     Affiliations: ['Agency']
     Birthplace: 'Renati, Prosper System'

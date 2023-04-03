@@ -1,5 +1,5 @@
 ---
-layout: ../../../layouts/PeoplePostLayout.astro
+layout: ../../../layouts/PostLayout.astro
 title: 'Bopha Krol'
 info: 
     Name: 'Bopha Krol'

@@ -1,21 +1,21 @@
 ---
+import IconArrow from "../components/icon_show.astro";
 import BaseLayout from "./BaseLayout.astro";
 import SidePanel from "../components/SidePanel.astro";
+
+import { toTitleCase } from '../scripts/helpers.js';
+
 import "../styles/post.css";
-const {frontmatter} = Astro.props;;
 
-
-
+const {frontmatter} = Astro.props;
 
 // Determine active project and post
-const activeProject = frontmatter.url.split('/')[1];
+const postPath = frontmatter.url.split('/');
+const activeProject = postPath[1];
 const activePost = frontmatter.url;
 
 // Get active post content
-const activePostContent = await Astro.props.compiledContent();
-
-const fullContent = await Astro.props.Content;
-console.log(fullContent);
+const postContent = await Astro.props.compiledContent();
 
 // Get project posts
 const posts = await Astro.glob('../pages/*/*/*.md');
@@ -23,21 +23,10 @@ const projectPosts = posts.filter(post => {
     return post.url.includes(`${activeProject}`) && !post.url.includes(`${activePost}`);
 })
 
-// Generate list of search terms
-// let searchArr = projectPosts.map(obj => {
-//     let newObj = {
-//         searchTerms: [],
-//         url: obj.url
-//     }
-//     if (obj.frontmatter.searchTerms){
-//         newObj.searchTerms = obj.frontmatter.searchTerms
-//     }
-//     return newObj;
-// });
-
+// Collect all search terms in an array
 let searchArr = [];
+let searchArrTerms = [];
 for (const obj of projectPosts) {
-    console.log(obj.frontmatter.searchTerms);
     if (obj.frontmatter.searchTerms) {
         for (const term of obj.frontmatter.searchTerms) {
             searchArr.push({
@@ -48,51 +37,68 @@ for (const obj of projectPosts) {
     }
 }
 
+// Sort terms from longest to shortest
 searchArr.sort((a, b) => b.term.length - a.term.length);
+searchArr.map((obj) => searchArrTerms.push(obj.term));
 
-console.log(searchArr);
-
-let editedPostContent = activePostContent;
-
-// Escape quotation marks
-
-// editedPostContent = editedPostContent.replaceAll("'", "\\'");
-// editedPostContent = editedPostContent.replaceAll('"', '\\"');
-
-console.log(editedPostContent);
-
-// TODO - Handle overwriting of links
-// TODO - Khuyen's den not showing up, probably because of the '
+let editedPostContent = postContent;
 
 for (const obj of searchArr){
-    let pattern = new RegExp(obj.term, 'ig');
-    editedPostContent = editedPostContent.replaceAll(pattern, `<a href="${obj.url}">$&</a>`);
+    let term = obj.term;
+    // Replace quote marks with regex that captures all types
+    term = term.replaceAll("'", "['’]");
+    term = term.replaceAll('"', '[“”"]');
+    let pattern = `(?<!<a[^>]*)(?<!<[^>]*)(${term})(?![^<]*<\/a>)`;
+    let flags = 'gi'; // g for global and i for case-insensitive
+    let regex = new RegExp(pattern, flags);
+    editedPostContent = editedPostContent.replaceAll(regex, `<a href="${obj.url}">$&</a>`);
 }
 
-console.log(editedPostContent);
-
-
+let postInfoBox = Object.keys(frontmatter.info).map((key) => {
+    let valueStr;
+    if (Array.isArray(frontmatter.info[key])){
+        let valueList;
+        valueList = frontmatter.info[key].map((value) => {
+            if (searchArrTerms.includes(value)){
+                return `<li><a href="${searchArr[searchArrTerms.indexOf(value)].url}">${value}</a></li>`;
+            } else {
+                return `<li>${value}</li>`;
+            }
+        }).join('');
+        valueStr = `<ul>${valueList}</ul>`;
+    } else {
+        if (searchArrTerms.includes(frontmatter.info[key])) {
+            valueStr = `<p><a href="${searchArr[searchArrTerms.indexOf(frontmatter.info[key])].url}">${frontmatter.info[key]}</a></p>`;
+        } else {
+            valueStr = `<p>${frontmatter.info[key]}</p>`
+        }
+    }
+    return `<div><h2>${key}</h2>${valueStr}</div>`;
+}).join('');
 
 
 ---
 
-<BaseLayout pageTitle={frontmatter.title}>
+<BaseLayout frontmatter={frontmatter}>
     <main>
         <SidePanel frontmatter={frontmatter}/>
         <article>
             <div class="breadcrumbs">
-                <a href="">Garuda</a>
-                <a href="">People</a>
-                <a href="">Bopha Krol</a>
+                {postPath.map((step, index) => {
+                    if (index == 0){
+                        return ''
+                    } else if (index == 1){
+                        return <a href=`../../${step}`>{toTitleCase(step)}</a><IconArrow />
+                    } else if (index == 2){
+                        return <a href=`../${step}`>{toTitleCase(step)}</a><IconArrow />
+                    } else {
+                        return <a href={step}>{frontmatter.title}</a>
+                    }
+                })}
             </div>
             <h1>{frontmatter.title}</h1>
             <img src="" />
-            <section class="infobox">
-                {Object.keys(frontmatter.info).map((key) => (
-                    <h2>{key}</h2>
-                    <p>{frontmatter.info[key]}</p> 
-                ))}
-            </section>
+            <section class="infobox" set:html={postInfoBox}></section>
             <section class="content">
                 <div set:html={editedPostContent}></div>
                 <slot />
