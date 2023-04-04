@@ -1,5 +1,5 @@
 ---
-import IconArrow from "../components/icon_show.astro";
+import IconArrow from "../components/IconArrow.astro";
 import BaseLayout from "./BaseLayout.astro";
 import SidePanel from "../components/SidePanel.astro";
 
@@ -88,9 +88,9 @@ let postInfoBox = Object.keys(frontmatter.info).map((key) => {
                     if (index == 0){
                         return ''
                     } else if (index == 1){
-                        return <a href=`../../${step}`>{toTitleCase(step)}</a><IconArrow />
+                        return <a href={`../../${step}`}>{toTitleCase(step)}</a><IconArrow />
                     } else if (index == 2){
-                        return <a href=`../${step}`>{toTitleCase(step)}</a><IconArrow />
+                        return <a href={`../${step}`}>{toTitleCase(step)}</a><IconArrow />
                     } else {
                         return <a href={step}>{frontmatter.title}</a>
                     }
@@ -101,8 +101,7 @@ let postInfoBox = Object.keys(frontmatter.info).map((key) => {
             <section class="infobox" set:html={postInfoBox}></section>
             <section class="content">
                 <div set:html={editedPostContent}></div>
-                <slot />
-                <!-- Slot for MD content -->
+                <!-- <slot /> -->
             </section>
         </article>
     </main>

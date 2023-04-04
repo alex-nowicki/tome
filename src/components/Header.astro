@@ -1,7 +1,6 @@
 ---
-import Navigation from "./Navigation.astro";
-import Logo from "../components/logo.astro";
-import Search from "../components/search.astro";
+import Logo from "../components/Logo.astro";
+import Search from "../components/SearchBar.astro";
 
 const {frontmatter} = Astro.props;
 
@@ -20,5 +19,5 @@ const projectPosts = posts.filter(post => {
 
 <header>
     <Logo />
-    <Search projectPosts={projectPosts}/>
+    <Search frontmatter={frontmatter} projectPosts={projectPosts}/>
 </header>

@@ -31,7 +31,7 @@ nav.sidepanel a:hover {
     text-decoration: underline;
 }
 
-nav.sidepanel :is(.pins-panel, .tree-panel) a {
+nav.sidepanel :is(.bookmarks-panel, .tree-panel) a {
     display: flex;
     align-items: center;
     position: relative;
@@ -41,7 +41,7 @@ nav.sidepanel :is(.pins-panel, .tree-panel) a {
     font-weight: 500;
 }
 
-nav.sidepanel :is(.pins-panel, .tree-panel) a::before {
+nav.sidepanel :is(.bookmarks-panel, .tree-panel) a::before {
     content: "";
     display: block;
     width: 0.5rem;
@@ -53,7 +53,7 @@ nav.sidepanel :is(.pins-panel, .tree-panel) a::before {
     left: calc(-0.25rem - 1px);
 }
 
-nav.sidepanel :is(.pins-panel, .tree-panel) a.active::before {
+nav.sidepanel :is(.bookmarks-panel, .tree-panel) a.active::before {
     border-color: var(--gray-80);
     background-color: var(--gray-80);
 }
@@ -75,15 +75,20 @@ nav.sidepanel :is(.icon-group, .accordion-toggle){
     align-items: center;
 }
 
-nav.sidepanel :is(.pins, .tree) .icon-group span {
+nav.sidepanel :is(.bookmarks, .tree) .icon-group span {
     font-weight: 600;
     margin-left: 0.5rem;
 }
 
-nav.sidepanel :is(.projects, .pins, .tree) .accordion-toggle span {
+nav.sidepanel :is(.projects, .bookmarks, .tree) .accordion-toggle span {
     font-size: 0.75rem;
     font-weight: 600;
     margin-right: 0.375rem; 
+}
+
+nav.sidepanel :is(.bookmarks, .tree) .accordion-panel li:hover .bookmark-toggle,
+nav.sidepanel :is(.bookmarks, .tree) .accordion-panel .bookmark-toggle.is-active {
+    display: flex;
 }
 
 nav.sidepanel .accordion-panel {
@@ -126,33 +131,35 @@ nav.sidepanel .projects-panel {
     background-color: var(--gray-15);
 }
 
-/* Pins */
+/* Bookmarks */
 
-nav.sidepanel .pins a {
+nav.sidepanel .bookmarks a {
     margin-left: calc(var(--spacing) - 2px);
 }
 
-nav.sidepanel .pins li {
+nav.sidepanel .bookmarks li {
     display: flex;
     justify-content: space-between;
 }
 
-nav.sidepanel .pin-toggle {
-    display: flex;
+nav.sidepanel .bookmark-toggle {
+    display: none;
     align-items: center;
 }
 
-nav.sidepanel .pin-toggle svg {
+
+
+nav.sidepanel .bookmark-toggle svg {
     width: 1.125rem;
 }
 
-nav.sidepanel .pin-toggle svg path {
+nav.sidepanel .bookmark-toggle svg path {
     fill: none;
     stroke: var(--gray-100);
     stroke-width: 2px;
 }
 
-nav.sidepanel .pin-toggle.pinned svg path {
+nav.sidepanel .bookmark-toggle.is-active svg path {
     fill: var(--orange-60);
     stroke: var(--gray-100);
     stroke-width: 2px;
