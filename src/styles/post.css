@@ -29,6 +29,19 @@ article .content h3 {
 ** LINKS & BUTTONS
 ------------------------------*/
 
+article a {
+    color: var(--teal-100);
+    font-weight: 500;
+}
+
+article a:hover {
+    color: var(--teal-80);
+    font-weight: 500;
+}
+
+article a:visited {
+    color: var(--teal-100);         
+}
 
 /*
 ** HEADER
@@ -52,7 +65,7 @@ article {
 
     display: grid;
     grid-template-columns: clamp(40%, 720px, 60%) 1fr;
-    grid-template-rows: auto auto 1fr;
+    grid-template-rows: auto auto auto 1fr;
     grid-template-areas:
     "breadcrumbs breadcrumbs"
     "title title"

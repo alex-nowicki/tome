@@ -5,12 +5,16 @@ import IconPlaces from "./IconPlaces.astro";
 
 import { toTitleCase } from "../scripts/helpers.js";
 
-const {frontmatter} = Astro.props;
-const {projectPosts} = Astro.props;
+const { pagePath } = Astro.props;
 
 // Determine active project and post
-const pagePath = frontmatter.url.split('/');
-const activeProject = pagePath[1];
+const activeProject = pagePath.split('/')[1];
+
+// Get project posts
+const posts = await Astro.glob('../pages/*/*/*.md');
+const projectPosts = posts.filter(post => {
+    return post.url.includes(`${activeProject}`);
+})
 
 ---
 

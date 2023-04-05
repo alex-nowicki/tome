@@ -79,9 +79,9 @@ let postInfoBox = Object.keys(frontmatter.info).map((key) => {
 
 ---
 
-<BaseLayout frontmatter={frontmatter}>
+<BaseLayout pageTitle={frontmatter.title} pagePath={frontmatter.url}>
     <main>
-        <SidePanel frontmatter={frontmatter}/>
+        <SidePanel pagePath={frontmatter.url}/>
         <article>
             <div class="breadcrumbs">
                 {postPath.map((step, index) => {

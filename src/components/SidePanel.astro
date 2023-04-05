@@ -9,17 +9,17 @@ import IconPlaces from "./IconPlaces.astro";
 import IconEvents from "./IconEvents.astro";
 import IconThings from "./IconThings.astro";
 
+import TreeSection from "./TreeSection.astro";
+
 import { toTitleCase } from '../scripts/helpers.js';
 
 import '../styles/sidepanel.css';
 
-const {frontmatter} = Astro.props;
+const { pagePath } = Astro.props;
 
 // Determine active project
-const activeProject = frontmatter.url.split('/')[1];
-const activeCategory = frontmatter.url.split('/')[2];
-const activePost = frontmatter.url;
-console.log(activePost);
+const activeProject = pagePath.split('/')[1];
+const activePost = pagePath;
 
 // Collect posts and filter by category
 const posts = await Astro.glob('../pages/*/*/*.md');
@@ -73,110 +73,26 @@ for (const page of projectPages){
     <div class="bookmarks accordion">
         <div class="accordion-toggle-group">
             <p class="icon-group"><IconBookmarks /><span>Bookmarks</span></p>
-            <button class="accordion-toggle" id="bookmarks-toggle1" type="button" aria-expanded="false" aria-controls="bookmarks-panel1">
+            <button class="accordion-toggle" id="bookmarks-toggle1" type="button" aria-expanded="true" aria-controls="bookmarks-panel1">
                 <span>show</span>
                 <IconArrow />
             </button>
         </div>
-        <ul class="bookmarks-panel accordion-panel" id="bookmarks-panel1" role="region" aria-labelledby="bookmarks-toggle1" hidden></ul>
+        <ul class="bookmarks-panel accordion-panel" id="bookmarks-panel1" role="region" aria-labelledby="bookmarks-toggle1"></ul>
     </div>
     
     <hr />
     
-    <ul class="tree accordion" data-allow-multiple>
-        <li>
-            <div class="accordion-toggle-group">
-                <a class="icon-group" href="../pages/people">
-                    <IconPeople />
-                    <span>People</span>
-                </a>
-                <button class="accordion-toggle" id="tree-toggle1" type="button" aria-expanded="true" aria-controls="tree-panel1">
-                    <span>show</span>
-                    <IconArrow />
-                </button>
-            </div>
-            <ul class="tree-panel accordion-panel" id="tree-panel1" role="region" aria-labelledby="tree-toggle1" hidden>
-                {peoplePosts.map((post) => 
-
-                    <li class={post.url === activePost ? `is-active` : ''}>
-                        <a href={post.url}>{post.frontmatter.title}</a>
-                        <button class="bookmark-toggle"><IconBookmarks /></button>
-                    </li>
-                )}
-            </ul>
-        </li>
-        <hr/>
-        <li>
-            <div class="accordion-toggle-group">
-                <a class="icon-group" href="../pages/groups">
-                    <IconGroups />
-                    <span>Groups</span>
-                </a>
-                <button class="accordion-toggle" id="tree-toggle2" type="button" aria-expanded="false" aria-controls="tree-panel2">
-                    <span>show</span>
-                    <IconArrow />
-                </button>
-            </div>
-            <ul class="tree-panel accordion-panel" id="tree-panel2" role="region" aria-labelledby="tree-toggle2" hidden>
-                {groupsPosts.map((post) => 
-                    <li><a href={post.url}>{post.frontmatter.title}</a></li>
-                )}
-            </ul>
-        </li>
-        <hr/>
-        <li>
-            <div class="accordion-toggle-group">
-                <a class="icon-group" href="../pages/groups">
-                    <IconPlaces />
-                    <span>Places</span>
-                </a>
-                <button class="accordion-toggle" id="tree-toggle3" type="button" aria-expanded="false" aria-controls="tree-panel3">
-                    <span>show</span>
-                    <IconArrow />
-                </button>
-            </div>
-            <ul class="tree-panel accordion-panel" id="tree-panel3" role="region" aria-labelledby="tree-toggle3" hidden>
-                {placesPosts.map((post) => 
-                    <li><a href={post.url}>{post.frontmatter.title}</a></li>
-                )}
-            </ul>
-        </li>
-        <hr/> 
-        <li>
-            <div class="accordion-toggle-group">
-                <a class="icon-group" href="../pages/groups">
-                    <IconEvents />
-                    <span>Events</span>
-                </a>
-                <button class="accordion-toggle" id="tree-toggle4" type="button" aria-expanded="false" aria-controls="tree-panel4">
-                    <span>show</span>
-                    <IconArrow />
-                </button>
-            </div>
-            <ul class="tree-panel accordion-panel" id="tree-panel4" role="region" aria-labelledby="tree-toggle4" hidden>
-                {eventsPosts.map((post) => 
-                    <li><a href={post.url}>{post.frontmatter.title}</a></li>
-                )}
-            </ul>
-        </li>
-        <hr/> 
-        <li>
-            <div class="accordion-toggle-group">
-                <a class="icon-group" href="../pages/groups">
-                    <IconThings />
-                    <span>Things</span>
-                </a>
-                <button class="accordion-toggle" id="tree-toggle5" type="button" aria-expanded="false" aria-controls="tree-panel5">
-                    <span>show</span>
-                    <IconArrow />
-                </button>
-            </div>
-            <ul class="tree-panel accordion-panel" id="tree-panel5" role="region" aria-labelledby="tree-toggle5" hidden>
-                {thingsPosts.map((post) => 
-                    <li><a href={post.url}>{post.frontmatter.title}</a></li>
-                )}
-            </ul>
-        </li>   
+    <ul class="tree accordion">
+        <TreeSection order={1} category={'people'} CategoryIcon={IconPeople} posts={peoplePosts} activePost={activePost} />
+        <hr />
+        <TreeSection order={2} category={'groups'} CategoryIcon={IconGroups} posts={groupsPosts} activePost={activePost} />
+        <hr />
+        <TreeSection order={3} category={'places'} CategoryIcon={IconPlaces} posts={placesPosts} activePost={activePost} />
+        <hr />
+        <TreeSection order={4} category={'events'} CategoryIcon={IconEvents} posts={eventsPosts} activePost={activePost} />
+        <hr />
+        <TreeSection order={5} category={'things'} CategoryIcon={IconThings} posts={thingsPosts} activePost={activePost} />
     </ul>
 </nav>
 

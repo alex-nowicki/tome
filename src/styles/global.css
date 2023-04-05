@@ -200,7 +200,14 @@ header .search-group {
     width: 100%;
     border: none;
     border-radius: 0.125rem 0.125rem 0 0;
-    /* border-bottom: 6px solid var(--orange-60); */
+}
+
+#search-form::after {
+    content: '';
+    display: block;
+    background-color: var(--orange-60);
+    height: 4px;
+    border-radius: 0 0 0.125rem 0.125rem;
 }
 
 #search-input {
@@ -299,6 +306,11 @@ main {
 
 svg {
     pointer-events: none;
+}
+
+:focus-visible {
+    outline: var(--teal-100) auto 1px;
+    outline-offset: 2px;
 }
   
 /*

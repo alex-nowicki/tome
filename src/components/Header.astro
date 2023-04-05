@@ -2,22 +2,11 @@
 import Logo from "../components/Logo.astro";
 import Search from "../components/SearchBar.astro";
 
-const {frontmatter} = Astro.props;
-
-// Determine active project and post
-const postPath = frontmatter.url.split('/');
-const activeProject = postPath[1];
-const activePost = frontmatter.url;
-
-// Get project posts
-const posts = await Astro.glob('../pages/*/*/*.md');
-const projectPosts = posts.filter(post => {
-    return post.url.includes(`${activeProject}`) && !post.url.includes(`${activePost}`);
-})
+const { pagePath } = Astro.props;
 
 ---
 
 <header>
     <Logo />
-    <Search frontmatter={frontmatter} projectPosts={projectPosts}/>
+    <Search pagePath={pagePath} />
 </header>

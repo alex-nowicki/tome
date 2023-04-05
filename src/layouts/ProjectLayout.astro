@@ -1,0 +1,35 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import SidePanel from "../components/SidePanel.astro";
+
+const { pagePath } = Astro.props;
+console.log(pagePath);
+---
+
+<BaseLayout pageTitle={'Garuda'} pagePath={pagePath}>
+    <main>
+        <h1>Project: Garuda</h1>
+        <div class="tabs">
+            <ul role="tablist">
+                <li role="presentation">
+                    <a id="tab1" href="#section1" role="tab" aria-selected="true">All Articles</a>
+                </li>
+                <li role="presentation">
+                    <a id="tab2" href="#section2" role="tab" tab-index="-1">People</a>
+                </li>
+                <li role="presentation">
+                    <a id="tab1" href="#section3" role="tab" tab-index="-1">Groups</a>
+                </li>
+            </ul>
+            <section id="section1" role="tabpanel" tab-index="-1" aria-labelledby="tab1">
+                <p>EVERYTHING GOES HERE</p>
+            </section>
+            <section id="section2" role="tabpanel" tab-index="-1" aria-labelledby="tab2" hidden>
+                <p>PEOPLE GO HERE</p>
+            </section>
+            <section id="section3" role="tabpanel" tab-index="-1" aria-labelledby="tab3" hidden>
+                <p>GROUPS GO HERE</p>
+            </section>
+        </div>
+    </main>
+</BaseLayout>
