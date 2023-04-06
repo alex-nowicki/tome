@@ -2,10 +2,6 @@
 // Variables
 //
 
-if (document.querySelector('.tabs')){
-  
-}
-
 
 
 
@@ -42,29 +38,7 @@ let updateBookmarks = function (arr){
   }
 }
 
-/**
- * Switch active tab
- * @param {Node} tabs - Active tab interface
- * @param {Node} oldTab - Currently open tab
- * @param {Node} newTab - Selected tab
- */
-let switchTab = function(tabs, oldTab, newTab){
-  let tabList = tabs.querySelector('ul');
-  let tabToggles = tabList.querySelectorAll('a');
-  let tabPanels = tabs.querySelectorAll('[id^="section"]');
-  newTab.focus();
-  // Make the active tab focusable by the user (Tab key)
-  newTab.removeAttribute('tabindex');
-  // Set the selected state
-  newTab.setAttribute('aria-selected', 'true');
-  oldTab.removeAttribute('aria-selected');
-  oldTab.setAttribute('tabindex', '-1');
-  // Get the indices of the new and old tabs to find the correct tab panels to show and hide
-  let index = Array.prototype.indexOf.call(tabToggles, newTab);
-  let oldIndex = Array.prototype.indexOf.call(tabToggles, oldTab);
-  tabPanels[oldIndex].hidden = true;
-  tabPanels[index].hidden = false;
-}
+
 
 //
 // Inits & Event Listeners
@@ -130,17 +104,6 @@ document.addEventListener('click', function(event){
         
     }
 
-    if (target.classList.contains('tab-toggle')){
-
-      let tabs = target.closest('tabs');
-      let currentTab = tabs.querySelector('[aria-selected');
-
-      if (target !== currentTab){
-        switchTab(tabs, currentTab, target);
-      }
-
-    }
-
     if (target.classList.contains('bookmark-toggle')){
 
       let targetLink = target.closest('li').querySelector('a');      
@@ -195,21 +158,7 @@ document.addEventListener('click', function(event){
 
 })
 
-// https://inclusive-components.design/tabbed-interfaces/
-// Handle keydown events for keyboard users
-tab.addEventListener('keydown', e => {
-  // Get the index of the current tab in the tabs node list
-  let index = Array.prototype.indexOf.call(tabToggles, e.currentTarget);
-  // Work out which key the user is pressing and
-  // Calculate the new tab's index where appropriate
-  let dir = e.which === 37 ? index - 1 : e.which === 39 ? index + 1 : e.which === 40 ? 'down' : null;
-  if (dir !== null) {
-    e.preventDefault();
-    // If the down key is pressed, move focus to the open panel,
-    // otherwise switch to the adjacent tab
-    dir === 'down' ? tabPanels[i].focus() : tabToggles[dir] ? switchTab(e.currentTarget, tabToggles[dir]) : void 0;
-  }
-});
+
 
 
 

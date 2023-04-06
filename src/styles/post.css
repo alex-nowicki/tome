@@ -52,7 +52,7 @@ article a:visited {
 ** MAIN
 ------------------------------*/
 
-main {
+main.post {
     display: grid;
     grid-template-columns:  clamp(300px, 360px, 25%) 1fr;
     grid-template-rows: auto;

@@ -7,11 +7,11 @@ import { toTitleCase } from '../scripts/helpers.js';
 
 import "../styles/post.css";
 
-const {frontmatter} = Astro.props;
+const { frontmatter } = Astro.props;
 
 // Determine active project and post
-const postPath = frontmatter.url.split('/');
-const activeProject = postPath[1];
+const pagePath = frontmatter.url.split('/');
+const activeProject = pagePath[1];
 const activePost = frontmatter.url;
 
 // Get active post content
@@ -41,50 +41,95 @@ for (const obj of projectPosts) {
 searchArr.sort((a, b) => b.term.length - a.term.length);
 searchArr.map((obj) => searchArrTerms.push(obj.term));
 
-let editedPostContent = postContent;
+/**
+ * Search string for matching search terms
+ * @param  {String} string a string to be searched
+ * @param  {Array} terms an array of object search terms
+ * @param  {Object} relevance (optional) an object of relevance score
+ * @return {Object} an object including the edited string and updated relevance score object
+ */
+let detectMatches = function(string, terms, relevance){
+    let editedString = string;
+    let editedRelevance;
+    if (relevance){
+        editedRelevance = relevance;
+    } else {
+        editedRelevance = {}
+    }
+    
+    for (const obj of terms){
+        let term = obj.term;
+        // Replace quote marks with regex that captures all types
+        term = term.replaceAll("'", "['’]");
+        term = term.replaceAll('"', '[“”"]');
+        let pattern = `(?<!<a[^>]*)(?<!<[^>]*)(${term})(?![^<]*<\/a>)`;
+        let flags = 'gi'; // g for global and i for case-insensitive
+        let regex = new RegExp(pattern, flags);
+        // Detect matches and add to relevance score
+        let matches = editedString.match(regex);
+        if (matches && matches.length > 0){
+            if (editedRelevance[obj.url]){
+                editedRelevance[obj.url] += matches.length;
+            } else {
+                editedRelevance[obj.url] = matches.length;
+            }
+        }
+        // Wrap matches in links
+        editedString = editedString.replaceAll(regex, `<a href="${obj.url}">$&</a>`);
+    }
 
-for (const obj of searchArr){
-    let term = obj.term;
-    // Replace quote marks with regex that captures all types
-    term = term.replaceAll("'", "['’]");
-    term = term.replaceAll('"', '[“”"]');
-    let pattern = `(?<!<a[^>]*)(?<!<[^>]*)(${term})(?![^<]*<\/a>)`;
-    let flags = 'gi'; // g for global and i for case-insensitive
-    let regex = new RegExp(pattern, flags);
-    editedPostContent = editedPostContent.replaceAll(regex, `<a href="${obj.url}">$&</a>`);
+    return {
+        string: editedString,
+        relevance: editedRelevance 
+    }
 }
 
+let editedPostContent = detectMatches(postContent, searchArr);
+
+console.log(editedPostContent.relevance);
+
+// Generate HTML for the InfoBox
 let postInfoBox = Object.keys(frontmatter.info).map((key) => {
     let valueStr;
+    let index = searchArrTerms.indexOf(frontmatter.info[key]);
     if (Array.isArray(frontmatter.info[key])){
         let valueList;
         valueList = frontmatter.info[key].map((value) => {
-            if (searchArrTerms.includes(value)){
-                return `<li><a href="${searchArr[searchArrTerms.indexOf(value)].url}">${value}</a></li>`;
-            } else {
-                return `<li>${value}</li>`;
-            }
+            return `<li>${value}</li>`;
         }).join('');
         valueStr = `<ul>${valueList}</ul>`;
     } else {
-        if (searchArrTerms.includes(frontmatter.info[key])) {
-            valueStr = `<p><a href="${searchArr[searchArrTerms.indexOf(frontmatter.info[key])].url}">${frontmatter.info[key]}</a></p>`;
-        } else {
-            valueStr = `<p>${frontmatter.info[key]}</p>`
-        }
+        valueStr = `<p>${frontmatter.info[key]}</p>`
     }
     return `<div><h2>${key}</h2>${valueStr}</div>`;
 }).join('');
+
+let editedPostInfoBox = detectMatches(postInfoBox, searchArr, editedPostContent.relevance);
+
+console.log(editedPostInfoBox.relevance);
+
+let relevanceArr = Object.keys(editedPostInfoBox.relevance).map((key) => {
+    return {
+        url: key,
+        score: editedPostInfoBox.relevance[key]
+    }
+})
+
+console.log(relevanceArr);
+
+relevanceArr.sort((a, b) => b.score - a.score);
+
+console.log(relevanceArr);
 
 
 ---
 
 <BaseLayout pageTitle={frontmatter.title} pagePath={frontmatter.url}>
-    <main>
+    <main class="post">
         <SidePanel pagePath={frontmatter.url}/>
         <article>
             <div class="breadcrumbs">
-                {postPath.map((step, index) => {
+                {pagePath.map((step, index) => {
                     if (index == 0){
                         return ''
                     } else if (index == 1){
@@ -98,11 +143,12 @@ let postInfoBox = Object.keys(frontmatter.info).map((key) => {
             </div>
             <h1>{frontmatter.title}</h1>
             <img src="" />
-            <section class="infobox" set:html={postInfoBox}></section>
+            <section class="infobox" set:html={editedPostInfoBox.string}></section>
             <section class="content">
-                <div set:html={editedPostContent}></div>
+                <div set:html={editedPostContent.string}></div>
                 <!-- <slot /> -->
             </section>
+            <section class="related"></section>
         </article>
     </main>
 </BaseLayout>

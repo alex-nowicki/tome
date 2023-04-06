@@ -2,34 +2,143 @@
 import BaseLayout from "./BaseLayout.astro";
 import SidePanel from "../components/SidePanel.astro";
 
+import IconBookmarks from "../components/IconBookmarks.astro";
+import IconChange from "../components/IconChange.astro";
+import IconProjects from "../components/IconProjects.astro";
+
+import { toTitleCase } from "../scripts/helpers";
+
+import "../styles/project.css";
+
 const { pagePath } = Astro.props;
-console.log(pagePath);
+
+// Determine active project and post
+const postPath = pagePath.split('/');
+const activeProject = postPath[1];
+
+// Get project posts
+const posts = await Astro.glob('../pages/*/*/*.md');
+const projectPosts = posts.filter(post => {
+    return post.url.includes(activeProject);
+})
+const peoplePosts = posts.filter(post => {
+    return post.url.includes(`${activeProject}/people`);
+})
+const groupsPosts = posts.filter(post => {
+    return post.url.includes(`${activeProject}/groups`);
+})
+const placesPosts = posts.filter(post => {
+    return post.url.includes(`${activeProject}/places`);
+})
+const eventsPosts = posts.filter(post => {
+    return post.url.includes(`${activeProject}/events`);
+})
+const thingsPosts = posts.filter(post => {
+    return post.url.includes(`${activeProject}/things`);
+})
+
+// Generate list of projects
+const projectPages = await Astro.glob('../pages/*/*.astro');
+const projects = [];
+for (const page of projectPages){
+    let project = {
+        url: page.url,
+        title: page.url.split('/')[1]
+    }
+    if (project.title !== activeProject){
+        projects.push(project);
+    }
+}
+
+
 ---
 
 <BaseLayout pageTitle={'Garuda'} pagePath={pagePath}>
-    <main>
-        <h1>Project: Garuda</h1>
-        <div class="tabs">
-            <ul role="tablist">
-                <li role="presentation">
-                    <a id="tab1" href="#section1" role="tab" aria-selected="true">All Articles</a>
-                </li>
-                <li role="presentation">
-                    <a id="tab2" href="#section2" role="tab" tab-index="-1">People</a>
-                </li>
-                <li role="presentation">
-                    <a id="tab1" href="#section3" role="tab" tab-index="-1">Groups</a>
-                </li>
+    <main class="project">
+        <div class="projects accordion">
+            <div class="accordion-toggle-group">
+                <h1 class="icon-group"><IconProjects /><span>{toTitleCase(activeProject)}</span></h1>
+                <button class="accordion-toggle" id="projects-toggle1" type="button" aria-expanded="false" aria-controls="projects-panel1">
+                    <span>change</span>
+                    <IconChange />
+                </button>
+            </div>
+            <ul class="projects-panel accordion-panel" id="projects-panel1" role="region" aria-labelledby="projects-toggle1" hidden>
+                {projects.map((project) =>
+                    <li><a href={project.url}>{toTitleCase(project.title)}</a></li>
+                )}
             </ul>
-            <section id="section1" role="tabpanel" tab-index="-1" aria-labelledby="tab1">
-                <p>EVERYTHING GOES HERE</p>
-            </section>
-            <section id="section2" role="tabpanel" tab-index="-1" aria-labelledby="tab2" hidden>
-                <p>PEOPLE GO HERE</p>
-            </section>
-            <section id="section3" role="tabpanel" tab-index="-1" aria-labelledby="tab3" hidden>
-                <p>GROUPS GO HERE</p>
-            </section>
         </div>
+        <ul data-tabs>
+            <li><a href="#all">All Articles</a></li>
+            <li><a href="#people">People</a></li>
+            <li><a href="#groups">Groups</a></li>
+            <li><a href="#places">Places</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#things">Things</a></li>
+            <li class="border-fill"></li>
+        </ul>
+        <section id="all">
+            <ul>
+            {projectPosts.map((post) => 
+                <li>
+                    <a href={post.url}>{post.frontmatter.title}</a>
+                    <button class="bookmark-toggle"><IconBookmarks /></button>
+                </li>
+            )}
+            </ul>
+        </section>
+        <section id="people">
+            <ul>
+            {peoplePosts.map((post) => 
+                <li>
+                    <a href={post.url}>{post.frontmatter.title}</a>
+                    <button class="bookmark-toggle"><IconBookmarks /></button>
+                </li>
+            )}
+            </ul>
+        </section>
+        <section id="groups">
+            <ul>
+            {groupsPosts.map((post) => 
+                <li>
+                    <a href={post.url}>{post.frontmatter.title}</a>
+                    <button class="bookmark-toggle"><IconBookmarks /></button>
+                </li>
+            )}
+            </ul>
+        </section>
+        <section id="places">
+            <ul>
+            {placesPosts.map((post) => 
+                <li>
+                    <a href={post.url}>{post.frontmatter.title}</a>
+                    <button class="bookmark-toggle"><IconBookmarks /></button>
+                </li>
+            )}
+            </ul>
+        </section>
+        <section id="events">
+            <ul>
+            {eventsPosts.map((post) => 
+                <li>
+                    <a href={post.url}>{post.frontmatter.title}</a>
+                    <button class="bookmark-toggle"><IconBookmarks /></button>
+                </li>
+            )}
+            </ul>
+        </section>
+        <section id="things">
+            <ul>
+            {thingsPosts.map((post) => 
+                <li>
+                    <a href={post.url}>{post.frontmatter.title}</a>
+                    <button class="bookmark-toggle"><IconBookmarks /></button>
+                </li>
+            )}
+            </ul>
+        </section>
     </main>
 </BaseLayout>
+
+<script src="../scripts/tab.js"></script>

@@ -21,6 +21,10 @@ searchTerms: ['Snow', 'Snow Niska', 'Severina', 'Severina Niska']
 ## History
 THIS IS SNOW'S POST: Snow met Bopha at the dock. She asked him why his name was Krol and not de la Rosa. He said, "I'm Bopha Krol". They went to visit Khuyen at Khuyen's Den in the Prosper System.
 
+Contracted Khuyen to hire a rescue ship. Khuyen.
+
+
+
 This is lowercase bopha
 
 This is uppercase Bopha
