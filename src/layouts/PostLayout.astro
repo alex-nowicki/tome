@@ -84,7 +84,7 @@ let detectMatches = function(string, terms, relevance){
     }
 }
 
-let editedPostContent = detectMatches(postContent, searchArr);
+let editedPostContent = detectMatches(postContent, searchArr, null);
 
 console.log(editedPostContent.relevance);
 

@@ -1,0 +1,12 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+
+const { pagePath } = Astro.props;
+
+---
+
+<BaseLayout pageTitle={'Tome'} pagePath={pagePath} >
+    <main>
+		<h1>Welcome to Tome</h1>
+	</main>
+</BaseLayout>
