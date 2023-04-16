@@ -15,11 +15,17 @@ collections:
     slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
     fields: # The fields for each document, usually in front matter
       - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/PostLayout.astro"}
+
       - {label: "Title", name: "title", widget: "string"}
+
       - {label: "Publish Date", name: "date", widget: "datetime"}
+
       - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
+
       - {label: "Body", name: "body", widget: "markdown"}
+
       - {label: "Search Terms", name: "searchTerms", widget: "list"}
+
       - label: "Details"
         name: "details"
         widget: "object"
@@ -32,7 +38,7 @@ collections:
           - {label: "Species", name: "species", widget: "string", required: false}
           - {label: "Gender Identity", name: "gender", widget: "string", required: false}
           - {label: "Professions", name: "professions", widget: "list", required: false}
-          - {label: "Professions", name: "professions", widget: "list", required: false}
+
       - label: "Connections"
         name: "connections"
         widget: "object"
