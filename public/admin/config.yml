@@ -31,13 +31,19 @@ collections:
         widget: "object"
         required: false
         fields:
-          - {label: "Alliases", name: "alliases", widget: "list", required: false}
-          - {label: "Age", name: "age", widget: "string", required: false}
-          - {label: "Birthplace", name: "birthplace", widget: "string", required: false}
-          - {label: "Primary Residence", name: "residence", widget: "string", required: false}
-          - {label: "Species", name: "species", widget: "string", required: false}
-          - {label: "Gender Identity", name: "gender", widget: "string", required: false}
-          - {label: "Professions", name: "professions", widget: "list", required: false}
+          - label: "Aliases"
+            name: "aliases"
+            widget: "list"
+            field: {label: "Alias", name: "alias", widget: "string"}
+          - {label: "Age", name: "age", widget: "string"}
+          - {label: "Birthplace", name: "birthplace", widget: "string"}
+          - {label: "Primary Residence", name: "residence", widget: "string"}
+          - {label: "Species", name: "species", widget: "string"}
+          - {label: "Gender Identity", name: "gender", widget: "string"}
+          - label: "Professions"
+            name: "professions"
+            widget: "list"
+            field: {label: "Profession", name: "profession", widget: "string"}
 
       - label: "Connections"
         name: "connections"
@@ -47,10 +53,15 @@ collections:
           - label: "Family"
             name: "family"
             widget: "list"
-            required: false
             summary: '{{fields.relationship}} - {{fields.name}}'
             fields:
               - {label: "Relationship", name: "relationship", widget: "string"}
               - {label: "Name", name: "name", widget: "string"}
-          - {label: "Romantic Partners", name: "romances", widget: "list", required: false}
-          - {label: "Affiliations", name: "affiliations", widget: "list", required: false}
+          - label: "Romantic Partners"
+            name: "romances"
+            widget: "list"
+            field: {label: "Partner", name: "partner", widget: "string"}
+          - label: "Affiliations"
+            name: "affilitations"
+            widget: "list"
+            field: {label: "Group", name: "group", widget: "string"}
