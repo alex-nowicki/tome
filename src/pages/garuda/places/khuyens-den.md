@@ -1,5 +1,5 @@
 ---
-layout: ../../../layouts/PeoplePostLayout.astro
+layout: ../../../layouts/PostLayout.astro
 title: "Khuyen's Den"
 info: 
     Location: 'Space near the Gatekeeper'
