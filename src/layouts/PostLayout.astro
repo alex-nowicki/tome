@@ -89,7 +89,9 @@ let editedPostContent = detectMatches(postContent, searchArr, null);
 console.log(editedPostContent.relevance);
 
 // Generate HTML for the InfoBox
-let postInfoBox = Object.keys(frontmatter.info).map((key) => {
+let postInfoBox = '';
+if (frontmatter.info){
+    postInfoBox = Object.keys(frontmatter.info).map((key) => {
     let valueStr;
     let index = searchArrTerms.indexOf(frontmatter.info[key]);
     if (Array.isArray(frontmatter.info[key])){
@@ -103,6 +105,7 @@ let postInfoBox = Object.keys(frontmatter.info).map((key) => {
     }
     return `<div><h2>${key}</h2>${valueStr}</div>`;
 }).join('');
+}
 
 let editedPostInfoBox = detectMatches(postInfoBox, searchArr, editedPostContent.relevance);
 
