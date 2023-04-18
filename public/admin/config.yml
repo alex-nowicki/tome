@@ -38,7 +38,7 @@ collections:
         widget: "relation"
         collection: "projects"
         search_fields: ["title"]
-        value_field: ["title"]
+        value_field: "title"
         
       - label: "Details"
         name: "details"
