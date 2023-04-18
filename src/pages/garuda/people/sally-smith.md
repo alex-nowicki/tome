@@ -1,6 +1,6 @@
 ---
 layout: ../../../layouts/PostLayout.astro
-category: "{{label}}"
+category: People
 title: Sally Smith
 date: 2023-04-18T18:32:50.648Z
 project: Garuda
