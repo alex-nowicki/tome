@@ -11,7 +11,7 @@ const { frontmatter } = Astro.props;
 
 // Determine active project and post
 const pagePath = frontmatter.url.split('/');
-const activeProject = pagePath[1];
+const activeProject = frontmatter.project;
 const activePost = frontmatter.url;
 
 // Get active post content
@@ -20,7 +20,7 @@ const postContent = await Astro.props.compiledContent();
 // Get project posts
 const posts = await Astro.glob('../pages/*/*/*.md');
 const projectPosts = posts.filter(post => {
-    return post.url.includes(`${activeProject}`) && !post.url.includes(`${activePost}`);
+    return post.url.includes(`${activeProject.toLowerCase()}`) && !post.url.includes(`${activePost}`);
 })
 
 // Collect all search terms in an array
@@ -122,14 +122,14 @@ console.log(relevanceArr);
 
 relevanceArr.sort((a, b) => b.score - a.score);
 
-console.log(relevanceArr);
 
+// TODO - Point category breadcrumb to filtered project page
 
 ---
 
-<BaseLayout pageTitle={frontmatter.title} pagePath={frontmatter.url}>
+<BaseLayout pageTitle={frontmatter.title}>
     <main class="post">
-        <SidePanel pagePath={frontmatter.url}/>
+        <SidePanel activeProject={activeProject} activePost={frontmatter.url}/>
         <article>
             <div class="breadcrumbs">
                 {pagePath.map((step, index) => {
@@ -138,7 +138,7 @@ console.log(relevanceArr);
                     } else if (index == 1){
                         return <a href={`../../${step}`}>{toTitleCase(step)}</a><IconArrow />
                     } else if (index == 2){
-                        return <a href={`../${step}`}>{toTitleCase(step)}</a><IconArrow />
+                        return <a href={`../../${pagePath[1]}#${step}`}>{toTitleCase(step)}</a><IconArrow />
                     } else {
                         return <a href={step}>{frontmatter.title}</a>
                     }

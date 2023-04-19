@@ -205,8 +205,13 @@ collections:
         fields:
           - {label: "Location", name: "location", widget: "string", required: false}
           - {label: "Population", name: "population", widget: "string", required: false}
-          - {label: "Organizational Structure", name: "orgStructure", widget: "string", required: false}
-          - {label: "Territory", name: "territory", widget: "string", required: false}
+          - label: "Landmarks"
+            label_singular: "Landmark"
+            name: "landmarks"
+            widget: "list"
+            fields:
+              - {label: "Location", name: "location", widget: "string", required: false}
+              - {label: "Name", name: "name", widget: "string", required: false}
           - label: "Notable Residents"
             label_singular: "Resident"
             name: "notableResidents"
