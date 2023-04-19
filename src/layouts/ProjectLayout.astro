@@ -10,31 +10,30 @@ import { toTitleCase } from "../scripts/helpers";
 
 import "../styles/project.css";
 
-const { pagePath } = Astro.props;
+const { frontmatter } = Astro.props;
 
-// Determine active project and post
-const postPath = pagePath.split('/');
-const activeProject = postPath[1];
+// Determine active project
+const activeProject = frontmatter.title;
 
 // Get project posts
 const posts = await Astro.glob('../pages/*/*/*.md');
 const projectPosts = posts.filter(post => {
-    return post.url.includes(activeProject);
+    return post.url.includes(activeProject.toLowerCase());
 })
 const peoplePosts = posts.filter(post => {
-    return post.url.includes(`${activeProject}/people`);
+    return post.url.includes(`${activeProject.toLowerCase()}/people`);
 })
 const groupsPosts = posts.filter(post => {
-    return post.url.includes(`${activeProject}/groups`);
+    return post.url.includes(`${activeProject.toLowerCase()}/groups`);
 })
 const placesPosts = posts.filter(post => {
-    return post.url.includes(`${activeProject}/places`);
+    return post.url.includes(`${activeProject.toLowerCase()}/places`);
 })
 const eventsPosts = posts.filter(post => {
-    return post.url.includes(`${activeProject}/events`);
+    return post.url.includes(`${activeProject.toLowerCase()}/events`);
 })
 const thingsPosts = posts.filter(post => {
-    return post.url.includes(`${activeProject}/things`);
+    return post.url.includes(`${activeProject.toLowerCase()}/things`);
 })
 
 // Generate list of projects
@@ -53,7 +52,7 @@ for (const page of projectPages){
 
 ---
 
-<BaseLayout pageTitle={'Garuda'} pagePath={pagePath}>
+<BaseLayout pageTitle={activeProject} activeProject={activeProject}>
     <main class="project">
         <div class="projects accordion">
             <div class="accordion-toggle-group">

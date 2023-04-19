@@ -7,7 +7,7 @@ import "../styles/global.css";
 import "../fonts/fonts.css";
 
 const { pageTitle } = Astro.props;
-const { pagePath } = Astro.props;
+const { activeProject } = Astro.props;
 
 
 ---
@@ -22,7 +22,7 @@ const { pagePath } = Astro.props;
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
   <body>
-    <Header pagePath={pagePath} />
+    <Header activeProject={activeProject} />
     <slot />
     <Footer />
     <script>

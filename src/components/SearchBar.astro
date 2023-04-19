@@ -3,20 +3,16 @@ import IconBookmarks from "./IconBookmarks.astro";
 import IconPeople from "./IconPeople.astro";
 import IconPlaces from "./IconPlaces.astro";
 
-import { toTitleCase } from "../scripts/helpers.js";
-
-const { pagePath } = Astro.props;
+const { activeProject } = Astro.props;
 
 // Get project posts
 const posts = await Astro.glob('../pages/*/*/*.md');
 let filteredPosts;
-let activeProject;
 
 // Determine post filtering
-if (pagePath.split('/').length > 1){
-    activeProject = pagePath.split('/')[1];
+if (activeProject){
     filteredPosts = posts.filter(post => {
-        return post.url.includes(`${activeProject}`);
+        return post.url.includes(`${activeProject.toLowerCase()}`);
     })
 } else {
     filteredPosts = posts;
@@ -29,7 +25,7 @@ if (pagePath.split('/').length > 1){
 
 <div class="search-group accordion">
     <form id="search-form">
-        <input id="search-input" class="text-field" type="search" minlength="3" placeholder={activeProject ? `Search articles in ${toTitleCase(activeProject)}` : 'Search articles'} autocomplete="off"/>
+        <input id="search-input" class="text-field" type="search" minlength="3" placeholder={activeProject ? `Search articles in ${activeProject}` : 'Search articles'} autocomplete="off"/>
         <!-- <button id="search-clear" type="button" aria-label="Clear Search">
             <svg viewbox="0 0 32 32">
                 <line y1="16" x1="0" y2="16" x2="32"/>
