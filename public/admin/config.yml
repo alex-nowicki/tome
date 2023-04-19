@@ -24,11 +24,11 @@ collections:
     label_singular: "Person"
     name: "people" # Used in routes, e.g., /admin/collections/blog
     folder: "src/pages" # The path to the folder where the documents are stored
-    path: "{{project}}/people/{{slug}}"
+    filter: {field: "category", value: "{{name}}"}
+    path: "{{project}}/{{name}}/{{slug}}"
     create: true # Allow users to create new documents in this collection
     slug: "{{slug}}"
-    preview_path: "src/pages/{{project}}/people/{{slug}}"
-    sortable_fields: ["title", "date", "project"]
+    preview_path: "src/pages/{{project}}/{{name}}/{{slug}}"
     view_groups: 
       - label: Project
         field: project
