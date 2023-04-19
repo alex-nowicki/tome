@@ -31,7 +31,6 @@ collections:
     path: "{{project}}/people/{{slug}}"
     create: true # Allow users to create new documents in this collection
     slug: "{{slug}}"
-    preview_path: "{{project}}/people/{{slug}}"
     view_groups: 
       - label: Project
         field: project
@@ -42,12 +41,14 @@ collections:
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
       - {label: "Body", name: "body", widget: "markdown", required: false}
-      - {label: "SlugTest", name: "slugTest", widget: "hidden", default: "{{slug}}"}
+      - {label: "SlugTest", name: "slugTest", widget: "string", default: "{{project}}"}
+      - {label: "SlugTest2", name: "slugTest2", widget: "string", default: "{{label}}"}
+      - {label: "SlugTest3", name: "slugTest3", widget: "string", default: "{{title}}"}
 
       - label: "Search Terms"
         name: "searchTerms"
         widget: "list"
-        field: {label: "Search Term", name: "searchTerm", widget: "string", default: {{title}}}
+        field: {label: "Search Term", name: "searchTerm", widget: "string", default: {title}}
 
       - label: "Project"
         name: "project"
