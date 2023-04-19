@@ -44,11 +44,13 @@ collections:
       - {label: "SlugTest", name: "slugTest", widget: "string", default: "{{project}}"}
       - {label: "SlugTest2", name: "slugTest2", widget: "string", default: "{{label}}"}
       - {label: "SlugTest3", name: "slugTest3", widget: "string", default: "{{title}}"}
+      - {label: "SlugTest4", name: "slugTest4", widget: "string", default: "{{fields.project}}"}
+      - {label: "SlugTest5", name: "slugTest5", widget: "string", default: "{{fields.label}}"}
 
       - label: "Search Terms"
         name: "searchTerms"
         widget: "list"
-        field: {label: "Search Term", name: "searchTerm", widget: "string", default: {title}}
+        field: {label: "Search Term", name: "searchTerm", widget: "string", default: "{{fields.title}}"}
 
       - label: "Project"
         name: "project"
