@@ -2,7 +2,7 @@ backend:
   name: git-gateway
   branch: main # Branch to update (optional; defaults to master)
 
-publish_mode: editorial_workflow
+# publish_mode: editorial_workflow
 
 media_folder: "public/images/uploads" # Media files will be stored here
 public_folder: "/images/uploads" # The src attribute for uploaded media will begin with this
@@ -10,6 +10,7 @@ public_folder: "/images/uploads" # The src attribute for uploaded media will beg
 collections:
 
   - label: "Projects"
+    label_singular: "Project"
     name: "projects"
     folder: "src/pages"
     create: true
@@ -19,14 +20,20 @@ collections:
       - {label: "Description", name: "description", widget: "markdown"}
 
   - label: "People" # Used in the UI
+    label_singular: "Person"
     name: "people" # Used in routes, e.g., /admin/collections/blog
     folder: "src/pages" # The path to the folder where the documents are stored
     path: "{{project}}/people/{{slug}}"
     create: true # Allow users to create new documents in this collection
     slug: "{{slug}}"
+    preview_path: "src/pages/{{project}}/people/{{slug}}"
+    sortable_fields: ["title", "date", "project"]
+    view_groups: 
+      - label: Project
+        field: project
     fields: # The fields for each document, usually in front matter
       - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/PostLayout.astro"}
-      - {label: "Category", name: "category", widget: "string", default: "{{label}}"}
+      - {label: "Category", name: "category", widget: "hidden", default: "{{label}}"}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
