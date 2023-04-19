@@ -28,10 +28,10 @@ collections:
     name: "people" # Used in routes, e.g., /admin/collections/blog
     folder: "src/pages" # The path to the folder where the documents are stored
     filter: {field: "category", value: "People"}
-    path: "{{project}}/{{name}}/{{slug}}"
+    path: "{{project}}/people/{{slug}}"
     create: true # Allow users to create new documents in this collection
     slug: "{{slug}}"
-    preview_path: "{{project}}/{{name}}/{{slug}}"
+    preview_path: "{{project}}/people/{{slug}}"
     view_groups: 
       - label: Project
         field: project
