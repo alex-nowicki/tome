@@ -1,5 +1,6 @@
 ---
 layout: ../../../layouts/PostLayout.astro
+category: People
 title: Chantico de la Rosa
 date: 2023-04-16T17:59:14.895Z
 searchTerms:

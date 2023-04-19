@@ -23,48 +23,43 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Description", name: "description", widget: "markdown"}
 
-  - label: "People" # Used in the UI
+  - label: "People"
     label_singular: "Person"
-    name: "people" # Used in routes, e.g., /admin/collections/blog
-    folder: "src/pages" # The path to the folder where the documents are stored
+    name: "people"
+    folder: "src/pages"
     filter: {field: "category", value: "People"}
     path: "{{project}}/people/{{slug}}"
-    create: true # Allow users to create new documents in this collection
+    create: true
     slug: "{{slug}}"
     view_groups: 
       - label: Project
         field: project
-    fields: # The fields for each document, usually in front matter
+    fields:
       - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/PostLayout.astro"}
-      - {label: "Category", name: "category", widget: "hidden", default: "People"}
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
-      - {label: "Body", name: "body", widget: "markdown", required: false}
-      - {label: "SlugTest", name: "slugTest", widget: "string", default: "{{project}}"}
-      - {label: "SlugTest2", name: "slugTest2", widget: "string", default: "{{label}}"}
-      - {label: "SlugTest3", name: "slugTest3", widget: "string", default: "{{title}}"}
-      - {label: "SlugTest4", name: "slugTest4", widget: "string", default: "{{fields.project}}"}
-      - {label: "SlugTest5", name: "slugTest5", widget: "string", default: "{{fields.label}}"}
-
-      - label: "Search Terms"
-        name: "searchTerms"
-        widget: "list"
-        field: {label: "Search Term", name: "searchTerm", widget: "string", default: "{{fields.title}}"}
-
       - label: "Project"
         name: "project"
         widget: "relation"
         collection: "projects"
         search_fields: ["title"]
         value_field: "title"
-        
+      - {label: "Category", name: "category", widget: "hidden", default: "People"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - label: "Search Terms"
+        label_singular: "Search Term"
+        name: "searchTerms"
+        widget: "list"
+        field: {label: "Search Term", name: "searchTerm", widget: "string"}
+      - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
+      - {label: "Body", name: "body", widget: "markdown", required: false}
+       
       - label: "Details"
         name: "details"
         widget: "object"
         required: false
         fields:
           - label: "Aliases"
+            label_singular: "Alias"
             name: "aliases"
             widget: "list"
             field: {label: "Alias", name: "alias", widget: "string", required: false}
@@ -74,6 +69,7 @@ collections:
           - {label: "Species", name: "species", widget: "string", required: false}
           - {label: "Gender Identity", name: "gender", widget: "string", required: false}
           - label: "Professions"
+            label_singular: "Profession"
             name: "professions"
             widget: "list"
             field: {label: "Profession", name: "profession", widget: "string", required: false}
@@ -84,6 +80,7 @@ collections:
         required: false
         fields:
           - label: "Family"
+            label_singular: "Member"
             name: "family"
             widget: "list"
             summary: '{{fields.relationship}} - {{fields.name}}'
@@ -91,10 +88,213 @@ collections:
               - {label: "Relationship", name: "relationship", widget: "string", required: false}
               - {label: "Name", name: "name", widget: "string", required: false}
           - label: "Romantic Partners"
+            label_singular: "Partner"
             name: "romances"
             widget: "list"
             field: {label: "Partner", name: "partner", widget: "string", required: false}
           - label: "Affiliations"
+            label_singular: "Affiliation"
             name: "affilitations"
             widget: "list"
             field: {label: "Group", name: "group", widget: "string", required: false}
+
+  - label: "Groups"
+    label_singular: "Group"
+    name: "groups"
+    folder: "src/pages"
+    filter: {field: "category", value: "Groups"}
+    path: "{{project}}/groups/{{slug}}"
+    create: true
+    slug: "{{slug}}"
+    view_groups: 
+      - label: Project
+        field: project
+    fields:
+      - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/PostLayout.astro"}
+      - label: "Project"
+        name: "project"
+        widget: "relation"
+        collection: "projects"
+        search_fields: ["title"]
+        value_field: "title"
+      - {label: "Category", name: "category", widget: "hidden", default: "Groups"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - label: "Search Terms"
+        label_singular: "Search Term"
+        name: "searchTerms"
+        widget: "list"
+        field: {label: "Search Term", name: "searchTerm", widget: "string"}
+      - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
+      - {label: "Body", name: "body", widget: "markdown", required: false}
+
+      - label: "Details"
+        name: "details"
+        widget: "object"
+        required: false
+        fields:
+          - {label: "Founding Date", name: "foundingDate", widget: "string", required: false}
+          - {label: "Membership Size", name: "membershipSize", widget: "string", required: false}
+          - {label: "Organizational Structure", name: "orgStructure", widget: "string", required: false}
+          - {label: "Territory", name: "orgStructure", widget: "string", required: false}
+          - label: "Notable Members"
+            label_singular: "Member"
+            name: "notableMembers"
+            widget: "list"
+            summary: '{{fields.role}} - {{fields.name}}'
+            fields:
+              - {label: "Role", name: "role", widget: "string", required: false}
+              - {label: "Name", name: "name", widget: "string", required: false}
+
+      - label: "Connections"
+        name: "connections"
+        widget: "object"
+        required: false
+        fields:
+          - label: "Allies"
+            label_singular: "Ally"
+            name: "allies"
+            widget: "list"
+            summary: '{{fields.relationship}} - {{fields.name}}'
+            fields:
+              - {label: "Relationship", name: "relationship", widget: "string", required: false}
+              - {label: "Name", name: "name", widget: "string", required: false}
+          - label: "Rivals"
+            label_singular: "Rival"
+            name: "rivals"
+            widget: "list"
+            summary: '{{fields.relationship}} - {{fields.name}}'
+            fields:
+              - {label: "Relationship", name: "relationship", widget: "string", required: false}
+              - {label: "Name", name: "name", widget: "string", required: false}
+
+  - label: "Places"
+    label_singular: "Place"
+    name: "places"
+    folder: "src/pages"
+    filter: {field: "category", value: "Places"}
+    path: "{{project}}/groups/{{slug}}"
+    create: true
+    slug: "{{slug}}"
+    view_groups: 
+      - label: Project
+        field: project
+    fields:
+      - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/PostLayout.astro"}
+      - label: "Project"
+        name: "project"
+        widget: "relation"
+        collection: "projects"
+        search_fields: ["title"]
+        value_field: "title"
+      - {label: "Category", name: "category", widget: "hidden", default: "Places"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - label: "Search Terms"
+        label_singular: "Search Term"
+        name: "searchTerms"
+        widget: "list"
+        field: {label: "Search Term", name: "searchTerm", widget: "string"}
+      - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
+      - {label: "Body", name: "body", widget: "markdown", required: false}
+
+      - label: "Details"
+        name: "details"
+        widget: "object"
+        required: false
+        fields:
+          - {label: "Location", name: "location", widget: "string", required: false}
+          - {label: "Population", name: "population", widget: "string", required: false}
+          - {label: "Organizational Structure", name: "orgStructure", widget: "string", required: false}
+          - {label: "Territory", name: "orgStructure", widget: "string", required: false}
+          - label: "Notable Residents"
+            label_singular: "Resident"
+            name: "notableResidents"
+            widget: "list"
+            field: {label: "Name", name: "name", widget: "string", required: false}
+          - label: "Notable Groups"
+            label_singular: "Group"
+            name: "notableGroups"
+            widget: "list"
+            field: {label: "Name", name: "name", widget: "string", required: false}
+
+  - label: "Events"
+    label_singular: "Event"
+    name: "events"
+    folder: "src/pages"
+    filter: {field: "category", value: "Events"}
+    path: "{{project}}/groups/{{slug}}"
+    create: true
+    slug: "{{slug}}"
+    view_groups: 
+      - label: Project
+        field: project
+    fields:
+      - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/PostLayout.astro"}
+      - label: "Project"
+        name: "project"
+        widget: "relation"
+        collection: "projects"
+        search_fields: ["title"]
+        value_field: "title"
+      - {label: "Category", name: "category", widget: "hidden", default: "Events"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - label: "Search Terms"
+        label_singular: "Search Term"
+        name: "searchTerms"
+        widget: "list"
+        field: {label: "Search Term", name: "searchTerm", widget: "string"}
+      - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
+      - {label: "Body", name: "body", widget: "markdown", required: false}
+
+      - label: "Details"
+        name: "details"
+        widget: "object"
+        required: false
+        fields:
+          - {label: "Time", name: "time", widget: "string", required: false}
+          - {label: "Location", name: "location", widget: "string", required: false}
+          - {label: "Population", name: "population", widget: "string", required: false}
+          - {label: "Organizational Structure", name: "orgStructure", widget: "string", required: false}
+          - {label: "Territory", name: "orgStructure", widget: "string", required: false}
+          - label: "Notable Participants"
+            label_singular: "Participant"
+            name: "notableParticipants"
+            widget: "list"
+            field: {label: "Name", name: "name", widget: "string", required: false}
+          - label: "Notable Groups"
+            label_singular: "Group"
+            name: "notableGroups"
+            widget: "list"
+            field: {label: "Name", name: "name", widget: "string", required: false}
+
+  - label: "Things"
+    label_singular: "Things"
+    name: "things"
+    folder: "src/pages"
+    filter: {field: "category", value: "Things"}
+    path: "{{project}}/groups/{{slug}}"
+    create: true
+    slug: "{{slug}}"
+    view_groups: 
+      - label: Project
+        field: project
+    fields:
+      - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/PostLayout.astro"}
+      - label: "Project"
+        name: "project"
+        widget: "relation"
+        collection: "projects"
+        search_fields: ["title"]
+        value_field: "title"
+      - {label: "Category", name: "category", widget: "hidden", default: "Things"}
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - label: "Search Terms"
+        label_singular: "Search Term"
+        name: "searchTerms"
+        widget: "list"
+        field: {label: "Search Term", name: "searchTerm", widget: "string"}
+      - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
+      - {label: "Body", name: "body", widget: "markdown", required: false}

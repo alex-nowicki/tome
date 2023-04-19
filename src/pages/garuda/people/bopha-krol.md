@@ -1,20 +1,7 @@
 ---
 layout: ../../../layouts/PostLayout.astro
+category: People
 title: 'Bopha Krol'
-info: 
-    Name: 'Bopha Krol'
-    Aliases: ["Bopha de la Rosa"]
-    Age: 38
-    Species: 'Human'
-    Gender: 'Male'
-    Profession: 'Captain of the Garuda'
-    Parents: ['', 'Fay']
-    Siblings: ['Jorani de la Rosa']
-    Romantic Partners: ['Desiree']
-    Children: 'None'
-    Affiliations: ['Strays', 'Agency']
-    Birthplace: 'Renati, Prosper System'
-searchTerms: ['Bopha', 'Bopha Krol', 'Bopha de la Rosa']
 
 ---
 
