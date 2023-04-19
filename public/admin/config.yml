@@ -47,7 +47,7 @@ collections:
       - label: "Search Terms"
         name: "searchTerms"
         widget: "list"
-        field: {label: "Search Term", name: "searchTerm", widget: "string", default: "{{title}}"}
+        field: {label: "Search Term", name: "searchTerm", widget: "string", default: {{title}}}
 
       - label: "Project"
         name: "project"
