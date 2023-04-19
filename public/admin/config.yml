@@ -7,8 +7,8 @@ backend:
 media_folder: "public/images/uploads" # Media files will be stored here
 public_folder: "/images/uploads" # The src attribute for uploaded media will begin with this
 
-site_url: "https://tome.nowickidesign.com/"
-display_url: "https://tome.nowickidesign.com/"
+site_url: "https://tome.nowickidesign.com"
+display_url: "https://tome.nowickidesign.com"
 
 collections:
 
@@ -31,7 +31,7 @@ collections:
     path: "{{project}}/{{name}}/{{slug}}"
     create: true # Allow users to create new documents in this collection
     slug: "{{slug}}"
-    preview_path: "src/pages/{{project}}/{{name}}/{{slug}}"
+    preview_path: "{{project}}/{{name}}/{{slug}}"
     view_groups: 
       - label: Project
         field: project
