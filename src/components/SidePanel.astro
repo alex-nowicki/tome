@@ -40,7 +40,7 @@ const thingsPosts = posts.filter(post => {
 })
 
 // Generate list of projects
-const projectPages = await Astro.glob('../pages/*/*.astro');
+const projectPages = await Astro.glob('../pages/*.md');
 const projects = [];
 for (const page of projectPages){
     let project = {

@@ -1,12 +1,18 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 
-const { pagePath } = Astro.props;
+const projects = await Astro.glob('../pages/*.md');
 
 ---
 
-<BaseLayout pageTitle={'Tome'} pagePath={pagePath} >
+<BaseLayout pageTitle={'Tome'} >
     <main>
 		<h1>Welcome to Tome</h1>
+		<ul>
+            {projects.map((project) =>
+                <li><a href={project.url}>{project.frontmatter.title}</a></li>
+            )}
+        </ul>
+		
 	</main>
 </BaseLayout>
