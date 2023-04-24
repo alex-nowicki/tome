@@ -18,6 +18,8 @@ import '../styles/sidepanel.css';
 const { activeProject } = Astro.props;
 const { activePost } = Astro.props;
 
+console.log('sidepanel activeProject', activeProject);
+
 // Collect posts and filter by category
 const posts = await Astro.glob('../pages/*/*/*.md');
 const peoplePosts = posts.filter(post => {
