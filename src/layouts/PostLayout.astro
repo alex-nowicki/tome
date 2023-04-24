@@ -29,12 +29,13 @@ console.log('num of filtered posts', projectPosts.length);
 
 // Collect all search terms in an array
 let searchArr = [];
-let searchArrTerms = [];
+// let searchArrTerms = [];
 for (const obj of projectPosts) {
     if (obj.frontmatter.searchTerms) {
         for (const term of obj.frontmatter.searchTerms) {
             searchArr.push({
                 term: term,
+                description: obj.frontmatter.description,
                 url: obj.url
             })
         }
@@ -45,9 +46,9 @@ console.log('searchArr', searchArr);
 
 // Sort terms from longest to shortest
 searchArr.sort((a, b) => b.term.length - a.term.length);
-searchArr.map((obj) => searchArrTerms.push(obj.term));
+// searchArr.map((obj) => searchArrTerms.push(obj.term));
 
-console.log('searchArrTerms', searchArrTerms);
+// console.log('searchArrTerms', searchArrTerms);
 
 /**
  * Search string for matching search terms
@@ -83,7 +84,9 @@ let detectMatches = function(string, terms, relevance){
             }
         }
         // Wrap matches in links
-        editedString = editedString.replaceAll(regex, `<a href="${obj.url}">$&</a>`);
+        editedString = editedString.replaceAll(regex, 
+        `<span class="link-group"><a class="link-group" href="${obj.url}">$&</a><span class="page-preview" hidden>${obj.description}</span></span>`
+        );
     }
 
     return {
@@ -171,6 +174,7 @@ relevanceArr.sort((a, b) => b.score - a.score);
 
 // TODO - Point category breadcrumb to filtered project page
 // TODO - Tooltips reveal internal link article description
+//      - Add max character count pattern to config file
 
 ---
 

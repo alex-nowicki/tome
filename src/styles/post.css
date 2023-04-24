@@ -43,6 +43,37 @@ article a:visited {
     color: var(--teal-100);         
 }
 
+article .link-group {
+    position: relative;
+    display: inline;
+}
+
+article .link-group .page-preview {
+    position: absolute;
+    top: 1.5rem;
+    left: 0;
+    background-color: var(--orange-30);
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+}
+
+article .link-group .page-preview::before {
+    content: '';
+    /* background-color: var(--orange-30); */
+    width: 0.5rem;
+    height: 0.5rem;
+    position: absolute;
+    top: -0.5rem;
+    left: 0.5rem;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid var(--orange-30);
+}
+
+article .link-group:is(:hover, :focus-visible) .page-preview {
+    display: block;
+}
+
 /*
 ** HEADER
 ------------------------------*/
