@@ -4,6 +4,8 @@ project: Garuda
 category: Groups
 title: Strays
 date: 2023-04-19T16:16:19.505Z
+description: Independent starships operating on the Frontier, unaffiliated with
+  an Exchange corporation.
 searchTerms:
   - Strays
 details:
