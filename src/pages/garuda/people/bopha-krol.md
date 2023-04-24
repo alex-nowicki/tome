@@ -1,8 +1,31 @@
 ---
 layout: ../../../layouts/PostLayout.astro
+project: Garuda
 category: People
-title: 'Bopha Krol'
-
+title: Bopha Krol
+date: 2023-04-24T16:10:41.161Z
+searchTerms:
+  - Bopha Krol
+  - Bopha de la Rosa
+  - Bopha
+details:
+  aliases:
+    - Bopha de la Rosa
+  birthplace: Revati, Prosper System
+  residence: Garuda
+  species: Human
+  gender: Male
+  professions:
+    - Captain of the Garuda
+connections:
+  family:
+    - relationship: Niece
+      name: Chantico de la Rosa
+  romances:
+    - Désirée Reid
+  affilitations:
+    - Strays
+    - Interstellar Rescue Agency
 ---
 
 ## Motivations
