@@ -4,6 +4,7 @@ import BaseLayout from "./BaseLayout.astro";
 import SidePanel from "../components/SidePanel.astro";
 
 import { toTitleCase } from '../scripts/helpers.js';
+import { detectType } from '../scripts/helpers.js';
 
 import "../styles/post.css";
 
@@ -86,35 +87,75 @@ let detectMatches = function(string, terms, relevance){
 
 let editedPostContent = detectMatches(postContent, searchArr, null);
 
-console.log(editedPostContent.relevance);
 
-// Generate HTML for the InfoBox
-let postInfoBox = '';
-if (frontmatter.info){
-    postInfoBox = Object.keys(frontmatter.info).map((key) => {
-    let valueStr;
-    let index = searchArrTerms.indexOf(frontmatter.info[key]);
-    if (Array.isArray(frontmatter.info[key])){
-        let valueList;
-        valueList = frontmatter.info[key].map((value) => {
-            return `<li>${value}</li>`;
-        }).join('');
-        valueStr = `<ul>${valueList}</ul>`;
-    } else {
-        valueStr = `<p>${frontmatter.info[key]}</p>`
+
+/**
+ * Construct an html string from a data object
+ * @param  {Object} obj a data object
+ * @param  {String} startStr an html string to place at the start
+ * @param  {String} endStr an html string to place at the end
+ * @return {String} an html string
+ */
+ let constructHTMLFromObject = function(obj, startStr, endStr){
+    let htmlStr = '';
+    if (startStr){
+        htmlStr += startStr;
     }
-    return `<div><h2>${key}</h2>${valueStr}</div>`;
-}).join('');
+    htmlStr += Object.keys(obj).map((key) => {
+        let valueStr;
+        let value = obj[key];
+        let valueType = detectType(value);
+
+        if (valueType === 'string'){
+            valueStr = `<p>${value}</p>`
+
+        } else if (valueType === 'array'){
+            let arrHtmlStr;
+            arrHtmlStr = value.map((arrValue) => {
+                let arrValueType = detectType(arrValue);
+
+                if (arrValueType === 'string'){
+                    return `<li>${arrValue}</li>`;
+
+                } else if (arrValueType === 'object'){
+                    let objHtmlStr = Object.values(arrValue).map((objValue) => {
+                        return objValue;
+                    }).join(': '); 
+                    return `<li>${objHtmlStr}</li>`;
+                }
+            }).join('');
+            valueStr = `<ul>${arrHtmlStr}</ul>`;
+        }
+        return `<div><h3>${toTitleCase(key)}</h3>${valueStr}</div>`;
+    }).join('');
+    if (endStr){
+        htmlStr += endStr;
+    }
+    return htmlStr;
+ }
+
+// Generate HTML for the details
+let postDetails = '';
+if (frontmatter.details){
+    postDetails = constructHTMLFromObject(frontmatter.details, '<div><h2>Details</h2><div>', '</div></div>' );
 }
 
-let editedPostInfoBox = detectMatches(postInfoBox, searchArr, editedPostContent.relevance);
+let postConnections = '';
+if (frontmatter.connections){
+    postConnections = constructHTMLFromObject(frontmatter.connections, '<div><h2>Connections</h2><div>', '</div></div>' );
+}
 
-console.log(editedPostInfoBox.relevance);
+if (postConnections !== ''){
+    postDetails += postConnections;
+}
 
-let relevanceArr = Object.keys(editedPostInfoBox.relevance).map((key) => {
+
+let editedPostDetails = detectMatches(postDetails, searchArr, editedPostContent.relevance);
+
+let relevanceArr = Object.keys(editedPostDetails.relevance).map((key) => {
     return {
         url: key,
-        score: editedPostInfoBox.relevance[key]
+        score: editedPostDetails.relevance[key]
     }
 })
 
@@ -124,6 +165,7 @@ relevanceArr.sort((a, b) => b.score - a.score);
 
 
 // TODO - Point category breadcrumb to filtered project page
+// TODO - Tooltips reveal internal link article description
 
 ---
 
@@ -146,7 +188,7 @@ relevanceArr.sort((a, b) => b.score - a.score);
             </div>
             <h1>{frontmatter.title}</h1>
             <img src="" />
-            <section class="infobox" set:html={editedPostInfoBox.string}></section>
+            <section class="details" set:html={editedPostDetails.string}></section>
             <section class="content">
                 <div set:html={editedPostContent.string}></div>
                 <!-- <slot /> -->

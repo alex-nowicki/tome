@@ -6,3 +6,15 @@ export const toTitleCase = function(str){
    sentence = sentence.join(" ");
    return sentence;
 }
+
+export const detectType = function(elem){
+   let type;
+   if (Array.isArray(elem)){
+       type = 'array';
+   } else if (typeof elem === 'object' && elem !== null){
+       type = 'object';
+   } else {
+       type  = typeof elem;
+   }
+   return type;
+}

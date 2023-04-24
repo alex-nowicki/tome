@@ -45,6 +45,7 @@ collections:
       - {label: "Category", name: "category", widget: "hidden", default: "People"}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Description", name: "description", widget: "string", required: false}
       - label: "Search Terms"
         label_singular: "Search Term"
         name: "searchTerms"
@@ -120,6 +121,7 @@ collections:
       - {label: "Category", name: "category", widget: "hidden", default: "Groups"}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Description", name: "description", widget: "string", required: false}
       - label: "Search Terms"
         label_singular: "Search Term"
         name: "searchTerms"
@@ -190,6 +192,7 @@ collections:
       - {label: "Category", name: "category", widget: "hidden", default: "Places"}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Description", name: "description", widget: "string", required: false}
       - label: "Search Terms"
         label_singular: "Search Term"
         name: "searchTerms"
@@ -245,6 +248,7 @@ collections:
       - {label: "Category", name: "category", widget: "hidden", default: "Events"}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Description", name: "description", widget: "string", required: false}
       - label: "Search Terms"
         label_singular: "Search Term"
         name: "searchTerms"
@@ -293,6 +297,7 @@ collections:
       - {label: "Category", name: "category", widget: "hidden", default: "Things"}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Description", name: "description", widget: "string", required: false}
       - label: "Search Terms"
         label_singular: "Search Term"
         name: "searchTerms"

@@ -69,7 +69,7 @@ article {
     grid-template-areas:
     "breadcrumbs breadcrumbs"
     "title title"
-    "infobox infobox"
+    "details details"
     "content .";
 
     padding: 4rem 0;
@@ -116,7 +116,7 @@ article h1 {
 }
 
 article img {
-    grid-area: infobox;
+    grid-area: details;
 }
 
 
@@ -127,36 +127,55 @@ article .content {
     padding: 3rem 0 3rem 6rem;
 }
 
-article .infobox {
-    grid-area: infobox;
+article .details {
+    grid-area: details;
 
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
-    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
 
     margin-top: 2rem;
-    padding: 2rem 12rem 2rem 6rem;
+    padding: 2rem 6rem 2rem 6rem;
     background-color: var(--teal-5);
     border-top: 2px solid var(--teal-15);
     border-bottom: 2px solid var(--teal-15);
 }
 
+article .details > div {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 1rem;
+}
 
+article .details > div > div {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    gap: 1rem;
+}
 
-.infobox h2 {
+.details h2 {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin: 0;
+    padding-bottom: 0.25rem;
+    border-bottom: 2px solid var(--teal-60);
+}
+
+.details h3 {
     font-size: 0.875rem;
+    font-weight: 600;
     margin: 0 0 0.25rem;
 }
 
-.infobox :is(p, ul) {
+.details :is(p, ul) {
     margin: 0;
 }
 
-.infobox :is(p, li) {
+.details :is(p, li) {
     font-size: 0.875rem;
 }
 
-.infobox ul {
+.details ul {
     padding-left: 1.125rem;
 }
 
