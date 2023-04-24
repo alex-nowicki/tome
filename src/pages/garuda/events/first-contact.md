@@ -4,6 +4,7 @@ project: Garuda
 category: Events
 title: First Contact
 date: 2023-04-19T16:27:42.803Z
+description: Human space explorer encounter the Gatekeeper in Alpha Centauri.
 searchTerms:
   - First Contact
 details:
