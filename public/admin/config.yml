@@ -175,7 +175,7 @@ collections:
     name: "places"
     folder: "src/pages"
     filter: {field: "category", value: "Places"}
-    path: "{{project}}/groups/{{slug}}"
+    path: "{{project}}/places/{{slug}}"
     create: true
     slug: "{{slug}}"
     view_groups: 
@@ -231,7 +231,7 @@ collections:
     name: "events"
     folder: "src/pages"
     filter: {field: "category", value: "Events"}
-    path: "{{project}}/groups/{{slug}}"
+    path: "{{project}}/events/{{slug}}"
     create: true
     slug: "{{slug}}"
     view_groups: 
@@ -280,7 +280,7 @@ collections:
     name: "things"
     folder: "src/pages"
     filter: {field: "category", value: "Things"}
-    path: "{{project}}/groups/{{slug}}"
+    path: "{{project}}/things/{{slug}}"
     create: true
     slug: "{{slug}}"
     view_groups: 
