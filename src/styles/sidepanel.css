@@ -75,6 +75,15 @@ nav.sidepanel :is(.icon-group, .accordion-toggle){
     align-items: center;
 }
 
+nav.sidepanel .accordion-toggle[hidden] {
+    display: none;
+}
+
+nav.sidepanel .accordion-toggle[aria-expanded=true] .toggle-label-show,
+nav.sidepanel .accordion-toggle[aria-expanded=false] .toggle-label-hide {
+    display: none;
+}
+
 nav.sidepanel :is(.bookmarks, .tree) .icon-group span {
     font-weight: 600;
     margin-left: 0.5rem;
@@ -199,7 +208,7 @@ nav.sidepanel .accordion-toggle svg {
     width: 0.75rem;
 }
 
-nav.sidepanel .accordion-toggle[aria-expanded="true"] > svg {
+nav.sidepanel .accordion-toggle:not(#projects-toggle1)[aria-expanded="true"] > svg {
     transform: rotate(90deg);
 }
 

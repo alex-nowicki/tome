@@ -172,15 +172,13 @@ let relevanceArr = Object.keys(editedPostDetails.relevance).map((key) => {
 relevanceArr.sort((a, b) => b.score - a.score);
 
 
-// TODO - Point category breadcrumb to filtered project page
-// TODO - Tooltips reveal internal link article description
-//      - Add max character count pattern to config file
+// TODO - Point category breadcrumb to filtered project page     
 
 ---
 
 <BaseLayout pageTitle={frontmatter.title}>
     <main class="post">
-        <SidePanel activeProject={activeProject} activePost={frontmatter.url}/>
+        <SidePanel activeProject={activeProject} activePost={frontmatter}/>
         <article>
             <div class="breadcrumbs">
                 {pagePath.map((step, index) => {
@@ -206,3 +204,5 @@ relevanceArr.sort((a, b) => b.score - a.score);
         </article>
     </main>
 </BaseLayout>
+
+<script src="../scripts/bookmarks.js"></script>

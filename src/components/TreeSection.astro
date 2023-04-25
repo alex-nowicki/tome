@@ -2,38 +2,29 @@
 import IconBookmarks from "./IconBookmarks.astro";
 import IconArrow from "./IconArrow.astro";
 
-import { toTitleCase } from "../scripts/helpers.js";
-
 const { order } = Astro.props;
 const { category } = Astro.props;
 const { CategoryIcon } = Astro.props;
 const { posts } = Astro.props;
 const { activePost } = Astro.props;
 
-let hidden = {
-    hidden: ''
-};
-
-if (activePost.split('/')[2] === category) {
-    delete hidden.hidden;
-}
-
 ---
 
 <li>
     <div class="accordion-toggle-group">
-        <a class="icon-group" href={`../pages/${category}`}>
+        <a class="icon-group" href={`../pages/${category.toLowerCase()}`}>
             <CategoryIcon />
-            <span>{toTitleCase(category)}</span>
+            <span>{category}</span>
         </a>
-        <button class="accordion-toggle" id={`tree-toggle${order}`} type="button" aria-expanded={hidden.hidden === '' ? 'false' : 'true'} aria-controls={`tree-panel${order}`}>
-            <span>show</span>
+        <button class="accordion-toggle" id={`tree-toggle${order}`} type="button" aria-expanded={activePost.category === category ? 'true' : 'false'} aria-controls={`tree-panel${order}`} hidden={posts.length > 0 ? null : ''}>
+            <span class="toggle-label-show">show</span>
+            <span class="toggle-label-hide">hide</span>
             <IconArrow />
         </button>
     </div>
-    <ul class="tree-panel accordion-panel" id={`tree-panel${order}`} role="region" aria-labelledby={`tree-toggle${order}`} {...hidden} >
+    <ul class="tree-panel accordion-panel" id={`tree-panel${order}`} role="region" aria-labelledby={`tree-toggle${order}`} hidden={activePost.category === category ? null : ''} >
         {posts.map((post) => 
-            <li class={post.url === activePost ? `is-active` : ''}>
+            <li class={post.url === activePost.url ? `is-active` : ''}>
                 <a href={post.url}>{post.frontmatter.title}</a>
                 <button class="bookmark-toggle"><IconBookmarks /></button>
             </li>

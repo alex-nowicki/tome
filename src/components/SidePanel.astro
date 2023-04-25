@@ -18,24 +18,22 @@ import '../styles/sidepanel.css';
 const { activeProject } = Astro.props;
 const { activePost } = Astro.props;
 
-console.log('sidepanel activeProject', activeProject);
-
 // Collect posts and filter by category
 const posts = await Astro.glob('../pages/*/*/*.md');
 const peoplePosts = posts.filter(post => {
-    return post.url.includes(`${activeProject}/people`);
+    return post.frontmatter.project === activeProject && post.frontmatter.category === 'People';
 })
 const groupsPosts = posts.filter(post => {
-    return post.url.includes(`${activeProject}/groups`);
+    return post.frontmatter.project === activeProject && post.frontmatter.category === 'Groups';
 })
 const placesPosts = posts.filter(post => {
-    return post.url.includes(`${activeProject}/places`);
+    return post.frontmatter.project === activeProject && post.frontmatter.category === 'Places';
 })
 const eventsPosts = posts.filter(post => {
-    return post.url.includes(`${activeProject}/events`);
+    return post.frontmatter.project === activeProject && post.frontmatter.category === 'Events';
 })
 const thingsPosts = posts.filter(post => {
-    return post.url.includes(`${activeProject}/things`);
+    return post.frontmatter.project === activeProject && post.frontmatter.category === 'Things';
 })
 
 // Generate list of projects
@@ -44,7 +42,7 @@ const projects = [];
 for (const page of projectPages){
     let project = {
         url: page.url,
-        title: page.url.split('/')[1]
+        title: page.frontmatter.title
     }
     if (project.title !== activeProject){
         projects.push(project);
@@ -73,26 +71,26 @@ for (const page of projectPages){
     <div class="bookmarks accordion">
         <div class="accordion-toggle-group">
             <p class="icon-group"><IconBookmarks /><span>Bookmarks</span></p>
-            <button class="accordion-toggle" id="bookmarks-toggle1" type="button" aria-expanded="true" aria-controls="bookmarks-panel1">
+            <button class="accordion-toggle" id="bookmarks-toggle1" type="button" aria-expanded="false" aria-controls="bookmarks-panel1" hidden>
                 <span>show</span>
                 <IconArrow />
             </button>
         </div>
-        <ul class="bookmarks-panel accordion-panel" id="bookmarks-panel1" role="region" aria-labelledby="bookmarks-toggle1"></ul>
+        <ul class="bookmarks-panel accordion-panel" id="bookmarks-panel1" role="region" aria-labelledby="bookmarks-toggle1" hidden></ul>
     </div>
     
     <hr />
     
     <ul class="tree accordion">
-        <TreeSection order={1} category={'people'} CategoryIcon={IconPeople} posts={peoplePosts} activePost={activePost} />
+        <TreeSection order={1} category={'People'} CategoryIcon={IconPeople} posts={peoplePosts} activePost={activePost} />
         <hr />
-        <TreeSection order={2} category={'groups'} CategoryIcon={IconGroups} posts={groupsPosts} activePost={activePost} />
+        <TreeSection order={2} category={'Groups'} CategoryIcon={IconGroups} posts={groupsPosts} activePost={activePost} />
         <hr />
-        <TreeSection order={3} category={'places'} CategoryIcon={IconPlaces} posts={placesPosts} activePost={activePost} />
+        <TreeSection order={3} category={'Places'} CategoryIcon={IconPlaces} posts={placesPosts} activePost={activePost} />
         <hr />
-        <TreeSection order={4} category={'events'} CategoryIcon={IconEvents} posts={eventsPosts} activePost={activePost} />
+        <TreeSection order={4} category={'Events'} CategoryIcon={IconEvents} posts={eventsPosts} activePost={activePost} />
         <hr />
-        <TreeSection order={5} category={'things'} CategoryIcon={IconThings} posts={thingsPosts} activePost={activePost} />
+        <TreeSection order={5} category={'Things'} CategoryIcon={IconThings} posts={thingsPosts} activePost={activePost} />
     </ul>
 </nav>
 

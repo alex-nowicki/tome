@@ -91,6 +91,11 @@ main.project {
     font-weight: 500;
 }
 
+.project .bookmark-toggle.is-active svg path {
+    fill: var(--teal-60);
+    stroke-width: 2px;
+}
+
 
 
 [role="tablist"] {

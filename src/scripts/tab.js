@@ -89,7 +89,7 @@ let toggleTab = function(targetTab) {
  * Show content on click events
  * @param  {Event} event The event object
  */
-let clickHandler = function(event) {
+let tabClickHandler = function(event) {
 
     // Only run on tab links
     if (!event.target.matches('[role="tab"]')) return;
@@ -109,7 +109,7 @@ let clickHandler = function(event) {
  * Update tab content on keyboard events
  * @param  {Event} event The event object
  */
-let keyHandler = function(event) {
+let tabKeyHandler = function(event) {
 
     // Only run for left and right arrow keys
     if (!['ArrowLeft', 'ArrowRight'].includes(event.code)) return;
@@ -142,7 +142,13 @@ let keyHandler = function(event) {
 //
 
 initTabs();
-document.addEventListener('click', clickHandler);
-document.addEventListener('keydown', keyHandler);
+document.addEventListener('click', tabClickHandler);
+document.addEventListener('keydown', tabKeyHandler);
+
+// Check url for starting tab
+if (window.location.hash){
+    let urlTargetTab = document.querySelector(`a[href="${window.location.hash}"]`);
+    toggleTab(urlTargetTab);
+}
 
 
