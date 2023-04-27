@@ -90,9 +90,10 @@ article .link-group:is(:hover, :focus-visible) .page-preview {
 main.post {
     display: grid;
     grid-template-columns:  clamp(300px, 360px, 25%) 1fr;
-    grid-template-rows: auto;
+    grid-template-rows: auto 1fr;
     grid-template-areas:
-    "nav article";
+    "nav article"
+    "nav related";
 }
 
 article {
@@ -212,6 +213,12 @@ article .details > div > div {
 
 .details ul {
     padding-left: 1.125rem;
+}
+
+
+
+section.related {
+    grid-area: related;
 }
 
 

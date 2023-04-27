@@ -13,7 +13,6 @@ const { frontmatter } = Astro.props;
 // Determine active project and post
 const pagePath = frontmatter.url.split('/');
 const activeProject = frontmatter.project;
-console.log(activeProject);
 const activePost = frontmatter.url;
 
 // Get active post content
@@ -21,20 +20,18 @@ const postContent = await Astro.props.compiledContent();
 
 // Get project posts
 const posts = await Astro.glob('../pages/*/*/*.md');
-console.log('num of posts', posts.length);
 const projectPosts = posts.filter(post => {
     return post.url.includes(`${activeProject.toLowerCase()}`) && !post.url.includes(`${activePost}`);
 })
-console.log('num of filtered posts', projectPosts.length);
 
 // Collect all search terms in an array
 let searchArr = [];
-// let searchArrTerms = [];
 for (const obj of projectPosts) {
     if (obj.frontmatter.searchTerms) {
         for (const term of obj.frontmatter.searchTerms) {
             searchArr.push({
                 term: term,
+                title: obj.frontmatter.title,
                 description: obj.frontmatter.description,
                 url: obj.url
             })
@@ -42,13 +39,8 @@ for (const obj of projectPosts) {
     }
 }
 
-console.log('searchArr', searchArr);
-
 // Sort terms from longest to shortest
 searchArr.sort((a, b) => b.term.length - a.term.length);
-// searchArr.map((obj) => searchArrTerms.push(obj.term));
-
-// console.log('searchArrTerms', searchArrTerms);
 
 /**
  * Search string for matching search terms
@@ -63,7 +55,7 @@ let detectMatches = function(string, terms, relevance){
     if (relevance){
         editedRelevance = relevance;
     } else {
-        editedRelevance = {}
+        editedRelevance = [];
     }
     
     for (const obj of terms){
@@ -77,10 +69,16 @@ let detectMatches = function(string, terms, relevance){
         // Detect matches and add to relevance score
         let matches = editedString.match(regex);
         if (matches && matches.length > 0){
-            if (editedRelevance[obj.url]){
-                editedRelevance[obj.url] += matches.length;
+            let relIndex = editedRelevance.findIndex(x => x.url === obj.url);
+            if (relIndex !== -1){
+                editedRelevance[relIndex].score += matches.length;
             } else {
-                editedRelevance[obj.url] = matches.length;
+                editedRelevance.push({
+                    score: matches.length,
+                    title: obj.title,
+                    description: obj.description,
+                    url: obj.url
+                });
             }
         }
         // Wrap matches in links
@@ -162,17 +160,9 @@ if (postConnections !== ''){
 
 let editedPostDetails = detectMatches(postDetails, searchArr, editedPostContent.relevance);
 
-let relevanceArr = Object.keys(editedPostDetails.relevance).map((key) => {
-    return {
-        url: key,
-        score: editedPostDetails.relevance[key]
-    }
-})
-
-relevanceArr.sort((a, b) => b.score - a.score);
-
-
-// TODO - Point category breadcrumb to filtered project page     
+let relevanceArr = editedPostDetails.relevance.sort((a, b) => b.score - a.score);
+console.log(relevanceArr);
+   
 
 ---
 
@@ -200,8 +190,17 @@ relevanceArr.sort((a, b) => b.score - a.score);
                 <div set:html={editedPostContent.string}></div>
                 <!-- <slot /> -->
             </section>
-            <section class="related"></section>
         </article>
+        <section class="related">
+            <h2>Related Articles</h2>
+            {relevanceArr.map((relPost) => {
+                return  <div>
+                            <h3>{relPost.title}</h3>
+                            <p>{relPost.description}</p>
+                            <a href={relPost.url}>Open Article</a>
+                        </div>
+            })}
+        </section>
     </main>
 </BaseLayout>
 

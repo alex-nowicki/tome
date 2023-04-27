@@ -3,16 +3,56 @@ import BaseLayout from "./BaseLayout.astro";
 
 const projects = await Astro.glob('../pages/*.md');
 
+const posts = await Astro.glob('../pages/*/*/*.md');
+
+const projectPosts = {}
+
+projects.map(project => {
+    let title = project.frontmatter.title;
+    projectPosts[title] = {};
+    projectPosts[title].posts = posts.filter(post => {
+        return post.frontmatter.project === title;
+    })
+    projectPosts[title].numArticles = projectPosts[title].posts.length;
+    
+    let greatestDate = 0;
+    let key;
+    for (let x in projectPosts[title].posts){
+        let date = Date.parse(projectPosts[title].posts[x].frontmatter.date);
+        if (date > greatestDate){
+            key = x;
+            greatestDate = date;
+        }
+    }
+
+    // Create a new Intl.DateTimeFormat object
+    let formatter = new Intl.DateTimeFormat('en-US', {
+        dateStyle: 'medium',
+	    timeStyle: 'short' 
+    });
+
+    if (greatestDate > 0){
+        projectPosts[title].recentEditDate = formatter.format(greatestDate);
+    }
+    
+})
+
+console.log(projectPosts);
+
 ---
 
 <BaseLayout pageTitle={'Tome'} >
     <main>
 		<h1>Welcome to Tome</h1>
-		<ul>
-            {projects.map((project) =>
-                <li><a href={project.url}>{project.frontmatter.title}</a></li>
-            )}
-        </ul>
-		
+        <section class="cards">
+            {projects.map((project) => {
+                return  <div>
+                            <h2>{project.frontmatter.title}</h2>
+                            <p>{projectPosts[project.frontmatter.title].numArticles} Articles</p>
+                            <p hidden={projectPosts[project.frontmatter.title].recentEditDate ? null : ''}>Edited {projectPosts[project.frontmatter.title].recentEditDate}</p>
+                            <a href={project.url}>Open Project</a>    
+                        </div>
+            })}
+        </section>
 	</main>
 </BaseLayout>
