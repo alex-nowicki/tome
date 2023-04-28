@@ -36,24 +36,24 @@ const thingsPosts = posts.filter(post => {
     return post.frontmatter.project === activeProject && post.frontmatter.category === 'Things';
 })
 
-// Generate list of projects
-const projectPages = await Astro.glob('../pages/*.md');
-const projects = [];
-for (const page of projectPages){
-    let project = {
-        url: page.url,
-        title: page.frontmatter.title
-    }
-    if (project.title !== activeProject){
-        projects.push(project);
-    }
-}
+// // Generate list of projects
+// const projectPages = await Astro.glob('../pages/*.md');
+// const projects = [];
+// for (const page of projectPages){
+//     let project = {
+//         url: page.url,
+//         title: page.frontmatter.title
+//     }
+//     if (project.title !== activeProject){
+//         projects.push(project);
+//     }
+// }
 
 
 ---
 
 <nav class="sidepanel">
-    <div class="projects accordion">
+    <!-- <div class="projects accordion">
         <div class="accordion-toggle-group">
             <p class="icon-group"><IconProjects /><span>{toTitleCase(activeProject)}</span></p>
             <button class="accordion-toggle" id="projects-toggle1" type="button" aria-expanded="false" aria-controls="projects-panel1">
@@ -66,7 +66,7 @@ for (const page of projectPages){
                 <li><a href={project.url}>{toTitleCase(project.title)}</a></li>
             )}
         </ul>
-    </div>
+    </div> -->
     
     <div class="bookmarks accordion">
         <div class="accordion-toggle-group">

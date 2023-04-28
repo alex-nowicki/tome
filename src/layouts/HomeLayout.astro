@@ -1,9 +1,13 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 
+import "../styles/home.css";
+
 const projects = await Astro.glob('../pages/*.md');
 
 const posts = await Astro.glob('../pages/*/*/*.md');
+
+posts.sort((a, b) => Date.parse(b.frontmatter.date) - Date.parse(a.frontmatter.date));
 
 const projectPosts = {}
 
@@ -42,17 +46,34 @@ console.log(projectPosts);
 ---
 
 <BaseLayout pageTitle={'Tome'} >
-    <main>
+    <main class="home">
 		<h1>Welcome to Tome</h1>
-        <section class="cards">
+        <section class="projects">
+            <h2>Projects</h2>
+            <ul class="card-group">
             {projects.map((project) => {
-                return  <div>
-                            <h2>{project.frontmatter.title}</h2>
+                return  <li class="card">
+                            <h3>{project.frontmatter.title}</h3>
                             <p>{projectPosts[project.frontmatter.title].numArticles} Articles</p>
                             <p hidden={projectPosts[project.frontmatter.title].recentEditDate ? null : ''}>Edited {projectPosts[project.frontmatter.title].recentEditDate}</p>
                             <a href={project.url}>Open Project</a>    
-                        </div>
+                        </li>
             })}
+            </ul>
+        </section>
+        <section class="recent">
+            <h2>Recent Articles</h2>
+            <ul class="card-group">
+            {posts.map((post, index) => {
+                if (index < 3){
+                    return  <li class="card">
+                                <h3>{post.frontmatter.title}</h3>
+                                <p>{post.frontmatter.description}</p>
+                                <a href={post.url}>Open Article</a>
+                            </li>
+                }
+            })}
+            </ul>
         </section>
 	</main>
 </BaseLayout>

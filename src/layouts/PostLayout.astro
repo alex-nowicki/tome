@@ -170,37 +170,40 @@ console.log(relevanceArr);
     <main class="post">
         <SidePanel activeProject={activeProject} activePost={frontmatter}/>
         <article>
-            <div class="breadcrumbs">
-                {pagePath.map((step, index) => {
-                    if (index == 0){
-                        return ''
-                    } else if (index == 1){
-                        return <a href={`../../${step}`}>{toTitleCase(step)}</a><IconArrow />
-                    } else if (index == 2){
-                        return <a href={`../../${pagePath[1]}#${step}`}>{toTitleCase(step)}</a><IconArrow />
-                    } else {
-                        return <a href={step}>{frontmatter.title}</a>
-                    }
-                })}
-            </div>
-            <h1>{frontmatter.title}</h1>
-            <img src="" />
+            <section class="header">
+                <div class="breadcrumbs">
+                    {pagePath.map((step, index) => {
+                        if (index == 0){
+                            return ''
+                        } else if (index == 1){
+                            return <a href={`../../${step}`}>{toTitleCase(step)}</a><IconArrow />
+                        } else if (index == 2){
+                            return <a href={`../../${pagePath[1]}#${step}`}>{toTitleCase(step)}</a><IconArrow />
+                        } else {
+                            return <a href={step}>{frontmatter.title}</a>
+                        }
+                    })}
+                </div>
+                <h1>{frontmatter.title}</h1>
+            </section>
+            <section class="content" set:html={editedPostContent.string}>
+                <!-- <div class="markup" set:html={editedPostContent.string}></div> -->
+            </section>
             <section class="details" set:html={editedPostDetails.string}></section>
-            <section class="content">
-                <div set:html={editedPostContent.string}></div>
-                <!-- <slot /> -->
+            <section class="related">
+                <h2>Related Articles</h2>
+                <ul class="card-group">
+                {relevanceArr.map((relPost) => {
+                    return  <li class="card">
+                                <h3>{relPost.title}</h3>
+                                <p>{relPost.description}</p>
+                                <a href={relPost.url}>Open Article</a>
+                            </li>
+                })}
+                </ul>
             </section>
         </article>
-        <section class="related">
-            <h2>Related Articles</h2>
-            {relevanceArr.map((relPost) => {
-                return  <div>
-                            <h3>{relPost.title}</h3>
-                            <p>{relPost.description}</p>
-                            <a href={relPost.url}>Open Article</a>
-                        </div>
-            })}
-        </section>
+        
     </main>
 </BaseLayout>
 

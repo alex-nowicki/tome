@@ -17,6 +17,7 @@ let initBookmarks = function() {
 
     // Get the bookmarks from local storage
     let storedBookmarks = JSON.parse(localStorage.getItem('bookmarks'));
+    console.log(storedBookmarks);
     
     // Get the sidepanel element
     let sidepanel = document.querySelector('.sidepanel');
@@ -96,7 +97,8 @@ let initBookmarks = function() {
     if (projectPage && storedBookmarks){
 
         // Get the links inside the tab panels
-        let tabLinks = projectPage.querySelectorAll('section > ul > li');
+        let tabLinks = projectPage.querySelectorAll('[role="tabpanel"] > ul > li');
+        console.log(tabLinks);
 
         // Toggle active state of bookmark toggles in the tab panels
         for (const link of tabLinks){
@@ -116,6 +118,8 @@ let initBookmarks = function() {
 
             } else {
 
+                console.log(link);
+
                 // Toggle active class
                 link.querySelector('button').classList.remove('is-active');
 
@@ -124,6 +128,21 @@ let initBookmarks = function() {
 
             }
         }
+
+        // Get the bookmarks tab panel
+        let bookmarksPanel = document.querySelector('#bookmarks > ul');
+        
+        // Generate the HTML list
+        let bookmarksList = storedBookmarks.map((bookmark) => {
+            return  `<li>
+                        <a href=${bookmark.url}>${bookmark.title}</a>
+                        <button class="bookmark-toggle is-active"></button>
+                    </li>`
+        }).join('');
+
+        // Populate the tab panel
+        bookmarksPanel.innerHTML = bookmarksList;
+
     }    
   
 }

@@ -1,0 +1,34 @@
+/*
+** VARIABLES
+------------------------------*/
+
+
+/*
+** TYPOGRAPHY
+------------------------------*/
+
+
+
+/*
+** MAIN
+------------------------------*/
+
+main.home {
+    width: 900px;
+    margin: 0 auto;
+    padding: 3rem 0;
+}
+
+.home .card-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+    gap: 1rem;
+}
+
+.home .card {
+    background-color: white;
+    border-radius: var(--borderRadius);
+    padding: 2rem;
+
+}
+

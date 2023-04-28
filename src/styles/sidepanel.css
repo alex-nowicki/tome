@@ -8,8 +8,6 @@ nav.sidepanel {
     grid-area: nav;
 
     padding: 2rem;
-    background-color: var(--gray-5);
-    border-right: 2px solid var(--gray-15);
 }
 
 nav.sidepanel p {

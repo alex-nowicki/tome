@@ -49,96 +49,125 @@ for (const page of projectPages){
     }
 }
 
+// TODO - Enable sort by functionality
+// TODO - Convert to a single list of articles, and Radio form for filters
 
 ---
 
 <BaseLayout pageTitle={activeProject} activeProject={activeProject}>
     <main class="project">
-        <div class="projects accordion">
-            <div class="accordion-toggle-group">
-                <h1 class="icon-group"><IconProjects /><span>{toTitleCase(activeProject)}</span></h1>
-                <button class="accordion-toggle" id="projects-toggle1" type="button" aria-expanded="false" aria-controls="projects-panel1">
-                    <span>change</span>
-                    <IconChange />
-                </button>
-            </div>
-            <ul class="projects-panel accordion-panel" id="projects-panel1" role="region" aria-labelledby="projects-toggle1" hidden>
-                {projects.map((project) =>
-                    <li><a href={project.url}>{toTitleCase(project.title)}</a></li>
-                )}
-            </ul>
-        </div>
-        <ul data-tabs>
-            <li><a href="#all">All Articles</a></li>
-            <li><a href="#people">People</a></li>
-            <li><a href="#groups">Groups</a></li>
-            <li><a href="#places">Places</a></li>
-            <li><a href="#events">Events</a></li>
-            <li><a href="#things">Things</a></li>
-            <li class="border-fill"></li>
-        </ul>
-        <section id="all">
+        <section class="articles">
+            <h2>Articles</h2>
+            <form id="filters">
+                <fieldset>
+                    <input type="radio" id="filterAll" name="filter" value="all" />
+                    <label for="filterAll">All</label>
+                    <input type="radio" id="filterBookmarks" name="filter" value="bookmarks" />
+                    <label for="filterBookmarks">Bookmarks</label>
+                    <input type="radio" id="filterPeople" name="filter" value="people" />
+                    <label for="filterPeople">People</label>
+                    <input type="radio" id="filterGroups" name="filter" value="groups" />
+                    <label for="filterGroups">Groups</label>
+                    <input type="radio" id="filterPlaces" name="filter" value="places" />
+                    <label for="filterPlaces">Places</label>
+                    <input type="radio" id="filterEvents" name="filter" value="events" />
+                    <label for="filterEvents">Events</label>
+                    <input type="radio" id="filterThings" name="filter" value="things" />
+                    <label for="filterThings">Things</label>
+                </fieldset>
+            </form>
+            <form id="sort">
+                <label>Sort by</label>
+                <select name="sort" id="sort-select">
+                    <option value="byAlpha" selected="selected">Alphabetical</option>
+                    <option value="byDate">Date Modified</option>
+                </select>
+            </form>
             <ul>
             {projectPosts.map((post) => 
-                <li>
+                <li data-title={post.frontmatter.title} data-date={post.frontmatter.date} data-category={post.frontmatter.category} data-bookmark="false">
                     <a href={post.url}>{post.frontmatter.title}</a>
                     <button class="bookmark-toggle"><IconBookmarks /></button>
                 </li>
             )}
             </ul>
-        </section>
-        <section id="people">
-            <ul>
-            {peoplePosts.map((post) => 
-                <li>
-                    <a href={post.url}>{post.frontmatter.title}</a>
-                    <button class="bookmark-toggle"><IconBookmarks /></button>
-                </li>
-            )}
+
+
+            <ul data-tabs>
+                <li><a href="#all">All</a></li>
+                <li><a href="#bookmarks">Bookmarks</a></li>
+                <li><a href="#people">People</a></li>
+                <li><a href="#groups">Groups</a></li>
+                <li><a href="#places">Places</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#things">Things</a></li>
             </ul>
-        </section>
-        <section id="groups">
-            <ul>
-            {groupsPosts.map((post) => 
-                <li>
-                    <a href={post.url}>{post.frontmatter.title}</a>
-                    <button class="bookmark-toggle"><IconBookmarks /></button>
-                </li>
-            )}
-            </ul>
-        </section>
-        <section id="places">
-            <ul>
-            {placesPosts.map((post) => 
-                <li>
-                    <a href={post.url}>{post.frontmatter.title}</a>
-                    <button class="bookmark-toggle"><IconBookmarks /></button>
-                </li>
-            )}
-            </ul>
-        </section>
-        <section id="events">
-            <ul>
-            {eventsPosts.map((post) => 
-                <li>
-                    <a href={post.url}>{post.frontmatter.title}</a>
-                    <button class="bookmark-toggle"><IconBookmarks /></button>
-                </li>
-            )}
-            </ul>
-        </section>
-        <section id="things">
-            <ul>
-            {thingsPosts.map((post) => 
-                <li>
-                    <a href={post.url}>{post.frontmatter.title}</a>
-                    <button class="bookmark-toggle"><IconBookmarks /></button>
-                </li>
-            )}
-            </ul>
+            <section id="all">
+                <ul>
+                {projectPosts.map((post) => 
+                    <li data-title={post.frontmatter.title} data-date={post.frontmatter.date}>
+                        <a href={post.url}>{post.frontmatter.title}</a>
+                        <button class="bookmark-toggle"><IconBookmarks /></button>
+                    </li>
+                )}
+                </ul>
+            </section>
+            <section id="bookmarks">
+                <ul></ul>
+            </section>
+            <section id="people">
+                <ul>
+                {peoplePosts.map((post) => 
+                    <li>
+                        <a href={post.url}>{post.frontmatter.title}</a>
+                        <button class="bookmark-toggle"><IconBookmarks /></button>
+                    </li>
+                )}
+                </ul>
+            </section>
+            <section id="groups">
+                <ul>
+                {groupsPosts.map((post) => 
+                    <li>
+                        <a href={post.url}>{post.frontmatter.title}</a>
+                        <button class="bookmark-toggle"><IconBookmarks /></button>
+                    </li>
+                )}
+                </ul>
+            </section>
+            <section id="places">
+                <ul>
+                {placesPosts.map((post) => 
+                    <li>
+                        <a href={post.url}>{post.frontmatter.title}</a>
+                        <button class="bookmark-toggle"><IconBookmarks /></button>
+                    </li>
+                )}
+                </ul>
+            </section>
+            <section id="events">
+                <ul>
+                {eventsPosts.map((post) => 
+                    <li>
+                        <a href={post.url}>{post.frontmatter.title}</a>
+                        <button class="bookmark-toggle"><IconBookmarks /></button>
+                    </li>
+                )}
+                </ul>
+            </section>
+            <section id="things">
+                <ul>
+                {thingsPosts.map((post) => 
+                    <li>
+                        <a href={post.url}>{post.frontmatter.title}</a>
+                        <button class="bookmark-toggle"><IconBookmarks /></button>
+                    </li>
+                )}
+                </ul>
+            </section>
         </section>
     </main>
 </BaseLayout>
 
 <script src="../scripts/tab.js"></script>
-<script src="../scripts/bookmarks.js"></script>
+<script src="../scripts/bookmarks.js" defer></script>

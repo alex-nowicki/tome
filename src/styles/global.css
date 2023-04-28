@@ -51,7 +51,8 @@ html {
 }
 
 body {
-    height: 100%;;
+    height: 100%;
+    background-color: var(--gray-5);
 }
 
 :is(h1, h2, h4) {
@@ -140,7 +141,7 @@ header {
     grid-template-columns: 1fr 900px 1fr;
     grid-template-rows: clamp(4rem, 6rem, 8rem);
     grid-template-areas:
-    "nav search .";
+    "nav search project";
     align-items: center;
 
     padding: 0 2rem;
@@ -280,6 +281,84 @@ header .search-group {
     color: var(--gray-100);
 }
 
+
+header .project-group {
+    grid-area: project;
+    justify-self: flex-end;
+    
+    display: flex;
+    flex-flow: column nowrap;
+    margin-bottom: calc(var(--spacing) * 2);
+}
+
+
+header .project-group .accordion-toggle-group {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 1rem 1.5rem;
+    background-color: var(--orange-60);
+    border-radius: 0.75rem;
+}
+
+header .project-group :is(.icon-group, .accordion-toggle){
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    margin: 0;
+}
+
+header .project-group .icon-group span {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-left: 0.375rem;
+    color: white;
+}
+
+header .project-group .icon-group svg path {
+    stroke: var(--orange-60);
+}
+
+header .project-group .accordion-toggle span {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-right: 0.375rem;
+    color: white;
+}
+
+header .project-group .accordion-toggle svg {
+    width: 1rem;
+}
+
+header .project-group .accordion-toggle svg path {
+    stroke: white;
+}
+
+header .project-group .accordion-panel {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0.75rem;
+    background-color: var(--teal-15);
+}
+
+header .project-group .accordion-panel li {
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--teal-30);
+}
+
+header .project-group .accordion-panel li:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+header .project-group .accordion-panel a {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+
 /*
 ** MAIN
 ------------------------------*/
@@ -311,4 +390,5 @@ svg {
 
 [hidden] {
     pointer-events: none;
+    display: none;
 }
