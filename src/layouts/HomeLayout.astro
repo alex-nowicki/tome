@@ -1,6 +1,14 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 
+import IconArrow from "../components/IconArrow.astro";
+import IconPeople from "../components/IconPeople.astro";
+import IconGroups from "../components/IconGroups.astro";
+import IconPlaces from "../components/IconPlaces.astro";
+import IconEvents from "../components/IconEvents.astro";
+import IconThings from "../components/IconThings.astro";
+import IconProjects from "../components/IconProjects.astro";
+
 import "../styles/home.css";
 
 const projects = await Astro.glob('../pages/*.md');
@@ -10,6 +18,12 @@ const posts = await Astro.glob('../pages/*/*/*.md');
 posts.sort((a, b) => Date.parse(b.frontmatter.date) - Date.parse(a.frontmatter.date));
 
 const projectPosts = {}
+
+// Create a new Intl.DateTimeFormat object
+let formatter = new Intl.DateTimeFormat('en-US', {
+    dateStyle: 'medium',
+    timeStyle: 'short' 
+});
 
 projects.map(project => {
     let title = project.frontmatter.title;
@@ -29,12 +43,6 @@ projects.map(project => {
         }
     }
 
-    // Create a new Intl.DateTimeFormat object
-    let formatter = new Intl.DateTimeFormat('en-US', {
-        dateStyle: 'medium',
-	    timeStyle: 'short' 
-    });
-
     if (greatestDate > 0){
         projectPosts[title].recentEditDate = formatter.format(greatestDate);
     }
@@ -47,16 +55,23 @@ console.log(projectPosts);
 
 <BaseLayout pageTitle={'Tome'} >
     <main class="home">
-		<h1>Welcome to Tome</h1>
+		<h1>My Projects</h1>
         <section class="projects">
-            <h2>Projects</h2>
+            <!-- <h2>My Projects</h2> -->
             <ul class="card-group">
             {projects.map((project) => {
                 return  <li class="card">
-                            <h3>{project.frontmatter.title}</h3>
-                            <p>{projectPosts[project.frontmatter.title].numArticles} Articles</p>
-                            <p hidden={projectPosts[project.frontmatter.title].recentEditDate ? null : ''}>Edited {projectPosts[project.frontmatter.title].recentEditDate}</p>
-                            <a href={project.url}>Open Project</a>    
+                            <div class="info-group">
+                                
+                                <h3>{project.frontmatter.title}</h3>
+                                <p class="category"><IconProjects /> Project</p>
+                                <p class="description">{project.frontmatter.description}</p>
+                                <div class="meta">
+                                    <p class="num-articles">{projectPosts[project.frontmatter.title].numArticles} Articles</p>
+                                    <p class="date" hidden={projectPosts[project.frontmatter.title].recentEditDate ? null : ''}>Edited {projectPosts[project.frontmatter.title].recentEditDate}</p>
+                                </div>
+                            </div>
+                            <a href={project.url}>Open Project <IconArrow/></a>    
                         </li>
             })}
             </ul>
@@ -66,10 +81,36 @@ console.log(projectPosts);
             <ul class="card-group">
             {posts.map((post, index) => {
                 if (index < 3){
+                    let icon;
+                    let catSingular;
+                    if (post.frontmatter.category === 'People') {
+                        icon = <IconPeople />;
+                        catSingular = 'Person';
+                    } else if (post.frontmatter.category === 'Groups') {
+                        icon = <IconGroups />;
+                        catSingular = 'Group';
+                    } else if (post.frontmatter.category === 'Places') {
+                        icon = <IconPlaces />;
+                        catSingular = 'Place';
+                    } else if (post.frontmatter.category === 'Events') {
+                        icon = <IconEvents />;
+                        catSingular = 'Event';
+                    } else if (post.frontmatter.category === 'Things') {
+                        icon = <IconThings />;
+                        catSingular = 'Thing';
+                    }
+
                     return  <li class="card">
-                                <h3>{post.frontmatter.title}</h3>
-                                <p>{post.frontmatter.description}</p>
-                                <a href={post.url}>Open Article</a>
+                                <div class="info-group">
+                                    
+                                    <h3>{post.frontmatter.title}</h3>
+                                    <p class="category">{icon}{catSingular}</p>
+                                    <p class="description">{post.frontmatter.description}</p>
+                                    <div class="meta">
+                                        <p class="date">Published {formatter.format(Date.parse(post.frontmatter.date))}</p>
+                                    </div>
+                                </div>
+                                <a href={post.url}>Open Article <IconArrow/></a>
                             </li>
                 }
             })}

@@ -14,21 +14,128 @@
 ------------------------------*/
 
 main.home {
+    --borderRadius: 0.5rem;
+
     width: 900px;
     margin: 0 auto;
     padding: 3rem 0;
+}
+
+main.home > section {
+    margin-bottom: 4rem;
+}
+
+.home h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
 }
 
 .home .card-group {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
     gap: 1rem;
+    list-style: none;
+    padding: 0;
+}
+
+.home h2 {
+    font-size: 2rem;
+    font-weight: 600;
 }
 
 .home .card {
+    display: flex;
+    flex-flow: column nowrap;
     background-color: white;
     border-radius: var(--borderRadius);
-    padding: 2rem;
+    
 
 }
 
+.home .card .info-group {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 2rem;
+    flex-grow: 1;
+}
+
+.home .card h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.home .card p {
+    margin: 0;
+}
+
+.home .card :is(.date, .category, .num-articles) {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.home .card .meta {
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 0.25rem;
+    color: var(--teal-80);
+    margin-top: 1rem;
+}
+
+.home .card .category {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    background-color: var(--orange-15);
+    padding: 0.5rem;
+    border-radius: var(--borderRadius);
+}
+
+.home .card .category svg {
+    width: 1.125rem;
+}
+
+.home .card .category svg :is(path, circle, line) {
+    stroke-width: 1.5px;
+}
+
+.home .card .description {
+    font-family: 'Source Serif Pro', serif;
+    font-weight: 600;
+    font-style: italic;
+    line-height: 1.375;
+    flex-grow: 1;
+}
+
+.home .card a {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    background-color: var(--teal-15);
+    border-radius: 0 0 var(--borderRadius) var(--borderRadius);
+    color: var(--teal-100);
+    font-weight: 500;
+    box-shadow: var(--boxShadow) var(--teal-30);
+}
+
+.home .card a:hover {
+    background-color: var(--teal-80);
+    color: white;
+    box-shadow: var(--boxShadow) var(--teal-100);
+}
+
+.home .card a svg {
+    width: 1rem;
+}
+
+.home .card a svg path {
+    stroke: var(--teal-100);
+}
+
+.home .card a:hover svg path {
+    stroke: white;
+}

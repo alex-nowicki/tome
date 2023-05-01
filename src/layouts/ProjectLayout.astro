@@ -3,6 +3,11 @@ import BaseLayout from "./BaseLayout.astro";
 import SidePanel from "../components/SidePanel.astro";
 
 import IconBookmarks from "../components/IconBookmarks.astro";
+import IconPeople from "../components/IconPeople.astro";
+import IconGroups from "../components/IconGroups.astro";
+import IconPlaces from "../components/IconPlaces.astro";
+import IconEvents from "../components/IconEvents.astro";
+import IconThings from "../components/IconThings.astro";
 import IconChange from "../components/IconChange.astro";
 import IconProjects from "../components/IconProjects.astro";
 
@@ -19,22 +24,12 @@ const activeProject = frontmatter.title;
 const posts = await Astro.glob('../pages/*/*/*.md');
 const projectPosts = posts.filter(post => {
     return post.url.includes(activeProject.toLowerCase());
-})
-const peoplePosts = posts.filter(post => {
-    return post.url.includes(`${activeProject.toLowerCase()}/people`);
-})
-const groupsPosts = posts.filter(post => {
-    return post.url.includes(`${activeProject.toLowerCase()}/groups`);
-})
-const placesPosts = posts.filter(post => {
-    return post.url.includes(`${activeProject.toLowerCase()}/places`);
-})
-const eventsPosts = posts.filter(post => {
-    return post.url.includes(`${activeProject.toLowerCase()}/events`);
-})
-const thingsPosts = posts.filter(post => {
-    return post.url.includes(`${activeProject.toLowerCase()}/things`);
-})
+}).sort((a,b) => {
+    if (a.frontmatter.title < b.frontmatter.title) return -1;
+    if (a.frontmatter.title > b.frontmatter.title) return 0;
+    return 0;
+});
+
 
 // Generate list of projects
 const projectPages = await Astro.glob('../pages/*.md');
@@ -49,125 +44,72 @@ for (const page of projectPages){
     }
 }
 
-// TODO - Enable sort by functionality
-// TODO - Convert to a single list of articles, and Radio form for filters
+// Create a new Intl.DateTimeFormat object
+let formatter = new Intl.DateTimeFormat('en-US', {
+    dateStyle: 'medium',
+    timeStyle: 'short' 
+});
+
 
 ---
 
 <BaseLayout pageTitle={activeProject} activeProject={activeProject}>
     <main class="project">
+        <h1>{activeProject} Articles</h1>
         <section class="articles">
-            <h2>Articles</h2>
             <form id="filters">
-                <fieldset>
-                    <input type="radio" id="filterAll" name="filter" value="all" />
-                    <label for="filterAll">All</label>
-                    <input type="radio" id="filterBookmarks" name="filter" value="bookmarks" />
-                    <label for="filterBookmarks">Bookmarks</label>
-                    <input type="radio" id="filterPeople" name="filter" value="people" />
-                    <label for="filterPeople">People</label>
-                    <input type="radio" id="filterGroups" name="filter" value="groups" />
-                    <label for="filterGroups">Groups</label>
-                    <input type="radio" id="filterPlaces" name="filter" value="places" />
-                    <label for="filterPlaces">Places</label>
-                    <input type="radio" id="filterEvents" name="filter" value="events" />
-                    <label for="filterEvents">Events</label>
-                    <input type="radio" id="filterThings" name="filter" value="things" />
-                    <label for="filterThings">Things</label>
-                </fieldset>
+                <input type="radio" id="filterAll" name="filter" value="all" checked/>
+                <label for="filterAll">All</label>
+                <input type="radio" id="filterBookmarks" name="filter" value="bookmarks" />
+                <label for="filterBookmarks">Bookmarks</label>
+                <input type="radio" id="filterPeople" name="filter" value="people" />
+                <label for="filterPeople">People</label>
+                <input type="radio" id="filterGroups" name="filter" value="groups" />
+                <label for="filterGroups">Groups</label>
+                <input type="radio" id="filterPlaces" name="filter" value="places" />
+                <label for="filterPlaces">Places</label>
+                <input type="radio" id="filterEvents" name="filter" value="events" />
+                <label for="filterEvents">Events</label>
+                <input type="radio" id="filterThings" name="filter" value="things" />
+                <label for="filterThings">Things</label>
             </form>
             <form id="sort">
                 <label>Sort by</label>
-                <select name="sort" id="sort-select">
-                    <option value="byAlpha" selected="selected">Alphabetical</option>
-                    <option value="byDate">Date Modified</option>
-                </select>
+                <div class="select-group">
+                    <select name="sort" id="sort-select">
+                        <option value="byTitle" selected>Title</option>
+                        <option value="byDate">Date Published</option>
+                    </select>
+                 </div>
             </form>
-            <ul>
-            {projectPosts.map((post) => 
-                <li data-title={post.frontmatter.title} data-date={post.frontmatter.date} data-category={post.frontmatter.category} data-bookmark="false">
-                    <a href={post.url}>{post.frontmatter.title}</a>
-                    <button class="bookmark-toggle"><IconBookmarks /></button>
-                </li>
-            )}
+            <ul id="list">
+                {projectPosts.map((post) => {
+                    let icon;
+                    if (post.frontmatter.category === 'People') {
+                        icon = <IconPeople />;
+                    } else if (post.frontmatter.category === 'Groups') {
+                        icon = <IconGroups />;
+                    } else if (post.frontmatter.category === 'Places') {
+                        icon = <IconPlaces />;
+                    } else if (post.frontmatter.category === 'Events') {
+                        icon = <IconEvents />;
+                    } else if (post.frontmatter.category === 'Things') {
+                        icon = <IconThings />;
+                    }
+                    return  <li data-title={post.frontmatter.title} data-date={post.frontmatter.date} data-category={post.frontmatter.category}>
+                                <a href={post.url}>
+                                    <span class="icon-group">{icon}</span>
+                                    <span class="title">{post.frontmatter.title}</span>
+                                    <span class="date">{formatter.format(Date.parse(post.frontmatter.date))}</span>    
+                                </a>
+                                <button class="bookmark-toggle"><IconBookmarks /></button>
+                            </li>
+                })}
             </ul>
-
-
-            <ul data-tabs>
-                <li><a href="#all">All</a></li>
-                <li><a href="#bookmarks">Bookmarks</a></li>
-                <li><a href="#people">People</a></li>
-                <li><a href="#groups">Groups</a></li>
-                <li><a href="#places">Places</a></li>
-                <li><a href="#events">Events</a></li>
-                <li><a href="#things">Things</a></li>
-            </ul>
-            <section id="all">
-                <ul>
-                {projectPosts.map((post) => 
-                    <li data-title={post.frontmatter.title} data-date={post.frontmatter.date}>
-                        <a href={post.url}>{post.frontmatter.title}</a>
-                        <button class="bookmark-toggle"><IconBookmarks /></button>
-                    </li>
-                )}
-                </ul>
-            </section>
-            <section id="bookmarks">
-                <ul></ul>
-            </section>
-            <section id="people">
-                <ul>
-                {peoplePosts.map((post) => 
-                    <li>
-                        <a href={post.url}>{post.frontmatter.title}</a>
-                        <button class="bookmark-toggle"><IconBookmarks /></button>
-                    </li>
-                )}
-                </ul>
-            </section>
-            <section id="groups">
-                <ul>
-                {groupsPosts.map((post) => 
-                    <li>
-                        <a href={post.url}>{post.frontmatter.title}</a>
-                        <button class="bookmark-toggle"><IconBookmarks /></button>
-                    </li>
-                )}
-                </ul>
-            </section>
-            <section id="places">
-                <ul>
-                {placesPosts.map((post) => 
-                    <li>
-                        <a href={post.url}>{post.frontmatter.title}</a>
-                        <button class="bookmark-toggle"><IconBookmarks /></button>
-                    </li>
-                )}
-                </ul>
-            </section>
-            <section id="events">
-                <ul>
-                {eventsPosts.map((post) => 
-                    <li>
-                        <a href={post.url}>{post.frontmatter.title}</a>
-                        <button class="bookmark-toggle"><IconBookmarks /></button>
-                    </li>
-                )}
-                </ul>
-            </section>
-            <section id="things">
-                <ul>
-                {thingsPosts.map((post) => 
-                    <li>
-                        <a href={post.url}>{post.frontmatter.title}</a>
-                        <button class="bookmark-toggle"><IconBookmarks /></button>
-                    </li>
-                )}
-                </ul>
-            </section>
         </section>
     </main>
 </BaseLayout>
 
 <script src="../scripts/tab.js"></script>
+<script src="../scripts/filter.js"></script>
 <script src="../scripts/bookmarks.js" defer></script>

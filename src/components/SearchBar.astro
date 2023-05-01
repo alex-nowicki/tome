@@ -19,6 +19,7 @@ if (activeProject){
 }
 
 // TODO - Add up/down arrow key handlers for search bar
+// TODO - Convert script to external and make the search results HTML? Not sure I can, as I'm searching through content as well potentially?
 
 ---
 
@@ -38,7 +39,7 @@ if (activeProject){
             </svg>
         </button>
     </form>
-    <div id="search-results" hidden></div>
+    <ul id="search-results" hidden></ul>
 </div>
 
 <script define:vars={{filteredPosts}}>
@@ -68,8 +69,10 @@ if (activeProject){
     searchForm.addEventListener('input', function(event){
         if (searchInput.value.length > 2){
             search(searchInput.value);
+            searchForm.classList.add('is-open');
             searchResults.removeAttribute('hidden');
         } else {
+            searchForm.classList.remove('is-open');
             searchResults.setAttribute('hidden', '');
         }
     })
@@ -144,10 +147,22 @@ if (activeProject){
 
     let showResults = function(results) {
 
+        // Create a new Intl.DateTimeFormat object
+        let formatter = new Intl.DateTimeFormat('en-US', {
+            dateStyle: 'medium',
+            timeStyle: 'short' 
+        });
+
         let myTemplate = function(results) {
             return results.map((match) => {
                 let category = match.post.url.split('/')[2];
-                return `<a href="${match.post.url}">${svgs[category]}<span>${match.post.frontmatter.title}</span>${svgs.bookmarks}</a>`
+                return  `<li>
+                            <a href="${match.post.url}">
+                                <span class="icon-group">${svgs[category]}</span>
+                                <span class="title">${match.post.frontmatter.title}</span>
+                                <span class="date">${formatter.format(Date.parse(match.post.frontmatter.date))}</span>
+                            </a>
+                        </li>`
             }).join('')
         }
 
@@ -155,7 +170,7 @@ if (activeProject){
             console.log(results);
             searchResults.innerHTML = myTemplate(results);
         } else {
-            searchResults.innerHTML = `<p>No matches were found.</p>`;
+            searchResults.innerHTML = `<li class="error"><p>No matches were found.</p></li>`;
         }
     }
 

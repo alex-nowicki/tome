@@ -178,7 +178,7 @@ console.log(relevanceArr);
                         } else if (index == 1){
                             return <a href={`../../${step}`}>{toTitleCase(step)}</a><IconArrow />
                         } else if (index == 2){
-                            return <a href={`../../${pagePath[1]}#${step}`}>{toTitleCase(step)}</a><IconArrow />
+                            return <a href={`../../${pagePath[1]}?filter=${step}`}>{toTitleCase(step)}</a><IconArrow />
                         } else {
                             return <a href={step}>{frontmatter.title}</a>
                         }

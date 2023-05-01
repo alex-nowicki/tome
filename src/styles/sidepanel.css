@@ -179,26 +179,13 @@ nav.sidepanel .bookmark-toggle {
     opacity: 0;
 }
 
-
-
 nav.sidepanel .bookmark-toggle svg {
     width: 1.125rem;
 }
 
-nav.sidepanel .bookmark-toggle svg path {
-    fill: none;
-    stroke: var(--teal-100);
-    stroke-width: 2px;
-}
 
-nav.sidepanel .bookmark-toggle.is-active svg path {
-    fill: var(--teal-60);
-    stroke-width: 2px;
-}
 
-nav.sidepanel .accordion-panel .bookmark-toggle.is-active:hover svg path {
-    fill: none;
-}
+
 
 /* Tree */
 

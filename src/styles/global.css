@@ -34,6 +34,9 @@
     --teal-15: #dce6ea; 
     --teal-5: #f3f7f8; 
 
+    --boxShadow: 0 2px 0;
+    --borderRadius: 0.5rem;
+
 }
 
 
@@ -115,6 +118,22 @@ button {
     pointer-events: none;
 }
 
+/* Bookmark Buttons */
+
+.bookmark-toggle svg path {
+    fill: none;
+    stroke: var(--teal-100);
+    stroke-width: 2px;
+}
+
+.bookmark-toggle.is-active svg path {
+    fill: var(--teal-60);
+}
+
+.bookmark-toggle.is-active:hover svg path {
+    fill: none;
+}
+
 
 /*
 ** ACCORDIONS
@@ -177,6 +196,11 @@ header nav a {
     color: white;
 }
 
+
+
+
+
+
 header .search-group {
     grid-area: search;
 
@@ -192,15 +216,12 @@ header .search-group {
     height: 3rem;
     width: 100%;
     border: none;
-    border-radius: 0.125rem 0.125rem 0 0;
+    border-radius: var(--borderRadius);
+    box-shadow: 0 4px 0 var(--orange-60);
 }
 
-#search-form::after {
-    content: '';
-    display: block;
-    background-color: var(--orange-60);
-    height: 4px;
-    border-radius: 0 0 0.125rem 0.125rem;
+#search-form.is-open {
+    border-radius: var(--borderRadius) var(--borderRadius) 0 0;
 }
 
 #search-input {
@@ -229,7 +250,7 @@ header .search-group {
 #search-submit .search-submit-icon :is(circle, line) {
     fill: none;
     stroke: var(--orange-60);
-    stroke-width: 4px;
+    stroke-width: 3px;
 }
 
 #search-results {
@@ -242,44 +263,119 @@ header .search-group {
 
     display: flex;
     flex-flow: column nowrap;
-    gap: 0.5rem;
-    padding: 1rem;
-    background-color: var(--orange-15);
-    border-top: 4px solid var(--orange-60);
-    border-radius: 0 0 0.125rem 0.125rem;
+    margin: 0;
+    padding: 0;
+    background-color: var(--teal-15);
+    border-radius: 0 0 var(--borderRadius) var(--borderRadius);
+    box-shadow: var(--boxShadow) var(--teal-30);
+    list-style: none;
 }
 
-#search-results a {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    grid-template-rows: auto;
-    grid-template-areas:
-    "icon label bookmark";
-    gap: 0.5rem;
+#search-results li {
+    display: flex;
+    flex-flow: row nowrap;
     align-items: center;
-    padding-bottom: 0.55rem;
-    border-bottom: 2px solid var(--orange-30);
+    justify-content: space-between;
+    
+    margin: 0;
+    border-top: 2px solid var(--teal-30);
 
     text-decoration: none;
 }
 
-#search-results[hidden] {
-    display: none;
+#search-results li:hover:not(.error) {
+    background-color: var(--teal-80);
+    border-color: var(--teal-100);
 }
 
-#search-results a:last-child {
-    border-bottom: none;
-    padding-bottom: 0;;
+#search-results li:hover:not(.error) + * {
+    border-color: var(--teal-100);
 }
 
-#search-results a svg {
+#search-results li svg {
     width: 1.125rem;
 }
 
-#search-results a span {
-    font-weight: 500;
+#search-results li > a {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 1rem;
+    text-decoration: none;
     color: var(--gray-100);
+    font-weight: 500;
+    flex-grow: 1;
+    line-height: 1;
+    padding: 1rem 1.5rem 1rem 0;
 }
+
+#search-results li:hover > a {
+    color: white;
+}
+
+#search-results li > a .icon-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0 1rem;
+    border-right: 2px solid var(--teal-30);
+}
+
+#search-results li > a svg :is(path, circle, line) {
+    stroke-width: 1.5px;
+}
+
+#search-results li:hover > a svg :is(path, circle, line){
+    stroke: white;
+}
+
+#search-results li > a .title {
+    flex-grow: 1;
+}
+
+#search-results li > a .date {
+    font-size: 0.875rem;
+    color: var(--teal-80);
+}
+
+#search-results li:hover > a .date {
+    color: white;
+}
+
+#search-results li .bookmark-toggle {
+    line-height: 0;
+    padding: 1rem 1.5rem;
+}
+
+#search-results li:hover .bookmark-toggle svg path {
+    stroke: white;
+    fill: none;
+} 
+
+#search-results li .bookmark-toggle:hover svg path {
+    fill: var(--teal-60);
+} 
+
+#search-results li:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+#search-results li:last-child:not(.error):hover {
+    box-shadow: var(--boxShadow) var(--teal-100);
+    border-radius: 0 0 var(--borderRadius) var(--borderRadius);
+}
+
+#search-results li.error {
+    padding-left: 1rem;
+    font-weight: 500;
+}
+
+
+
+
+
+
 
 
 header .project-group {
@@ -389,6 +485,6 @@ svg {
 ------------------------------*/
 
 [hidden] {
-    pointer-events: none;
-    display: none;
+    pointer-events: none !important;
+    display: none !important;
 }

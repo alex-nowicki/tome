@@ -14,30 +14,27 @@
 ------------------------------*/
 
 main.project {
+    --borderRadius: 0.5rem;
+
     width: 900px;
     margin: 0 auto;
     padding: 3rem 0;
 }
 
+.project h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
 
 input[type="radio"] {
     appearance: none;
     background: white;
 }
 
-#filters label {
-    background-color: white;
-    padding: 1rem 1.5rem;
-}
-
 
 
 /*
 
-Default (unchecked state).
-New checked state.
-Optional indeterminiate / ‘mixed’ state (not always necessary, but when needed you’re going to want to have it)
-Custom focus state.
 Checked state focus style (if the previous focus style is not noticeable against the new checked style - e.g., dark outline against a new dark fill when the control is checked).
 Disabled state (make sure the label text continues to meet necessary contrast minimums!).
 Make sure left-to-right and right-to-left (dir=ltr, dir=rtl) was not impacted by any of your styling.
@@ -45,89 +42,205 @@ Make sure left-to-right and right-to-left (dir=ltr, dir=rtl) was not impacted by
 */
 
 
-
-
-
-
-
-
-
-
-
-
-
-[role="tablist"] {
+#filters, #sort {
     display: flex;
     flex-flow: row;
-    list-style: none;
-    margin: 0 0 2rem;
+    align-items: center;
     padding: 0;
     height: auto;
-    gap: 0.5rem;
 }
 
-[role="tablist"] li {
-    display: inline-flex;
-    height: auto;
+#filters {
+    margin-bottom: 1rem;
 }
 
-[role="tab"] {
+#filters input:focus-visible + label {
+    outline: var(--teal-100) auto 1px;
+    outline-offset: 2px;
+}
+
+#filters label {
     font-size: 1rem;
     font-weight: 600;
+    line-height: 1;
     color: var(--gray-100);
     padding:  0.75rem 1rem;
     background-color: white;
     text-decoration: none;
-    border-radius: 0.75rem;
+    border-radius: var(--borderRadius);
+    cursor: pointer;
+    margin-right: 0.5rem;
+    box-shadow: var(--boxShadow) var(--gray-15);
 }
 
-[role="tab"]:active,
-[role="tab"]:hover {
-    color: white;
-    background-color: var(--orange-60);
+#filters label:hover {
+    background-color: var(--teal-15);
+    box-shadow: var(--boxShadow) var(--teal-30);
+    color: var(--teal-100);
 }
 
-[role="tab"][aria-selected="true"] {
+#filters input:checked + label {
     background-color: var(--teal-80);
+    box-shadow: var(--boxShadow) var(--teal-100);
     color: white;
 }
 
-[role="tabpanel"] ul {
+#sort {
+    margin-bottom: 2rem;
+}
+
+#sort label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-right: 0.5rem;
+}
+
+#sort .select-group {
+    position: relative;
+}
+
+#sort .select-group::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    margin-top: -2px;
+    top: 50%;
+    right: 0.75rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-top: 5px solid var(--teal-60);
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    pointer-events: none;
+}
+
+#sort select {
+    appearance: none;
+    padding: 0.5rem 2rem 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: var(--borderRadius);
+    border: none;
+    box-shadow: var(--boxShadow) var(--gray-15);
+    position: relative;
+    cursor: pointer;
+}
+
+#sort select:hover {
+    background-color: var(--teal-15);
+    box-shadow: var(--boxShadow) var(--teal-30);
+    color: var(--teal-100);
+}
+
+#sort select:active {
+    outline: none;
+}
+
+#sort select:focus {
+    outline: none;
+    background-color: var(--teal-15);
+    box-shadow: var(--boxShadow) var(--teal-30);
+    color: var(--teal-100);
+}
+
+#sort select option {
+    background-color: white;
+    color: var(--gray-100);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+
+
+
+#list {
     display: flex;
     flex-flow: column nowrap;
     list-style: none;
     padding: 0;
     gap: 0.5rem;
+    border-top: 2px solid var(--gray-15);
+    padding-top: 2rem;
 }
 
-[role="tabpanel"] li {
+#list li {
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
     justify-content: space-between;
     background-color: white;
-    border-radius: 0.75rem;
+    border-radius: var(--borderRadius);
+    box-shadow: var(--boxShadow) var(--gray-15);
 }
 
-[role="tabpanel"] li:hover {
-    background-color: var(--orange-30);
+#list li:hover {
+    background-color: var(--teal-15);
+    box-shadow: var(--boxShadow) var(--teal-30);
 }
 
-[role="tabpanel"] li > a {
+#list li svg {
+    width: 1.125rem;
+}
+
+#list li > a {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 1rem;
     text-decoration: none;
     color: var(--gray-100);
     font-weight: 500;
     flex-grow: 1;
-    padding: 1rem 1.5rem;
+    padding: 0 1.5rem 0 0;
 }
 
-[role="tabpanel"] li > button {
+#list li:hover > a {
+    color: var(--teal-100);
+}
+
+#list li > a .icon-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    background-color: var(--orange-15);
+    padding: 1rem;
+    border-radius: var(--borderRadius) 0 0 var(--borderRadius);
+    box-shadow: var(--boxShadow) var(--orange-30);
+}
+
+#list li:hover > a .icon-group {
+    background-color: var(--teal-80);
+    box-shadow: var(--boxShadow) var(--teal-100);
+}
+
+#list li > a svg :is(path, circle, line) {
+    stroke-width: 1.5px;
+}
+
+#list li:hover > a svg :is(path, circle, line){
+    stroke: white;
+}
+
+#list li > a .title {
+    flex-grow: 1;
+}
+
+#list li > a .date {
+    font-size: 0.875rem;
+    color: var(--teal-60);
+}
+
+#list li:hover > a .date {
+    color: var(--teal-80);
+}
+
+#list li .bookmark-toggle {
     line-height: 0;
     padding: 1rem 1.5rem;
 }
 
-[role="tabpanel"] li > button svg {
-    width: 1.125rem;
-}
+#list li .bookmark-toggle:hover svg path {
+    fill: var(--teal-60);
+} 
 
 

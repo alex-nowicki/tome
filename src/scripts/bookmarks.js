@@ -93,55 +93,40 @@ let initBookmarks = function() {
     // Get the project page
     let projectPage = document.querySelector('main.project');
 
-    // If the project page tabs are present, init its bookmarks
+    // If the project page is present, init its bookmarks
     if (projectPage && storedBookmarks){
 
-        // Get the links inside the tab panels
-        let tabLinks = projectPage.querySelectorAll('[role="tabpanel"] > ul > li');
-        console.log(tabLinks);
+        // Get the article list items
+        let listItems = projectPage.querySelectorAll('#list > li');
 
-        // Toggle active state of bookmark toggles in the tab panels
-        for (const link of tabLinks){
+        // Toggle active state of bookmark toggles in article list
+        for (const item of listItems){
             let match = false;
             for (const bookmark of storedBookmarks) {
-                if (link.querySelector('a').pathname == bookmark.url){
+                if (item.querySelector('a').pathname == bookmark.url){
                     match = true;
                 }
             }
             if (match){
 
                 // Toggle active class
-                link.querySelector('button').classList.add('is-active');
+                item.querySelector('button').classList.add('is-active');
 
-                // Assign order to make bookmarks float to the top of the list
-                link.style.order = 1;
+                // Assign update item data
+                item.setAttribute('data-bookmark', '');
 
             } else {
 
-                console.log(link);
+                console.log(item);
 
                 // Toggle active class
-                link.querySelector('button').classList.remove('is-active');
+                item.querySelector('button').classList.remove('is-active');
 
-                // Assign order to make non-bookmarks float to the bottom of the list
-                link.style.order = 2;
+                // Assign update item data
+                item.removeAttribute('data-bookmark');
 
             }
         }
-
-        // Get the bookmarks tab panel
-        let bookmarksPanel = document.querySelector('#bookmarks > ul');
-        
-        // Generate the HTML list
-        let bookmarksList = storedBookmarks.map((bookmark) => {
-            return  `<li>
-                        <a href=${bookmark.url}>${bookmark.title}</a>
-                        <button class="bookmark-toggle is-active"></button>
-                    </li>`
-        }).join('');
-
-        // Populate the tab panel
-        bookmarksPanel.innerHTML = bookmarksList;
 
     }    
   
