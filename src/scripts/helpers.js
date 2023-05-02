@@ -18,3 +18,8 @@ export const detectType = function(elem){
    }
    return type;
 }
+
+export const dateFormatter = new Intl.DateTimeFormat('en-US', {
+    dateStyle: 'medium',
+    timeStyle: 'short' 
+});

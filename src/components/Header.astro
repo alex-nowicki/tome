@@ -23,9 +23,19 @@ for (const page of projectPages){
 ---
 
 <header>
-    <Logo />
+    <nav class="global">
+        <Logo />
+        <a href="/">Home</a>
+        <a href="/projects">My Projects</a>
+    </nav>
     <Search activeProject={activeProject} />
-    <div class="project-group accordion">
+    <nav class="project" hidden={activeProject ? null : ''}>
+        <IconProjects />
+        <p>{activeProject}:</p>
+        <a href={activeProject ? `/${activeProject.toLowerCase()}` : ''}>Articles</a>
+        <a href={activeProject ? `/${activeProject.toLowerCase()}/timeline` : ''}>Timeline</a>
+    </nav>
+    <!-- <div class="project-group accordion">
         <div class="accordion-toggle-group">
             <p class="icon-group"><IconProjects /><span>Projects</span></p>
             <button class="accordion-toggle" id="project-toggle" type="button" aria-expanded="false" aria-controls="project-panel">
@@ -37,6 +47,7 @@ for (const page of projectPages){
             {projects.map((project) =>
                 <li><a href={project.url}>{project.title}</a></li>
             )}
-        </ul>
+        </ul> -->
     </div>
+    
 </header>

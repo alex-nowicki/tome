@@ -160,7 +160,7 @@ header {
     grid-template-columns: 1fr 900px 1fr;
     grid-template-rows: clamp(4rem, 6rem, 8rem);
     grid-template-areas:
-    "nav search project";
+    "nav-global search nav-project";
     align-items: center;
 
     padding: 0 2rem;
@@ -170,30 +170,61 @@ header {
     z-index: 100;
 }
 
-header .logo {
-    grid-area: nav;
-    width: 4.5rem;
-}
-
-header .logo path.typo {
-    fill: white;
-}
-
-header .logo path.line {
-    fill: var(--orange-60);
-}
 
 header nav {
-    grid-area: nav;
-
     display: flex;
     flex-flow: row nowrap;
+    align-items: center;
     gap: 1rem;
 }
 
+header nav .logo {
+    grid-area: nav;
+    width: 4.5rem;
+    margin-right: 1rem;
+}
+
+header nav .logo path.typo {
+    fill: white;
+}
+
+header nav .logo path.line {
+    fill: var(--orange-60);
+}
+
+
 header nav a {
-    font-size: 0.875rem;
+    font-size: 1rem;
+    font-weight: 500;
     color: white;
+    text-decoration: none;
+}
+
+header nav a:hover {
+    color: var(--orange-60);
+}
+
+header nav a.is-active {
+    color: var(--orange-60);
+}
+
+header nav p {
+    color: white;
+    margin: 0;
+}
+
+header nav .icon :is(path, line, circle){
+    stroke: var(--orange-60);
+    stroke-width: 1.5px;
+}
+
+header nav.global {
+    grid-area: nav-global;
+}
+
+header nav.project {
+    grid-area: nav-project;
+    justify-self: flex-end;
 }
 
 

@@ -36,37 +36,9 @@ const thingsPosts = posts.filter(post => {
     return post.frontmatter.project === activeProject && post.frontmatter.category === 'Things';
 })
 
-// // Generate list of projects
-// const projectPages = await Astro.glob('../pages/*.md');
-// const projects = [];
-// for (const page of projectPages){
-//     let project = {
-//         url: page.url,
-//         title: page.frontmatter.title
-//     }
-//     if (project.title !== activeProject){
-//         projects.push(project);
-//     }
-// }
-
-
 ---
 
 <nav class="sidepanel">
-    <!-- <div class="projects accordion">
-        <div class="accordion-toggle-group">
-            <p class="icon-group"><IconProjects /><span>{toTitleCase(activeProject)}</span></p>
-            <button class="accordion-toggle" id="projects-toggle1" type="button" aria-expanded="false" aria-controls="projects-panel1">
-                <span>change</span>
-                <IconChange />
-            </button>
-        </div>
-        <ul class="projects-panel accordion-panel" id="projects-panel1" role="region" aria-labelledby="projects-toggle1" hidden>
-            {projects.map((project) =>
-                <li><a href={project.url}>{toTitleCase(project.title)}</a></li>
-            )}
-        </ul>
-    </div> -->
     
     <div class="bookmarks accordion">
         <div class="accordion-toggle-group">
