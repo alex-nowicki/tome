@@ -2,7 +2,7 @@
 import BaseLayout from "./BaseLayout.astro";
 import CardGroup from "../components/CardGroup.astro" 
 
-import "../styles/home.css";
+// import "../styles/home.css";
 
 import { dateFormatter } from "../scripts/helpers.js";
 
@@ -39,16 +39,10 @@ projects.map((project) => {
 ---
 
 <BaseLayout pageTitle={'Tome'} >
-    <main class="home">
-		<!-- <h1>My Projects</h1> -->
-        <section class="recent-projects">
-            <h2>Recent Projects</h2>
-            <CardGroup posts={projects} numToShow={3} postType={'project'} />
-            <a href="/projects">All Projects</a>
-        </section>
-        <section class="recent-articles">
-            <h2>Recent Articles</h2>
-            <CardGroup posts={posts} numToShow={3} postType={'article'}/>
+    <main>
+		<h1>My Projects</h1>
+        <section class="projects">
+            <CardGroup posts={projects} numToShow={6} postType={'project'} />
         </section>
 	</main>
 </BaseLayout>

@@ -1,6 +1,4 @@
 
-console.log(projectPosts);
-
 let sortResources = function(type){
     type.forEach(function(id, index){
       document.querySelector(`#resource${id}`).style.order = `${index}`;

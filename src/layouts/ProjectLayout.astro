@@ -3,15 +3,9 @@ import BaseLayout from "./BaseLayout.astro";
 import SidePanel from "../components/SidePanel.astro";
 
 import IconBookmarks from "../components/IconBookmarks.astro";
-import IconPeople from "../components/IconPeople.astro";
-import IconGroups from "../components/IconGroups.astro";
-import IconPlaces from "../components/IconPlaces.astro";
-import IconEvents from "../components/IconEvents.astro";
-import IconThings from "../components/IconThings.astro";
-import IconChange from "../components/IconChange.astro";
-import IconProjects from "../components/IconProjects.astro";
 
 import { toTitleCase } from "../scripts/helpers";
+import { getCatIconAndLabel } from "../scripts/helpers.js"
 
 import "../styles/project.css";
 
@@ -84,21 +78,9 @@ let formatter = new Intl.DateTimeFormat('en-US', {
             </form>
             <ul id="list">
                 {projectPosts.map((post) => {
-                    let icon;
-                    if (post.frontmatter.category === 'People') {
-                        icon = <IconPeople />;
-                    } else if (post.frontmatter.category === 'Groups') {
-                        icon = <IconGroups />;
-                    } else if (post.frontmatter.category === 'Places') {
-                        icon = <IconPlaces />;
-                    } else if (post.frontmatter.category === 'Events') {
-                        icon = <IconEvents />;
-                    } else if (post.frontmatter.category === 'Things') {
-                        icon = <IconThings />;
-                    }
                     return  <li data-title={post.frontmatter.title} data-date={post.frontmatter.date} data-category={post.frontmatter.category}>
                                 <a href={post.url}>
-                                    <span class="icon-group">{icon}</span>
+                                    <span class="icon-group" set:html={getCatIconAndLabel(post.frontmatter).icon}></span>
                                     <span class="title">{post.frontmatter.title}</span>
                                     <span class="date">{formatter.format(Date.parse(post.frontmatter.date))}</span>    
                                 </a>

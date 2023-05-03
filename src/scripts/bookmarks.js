@@ -17,7 +17,6 @@ let initBookmarks = function() {
 
     // Get the bookmarks from local storage
     let storedBookmarks = JSON.parse(localStorage.getItem('bookmarks'));
-    console.log(storedBookmarks);
     
     // Get the sidepanel element
     let sidepanel = document.querySelector('.sidepanel');
@@ -117,8 +116,6 @@ let initBookmarks = function() {
 
             } else {
 
-                console.log(item);
-
                 // Toggle active class
                 item.querySelector('button').classList.remove('is-active');
 
@@ -152,8 +149,6 @@ let bookmarksClickHandler = function(event) {
         project: targetLink.pathname.split('/')[1]
     }
 
-    console.log(post);
-
     /**
      * Update an existing local storage item
      * @param  {String} id The name of the local storage item
@@ -178,8 +173,6 @@ let bookmarksClickHandler = function(event) {
             storedItem.push(data);
       
         }
-
-        console.log('storedItem', storedItem)
 
         // Check if item is not empty
         if (storedItem.length > 0){

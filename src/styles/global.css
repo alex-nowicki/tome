@@ -12,9 +12,12 @@
 
 :root {
 
+    --orange-80: #f37c50;
     --orange-60: #ff9764;
     --orange-30: #ffc1a2;
+    --orange-20: #ffdbc9;
     --orange-15: #ffeae0;
+    --orange-10: #fff5ef;
 
     --brown-60: #bfa284;
     --brown-30: #d9c7b5;
@@ -25,6 +28,7 @@
     --gray-60: #828391;
     --gray-30: #c1c1c8;
     --gray-15: #e0e0e4;
+    --gray-10: #eaeaed;
     --gray-5: #f5f5f6;
 
     --teal-100: #155972;
@@ -32,6 +36,7 @@
     --teal-60: #739baa; 
     --teal-30: #b9cdd5; 
     --teal-15: #dce6ea; 
+    --teal-10: #e8eef1; 
     --teal-5: #f3f7f8; 
 
     --boxShadow: 0 2px 0;
@@ -122,12 +127,14 @@ button {
 
 .bookmark-toggle svg path {
     fill: none;
-    stroke: var(--teal-100);
+    stroke: var(--gray-60);
     stroke-width: 2px;
 }
 
+.bookmark-toggle:hover svg path,
 .bookmark-toggle.is-active svg path {
-    fill: var(--teal-60);
+    fill: var(--orange-30);
+    stroke: var(--orange-80);
 }
 
 .bookmark-toggle.is-active:hover svg path {
@@ -289,15 +296,17 @@ header .search-group {
 
     position: absolute;
     top: 3rem;
-    left: 0;
-    right: 0;
+    width: 100%;
 
     display: flex;
     flex-flow: column nowrap;
+    align-items: center;
     margin: 0;
     padding: 0;
     background-color: var(--teal-15);
     border-radius: 0 0 var(--borderRadius) var(--borderRadius);
+    /* border-right: 1px solid var(--teal-30);
+    border-left: 1px solid var(--teal-30); */
     box-shadow: var(--boxShadow) var(--teal-30);
     list-style: none;
 }
@@ -307,20 +316,28 @@ header .search-group {
     flex-flow: row nowrap;
     align-items: center;
     justify-content: space-between;
-    
-    margin: 0;
-    border-top: 2px solid var(--teal-30);
 
+    width: 100%;
+    border-top: 2px solid var(--teal-30);
+    border-right: 1px solid var(--teal-30);
+    border-left: 1px solid var(--teal-30);
     text-decoration: none;
 }
 
 #search-results li:hover:not(.error) {
+    margin: 0 -2px;
     background-color: var(--teal-80);
-    border-color: var(--teal-100);
+    border-top-color: var(--teal-100);
+    border-right-color: var(--teal-80);
+    border-left-color: var(--teal-80);
 }
 
 #search-results li:hover:not(.error) + * {
-    border-color: var(--teal-100);
+    border-top-color: var(--teal-100);
+}
+
+#search-results li:last-child {
+    border-radius: 0 0 var(--borderRadius) var(--borderRadius);
 }
 
 #search-results li svg {
@@ -372,20 +389,6 @@ header .search-group {
 #search-results li:hover > a .date {
     color: white;
 }
-
-#search-results li .bookmark-toggle {
-    line-height: 0;
-    padding: 1rem 1.5rem;
-}
-
-#search-results li:hover .bookmark-toggle svg path {
-    stroke: white;
-    fill: none;
-} 
-
-#search-results li .bookmark-toggle:hover svg path {
-    fill: var(--teal-60);
-} 
 
 #search-results li:last-child {
     border-bottom: none;

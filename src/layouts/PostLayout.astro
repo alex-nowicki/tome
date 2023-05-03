@@ -1,10 +1,13 @@
 ---
 import IconArrow from "../components/IconArrow.astro";
+import IconBookmarks from "../components/IconBookmarks.astro";
 import BaseLayout from "./BaseLayout.astro";
 import SidePanel from "../components/SidePanel.astro";
 
 import { toTitleCase } from '../scripts/helpers.js';
 import { detectType } from '../scripts/helpers.js';
+import { dateFormatter } from '../scripts/helpers.js';
+import { getCatIconAndLabel } from '../scripts/helpers.js';
 
 import "../styles/post.css";
 import CardGroup from "../components/CardGroup.astro";
@@ -160,7 +163,6 @@ if (postConnections !== ''){
 let editedPostDetails = detectMatches(postDetails, searchArr, editedPostContent.relevance);
 
 let relevanceArr = editedPostDetails.relevance.sort((a, b) => b.score - a.score);
-console.log(relevanceArr);
    
 
 ---
@@ -184,6 +186,11 @@ console.log(relevanceArr);
                     })}
                 </div>
                 <h1>{frontmatter.title}</h1>
+                <div class="meta">
+                    <p class="category"><Fragment set:html={getCatIconAndLabel(frontmatter).icon} />{getCatIconAndLabel(frontmatter).label}</p>
+                    <p class="date">Published {dateFormatter.format(Date.parse(frontmatter.date))}</p>
+                </div>
+                <button class="bookmark-toggle"><IconBookmarks /></button>
             </section>
             <section class="content" set:html={editedPostContent.string}>
                 <!-- <div class="markup" set:html={editedPostContent.string}></div> -->

@@ -47,8 +47,6 @@ if (activeProject){
     // Store index of posts
     let index = filteredPosts;
 
-    console.log(index);
-
     // Get DOM elements
     let searchForm = document.querySelector('#search-form');
     let searchInput = document.querySelector('#search-input');
@@ -85,8 +83,6 @@ if (activeProject){
         }).map((word) => {
             return new RegExp(word, 'i');
         });
-
-        console.log(regMap);
         
         // Get and sort the results
         let results = index.reduce((results, post, index) => {
@@ -139,9 +135,6 @@ if (activeProject){
 </svg>`,
         things: `<svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
     <path vector-effect="non-scaling-stroke" d="m1.5 5.63 10.5 4.7M12 1 1.5 5.63v12.74L12 23l10.5-4.63V5.63L12 1zM22.5 5.63 12 10.33M12 10.33V23"/>
-</svg>`,
-        bookmarks: `<svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    <path vector-effect="non-scaling-stroke" d="m4.84 22.61 6.82-6.3c.19-.18.49-.18.68 0l6.82 6.3c.32.3.84.07.84-.37V1.5c0-.28-.22-.5-.5-.5h-15c-.28 0-.5.22-.5.5v20.75c0 .44.52.66.84.37Z"/> 
 </svg>`
     }
 
@@ -167,7 +160,6 @@ if (activeProject){
         }
 
         if (results.length) {
-            console.log(results);
             searchResults.innerHTML = myTemplate(results);
         } else {
             searchResults.innerHTML = `<li class="error"><p>No matches were found.</p></li>`;

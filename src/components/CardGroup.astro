@@ -1,14 +1,11 @@
 ---
 
 import IconArrow from "../components/IconArrow.astro";
-import IconPeople from "../components/IconPeople.astro";
-import IconGroups from "../components/IconGroups.astro";
-import IconPlaces from "../components/IconPlaces.astro";
-import IconEvents from "../components/IconEvents.astro";
-import IconThings from "../components/IconThings.astro";
-import IconProjects from "../components/IconProjects.astro";
 
 import { dateFormatter } from "../scripts/helpers.js"
+import { getCatIconAndLabel } from "../scripts/helpers.js"
+
+import "../styles/cards.css"
 
 const { posts } = Astro.props;
 const { numToShow } = Astro.props;
@@ -19,33 +16,16 @@ const { postType } = Astro.props;
 <ul class="card-group">
     {posts.map((post, index) => {
         if (index < numToShow){
-            let icon;
-            let catSingular;
-            if (post.frontmatter.category === 'People') {
-                icon = <IconPeople />;
-                catSingular = 'Person';
-            } else if (post.frontmatter.category === 'Groups') {
-                icon = <IconGroups />;
-                catSingular = 'Group';
-            } else if (post.frontmatter.category === 'Places') {
-                icon = <IconPlaces />;
-                catSingular = 'Place';
-            } else if (post.frontmatter.category === 'Events') {
-                icon = <IconEvents />;
-                catSingular = 'Event';
-            } else if (post.frontmatter.category === 'Things') {
-                icon = <IconThings />;
-                catSingular = 'Thing';
-            } else {
-                icon = <IconProjects />;
-                catSingular = 'Project';
-            }
+
+            // Get the category icon and singular label
+            let icon = getCatIconAndLabel(post.frontmatter).icon;
+            let label = getCatIconAndLabel(post.frontmatter).label;
 
             if (postType === 'article'){
                 return  <li class="card">
                             <div class="info-group">
                                 <h3>{post.frontmatter.title}</h3>
-                                <p class="category">{icon}{catSingular}</p>
+                                <p class="category"><Fragment set:html={icon} />{label}</p>
                                 <p class="description">{post.frontmatter.description}</p>
                                 <div class="meta">
                                     <p class="date">Published {dateFormatter.format(Date.parse(post.frontmatter.date))}</p>
@@ -58,14 +38,14 @@ const { postType } = Astro.props;
                 return  <li class="card">
                             <div class="info-group">
                                 <h3>{post.frontmatter.title}</h3>
-                                <p class="category">{icon}{catSingular}</p>
+                                <p class="category"><Fragment set:html={icon} />{label}</p>
                                 <p class="description">{post.frontmatter.description}</p>
                                 <div class="meta">
                                     <p class="num-articles">{post.frontmatter.numArticles} Articles</p>
                                     <p class="date" hidden={post.frontmatter.recentEditDate ? null : ''}>Updated {dateFormatter.format(post.frontmatter.recentEditDate)}</p>
                                 </div>
                             </div>
-                            <a href={post.url}>Open Article <IconArrow/></a>    
+                            <a href={post.url}>Open Project <IconArrow/></a>    
                         </li>
             }
         
