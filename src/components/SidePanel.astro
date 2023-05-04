@@ -1,6 +1,4 @@
 ---
-import IconProjects from "./IconProjects.astro";
-import IconChange from "./IconChange.astro";
 import IconBookmarks from "./IconBookmarks.astro";
 import IconArrow from "./IconArrow.astro";
 import IconPeople from "./IconPeople.astro";
@@ -10,8 +8,6 @@ import IconEvents from "./IconEvents.astro";
 import IconThings from "./IconThings.astro";
 
 import TreeSection from "./TreeSection.astro";
-
-import { toTitleCase } from '../scripts/helpers.js';
 
 import '../styles/sidepanel.css';
 
@@ -66,4 +62,4 @@ const thingsPosts = posts.filter(post => {
     </ul>
 </nav>
 
-<script src="../scripts/accordion.js"></script>
+<script src="../scripts/accordion.js" is:inline></script>

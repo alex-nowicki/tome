@@ -4,15 +4,13 @@ import CardGroup from "../components/CardGroup.astro"
 
 import "../styles/home.css";
 
-import { dateFormatter } from "../scripts/helpers.js";
+const { activeProject } = Astro.props;
 
 const projects = await Astro.glob('../pages/*.md');
 
 const posts = await Astro.glob('../pages/*/*/*.md');
 
 posts.sort((a, b) => Date.parse(b.frontmatter.date) - Date.parse(a.frontmatter.date));
-
-const projectPosts = {}
 
 projects.map((project) => {
     let title = project.frontmatter.title;
@@ -38,7 +36,7 @@ projects.map((project) => {
 })
 ---
 
-<BaseLayout pageTitle={'Tome'} >
+<BaseLayout pageTitle={'Tome'} activeProject={activeProject}>
     <main class="home">
 		<!-- <h1>My Projects</h1> -->
         <section class="recent-projects">

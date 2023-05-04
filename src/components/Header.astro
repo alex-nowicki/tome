@@ -2,9 +2,10 @@
 import Logo from "./LogoTome.astro";
 import Search from "./SearchBar.astro";
 import IconProjects from "./IconProjects.astro";
-import IconChange from "./IconChange.astro";
 
 const { activeProject } = Astro.props;
+
+console.log(activeProject);
 
 // Generate list of projects
 const projectPages = await Astro.glob('../pages/*.md');
@@ -34,20 +35,5 @@ for (const page of projectPages){
         <p>{activeProject}:</p>
         <a href={activeProject ? `/${activeProject.toLowerCase()}` : ''}>Articles</a>
         <a href={activeProject ? `/${activeProject.toLowerCase()}/timeline` : ''}>Timeline</a>
-    </nav>
-    <!-- <div class="project-group accordion">
-        <div class="accordion-toggle-group">
-            <p class="icon-group"><IconProjects /><span>Projects</span></p>
-            <button class="accordion-toggle" id="project-toggle" type="button" aria-expanded="false" aria-controls="project-panel">
-                <span>change</span>
-                <IconChange />
-            </button>
-        </div>
-        <ul class="project-panel accordion-panel" id="project-panel" role="region" aria-labelledby="project-toggle" hidden>
-            {projects.map((project) =>
-                <li><a href={project.url}>{project.title}</a></li>
-            )}
-        </ul> -->
-    </div>
-    
+    </nav>    
 </header>

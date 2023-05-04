@@ -4,15 +4,11 @@ import CardGroup from "../components/CardGroup.astro"
 
 // import "../styles/home.css";
 
-import { dateFormatter } from "../scripts/helpers.js";
-
 const projects = await Astro.glob('../pages/*.md');
 
 const posts = await Astro.glob('../pages/*/*/*.md');
 
 posts.sort((a, b) => Date.parse(b.frontmatter.date) - Date.parse(a.frontmatter.date));
-
-const projectPosts = {}
 
 projects.map((project) => {
     let title = project.frontmatter.title;

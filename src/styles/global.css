@@ -127,7 +127,7 @@ button {
 
 .bookmark-toggle svg path {
     fill: none;
-    stroke: var(--gray-60);
+    stroke: var(--teal-60);
     stroke-width: 2px;
 }
 
