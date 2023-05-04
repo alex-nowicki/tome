@@ -22,6 +22,8 @@ connections:
   family:
     - relationship: Niece
       name: Chantico de la Rosa
+    - relationship: Sister
+      name: Jorani de la Rosa
   romances:
     - Désirée Reid
   affilitations:
