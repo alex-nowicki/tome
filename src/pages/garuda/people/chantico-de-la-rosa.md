@@ -25,4 +25,8 @@ connections:
   affilitations:
     - Cloudheads
 ---
-Chantico is an expert coder/hacker. She's tough and hates bullies.
+## History
+
+Her mother, Bopha’s sister, forbade her from performing the Cloudhead surgery, so she ran away and did it anyway, seeking out her eccentric uncle Bopha for a place to stay and work. Bopha never had a great relationship with his sister and at first didn’t want to get involved, but in many ways, he recognised something of himself in his niece and eventually agreed to keep her on if she could be useful. 
+
+She shadowed the ship’s CommTech and quickly it became obvious that she was far more skillful than him in everyway. The old CommTech fearing his job, made the ultimatum to Bopha that it’s either him or her. The choice was easy.
