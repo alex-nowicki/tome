@@ -22,6 +22,8 @@ connections:
   family:
     - relationship: Uncle
       name: Bopha Krol
+    - relationship: Mother
+      name: Jorani de la Rosa
   affilitations:
     - Cloudheads
 ---
