@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import IconBookmarks from "../components/IconBookmarks.astro";
+import Timeline from "../components/Timeline.astro";
 
 import { getCatIconAndLabel } from "../scripts/helpers.js"
 
@@ -41,6 +42,8 @@ let formatter = new Intl.DateTimeFormat('en-US', {
 });
 
 
+// TODO - Only show the first 10 list items and add a show more button
+
 ---
 
 <BaseLayout pageTitle={activeProject} activeProject={activeProject}>
@@ -80,11 +83,12 @@ let formatter = new Intl.DateTimeFormat('en-US', {
                                     <span class="title">{post.frontmatter.title}</span>
                                     <span class="date">{formatter.format(Date.parse(post.frontmatter.date))}</span>    
                                 </a>
-                                <button class="bookmark-toggle"><IconBookmarks /></button>
+                                <button class="bookmark-toggle" data-title={post.frontmatter.title} data-url={post.url} data-project={post.frontmatter.project}><IconBookmarks /></button>
                             </li>
                 })}
             </ul>
         </section>
+        <Timeline />
     </main>
 </BaseLayout>
 

@@ -7,12 +7,13 @@ const { category } = Astro.props;
 const { CategoryIcon } = Astro.props;
 const { posts } = Astro.props;
 const { activePost } = Astro.props;
+const { activeProject } = Astro.props;
 
 ---
 
 <li>
     <div class="accordion-toggle-group">
-        <a class="icon-group" href={`../pages/${category.toLowerCase()}`}>
+        <a class="icon-group" href={`/${activeProject.toLowerCase()}?filter=${category.toLowerCase()}`}>
             <CategoryIcon />
             <span>{category}</span>
         </a>
@@ -26,7 +27,7 @@ const { activePost } = Astro.props;
         {posts.map((post) => 
             <li class={post.url === activePost.url ? `is-active` : ''}>
                 <a href={post.url}>{post.frontmatter.title}</a>
-                <button class="bookmark-toggle"><IconBookmarks /></button>
+                <button class="bookmark-toggle" data-title={post.frontmatter.title} data-url={post.url} data-project={post.frontmatter.project}><IconBookmarks /></button>
             </li>
         )}
     </ul>

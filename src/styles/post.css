@@ -234,7 +234,7 @@ article .header .bookmark-toggle svg path {
     fill: white;
 }
 
-article .header .bookmark-toggle:hover svg path {
+article .header :is(.bookmark-toggle:hover, .bookmark-toggle.is-active) svg path {
     stroke: var(--orange-80);
     fill: var(--orange-30);
 }
@@ -270,6 +270,7 @@ article .details {
     display: grid;
     grid-template-columns: auto;
     gap: 2rem;
+    align-self: flex-start;
 
     padding: 3rem;
     background-color: var(--teal-10);

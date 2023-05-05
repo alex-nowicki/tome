@@ -17,115 +17,130 @@ let initBookmarks = function() {
 
     // Get the bookmarks from local storage
     let storedBookmarks = JSON.parse(localStorage.getItem('bookmarks'));
-    
-    // Get the sidepanel element
-    let sidepanel = document.querySelector('.sidepanel');
 
-    // If sidepanel is present, init its bookmarks
-    if (sidepanel){
+    // Get all the bookmark buttons on the page
+    let bookmarkToggles = document.querySelectorAll('.bookmark-toggle');
 
-        // Get the bookmarks section elements
-        let bookmarksSection = sidepanel.querySelector('.bookmarks');
-        let bookmarksToggle = bookmarksSection.querySelector('.accordion-toggle');
-        let bookmarksPanel = bookmarksSection.querySelector('.bookmarks-panel');
+    let toggleBookmarkButtons = function(bookmarks, buttons){
 
-        // Get the tree links
-        let treeLinks = sidepanel.querySelectorAll('.tree .accordion-panel li');
+        // If there are no buttons, bail
+        if (!buttons) return;
 
-        // Check if there are any store bookmarks
-        if (storedBookmarks){
-            
-            // Show accordion toggle button
-            bookmarksToggle.removeAttribute('hidden');
+        if (bookmarks) {
 
-            // Expand accordion panel to show bookmarks
-            bookmarksToggle.setAttribute('aria-expanded', 'true');
-            bookmarksPanel.removeAttribute('hidden');
-        
-            // Generate bookmarks links for the bookmarks section
-            let markup = storedBookmarks.map((bookmark) => 
-            `<li class="${bookmark.url === window.location.pathname ? 'is-active' : ''}">
-                <a href="${bookmark.url}">${bookmark.title}</a>
-                <button class="bookmark-toggle is-active">
-                <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                    <path vector-effect="non-scaling-stroke" d="m4.84 22.61 6.82-6.3c.19-.18.49-.18.68 0l6.82 6.3c.32.3.84.07.84-.37V1.5c0-.28-.22-.5-.5-.5h-15c-.28 0-.5.22-.5.5v20.75c0 .44.52.66.84.37Z"/> 
-                </svg>
-                </button>
-            </li>`
-            ).join('');
-
-            // Update the DOM with the generated links
-            bookmarksPanel.innerHTML = markup;
-            
-            // Toggle active state of bookmark toggles in the tree section
-            for (const link of treeLinks){
+            for (const button of buttons){
                 let match = false;
-                for (const bookmark of storedBookmarks) {
-                    if (link.querySelector('a').pathname == bookmark.url){
+                for (const bookmark of bookmarks) {
+                    if (button.dataset.url == bookmark.url){
                         match = true;
                     }
                 }
+    
+                let parent = button.closest('li');
+    
                 if (match){
-                    link.querySelector('button').classList.add('is-active');
+    
+                    // Toggle active class
+                    button.classList.add('is-active');
+    
+                    if (parent){
+                        // Toggle bookmark attribute
+                        parent.setAttribute('data-bookmark', '');
+                    
+                    }
+    
                 } else {
-                    link.querySelector('button').classList.remove('is-active');
+    
+                    // Toggle active class
+                    button.classList.remove('is-active');
+    
+                    if (parent){
+                        // Toggle bookmark attribute
+                        parent.removeAttribute('data-bookmark');
+                    
+                    }
+    
                 }
             }
 
         } else {
-            
-            // Hide toggle button
-            bookmarksToggle.setAttribute('hidden', '');
-            
-            // Collapse accordion panel
-            bookmarksToggle.setAttribute('aria-expanded', 'false');
-            bookmarksPanel.setAttribute('hidden', '');
-            
-            // Remove active state from all bookmark toggles
-            for (const link of treeLinks){
-                link.querySelector('button').classList.remove('is-active');
+
+            for (const button of buttons){
+
+                let parent = button.closest('li');
+
+                // Remove active class
+                button.classList.remove('is-active');
+
+                if (parent){
+                    // Remove bookmark attribute
+                    parent.removeAttribute('data-bookmark');
+                
+                }
+
             }
         }
 
     }
+    
+    // Get the main container
+    let main = document.querySelector('main');
 
-    // Get the project page
-    let projectPage = document.querySelector('main.project');
+    if (main.classList.contains('post')){
 
-    // If the project page is present, init its bookmarks
-    if (projectPage && storedBookmarks){
+        // Get the sidepanel element
+        let sidepanel = document.querySelector('.sidepanel');
 
-        // Get the article list items
-        let listItems = projectPage.querySelectorAll('#list > li');
+        // If sidepanel is present, init its bookmarks
+        if (sidepanel){
 
-        // Toggle active state of bookmark toggles in article list
-        for (const item of listItems){
-            let match = false;
-            for (const bookmark of storedBookmarks) {
-                if (item.querySelector('a').pathname == bookmark.url){
-                    match = true;
-                }
-            }
-            if (match){
+            // Get the bookmarks section elements
+            let bookmarksSection = sidepanel.querySelector('.bookmarks');
+            let bookmarksSectionToggle = bookmarksSection.querySelector('.accordion-toggle');
+            let bookmarksSectionPanel = bookmarksSection.querySelector('.bookmarks-panel');
 
-                // Toggle active class
-                item.querySelector('button').classList.add('is-active');
+            // Check if there are any store bookmarks
+            if (storedBookmarks){
+                
+                // Show accordion toggle button
+                bookmarksSectionToggle.removeAttribute('hidden');
 
-                // Assign update item data
-                item.setAttribute('data-bookmark', '');
+                // Expand accordion panel to show bookmarks
+                bookmarksSectionToggle.setAttribute('aria-expanded', 'true');
+                bookmarksSectionPanel.removeAttribute('hidden');
+            
+                // Generate bookmarks links for the bookmarks section
+                let markup = storedBookmarks.map((bookmark) => 
+                `<li class="${bookmark.url === window.location.pathname ? 'is-active' : ''}">
+                    <a href="${bookmark.url}">${bookmark.title}</a>
+                    <button class="bookmark-toggle is-active" data-title="${bookmark.title}" data-url="${bookmark.url}" data-project="${bookmark.project}">
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path vector-effect="non-scaling-stroke" d="m4.84 22.61 6.82-6.3c.19-.18.49-.18.68 0l6.82 6.3c.32.3.84.07.84-.37V1.5c0-.28-.22-.5-.5-.5h-15c-.28 0-.5.22-.5.5v20.75c0 .44.52.66.84.37Z"/> 
+                    </svg>
+                    </button>
+                </li>`
+                ).join('');
+
+                // Update the DOM with the generated links
+                bookmarksSectionPanel.innerHTML = markup;            
 
             } else {
-
-                // Toggle active class
-                item.querySelector('button').classList.remove('is-active');
-
-                // Assign update item data
-                item.removeAttribute('data-bookmark');
-
+                
+                // Hide toggle button
+                bookmarksSectionToggle.setAttribute('hidden', '');
+                
+                // Collapse accordion panel
+                bookmarksSectionToggle.setAttribute('aria-expanded', 'false');
+                bookmarksSectionPanel.setAttribute('hidden', '');
+                
             }
+
         }
 
-    }    
+    }  
+
+    // Toggle active state bookmark toggles
+    toggleBookmarkButtons(storedBookmarks, bookmarkToggles);
   
 }
 
@@ -138,15 +153,12 @@ let bookmarksClickHandler = function(event) {
 
     // Only run on bookmark toggles
     if (!event.target.matches('.bookmark-toggle')) return;
-
-    // Get the target link
-    let targetLink = event.target.closest('li').querySelector('a');
     
     // Store the target link title, url and project
     let post = {
-        title: targetLink.innerHTML,
-        url: targetLink.pathname,
-        project: targetLink.pathname.split('/')[1]
+        title: event.target.dataset.title,
+        url: event.target.dataset.url,
+        project: event.target.dataset.project
     }
 
     /**

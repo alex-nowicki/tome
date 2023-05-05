@@ -50,15 +50,15 @@ const thingsPosts = posts.filter(post => {
     <hr />
     
     <ul class="tree accordion">
-        <TreeSection order={1} category={'People'} CategoryIcon={IconPeople} posts={peoplePosts} activePost={activePost} />
+        <TreeSection order={1} category={'People'} CategoryIcon={IconPeople} posts={peoplePosts} activePost={activePost} activeProject={activeProject} />
         <hr />
-        <TreeSection order={2} category={'Groups'} CategoryIcon={IconGroups} posts={groupsPosts} activePost={activePost} />
+        <TreeSection order={2} category={'Groups'} CategoryIcon={IconGroups} posts={groupsPosts} activePost={activePost} activeProject={activeProject} />
         <hr />
-        <TreeSection order={3} category={'Places'} CategoryIcon={IconPlaces} posts={placesPosts} activePost={activePost} />
+        <TreeSection order={3} category={'Places'} CategoryIcon={IconPlaces} posts={placesPosts} activePost={activePost} activeProject={activeProject} />
         <hr />
-        <TreeSection order={4} category={'Events'} CategoryIcon={IconEvents} posts={eventsPosts} activePost={activePost} />
+        <TreeSection order={4} category={'Events'} CategoryIcon={IconEvents} posts={eventsPosts} activePost={activePost} activeProject={activeProject} />
         <hr />
-        <TreeSection order={5} category={'Things'} CategoryIcon={IconThings} posts={thingsPosts} activePost={activePost} />
+        <TreeSection order={5} category={'Things'} CategoryIcon={IconThings} posts={thingsPosts} activePost={activePost} activeProject={activeProject} />
     </ul>
 </nav>
 
