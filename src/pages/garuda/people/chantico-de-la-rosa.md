@@ -26,6 +26,13 @@ connections:
       name: Jorani de la Rosa
   affilitations:
     - Cloudheads
+events:
+  - year: 115
+    title: Birth Year
+  - year: 132
+    title: Chantico undergoes Cloudhead augment surgery
+  - year: 132
+    title: Chantico joins the crew of the Garuda
 ---
 ## History
 
