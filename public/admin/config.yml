@@ -22,6 +22,7 @@ collections:
       - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/ProjectLayout.astro"}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Description", name: "description", widget: "markdown"}
+      - {label: "Year Notation", name: "yearNotation", widget: "string"}
 
   - label: "People"
     label_singular: "Person"
@@ -64,7 +65,7 @@ collections:
             name: "aliases"
             widget: "list"
             field: {label: "Alias", name: "alias", widget: "string", required: false}
-          - {label: "Age", name: "age", widget: "string", required: false}
+          # - {label: "Age", name: "age", widget: "string", required: false}
           - {label: "Birthplace", name: "birthplace", widget: "string", required: false}
           - {label: "Primary Residence", name: "residence", widget: "string", required: false}
           - {label: "Species", name: "species", widget: "string", required: false}
@@ -98,6 +99,17 @@ collections:
             name: "affilitations"
             widget: "list"
             field: {label: "Group", name: "group", widget: "string", required: false}
+
+      - label: "Notable Events"
+        label_singular: "Event"
+        name: "events"
+        widget: "list"
+        summary: '{{fields.date} - {{fields.title}}'
+        fields:
+          - {label: "Year", name: "year", widget: "number", required: false}
+          - {label: "Title", name: "title", widget: "string", required: false}
+          - {label: "Description", name: "description", widget: "string", required: false}
+
 
   - label: "Groups"
     label_singular: "Group"
@@ -170,6 +182,16 @@ collections:
               - {label: "Relationship", name: "relationship", widget: "string", required: false}
               - {label: "Name", name: "name", widget: "string", required: false}
 
+      - label: "Notable Events"
+        label_singular: "Event"
+        name: "events"
+        widget: "list"
+        summary: '{{fields.date} - {{fields.title}}'
+        fields:
+          - {label: "Year", name: "year", widget: "number", required: false}
+          - {label: "Title", name: "title", widget: "string", required: false}
+          - {label: "Description", name: "description", widget: "string", required: false}
+
   - label: "Places"
     label_singular: "Place"
     name: "places"
@@ -226,6 +248,17 @@ collections:
             widget: "list"
             field: {label: "Name", name: "name", widget: "string", required: false}
 
+      - label: "Notable Events"
+        label_singular: "Event"
+        name: "events"
+        widget: "list"
+        summary: '{{fields.date} - {{fields.title}}'
+        fields:
+          - {label: "Year", name: "year", widget: "number", required: false}
+          - {label: "Title", name: "title", widget: "string", required: false}
+          - {label: "Description", name: "description", widget: "string", required: false}
+
+
   - label: "Events"
     label_singular: "Event"
     name: "events"
@@ -275,6 +308,17 @@ collections:
             widget: "list"
             field: {label: "Name", name: "name", widget: "string", required: false}
 
+      - label: "Notable Milestones"
+        label_singular: "Milestone"
+        name: "events"
+        widget: "list"
+        summary: '{{fields.date} - {{fields.title}}'
+        fields:
+          - {label: "Year", name: "year", widget: "number", required: false}
+          - {label: "Title", name: "title", widget: "string", required: false}
+          - {label: "Description", name: "description", widget: "string", required: false}
+
+
   - label: "Things"
     label_singular: "Things"
     name: "things"
@@ -305,3 +349,13 @@ collections:
         field: {label: "Search Term", name: "searchTerm", widget: "string"}
       - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
       - {label: "Body", name: "body", widget: "markdown", required: false}
+
+      - label: "Notable Events"
+        label_singular: "Event"
+        name: "events"
+        widget: "list"
+        summary: '{{fields.date} - {{fields.title}}'
+        fields:
+          - {label: "Year", name: "year", widget: "number", required: false}
+          - {label: "Title", name: "title", widget: "string", required: false}
+          - {label: "Description", name: "description", widget: "string", required: false}
