@@ -29,6 +29,11 @@ connections:
   affilitations:
     - Strays
     - Interstellar Rescue Agency
+events:
+  - year: 124
+    title: Bopha and Valentina steal the Garuda
+  - year: 96
+    title: Birth Year
 ---
 
 ## Motivations
