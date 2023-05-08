@@ -4,6 +4,7 @@ import IconBookmarks from "../components/IconBookmarks.astro";
 import Timeline from "../components/Timeline.astro";
 
 import { getCatIconAndLabel } from "../scripts/helpers.js"
+import { dateFormatter } from "../scripts/helpers.js"
 
 import "../styles/project.css";
 
@@ -35,12 +36,18 @@ for (const page of projectPages){
     }
 }
 
-// Create a new Intl.DateTimeFormat object
-let formatter = new Intl.DateTimeFormat('en-US', {
-    dateStyle: 'medium',
-    timeStyle: 'short' 
-});
-
+let events = projectPosts.map((post) => {
+    if (post.frontmatter.category === 'Events'){
+        console.log(post.frontmatter.description);
+        return {
+            year: post.frontmatter.details.time,
+            title: post.frontmatter.title,
+            description: post.frontmatter.description ? post.frontmatter.description : null
+        }
+    } else {
+        
+    }
+})
 
 // TODO - Only show the first 10 list items and add a show more button
 
@@ -81,14 +88,18 @@ let formatter = new Intl.DateTimeFormat('en-US', {
                                 <a href={post.url}>
                                     <span class="icon-group" set:html={getCatIconAndLabel(post.frontmatter).icon}></span>
                                     <span class="title">{post.frontmatter.title}</span>
-                                    <span class="date">{formatter.format(Date.parse(post.frontmatter.date))}</span>    
+                                    <span class="date">{dateFormatter.format(Date.parse(post.frontmatter.date))}</span>    
                                 </a>
                                 <button class="bookmark-toggle" data-title={post.frontmatter.title} data-url={post.url} data-project={post.frontmatter.project}><IconBookmarks /></button>
                             </li>
                 })}
             </ul>
         </section>
-        <Timeline />
+        <section class="timeline">
+            <h2>Timeline</h2>
+            <Timeline events={events} activeProject={activeProject}/>
+        </section>
+        
     </main>
 </BaseLayout>
 

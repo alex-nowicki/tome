@@ -51,6 +51,7 @@ collections:
         label_singular: "Search Term"
         name: "searchTerms"
         widget: "list"
+        summary: '{fields.searchTerm}'
         field: {label: "Search Term", name: "searchTerm", widget: "string"}
       - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
       - {label: "Body", name: "body", widget: "markdown", required: false}
@@ -64,6 +65,7 @@ collections:
             label_singular: "Alias"
             name: "aliases"
             widget: "list"
+            summary: "{fields.alias}"
             field: {label: "Alias", name: "alias", widget: "string", required: false}
           # - {label: "Age", name: "age", widget: "string", required: false}
           - {label: "Birthplace", name: "birthplace", widget: "string", required: false}
@@ -74,6 +76,7 @@ collections:
             label_singular: "Profession"
             name: "professions"
             widget: "list"
+            summary: "{fields.profession}"
             field: {label: "Profession", name: "profession", widget: "string", required: false}
 
       - label: "Connections"
@@ -93,11 +96,13 @@ collections:
             label_singular: "Partner"
             name: "romances"
             widget: "list"
+            summary: "{fields.partner}"
             field: {label: "Partner", name: "partner", widget: "string", required: false}
           - label: "Affiliations"
             label_singular: "Affiliation"
             name: "affilitations"
             widget: "list"
+            summary: "{fields.group}"
             field: {label: "Group", name: "group", widget: "string", required: false}
 
       - label: "Notable Events"
@@ -138,6 +143,7 @@ collections:
         label_singular: "Search Term"
         name: "searchTerms"
         widget: "list"
+        summary: '{fields.searchTerm}'
         field: {label: "Search Term", name: "searchTerm", widget: "string"}
       - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
       - {label: "Body", name: "body", widget: "markdown", required: false}
@@ -219,6 +225,7 @@ collections:
         label_singular: "Search Term"
         name: "searchTerms"
         widget: "list"
+        summary: '{fields.searchTerm}'
         field: {label: "Search Term", name: "searchTerm", widget: "string"}
       - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
       - {label: "Body", name: "body", widget: "markdown", required: false}
@@ -234,6 +241,7 @@ collections:
             label_singular: "Landmark"
             name: "landmarks"
             widget: "list"
+            summary: "{fields.name}"
             fields:
               - {label: "Location", name: "location", widget: "string", required: false}
               - {label: "Name", name: "name", widget: "string", required: false}
@@ -241,11 +249,13 @@ collections:
             label_singular: "Resident"
             name: "notableResidents"
             widget: "list"
+            summary: "{fields.name}"
             field: {label: "Name", name: "name", widget: "string", required: false}
           - label: "Notable Groups"
             label_singular: "Group"
             name: "notableGroups"
             widget: "list"
+            summary: "{fields.name}"
             field: {label: "Name", name: "name", widget: "string", required: false}
 
       - label: "Notable Events"
@@ -286,6 +296,7 @@ collections:
         label_singular: "Search Term"
         name: "searchTerms"
         widget: "list"
+        summary: '{fields.searchTerm}'
         field: {label: "Search Term", name: "searchTerm", widget: "string"}
       - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
       - {label: "Body", name: "body", widget: "markdown", required: false}
@@ -301,11 +312,13 @@ collections:
             label_singular: "Participant"
             name: "notableParticipants"
             widget: "list"
+            summary: "{fields.name}"
             field: {label: "Name", name: "name", widget: "string", required: false}
           - label: "Notable Groups"
             label_singular: "Group"
             name: "notableGroups"
             widget: "list"
+            summary: "{fields.name}"
             field: {label: "Name", name: "name", widget: "string", required: false}
 
       - label: "Notable Milestones"
@@ -346,6 +359,7 @@ collections:
         label_singular: "Search Term"
         name: "searchTerms"
         widget: "list"
+        summary: '{fields.searchTerm}'
         field: {label: "Search Term", name: "searchTerm", widget: "string"}
       - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
       - {label: "Body", name: "body", widget: "markdown", required: false}

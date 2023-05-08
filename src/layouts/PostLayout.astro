@@ -4,6 +4,7 @@ import IconBookmarks from "../components/IconBookmarks.astro";
 import BaseLayout from "./BaseLayout.astro";
 import SidePanel from "../components/SidePanel.astro";
 import CardGroup from "../components/CardGroup.astro";
+import Timeline from "../components/Timeline.astro";
 
 import { toTitleCase } from '../scripts/helpers.js';
 import { detectType } from '../scripts/helpers.js';
@@ -195,6 +196,10 @@ let relevanceArr = editedPostDetails.relevance.sort((a, b) => b.score - a.score)
                 <!-- <div class="markup" set:html={editedPostContent.string}></div> -->
             </section>
             <section class="details" set:html={editedPostDetails.string}></section>
+            <section class="timeline">
+                <h2>Timeline</h2>
+                <Timeline events={frontmatter.events} activeProject={activeProject} />
+            </section>
             <section class="related">
                 <h2>Related Articles</h2>
                 <CardGroup posts={relevanceArr} numToShow={3} postType={'article'} />

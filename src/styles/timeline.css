@@ -1,9 +1,8 @@
 .timeline {
-    height: 560px;
-    margin: 3rem 0;
     display: grid;
     grid-template-rows: auto 1fr;
 }
+
 
 .timeline .viewport {
     background-color: var(--teal-15);
@@ -14,9 +13,8 @@
     box-shadow: var(--boxShadow) var(--teal-30);
     padding: 2rem;
     margin: 0 0 2rem;
-    /* overflow-x: auto;
-    overflow-y: hidden; */
-    /* height: 100%; */
+    max-height: 540px;
+    overflow-y: auto;
 }
 
 
@@ -76,12 +74,13 @@
 .timeline ul li::before {
     content: "";
     display: block;
-    height: calc(100% + 1.5rem);
+    height: calc(100% + 1.2rem);
     width: 4px;
     background-color: var(--teal-30);
     border-radius: 2rem;
     position: absolute;
     right: calc(50% - 2px);
+    top: -0.6rem;
 }
 
 .timeline ul li:nth-child(even)::before {
@@ -92,6 +91,11 @@
 
 .timeline ul li div {
     grid-area: content;
+
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+
     background-color: white;
     padding: 0.75rem;
     box-shadow: var(--boxShadow) var(--teal-30);
@@ -114,13 +118,13 @@
     z-index: 0;
 } */
 
-/* .timeline ul li:nth-child(odd) div::before {
-    right: -2rem;
+.timeline ul li:nth-child(odd) div {
+    justify-self: flex-end;
 }
 
-.timeline ul li:nth-child(even) div::before {
-    left: -2rem;
-} */
+.timeline ul li:nth-child(even) div {
+    justify-self: flex-start;
+}
 
 .timeline ul li .date {
     grid-area: date;
@@ -132,6 +136,20 @@
 
 .timeline ul li:nth-child(even) .date{
     justify-self: end;
+}
+
+.timeline ul li .title {
+    font-weight: 600;
+    /* font-size: 0.875rem; */
+    margin: 0 0 0.5rem;
+    color: var(--teal-100);
+}
+
+.timeline ul li .description {
+    font-family: 'Source Serif Pro';
+    font-weight: 400;
+    /* font-size: 0.875rem; */
+    margin: 0 0 0.5rem;
 }
 
 

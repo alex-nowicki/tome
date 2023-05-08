@@ -2,53 +2,55 @@
 
 import "../styles/timeline.css"
 
+const { events } = Astro.props;
+const { activeProject } = Astro.props;
+
+// Get the year notation of the active project
+const projects =  await Astro.glob('../pages/*.md');
+const yearNotation = projects.filter(project => {
+    return project.frontmatter.title === activeProject;
+})[0].frontmatter.yearNotation;
+
+// Sort the events array by year
+events.sort((a, b) => a.year - b.year);
+
 ---
 
-<section class="timeline">
-    <h2>Timeline</h2>
-    <div class="viewport">
-        <ul>
-            <li>
-                <div>
-                    <p>Title of the Event</p>
-                    <p>100 FC</p>
-                    <p>Short description of the event that won't be too long or it won't fit.</p>
-                </div>
-                <p class="date">100 FC</p>
-            </li>
-            <li>
-                <div>
-                    <p>Title of the Event</p>
-                    <p>100 FC</p>
-                    <p>Short description of the event that won't be too long or it won't fit.</p>
-                </div>
-                <p class="date">100 FC</p>
-            </li>
-            <li>
-                <div>
-                    <p>Title of the Event</p>
-                    <p>100 FC</p>
-                    <p>Short description of the event that won't be too long or it won't fit.</p>
-                </div>
-                <p class="date">100 FC</p>
-            </li>
-            <li>
-                <div>
-                    <p>Title of the Event</p>
-                    <p>100 FC</p>
-                    <p>Short description of the event that won't be too long or it won't fit.</p>
-                </div>
-                <p class="date">100 FC</p>
-            </li>
-            <li>
-                <div>
-                    <p>Title of the Event</p>
-                    <p>100 FC</p>
-                    <p>Short description of the event that won't be too long or it won't fit.</p>
-                </div>
-                <p class="date">100 FC</p>
-            </li>
-            
-        </ul>
-    </div>
-</section>
+<div class="viewport">
+    <ul>
+        {events.map((event) => {
+            if (event.description){
+                return  <li>
+                            <p class="date">{event.year} {yearNotation}</p>   
+                            <div>
+                                <p class="title">{event.title}</p>
+                                <p class="description">{event.description}</p>                            
+                            </div>
+                        </li>
+            } else {
+                return  <li>
+                            <p class="date">{event.year} {yearNotation}</p>   
+                            <div>
+                                <p class="title">{event.title}</p>                        
+                            </div>
+                        </li>
+            }
+           
+        })}
+        <li>
+            <div>
+                <p class="title">Title of the Event</p>
+                <p class="description">This is exactly 120 characters: Sed adipiscing diam donec adipiscing tristique risus nec feugiat in fermentum posuereou.</p>
+            </div>
+            <p class="date">200 FC</p>
+        </li>
+        <li>
+            <div>
+                <p class="title">Title of the Event</p>
+                <p class="description">This is exactly 120 characters: Sed adipiscing diam donec adipiscing tristique risus nec feugiat in fermentum posuereou.</p>
+            </div>
+            <p class="date">300 FC</p>
+        </li>
+        
+    </ul>
+</div>
