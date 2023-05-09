@@ -30,13 +30,14 @@ connections:
     - Strays
     - Interstellar Rescue Agency
 events:
-  - year: 124
-    title: Bopha and Valentina steal the Garuda
+  - title: Bopha and Valentina steal the Garuda
     date:
-      - yearNotation: FC
-        year: 95
-  - year: 96
-    title: Birth Year
+      yearNotation: FC
+      year: 124
+  - title: Birth Year
+    date:
+      yearNotation: FC
+      year: 96
 ---
 
 ## Motivations

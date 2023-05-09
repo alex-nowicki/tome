@@ -36,19 +36,6 @@ for (const page of projectPages){
     }
 }
 
-// let events = projectPosts.map((post) => {
-//     if (post.frontmatter.category === 'Events'){
-//         console.log(post.frontmatter.description);
-//         return {
-//             year: post.frontmatter.details.time,
-//             title: post.frontmatter.title,
-//             description: post.frontmatter.description ? post.frontmatter.description : null
-//         }
-//     } else {
-        
-//     }
-// })
-
 // TODO - Only show the first 10 list items and add a show more button
 
 ---
@@ -57,48 +44,57 @@ for (const page of projectPages){
     <main class="project">
         <h1>{activeProject} Articles</h1>
         <section class="articles">
-            <form id="filters">
-                <input type="radio" id="filterAll" name="filter" value="all" checked/>
-                <label for="filterAll">All</label>
-                <input type="radio" id="filterBookmarks" name="filter" value="bookmarks" />
-                <label for="filterBookmarks">Bookmarks</label>
-                <input type="radio" id="filterPeople" name="filter" value="people" />
-                <label for="filterPeople">People</label>
-                <input type="radio" id="filterGroups" name="filter" value="groups" />
-                <label for="filterGroups">Groups</label>
-                <input type="radio" id="filterPlaces" name="filter" value="places" />
-                <label for="filterPlaces">Places</label>
-                <input type="radio" id="filterEvents" name="filter" value="events" />
-                <label for="filterEvents">Events</label>
-                <input type="radio" id="filterThings" name="filter" value="things" />
-                <label for="filterThings">Things</label>
-            </form>
-            <form id="sort">
-                <label>Sort by</label>
-                <div class="select-group">
-                    <select name="sort" id="sort-select">
-                        <option value="byTitle" selected>Title</option>
-                        <option value="byDate">Date Published</option>
-                    </select>
-                 </div>
-            </form>
-            <ul id="list">
-                {projectPosts.map((post) => {
-                    return  <li data-title={post.frontmatter.title} data-date={post.frontmatter.date} data-category={post.frontmatter.category}>
-                                <a href={post.url}>
-                                    <span class="icon-group" set:html={getCatIconAndLabel(post.frontmatter).icon}></span>
-                                    <span class="title">{post.frontmatter.title}</span>
-                                    <span class="date">{dateFormatter.format(Date.parse(post.frontmatter.date))}</span>    
-                                </a>
-                                <button class="bookmark-toggle" data-title={post.frontmatter.title} data-url={post.url} data-project={post.frontmatter.project}><IconBookmarks /></button>
-                            </li>
-                })}
-            </ul>
+
+        {
+            projectPosts.length > 0 ? (
+            
+                <form id="filters">
+                    <input type="radio" id="filterAll" name="filter" value="all" checked/>
+                    <label for="filterAll">All</label>
+                    <input type="radio" id="filterBookmarks" name="filter" value="bookmarks" />
+                    <label for="filterBookmarks">Bookmarks</label>
+                    <input type="radio" id="filterPeople" name="filter" value="people" />
+                    <label for="filterPeople">People</label>
+                    <input type="radio" id="filterGroups" name="filter" value="groups" />
+                    <label for="filterGroups">Groups</label>
+                    <input type="radio" id="filterPlaces" name="filter" value="places" />
+                    <label for="filterPlaces">Places</label>
+                    <input type="radio" id="filterEvents" name="filter" value="events" />
+                    <label for="filterEvents">Events</label>
+                    <input type="radio" id="filterThings" name="filter" value="things" />
+                    <label for="filterThings">Things</label>
+                </form>
+                <form id="sort">
+                    <label>Sort by</label>
+                    <div class="select-group">
+                        <select name="sort" id="sort-select">
+                            <option value="byTitle" selected>Title</option>
+                            <option value="byDate">Date Published</option>
+                        </select>
+                    </div>
+                </form>
+                <ul id="list">
+                    {projectPosts.map((post) => {
+                        return  <li data-title={post.frontmatter.title} data-date={post.frontmatter.date} data-category={post.frontmatter.category}>
+                                    <a href={post.url}>
+                                        <span class="icon-group" set:html={getCatIconAndLabel(post.frontmatter).icon}></span>
+                                        <span class="title">{post.frontmatter.title}</span>
+                                        <span class="date">{dateFormatter.format(Date.parse(post.frontmatter.date))}</span>    
+                                    </a>
+                                    <button class="bookmark-toggle" data-title={post.frontmatter.title} data-url={post.url} data-project={post.frontmatter.project}><IconBookmarks /></button>
+                                </li>
+                    })}
+                </ul>
+
+            ) : (
+            
+                <p>There are no articles in this project.</p>
+
+            )
+        }
+
         </section>
-        <section class="timeline">
-            <h2>Timeline</h2>
-            <!-- <Timeline events={events} activeProject={activeProject}/> -->
-        </section>
+        
         
     </main>
 </BaseLayout>

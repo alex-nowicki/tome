@@ -27,12 +27,20 @@ connections:
   affilitations:
     - Cloudheads
 events:
-  - year: 115
-    title: Birth Year
-  - year: 132
-    title: Chantico undergoes Cloudhead augment surgery
-  - year: 132
-    title: Chantico joins the crew of the Garuda
+  - title: Birth Year
+    date:
+      yearNotation: FC
+      year: 115
+  - title: Chantico undergoes Cloudhead augment surgery
+    date:
+      yearNotation: FC
+      year: 132
+      month: 5
+  - title: Chantico joins the crew of the Garuda
+    date:
+      yearNotation: FC
+      year: 132
+      month: 6
 ---
 ## History
 

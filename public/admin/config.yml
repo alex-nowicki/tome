@@ -46,12 +46,12 @@ collections:
       - {label: "Category", name: "category", widget: "hidden", default: "People"}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Description", name: "description", widget: "string", pattern: ['.{1,120}', "Must be no longer than 120 characters"], required: false}
+      - {label: "Description", name: "description", widget: "string", pattern: [".{1,120}", "Must be no longer than 120 characters"], required: false}
       - label: "Search Terms"
         label_singular: "Search Term"
         name: "searchTerms"
         widget: "list"
-        summary: '{fields.searchTerm}'
+        summary: "{{fields.searchTerm}}"
         field: {label: "Search Term", name: "searchTerm", widget: "string"}
       - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
       - {label: "Body", name: "body", widget: "markdown", required: false}
@@ -65,7 +65,7 @@ collections:
             label_singular: "Alias"
             name: "aliases"
             widget: "list"
-            summary: "{fields.alias}"
+            summary: "{{fields.alias}}"
             field: {label: "Alias", name: "alias", widget: "string", required: false}
           # - {label: "Age", name: "age", widget: "string", required: false}
           - {label: "Birthplace", name: "birthplace", widget: "string", required: false}
@@ -76,7 +76,7 @@ collections:
             label_singular: "Profession"
             name: "professions"
             widget: "list"
-            summary: "{fields.profession}"
+            summary: "{{fields.profession}}"
             field: {label: "Profession", name: "profession", widget: "string", required: false}
 
       - label: "Connections"
@@ -88,7 +88,7 @@ collections:
             label_singular: "Member"
             name: "family"
             widget: "list"
-            summary: '{{fields.relationship}} - {{fields.name}}'
+            summary: "{{fields.relationship}} - {{fields.name}}"
             fields:
               - {label: "Relationship", name: "relationship", widget: "string", required: false}
               - {label: "Name", name: "name", widget: "string", required: false}
@@ -96,27 +96,27 @@ collections:
             label_singular: "Partner"
             name: "romances"
             widget: "list"
-            summary: "{fields.partner}"
+            summary: "{{fields.partner}}"
             field: {label: "Partner", name: "partner", widget: "string", required: false}
           - label: "Affiliations"
             label_singular: "Affiliation"
             name: "affilitations"
             widget: "list"
-            summary: "{fields.group}"
+            summary: "{{fields.group}}"
             field: {label: "Group", name: "group", widget: "string", required: false}
 
       - label: "Notable Events"
         label_singular: "Event"
         name: "events"
         widget: "list"
-        summary: '{{fields.date} - {{fields.title}}'
+        summary: "{{fields.date}} - {{fields.title}}"
         fields:
           - {label: "Title", name: "title", widget: "string", required: false}
           - {label: "Description", name: "description", widget: "string", required: false}
           - label: "Date" 
             name: "date"
-            widget: "list"
-            summary: '{{fields.year}/{fields.month}/{fields.day} {fields.yearNotation}}'
+            widget: "object"
+            summary: "{{fields.year}}/{{fields.month}}/{{fields.day}} {{fields.yearNotation}}"
             fields:
               - {label: "Year", name: "year", widget: "number"}
               - {label: "Month", name: "month", widget: "number", required: false}
@@ -146,12 +146,12 @@ collections:
       - {label: "Category", name: "category", widget: "hidden", default: "Groups"}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Description", name: "description", widget: "string", pattern: ['.{1,120}', "Must be no longer than 120 characters"], required: false}
+      - {label: "Description", name: "description", widget: "string", pattern: [".{1,120}", "Must be no longer than 120 characters"], required: false}
       - label: "Search Terms"
         label_singular: "Search Term"
         name: "searchTerms"
         widget: "list"
-        summary: '{fields.searchTerm}'
+        summary: "{{fields.searchTerm}}"
         field: {label: "Search Term", name: "searchTerm", widget: "string"}
       - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
       - {label: "Body", name: "body", widget: "markdown", required: false}
@@ -169,7 +169,7 @@ collections:
             label_singular: "Member"
             name: "notableMembers"
             widget: "list"
-            summary: '{{fields.role}} - {{fields.name}}'
+            summary: "{{fields.role}} - {{fields.name}}"
             fields:
               - {label: "Role", name: "role", widget: "string", required: false}
               - {label: "Name", name: "name", widget: "string", required: false}
@@ -183,7 +183,7 @@ collections:
             label_singular: "Ally"
             name: "allies"
             widget: "list"
-            summary: '{{fields.relationship}} - {{fields.name}}'
+            summary: "{{fields.relationship}} - {{fields.name}}"
             fields:
               - {label: "Relationship", name: "relationship", widget: "string", required: false}
               - {label: "Name", name: "name", widget: "string", required: false}
@@ -191,7 +191,7 @@ collections:
             label_singular: "Rival"
             name: "rivals"
             widget: "list"
-            summary: '{{fields.relationship}} - {{fields.name}}'
+            summary: "{{fields.relationship}} - {{fields.name}}"
             fields:
               - {label: "Relationship", name: "relationship", widget: "string", required: false}
               - {label: "Name", name: "name", widget: "string", required: false}
@@ -200,7 +200,7 @@ collections:
         label_singular: "Event"
         name: "events"
         widget: "list"
-        summary: '{{fields.date} - {{fields.title}}'
+        summary: "{{fields.date}} - {{fields.title}}"
         fields:
           - {label: "Year", name: "year", widget: "number", required: false}
           - {label: "Title", name: "title", widget: "string", required: false}
@@ -228,12 +228,12 @@ collections:
       - {label: "Category", name: "category", widget: "hidden", default: "Places"}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Description", name: "description", widget: "string", pattern: ['.{1,120}', "Must be no longer than 120 characters"], required: false}
+      - {label: "Description", name: "description", widget: "string", pattern: [".{1,120}", "Must be no longer than 120 characters"], required: false}
       - label: "Search Terms"
         label_singular: "Search Term"
         name: "searchTerms"
         widget: "list"
-        summary: '{fields.searchTerm}'
+        summary: "{{fields.searchTerm}}"
         field: {label: "Search Term", name: "searchTerm", widget: "string"}
       - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
       - {label: "Body", name: "body", widget: "markdown", required: false}
@@ -249,7 +249,7 @@ collections:
             label_singular: "Landmark"
             name: "landmarks"
             widget: "list"
-            summary: "{fields.name}"
+            summary: "{{fields.name}}"
             fields:
               - {label: "Location", name: "location", widget: "string", required: false}
               - {label: "Name", name: "name", widget: "string", required: false}
@@ -257,20 +257,20 @@ collections:
             label_singular: "Resident"
             name: "notableResidents"
             widget: "list"
-            summary: "{fields.name}"
+            summary: "{{fields.name}}"
             field: {label: "Name", name: "name", widget: "string", required: false}
           - label: "Notable Groups"
             label_singular: "Group"
             name: "notableGroups"
             widget: "list"
-            summary: "{fields.name}"
+            summary: "{{fields.name}}"
             field: {label: "Name", name: "name", widget: "string", required: false}
 
       - label: "Notable Events"
         label_singular: "Event"
         name: "events"
         widget: "list"
-        summary: '{{fields.date} - {{fields.title}}'
+        summary: "{{fields.date} - {{fields.title}}"
         fields:
           - {label: "Year", name: "year", widget: "number", required: false}
           - {label: "Title", name: "title", widget: "string", required: false}
@@ -299,12 +299,12 @@ collections:
       - {label: "Category", name: "category", widget: "hidden", default: "Events"}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Description", name: "description", widget: "string", pattern: ['.{1,120}', "Must be no longer than 120 characters"], required: false}
+      - {label: "Description", name: "description", widget: "string", pattern: [".{1,120}", "Must be no longer than 120 characters"], required: false}
       - label: "Search Terms"
         label_singular: "Search Term"
         name: "searchTerms"
         widget: "list"
-        summary: '{fields.searchTerm}'
+        summary: "{{fields.searchTerm}}"
         field: {label: "Search Term", name: "searchTerm", widget: "string"}
       - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
       - {label: "Body", name: "body", widget: "markdown", required: false}
@@ -320,20 +320,20 @@ collections:
             label_singular: "Participant"
             name: "notableParticipants"
             widget: "list"
-            summary: "{fields.name}"
+            summary: "{{fields.name}}"
             field: {label: "Name", name: "name", widget: "string", required: false}
           - label: "Notable Groups"
             label_singular: "Group"
             name: "notableGroups"
             widget: "list"
-            summary: "{fields.name}"
+            summary: "{{fields.name}}"
             field: {label: "Name", name: "name", widget: "string", required: false}
 
       - label: "Notable Milestones"
         label_singular: "Milestone"
         name: "events"
         widget: "list"
-        summary: '{{fields.date} - {{fields.title}}'
+        summary: "{{fields.date} - {{fields.title}}"
         fields:
           - {label: "Year", name: "year", widget: "number", required: false}
           - {label: "Title", name: "title", widget: "string", required: false}
@@ -362,12 +362,12 @@ collections:
       - {label: "Category", name: "category", widget: "hidden", default: "Things"}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Description", name: "description", widget: "string", pattern: ['.{1,120}', "Must be no longer than 120 characters"], required: false}
+      - {label: "Description", name: "description", widget: "string", pattern: [".{1,120}", "Must be no longer than 120 characters"], required: false}
       - label: "Search Terms"
         label_singular: "Search Term"
         name: "searchTerms"
         widget: "list"
-        summary: '{fields.searchTerm}'
+        summary: "{{fields.searchTerm}}"
         field: {label: "Search Term", name: "searchTerm", widget: "string"}
       - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
       - {label: "Body", name: "body", widget: "markdown", required: false}
@@ -376,7 +376,7 @@ collections:
         label_singular: "Event"
         name: "events"
         widget: "list"
-        summary: '{{fields.date} - {{fields.title}}'
+        summary: "{{fields.date} - {{fields.title}}"
         fields:
           - {label: "Year", name: "year", widget: "number", required: false}
           - {label: "Title", name: "title", widget: "string", required: false}

@@ -39,14 +39,27 @@ projects.map((project) => {
 <BaseLayout pageTitle={'Tome'} activeProject={activeProject}>
     <main class="home">
 		<!-- <h1>My Projects</h1> -->
-        <section class="recent-projects">
-            <h2>Recent Projects</h2>
-            <CardGroup posts={projects} numToShow={3} postType={'project'} />
-            <a href="/projects">All Projects</a>
-        </section>
-        <section class="recent-articles">
-            <h2>Recent Articles</h2>
-            <CardGroup posts={posts} numToShow={3} postType={'article'}/>
-        </section>
+        { 
+            projects.length > 0 ? (
+                <section class="recent-projects">
+                    <h2>Recent Projects</h2>
+                    <CardGroup posts={projects} numToShow={3} postType={'project'} />
+                    <a href="/projects">All Projects</a>
+                </section>
+            ) : (
+                <section class="recent-projects">
+                    <p>There are no projects in this Tome.</p>
+                </section>
+            )
+        }
+        {
+            posts.length > 0 && (
+                <section class="recent-articles">
+                    <h2>Recent Articles</h2>
+                    <CardGroup posts={posts} numToShow={3} postType={'article'}/>
+                </section>
+            )
+        }
+
 	</main>
 </BaseLayout>

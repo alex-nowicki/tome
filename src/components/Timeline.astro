@@ -3,21 +3,27 @@
 import "../styles/timeline.css"
 
 let { events } = Astro.props;
-const { activeProject } = Astro.props;
 
-// Get the year notation of the active project
-const projects =  await Astro.glob('../pages/*.md');
-const yearNotation = projects.filter(project => {
-    return project.frontmatter.title === activeProject;
-})[0].frontmatter.yearNotation;
+// Generate a full date for each event
+events.map((event) => {
 
-// Sort the events array by year
-if (events){
-    events.sort((a, b) => a.year - b.year);
-} else {
-    events = [];
-}
+    let padWithLeadingZeros = function(num, totalLength) {
+        return String(num).padStart(totalLength, '0');
+    }
 
+    event.date.full = '';
+    event.date.full = event.date.year ? event.date.full += `${event.date.year}` : event.date.full;
+    event.date.full = event.date.year && event.date.month ? event.date.full += `-${padWithLeadingZeros(event.date.month, 2)}` : event.date.full;
+    event.date.full = event.date.year && event.date.month && event.date.day ? event.date.full += `-${padWithLeadingZeros(event.date.day, 2)}` : event.date.full;
+    event.date.full = event.date.year && event.date.yearNotation ? event.date.full += ` ${event.date.yearNotation}` : event.date.full;
+});
+
+// Sort the events array by date
+events.sort((a, b) => a.date.day - b.date.day);
+events.sort((a, b) => a.date.month - b.date.month);
+events.sort((a, b) => a.date.year - b.date.year);
+
+console.log(events);
 
 ---
 
@@ -25,22 +31,25 @@ if (events){
     <ul>
         {events.map((event) => {
             if (event.description){
-                return  <li>
-                            <p class="date">{event.year} {yearNotation}</p>   
-                            <div>
-                                <p class="title">{event.title}</p>
-                                <p class="description">{event.description}</p>                            
-                            </div>
-                        </li>
+                return  (
+                    <li>
+                        <p class="date">{event.date.full}</p>   
+                        <div>
+                            <p class="title">{event.title}</p>
+                            <p class="description">{event.description}</p>                            
+                        </div>
+                    </li>
+                )
             } else {
-                return  <li>
-                            <p class="date">{event.year} {yearNotation}</p>   
-                            <div>
-                                <p class="title">{event.title}</p>                        
-                            </div>
-                        </li>
+                return  (
+                    <li>
+                        <p class="date">{event.date.full}</p>   
+                        <div>
+                            <p class="title">{event.title}</p>                        
+                        </div>
+                    </li>
+                )
             }
-           
         })}
         <li>
             <div>

@@ -158,9 +158,12 @@ if (postConnections !== ''){
     postDetails += postConnections;
 }
 
-let editedPostDetails = detectMatches(postDetails, searchArr, editedPostContent.relevance);
-
-let relevanceArr = editedPostDetails.relevance.sort((a, b) => b.score - a.score);
+let editedPostDetails;
+let relevanceArr;
+if (postDetails !== ''){
+    editedPostDetails = detectMatches(postDetails, searchArr, editedPostContent.relevance);
+    relevanceArr = editedPostDetails.relevance.sort((a, b) => b.score - a.score);
+}
 
 
 // TODO - Fix broken breadcrumb links in published site
@@ -192,18 +195,29 @@ let relevanceArr = editedPostDetails.relevance.sort((a, b) => b.score - a.score)
                 </div>
                 <button class="bookmark-toggle" data-title={frontmatter.title} data-url={frontmatter.url} data-project={frontmatter.project}><IconBookmarks /></button>
             </section>
-            <section class="content" set:html={editedPostContent.string}>
-                <!-- <div class="markup" set:html={editedPostContent.string}></div> -->
-            </section>
-            <section class="details" set:html={editedPostDetails.string}></section>
-            <section class="timeline">
-                <h2>Timeline</h2>
-                <Timeline events={frontmatter.events} activeProject={activeProject} />
-            </section>
-            <section class="related">
-                <h2>Related Articles</h2>
-                <CardGroup posts={relevanceArr} numToShow={3} postType={'article'} />
-            </section>
+            <section class="content" set:html={editedPostContent.string}></section>
+            {
+                editedPostDetails && (
+                    <section class="details" set:html={editedPostDetails.string}></section>
+                )
+            }
+            {
+                frontmatter.events && (
+                    <section class="timeline">
+                        <h2>Timeline</h2>
+                        <Timeline events={frontmatter.events} />
+                    </section>
+                )
+            }
+            {
+                relevanceArr && (
+                    <section class="related">
+                        <h2>Related Articles</h2>
+                        <CardGroup posts={relevanceArr} numToShow={3} postType={'article'} />
+                    </section>
+                )
+            }
+            
         </article>
         
     </main>
