@@ -111,9 +111,17 @@ collections:
         widget: "list"
         summary: '{{fields.date} - {{fields.title}}'
         fields:
-          - {label: "Year", name: "year", widget: "number", required: false}
           - {label: "Title", name: "title", widget: "string", required: false}
           - {label: "Description", name: "description", widget: "string", required: false}
+          - label: "Date" 
+            name: "date"
+            widget: "list"
+            summary: '{{fields.year}/{fields.month}/{fields.day} {fields.yearNotation}}'
+            fields:
+              - {label: "Year", name: "year", widget: "number"}
+              - {label: "Month", name: "month", widget: "number", required: false}
+              - {label: "Day", name: "day", widget: "number", required: false}
+              - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
 
 
   - label: "Groups"
