@@ -32,6 +32,9 @@ connections:
 events:
   - year: 124
     title: Bopha and Valentina steal the Garuda
+    date:
+      - yearNotation: FC
+        year: 95
   - year: 96
     title: Birth Year
 ---
