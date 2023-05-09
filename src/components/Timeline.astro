@@ -12,7 +12,10 @@ const yearNotation = projects.filter(project => {
 })[0].frontmatter.yearNotation;
 
 // Sort the events array by year
-events.sort((a, b) => a.year - b.year);
+if (events){
+    events.sort((a, b) => a.year - b.year);
+}
+
 
 ---
 
