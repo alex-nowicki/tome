@@ -36,18 +36,18 @@ for (const page of projectPages){
     }
 }
 
-let events = projectPosts.map((post) => {
-    if (post.frontmatter.category === 'Events'){
-        console.log(post.frontmatter.description);
-        return {
-            year: post.frontmatter.details.time,
-            title: post.frontmatter.title,
-            description: post.frontmatter.description ? post.frontmatter.description : null
-        }
-    } else {
+// let events = projectPosts.map((post) => {
+//     if (post.frontmatter.category === 'Events'){
+//         console.log(post.frontmatter.description);
+//         return {
+//             year: post.frontmatter.details.time,
+//             title: post.frontmatter.title,
+//             description: post.frontmatter.description ? post.frontmatter.description : null
+//         }
+//     } else {
         
-    }
-})
+//     }
+// })
 
 // TODO - Only show the first 10 list items and add a show more button
 
@@ -97,7 +97,7 @@ let events = projectPosts.map((post) => {
         </section>
         <section class="timeline">
             <h2>Timeline</h2>
-            <Timeline events={events} activeProject={activeProject}/>
+            <!-- <Timeline events={events} activeProject={activeProject}/> -->
         </section>
         
     </main>
