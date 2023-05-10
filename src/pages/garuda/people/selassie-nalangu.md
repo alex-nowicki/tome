@@ -8,7 +8,6 @@ searchTerms:
   - Selassie Nalangu
   - Selassie
 details:
-  age: Mid 40s
   residence: Revati
   species: ""
   gender: Male

@@ -7,8 +7,6 @@ date: 2023-05-04T16:10:29.482Z
 description: Sentient artificial intelligence that operates the Mirror Gates.
 searchTerms:
   - Gatekeeper
-details:
-  age: 500,000
 ---
 Created by a technologically advanced race of isolationist aliens over 500,000 years ago. Its purpose is to control the growth of intelligent space faring species within reach of its creators, as well as gather information about their cultures and technology.
 

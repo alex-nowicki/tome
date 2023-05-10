@@ -9,7 +9,6 @@ searchTerms:
   - Khuyen Malka
   - Khuyen
 details:
-  age: Early 70s
   species: Human
   gender: Female
   professions:

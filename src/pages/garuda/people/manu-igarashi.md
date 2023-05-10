@@ -9,7 +9,6 @@ searchTerms:
   - Manu Igarashi
   - Manu
 details:
-  age: Mid 60s
   residence: Garuda
   species: Human
   gender: Male

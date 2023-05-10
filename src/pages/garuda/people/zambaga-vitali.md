@@ -10,7 +10,6 @@ searchTerms:
   - Zambaga
   - Zam
 details:
-  age: Mid 50s
   species: Human
   gender: Female
   professions:

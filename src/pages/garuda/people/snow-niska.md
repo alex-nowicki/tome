@@ -13,7 +13,6 @@ searchTerms:
 details:
   aliases:
     - Severina Niska
-  age: Late 20s
   birthplace: Revati, Prosper System
   species: Human
   gender: Female

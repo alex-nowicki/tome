@@ -9,7 +9,6 @@ searchTerms:
   - Arooj Rao
   - Arooj
 details:
-  age: Late 20s
   birthplace: Rahim, Prosper System
   residence: Garuda
   species: Human (Shezad)

@@ -9,7 +9,6 @@ searchTerms:
   - Rezki Dumas
   - Rezki
 details:
-  age: Late 20s
   residence: Garuda
   species: Human
   gender: Male

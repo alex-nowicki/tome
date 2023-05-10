@@ -9,7 +9,6 @@ searchTerms:
   - Valentina Vas
   - Valentina
 details:
-  age: 7 years into her second life
   birthplace: ""
   species: Human (Echo)
   gender: Female

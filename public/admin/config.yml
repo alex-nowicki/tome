@@ -353,7 +353,7 @@ collections:
             summary: "{{fields.year}}"
             required: false
             fields:
-              - {label: "Year", name: "year", widget: "number"}
+              - {label: "Year", name: "year", widget: "number", required: false}
               - {label: "Month", name: "month", widget: "number", required: false}
               - {label: "Day", name: "day", widget: "number", required: false}
               - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}

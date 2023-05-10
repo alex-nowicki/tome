@@ -11,7 +11,6 @@ searchTerms:
 details:
   aliases:
     - Chanti
-  age: "18"
   birthplace: Renati, Prosper System
   residence: Garuda
   species: Human
