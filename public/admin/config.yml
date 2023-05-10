@@ -67,7 +67,7 @@ collections:
             widget: "list"
             summary: "{{fields.alias}}"
             field: {label: "Alias", name: "alias", widget: "string"}
-          - {label: "Birthplace", name: "birthplace", widget: "string"}
+          - {label: "Birthplace", name: "birthplace", widget: "string", required: false}
           - {label: "Primary Residence", name: "residence", widget: "string", required: false}
           - {label: "Species", name: "species", widget: "string", required: false}
           - {label: "Gender Identity", name: "gender", widget: "string", required: false}
@@ -170,9 +170,10 @@ collections:
             name: "notableMembers"
             widget: "list"
             summary: "{{fields.role}} - {{fields.name}}"
+            required: false
             fields:
               - {label: "Role", name: "role", widget: "string", required: false}
-              - {label: "Name", name: "name", widget: "string", required: false}
+              - {label: "Name", name: "name", widget: "string"}
 
       - label: "Connections"
         name: "connections"
@@ -184,27 +185,38 @@ collections:
             name: "allies"
             widget: "list"
             summary: "{{fields.relationship}} - {{fields.name}}"
+            required: false
             fields:
               - {label: "Relationship", name: "relationship", widget: "string", required: false}
-              - {label: "Name", name: "name", widget: "string", required: false}
+              - {label: "Name", name: "name", widget: "string"}
           - label: "Rivals"
             label_singular: "Rival"
             name: "rivals"
             widget: "list"
             summary: "{{fields.relationship}} - {{fields.name}}"
+            required: false
             fields:
               - {label: "Relationship", name: "relationship", widget: "string", required: false}
-              - {label: "Name", name: "name", widget: "string", required: false}
+              - {label: "Name", name: "name", widget: "string"}
 
       - label: "Notable Events"
         label_singular: "Event"
         name: "events"
         widget: "list"
-        summary: "{{fields.date}} - {{fields.title}}"
+        required: false
+        summary: "{{fields.title}}"
         fields:
-          - {label: "Year", name: "year", widget: "number", required: false}
-          - {label: "Title", name: "title", widget: "string", required: false}
+          - {label: "Title", name: "title", widget: "string"}
           - {label: "Description", name: "description", widget: "string", required: false}
+          - label: "Date" 
+            name: "date"
+            widget: "object"
+            summary: "{{fields.year}} {{fields.yearNotation}}"
+            fields:
+              - {label: "Year", name: "year", widget: "number"}
+              - {label: "Month", name: "month", widget: "number", required: false}
+              - {label: "Day", name: "day", widget: "number", required: false}
+              - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
 
   - label: "Places"
     label_singular: "Place"
@@ -250,31 +262,43 @@ collections:
             name: "landmarks"
             widget: "list"
             summary: "{{fields.name}}"
+            required: false
             fields:
               - {label: "Location", name: "location", widget: "string", required: false}
-              - {label: "Name", name: "name", widget: "string", required: false}
+              - {label: "Name", name: "name", widget: "string"}
           - label: "Notable Residents"
             label_singular: "Resident"
             name: "notableResidents"
             widget: "list"
             summary: "{{fields.name}}"
-            field: {label: "Name", name: "name", widget: "string", required: false}
+            required: false
+            field: {label: "Name", name: "name", widget: "string"}
           - label: "Notable Groups"
             label_singular: "Group"
             name: "notableGroups"
             widget: "list"
             summary: "{{fields.name}}"
-            field: {label: "Name", name: "name", widget: "string", required: false}
+            required: false
+            field: {label: "Name", name: "name", widget: "string"}
 
       - label: "Notable Events"
         label_singular: "Event"
         name: "events"
         widget: "list"
-        summary: "{{fields.date} - {{fields.title}}"
+        required: false
+        summary: "{{fields.title}}"
         fields:
-          - {label: "Year", name: "year", widget: "number", required: false}
-          - {label: "Title", name: "title", widget: "string", required: false}
+          - {label: "Title", name: "title", widget: "string"}
           - {label: "Description", name: "description", widget: "string", required: false}
+          - label: "Date" 
+            name: "date"
+            widget: "object"
+            summary: "{{fields.year}} {{fields.yearNotation}}"
+            fields:
+              - {label: "Year", name: "year", widget: "number"}
+              - {label: "Month", name: "month", widget: "number", required: false}
+              - {label: "Day", name: "day", widget: "number", required: false}
+              - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
 
 
   - label: "Events"
@@ -314,30 +338,59 @@ collections:
         widget: "object"
         required: false
         fields:
-          - {label: "Time", name: "time", widget: "string", required: false}
+          - label: "Start Date" 
+            name: "startDate"
+            widget: "object"
+            summary: "{{fields.year}} {{fields.yearNotation}}"
+            fields:
+              - {label: "Year", name: "year", widget: "number"}
+              - {label: "Month", name: "month", widget: "number", required: false}
+              - {label: "Day", name: "day", widget: "number", required: false}
+              - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
+          - label: "End Date" 
+            name: "endDate"
+            widget: "object"
+            summary: "{{fields.year}} {{fields.yearNotation}}"
+            required: false
+            fields:
+              - {label: "Year", name: "year", widget: "number"}
+              - {label: "Month", name: "month", widget: "number", required: false}
+              - {label: "Day", name: "day", widget: "number", required: false}
+              - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
           - {label: "Location", name: "location", widget: "string", required: false}
           - label: "Notable Participants"
             label_singular: "Participant"
             name: "notableParticipants"
             widget: "list"
             summary: "{{fields.name}}"
-            field: {label: "Name", name: "name", widget: "string", required: false}
+            required: false
+            field: {label: "Name", name: "name", widget: "string"}
           - label: "Notable Groups"
             label_singular: "Group"
             name: "notableGroups"
             widget: "list"
             summary: "{{fields.name}}"
-            field: {label: "Name", name: "name", widget: "string", required: false}
+            required: false
+            field: {label: "Name", name: "name", widget: "string"}
 
-      - label: "Notable Milestones"
-        label_singular: "Milestone"
+      - label: "Contributing Events"
+        label_singular: "Event"
         name: "events"
         widget: "list"
-        summary: "{{fields.date} - {{fields.title}}"
+        required: false
+        summary: "{{fields.title}}"
         fields:
-          - {label: "Year", name: "year", widget: "number", required: false}
-          - {label: "Title", name: "title", widget: "string", required: false}
+          - {label: "Title", name: "title", widget: "string"}
           - {label: "Description", name: "description", widget: "string", required: false}
+          - label: "Date" 
+            name: "date"
+            widget: "object"
+            summary: "{{fields.year}} {{fields.yearNotation}}"
+            fields:
+              - {label: "Year", name: "year", widget: "number"}
+              - {label: "Month", name: "month", widget: "number", required: false}
+              - {label: "Day", name: "day", widget: "number", required: false}
+              - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
 
 
   - label: "Things"
@@ -376,8 +429,17 @@ collections:
         label_singular: "Event"
         name: "events"
         widget: "list"
-        summary: "{{fields.date} - {{fields.title}}"
+        required: false
+        summary: "{{fields.title}}"
         fields:
-          - {label: "Year", name: "year", widget: "number", required: false}
-          - {label: "Title", name: "title", widget: "string", required: false}
+          - {label: "Title", name: "title", widget: "string"}
           - {label: "Description", name: "description", widget: "string", required: false}
+          - label: "Date" 
+            name: "date"
+            widget: "object"
+            summary: "{{fields.year}} {{fields.yearNotation}}"
+            fields:
+              - {label: "Year", name: "year", widget: "number"}
+              - {label: "Month", name: "month", widget: "number", required: false}
+              - {label: "Day", name: "day", widget: "number", required: false}
+              - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
