@@ -66,8 +66,8 @@ collections:
             name: "aliases"
             widget: "list"
             summary: "{{fields.alias}}"
-            field: {label: "Alias", name: "alias", widget: "string", required: false}
-          - {label: "Birthplace", name: "birthplace", widget: "string", required: false}
+            field: {label: "Alias", name: "alias", widget: "string"}
+          - {label: "Birthplace", name: "birthplace", widget: "string"}
           - {label: "Primary Residence", name: "residence", widget: "string", required: false}
           - {label: "Species", name: "species", widget: "string", required: false}
           - {label: "Gender Identity", name: "gender", widget: "string", required: false}
@@ -76,7 +76,7 @@ collections:
             name: "professions"
             widget: "list"
             summary: "{{fields.profession}}"
-            field: {label: "Profession", name: "profession", widget: "string", required: false}
+            field: {label: "Profession", name: "profession", widget: "string"}
 
       - label: "Connections"
         name: "connections"
@@ -89,8 +89,8 @@ collections:
             widget: "list"
             summary: "{{fields.relationship}} - {{fields.name}}"
             fields:
-              - {label: "Relationship", name: "relationship", widget: "string", required: false}
-              - {label: "Name", name: "name", widget: "string", required: false}
+              - {label: "Relationship", name: "relationship", widget: "string"}
+              - {label: "Name", name: "name", widget: "string"}
           - label: "Romantic Partners"
             label_singular: "Partner"
             name: "romances"
@@ -102,12 +102,13 @@ collections:
             name: "affilitations"
             widget: "list"
             summary: "{{fields.group}}"
-            field: {label: "Group", name: "group", widget: "string", required: false}
+            field: {label: "Group", name: "group", widget: "string"}
 
       - label: "Notable Events"
         label_singular: "Event"
         name: "events"
         widget: "list"
+        required: false
         summary: "{{fields.title}}"
         fields:
           - {label: "Title", name: "title", widget: "string"}
