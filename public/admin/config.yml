@@ -109,14 +109,14 @@ collections:
         name: "events"
         widget: "list"
         required: false
-        summary: "{{fields.title}}"
+        summary: "{{fields.date.year}} - {{fields.title}}"
         fields:
           - {label: "Title", name: "title", widget: "string"}
           - {label: "Description", name: "description", widget: "string", required: false}
           - label: "Date" 
             name: "date"
             widget: "object"
-            summary: "{{fields.year}} {{fields.yearNotation}}"
+            summary: "{{fields.year}}"
             fields:
               - {label: "Year", name: "year", widget: "number"}
               - {label: "Month", name: "month", widget: "number", required: false}
@@ -211,7 +211,7 @@ collections:
           - label: "Date" 
             name: "date"
             widget: "object"
-            summary: "{{fields.year}} {{fields.yearNotation}}"
+            summary: "{{fields.year}}"
             fields:
               - {label: "Year", name: "year", widget: "number"}
               - {label: "Month", name: "month", widget: "number", required: false}
@@ -293,7 +293,7 @@ collections:
           - label: "Date" 
             name: "date"
             widget: "object"
-            summary: "{{fields.year}} {{fields.yearNotation}}"
+            summary: "{{fields.year}}"
             fields:
               - {label: "Year", name: "year", widget: "number"}
               - {label: "Month", name: "month", widget: "number", required: false}
@@ -341,7 +341,7 @@ collections:
           - label: "Start Date" 
             name: "startDate"
             widget: "object"
-            summary: "{{fields.year}} {{fields.yearNotation}}"
+            summary: "{{fields.year}}"
             fields:
               - {label: "Year", name: "year", widget: "number"}
               - {label: "Month", name: "month", widget: "number", required: false}
@@ -350,7 +350,7 @@ collections:
           - label: "End Date" 
             name: "endDate"
             widget: "object"
-            summary: "{{fields.year}} {{fields.yearNotation}}"
+            summary: "{{fields.year}}"
             required: false
             fields:
               - {label: "Year", name: "year", widget: "number"}
@@ -385,7 +385,7 @@ collections:
           - label: "Date" 
             name: "date"
             widget: "object"
-            summary: "{{fields.year}} {{fields.yearNotation}}"
+            summary: "{{fields.year}}"
             fields:
               - {label: "Year", name: "year", widget: "number"}
               - {label: "Month", name: "month", widget: "number", required: false}
@@ -437,7 +437,7 @@ collections:
           - label: "Date" 
             name: "date"
             widget: "object"
-            summary: "{{fields.year}} {{fields.yearNotation}}"
+            summary: "{{fields.year}}"
             fields:
               - {label: "Year", name: "year", widget: "number"}
               - {label: "Month", name: "month", widget: "number", required: false}
