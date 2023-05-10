@@ -67,7 +67,6 @@ collections:
             widget: "list"
             summary: "{{fields.alias}}"
             field: {label: "Alias", name: "alias", widget: "string", required: false}
-          # - {label: "Age", name: "age", widget: "string", required: false}
           - {label: "Birthplace", name: "birthplace", widget: "string", required: false}
           - {label: "Primary Residence", name: "residence", widget: "string", required: false}
           - {label: "Species", name: "species", widget: "string", required: false}
@@ -97,7 +96,7 @@ collections:
             name: "romances"
             widget: "list"
             summary: "{{fields.partner}}"
-            field: {label: "Partner", name: "partner", widget: "string", required: false}
+            field: {label: "Partner", name: "partner", widget: "string"}
           - label: "Affiliations"
             label_singular: "Affiliation"
             name: "affilitations"
@@ -109,14 +108,14 @@ collections:
         label_singular: "Event"
         name: "events"
         widget: "list"
-        summary: "{{fields.date}} - {{fields.title}}"
+        summary: "{{fields.title}}"
         fields:
-          - {label: "Title", name: "title", widget: "string", required: false}
+          - {label: "Title", name: "title", widget: "string"}
           - {label: "Description", name: "description", widget: "string", required: false}
           - label: "Date" 
             name: "date"
             widget: "object"
-            summary: "{{fields.year}}/{{fields.month}}/{{fields.day}} {{fields.yearNotation}}"
+            summary: "{{fields.year}} {{fields.yearNotation}}"
             fields:
               - {label: "Year", name: "year", widget: "number"}
               - {label: "Month", name: "month", widget: "number", required: false}
