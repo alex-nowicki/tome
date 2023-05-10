@@ -13,4 +13,7 @@ details:
     - Snow Niska
   notableGroups:
     - Interstellar Rescue Agency
+  startDate:
+    year: 133
+    yearNotation: FC
 ---
