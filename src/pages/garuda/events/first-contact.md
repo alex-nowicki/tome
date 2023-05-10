@@ -10,5 +10,8 @@ searchTerms:
 details:
   time: 0 FC
   location: Alpha Centauri System
+  startDate:
+    year: 0
+    yearNotation: FC
 ---
 H﻿uman explorers encounter the Gatekeeper in the Alpha Centauri system.
