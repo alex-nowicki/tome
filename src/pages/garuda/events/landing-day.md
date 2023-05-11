@@ -7,7 +7,6 @@ date: 2023-05-04T17:29:56.963Z
 description: When the corporate colony ships first landed on Revati.
 details:
   location: Revati, Prosper System
-  time: 20 FC
   startDate:
     year: 20
     yearNotation: FC

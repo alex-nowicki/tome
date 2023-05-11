@@ -1,0 +1,57 @@
+---
+
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Timeline from "../../components/Timeline.astro";
+
+import { processEventsForTimeline } from "../../scripts/helpers.js";
+
+export async function getStaticPaths () {
+    // Get projects
+    const projectPages = await Astro.glob('../../pages/*.md');
+
+    // Generate array of projects
+    let projects = [];
+    for (const page of projectPages){
+        projects.push(page.frontmatter.title.toLowerCase());
+    }
+
+    // Get posts
+    const posts = await Astro.glob('../../pages/*/*/*.md');
+
+    return projects.map((project) => {
+        
+        // Filter project specific posts
+        const projectPosts = posts.filter(post => {
+            return post.url.includes(`${project}`);
+        })
+
+        let timelineEvents = [];
+
+        projectPosts.map((post) => {
+            timelineEvents.push(processEventsForTimeline(post.frontmatter));
+        });
+
+        timelineEvents = timelineEvents.flat();
+
+        return {
+            params: { project: project },
+            props: { events: timelineEvents }
+        }
+    });
+}
+
+const { project } = Astro.params;
+const { events } = Astro.props;
+
+---
+<BaseLayout pageTitle={'Garuda Timeline'} activeProject={'Garuda'}>
+    {
+        events && (
+            <section class="timeline">
+                <h2>Timeline</h2>
+                <Timeline events={events} />
+            </section>
+        )
+    }
+    <p>This is {project}'s timeline page</p>
+</BaseLayout>

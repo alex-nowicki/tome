@@ -26,10 +26,10 @@ export const dateFormatter = new Intl.DateTimeFormat('en-US', {
 
 /**
 * Get the post's corresponding category icon and singular label
-* @param  {Object} post the post
+* @param  {String} category the post category
 * @return {Object} updated post with new values
 */
-export const getCatIconAndLabel = function (post) {
+export const getCatIconAndLabel = function (category) {
     let svgs = {
         people: `<svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <circle vector-effect="non-scaling-stroke" cx="12" cy="5.5" r="4.5"/>
@@ -61,19 +61,19 @@ export const getCatIconAndLabel = function (post) {
     }
     let icon;
     let label;
-    if (post.category === 'People') {
+    if (category === 'People') {
         icon = svgs.people;
         label = 'Person';
-    } else if (post.category === 'Groups') {
+    } else if (category === 'Groups') {
         icon = svgs.groups;
         label = 'Group';
-    } else if (post.category === 'Places') {
+    } else if (category === 'Places') {
         icon = svgs.places;
         label = 'Place';
-    } else if (post.category === 'Events') {
+    } else if (category === 'Events') {
         icon = svgs.events;
         label = 'Event';
-    } else if (post.category === 'Things') {
+    } else if (category === 'Things') {
         icon = svgs.things;
         label = 'Thing';
     } else {
@@ -85,5 +85,67 @@ export const getCatIconAndLabel = function (post) {
         icon: icon,
         label: label
     }
+
+}
+
+export const processEventsForTimeline = function(frontmatter) {
+
+    let events = frontmatter.events;
+        
+    // Check if the post has an events array, if not create one
+    if (!events) { events = [] }
+
+    if (frontmatter.category === 'Events'){
+
+        let eventStart = {};
+
+        if (frontmatter.description !== undefined) { eventStart.description = frontmatter.description };
+
+        // If both start date and end date are desribed
+        if (frontmatter.details.startDate && frontmatter.details.endDate){
+
+            eventStart.title = `${frontmatter.title} (Start)`;
+            eventStart.date = frontmatter.details.startDate;
+
+        // Else if only the start date is described
+        } else if (frontmatter.details.startDate) {
+
+            eventStart.title = frontmatter.title;
+            eventStart.date = frontmatter.details.startDate;
+
+        // Otherwise set the date to unknown
+        } else {
+
+            eventStart.title = frontmatter.title;
+            eventStart.date = { full: 'Unknown' };
+
+        }
+
+        events.push(eventStart);
+        // console.log(events);
+
+        // If an end date is described
+        if (frontmatter.details.endDate){
+            events.push({
+                title: `${frontmatter.title} (End)`,
+                description: frontmatter.description !== undefined ? frontmatter.description : null,
+                date: frontmatter.details.endDate
+            })
+        }
+
+    }
+
+    events.map((event) => {
+
+        event.postCategory = frontmatter.category;
+        event.postTitle = frontmatter.title;
+
+    })
+
+    
+
+    // console.log(events);
+
+    return events;
 
 }

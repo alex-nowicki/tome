@@ -23,19 +23,6 @@ const projectPosts = posts.filter(post => {
     return 0;
 });
 
-// Generate list of projects
-const projectPages = await Astro.glob('../pages/*.md');
-const projects = [];
-for (const page of projectPages){
-    let project = {
-        url: page.url,
-        title: page.url.split('/')[1]
-    }
-    if (project.title !== activeProject){
-        projects.push(project);
-    }
-}
-
 // TODO - Only show the first 10 list items and add a show more button
 
 ---
@@ -77,7 +64,7 @@ for (const page of projectPages){
                     {projectPosts.map((post) => {
                         return  <li data-title={post.frontmatter.title} data-date={post.frontmatter.date} data-category={post.frontmatter.category}>
                                     <a href={post.url}>
-                                        <span class="icon-group" set:html={getCatIconAndLabel(post.frontmatter).icon}></span>
+                                        <span class="icon-group" set:html={getCatIconAndLabel(post.frontmatter.category).icon}></span>
                                         <span class="title">{post.frontmatter.title}</span>
                                         <span class="date">{dateFormatter.format(Date.parse(post.frontmatter.date))}</span>    
                                     </a>

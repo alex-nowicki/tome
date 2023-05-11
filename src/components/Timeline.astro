@@ -2,20 +2,26 @@
 
 import "../styles/timeline.css"
 
+import { getCatIconAndLabel } from "../scripts/helpers.js";
+
 let { events } = Astro.props;
 
 // Generate a full date for each event
 events.map((event) => {
 
-    let padWithLeadingZeros = function(num, totalLength) {
-        return String(num).padStart(totalLength, '0');
+    if (!event.date.full){
+
+        let padWithLeadingZeros = function(num, totalLength) {
+            return String(num).padStart(totalLength, '0');
+        }
+
+        event.date.full = '';
+        event.date.full = event.date.year !== undefined ? event.date.full += `${event.date.year}` : event.date.full;
+        event.date.full = event.date.year !== undefined && event.date.month ? event.date.full += `-${padWithLeadingZeros(event.date.month, 2)}` : event.date.full;
+        event.date.full = event.date.year !== undefined && event.date.month && event.date.day ? event.date.full += `-${padWithLeadingZeros(event.date.day, 2)}` : event.date.full;
+        event.date.full = event.date.year !== undefined && event.date.yearNotation ? event.date.full += ` ${event.date.yearNotation}` : event.date.full;
     }
 
-    event.date.full = '';
-    event.date.full = event.date.year ? event.date.full += `${event.date.year}` : event.date.full;
-    event.date.full = event.date.year && event.date.month ? event.date.full += `-${padWithLeadingZeros(event.date.month, 2)}` : event.date.full;
-    event.date.full = event.date.year && event.date.month && event.date.day ? event.date.full += `-${padWithLeadingZeros(event.date.day, 2)}` : event.date.full;
-    event.date.full = event.date.year && event.date.yearNotation ? event.date.full += ` ${event.date.yearNotation}` : event.date.full;
 });
 
 // Sort the events array by date
@@ -23,18 +29,22 @@ events.sort((a, b) => a.date.day - b.date.day);
 events.sort((a, b) => a.date.month - b.date.month);
 events.sort((a, b) => a.date.year - b.date.year);
 
-console.log(events);
-
 ---
 
 <div class="viewport">
     <ul>
         {events.map((event) => {
+
+            // Get the category icon and singular label
+            let icon = getCatIconAndLabel(event.postCategory).icon;
+            let label = getCatIconAndLabel(event.postCategory).label;
+
             if (event.description){
                 return  (
                     <li>
-                        <p class="date">{event.date.full}</p>   
+                        <p class="date">{event.date.full}</p> 
                         <div>
+                            <p class="category"><Fragment set:html={icon} />{event.postCategory === 'Events' ? label : event.postTitle}</p>
                             <p class="title">{event.title}</p>
                             <p class="description">{event.description}</p>                            
                         </div>
@@ -45,6 +55,7 @@ console.log(events);
                     <li>
                         <p class="date">{event.date.full}</p>   
                         <div>
+                            <p class="category"><Fragment set:html={icon} />{event.postCategory === 'Events' ? label : event.postTitle}</p>
                             <p class="title">{event.title}</p>                        
                         </div>
                     </li>

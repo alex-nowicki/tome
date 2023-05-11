@@ -18,8 +18,8 @@ const { postType } = Astro.props;
         if (index < numToShow){
 
             // Get the category icon and singular label
-            let icon = getCatIconAndLabel(post.frontmatter).icon;
-            let label = getCatIconAndLabel(post.frontmatter).label;
+            let icon = getCatIconAndLabel(post.frontmatter.category).icon;
+            let label = getCatIconAndLabel(post.frontmatter.category).label;
 
             if (postType === 'article'){
                 return  <li class="card">

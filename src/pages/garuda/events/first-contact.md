@@ -8,7 +8,6 @@ description: Human space explorer encounter the Gatekeeper in Alpha Centauri.
 searchTerms:
   - First Contact
 details:
-  time: 0 FC
   location: Alpha Centauri System
   startDate:
     year: 0

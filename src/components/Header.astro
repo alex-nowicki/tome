@@ -5,8 +5,6 @@ import IconProjects from "./IconProjects.astro";
 
 const { activeProject } = Astro.props;
 
-console.log(activeProject);
-
 // Generate list of projects
 const projectPages = await Astro.glob('../pages/*.md');
 const projects = [];

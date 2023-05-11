@@ -10,6 +10,7 @@ import { toTitleCase } from '../scripts/helpers.js';
 import { detectType } from '../scripts/helpers.js';
 import { dateFormatter } from '../scripts/helpers.js';
 import { getCatIconAndLabel } from '../scripts/helpers.js';
+import { processEventsForTimeline } from '../scripts/helpers.js';
 
 import "../styles/post.css";
 
@@ -166,7 +167,12 @@ if (postDetails !== ''){
 }
 
 
-// TODO - Fix broken breadcrumb links in published site
+
+let timelineEvents = processEventsForTimeline(frontmatter);
+
+console.log('Timeline Events: Post', timelineEvents);
+
+
 
 ---
 
@@ -190,7 +196,7 @@ if (postDetails !== ''){
                 </div>
                 <h1>{frontmatter.title}</h1>
                 <div class="meta">
-                    <p class="category"><Fragment set:html={getCatIconAndLabel(frontmatter).icon} />{getCatIconAndLabel(frontmatter).label}</p>
+                    <p class="category"><Fragment set:html={getCatIconAndLabel(frontmatter.category).icon} />{getCatIconAndLabel(frontmatter.category).label}</p>
                     <p class="date">Published {dateFormatter.format(Date.parse(frontmatter.date))}</p>
                 </div>
                 <button class="bookmark-toggle" data-title={frontmatter.title} data-url={frontmatter.url} data-project={frontmatter.project}><IconBookmarks /></button>
@@ -202,10 +208,10 @@ if (postDetails !== ''){
                 )
             }
             {
-                frontmatter.events && (
+                timelineEvents && (
                     <section class="timeline">
                         <h2>Timeline</h2>
-                        <Timeline events={frontmatter.events} />
+                        <Timeline events={timelineEvents} />
                     </section>
                 )
             }

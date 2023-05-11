@@ -20,8 +20,8 @@ collections:
 
     fields:
       - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/ProjectLayout.astro"}
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Description", name: "description", widget: "markdown"}
+      - {label: "Title", name: "title", widget: "string", pattern: [".{1,40}", "Must be no longer than 40 characters"],}
+      - {label: "Description", name: "description", widget: "markdown", pattern: [".{1,120}", "Must be no longer than 120 characters"]}
       - {label: "Year Notation", name: "yearNotation", widget: "string"}
 
   - label: "People"
@@ -119,8 +119,8 @@ collections:
             summary: "{{fields.year}}"
             fields:
               - {label: "Year", name: "year", widget: "number"}
-              - {label: "Month", name: "month", widget: "number", required: false}
-              - {label: "Day", name: "day", widget: "number", required: false}
+              - {label: "Month - Numerical", name: "month", widget: "number", required: false}
+              - {label: "Day - Numerical", name: "day", widget: "number", required: false}
               - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
 
 
@@ -214,8 +214,8 @@ collections:
             summary: "{{fields.year}}"
             fields:
               - {label: "Year", name: "year", widget: "number"}
-              - {label: "Month", name: "month", widget: "number", required: false}
-              - {label: "Day", name: "day", widget: "number", required: false}
+              - {label: "Month - Numerical", name: "month", widget: "number", required: false}
+              - {label: "Day - Numerical", name: "day", widget: "number", required: false}
               - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
 
   - label: "Places"
@@ -296,8 +296,8 @@ collections:
             summary: "{{fields.year}}"
             fields:
               - {label: "Year", name: "year", widget: "number"}
-              - {label: "Month", name: "month", widget: "number", required: false}
-              - {label: "Day", name: "day", widget: "number", required: false}
+              - {label: "Month - Numerical", name: "month", widget: "number", required: false}
+              - {label: "Day - Numerical", name: "day", widget: "number", required: false}
               - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
 
 
@@ -343,9 +343,9 @@ collections:
             widget: "object"
             summary: "{{fields.year}}"
             fields:
-              - {label: "Year", name: "year", widget: "number"}
-              - {label: "Month", name: "month", widget: "number", required: false}
-              - {label: "Day", name: "day", widget: "number", required: false}
+              - {label: "Year", name: "year", widget: "number", required: false}
+              - {label: "Month - Numerical", name: "month", widget: "number", required: false}
+              - {label: "Day - Numerical", name: "day", widget: "number", required: false}
               - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
           - label: "End Date" 
             name: "endDate"
@@ -354,8 +354,8 @@ collections:
             required: false
             fields:
               - {label: "Year", name: "year", widget: "number", required: false}
-              - {label: "Month", name: "month", widget: "number", required: false}
-              - {label: "Day", name: "day", widget: "number", required: false}
+              - {label: "Month - Numerical", name: "month", widget: "number", required: false}
+              - {label: "Day - Numerical", name: "day", widget: "number", required: false}
               - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
           - {label: "Location", name: "location", widget: "string", required: false}
           - label: "Notable Participants"
@@ -388,8 +388,8 @@ collections:
             summary: "{{fields.year}}"
             fields:
               - {label: "Year", name: "year", widget: "number"}
-              - {label: "Month", name: "month", widget: "number", required: false}
-              - {label: "Day", name: "day", widget: "number", required: false}
+              - {label: "Month - Numerical", name: "month", widget: "number", required: false}
+              - {label: "Day - Numerical", name: "day", widget: "number", required: false}
               - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
 
 
@@ -440,6 +440,6 @@ collections:
             summary: "{{fields.year}}"
             fields:
               - {label: "Year", name: "year", widget: "number"}
-              - {label: "Month", name: "month", widget: "number", required: false}
-              - {label: "Day", name: "day", widget: "number", required: false}
+              - {label: "Month - Numerical", name: "month", widget: "number", required: false}
+              - {label: "Day - Numerical", name: "day", widget: "number", required: false}
               - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
