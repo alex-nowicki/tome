@@ -20,7 +20,7 @@ let activeCategories = [...new Set(events.map(a => a.postCategory))];
                 <form class="filter-group">
                     {activeCategories.map((category) => {
                         return (
-                            <input type="checkbox" id={`filter${category}`} name="filter" value={category.toLowerCase()} checked/>
+                            <input type="checkbox" id={`filter${category}`} name="filter" value={category.toString().toLowerCase()} checked/>
                             <label for={`filter${category}`}>{category}</label>
                         )
                     })}
