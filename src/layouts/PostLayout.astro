@@ -204,7 +204,7 @@ let timelineEvents = processEventsForTimeline(frontmatter);
                 )
             }
             {
-                timelineEvents.length > 0 && (
+                timelineEvents !== undefined && timelineEvents.length > 0 && (
                     <section class="timeline">
                         <h2>Timeline</h2>
                         <Timeline events={timelineEvents} />
@@ -212,7 +212,7 @@ let timelineEvents = processEventsForTimeline(frontmatter);
                 )
             }
             {
-                relevanceArr.length > 0 && (
+                relevanceArr !== undefined && relevanceArr.length > 0 && (
                     <section class="related">
                         <h2>Related Articles</h2>
                         <CardGroup posts={relevanceArr} numToShow={3} postType={'article'} />
