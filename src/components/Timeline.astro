@@ -29,53 +29,31 @@ events.sort((a, b) => a.date.day - b.date.day);
 events.sort((a, b) => a.date.month - b.date.month);
 events.sort((a, b) => a.date.year - b.date.year);
 
+
 ---
 
 <div class="viewport">
-    <ul>
+    <ul class="list">
         {events.map((event) => {
 
             // Get the category icon and singular label
             let icon = getCatIconAndLabel(event.postCategory).icon;
             let label = getCatIconAndLabel(event.postCategory).label;
 
-            if (event.description){
                 return  (
-                    <li>
+                    <li data-category={event.postCategory}>
                         <p class="date">{event.date.full}</p> 
                         <div>
                             <p class="category"><Fragment set:html={icon} />{event.postCategory === 'Events' ? label : event.postTitle}</p>
                             <p class="title">{event.title}</p>
-                            <p class="description">{event.description}</p>                            
+                            { event.description && (
+                                <p class="description">{event.description}</p>   
+                            )}                            
                         </div>
                     </li>
                 )
-            } else {
-                return  (
-                    <li>
-                        <p class="date">{event.date.full}</p>   
-                        <div>
-                            <p class="category"><Fragment set:html={icon} />{event.postCategory === 'Events' ? label : event.postTitle}</p>
-                            <p class="title">{event.title}</p>                        
-                        </div>
-                    </li>
-                )
-            }
+
         })}
-        <li>
-            <div>
-                <p class="title">Title of the Event</p>
-                <p class="description">This is exactly 120 characters: Sed adipiscing diam donec adipiscing tristique risus nec feugiat in fermentum posuereou.</p>
-            </div>
-            <p class="date">200 FC</p>
-        </li>
-        <li>
-            <div>
-                <p class="title">Title of the Event</p>
-                <p class="description">This is exactly 120 characters: Sed adipiscing diam donec adipiscing tristique risus nec feugiat in fermentum posuereou.</p>
-            </div>
-            <p class="date">300 FC</p>
-        </li>
         
     </ul>
 </div>

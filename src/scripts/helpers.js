@@ -117,7 +117,10 @@ export const processEventsForTimeline = function(frontmatter) {
         } else {
 
             eventStart.title = frontmatter.title;
-            eventStart.date = { full: 'Unknown' };
+            eventStart.date = { 
+                full: 'Unknown',
+                year: Number.NEGATIVE_INFINITY
+            };
 
         }
 

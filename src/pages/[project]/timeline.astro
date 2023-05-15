@@ -1,18 +1,18 @@
 ---
 
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import Timeline from "../../components/Timeline.astro";
+import TimelineLayout from "../../layouts/TimelineLayout.astro";
 
 import { processEventsForTimeline } from "../../scripts/helpers.js";
 
 export async function getStaticPaths () {
+
     // Get projects
     const projectPages = await Astro.glob('../../pages/*.md');
 
-    // Generate array of projects
+    // Generate array of project titles
     let projects = [];
     for (const page of projectPages){
-        projects.push(page.frontmatter.title.toLowerCase());
+        projects.push(page.frontmatter.title);
     }
 
     // Get posts
@@ -21,8 +21,8 @@ export async function getStaticPaths () {
     return projects.map((project) => {
         
         // Filter project specific posts
-        const projectPosts = posts.filter(post => {
-            return post.url.includes(`${project}`);
+        const projectPosts = posts.filter((post) => {
+            return post.frontmatter.project === project;
         })
 
         let timelineEvents = [];
@@ -34,24 +34,18 @@ export async function getStaticPaths () {
         timelineEvents = timelineEvents.flat();
 
         return {
-            params: { project: project },
-            props: { events: timelineEvents }
+            params: { project: project.toLowerCase() },
+            props: {
+                activeProject: project, 
+                events: timelineEvents 
+            }
         }
     });
 }
 
 const { project } = Astro.params;
 const { events } = Astro.props;
+const { activeProject } = Astro.props;
 
 ---
-<BaseLayout pageTitle={'Garuda Timeline'} activeProject={'Garuda'}>
-    {
-        events && (
-            <section class="timeline">
-                <h2>Timeline</h2>
-                <Timeline events={events} />
-            </section>
-        )
-    }
-    <p>This is {project}'s timeline page</p>
-</BaseLayout>
+<TimelineLayout activeProject={activeProject} events={events}></TimelineLayout>

@@ -87,7 +87,7 @@ let detectMatches = function(string, terms, relevance){
         }
         // Wrap matches in links
         editedString = editedString.replaceAll(regex, 
-        `<span class="link-group"><a class="link-group" href="${obj.url}">$&</a><span class="page-preview">${obj.description}</span></span>`
+        `<span class="link-group"><a class="link-group" href="${obj.url}">$&</a>${obj.description ? `<span class="page-preview">${obj.description}</span>` : ''}</span>`
         );
     }
 
@@ -166,11 +166,7 @@ if (postDetails !== ''){
     relevanceArr = editedPostDetails.relevance.sort((a, b) => b.score - a.score);
 }
 
-
-
 let timelineEvents = processEventsForTimeline(frontmatter);
-
-console.log('Timeline Events: Post', timelineEvents);
 
 
 
@@ -208,7 +204,7 @@ console.log('Timeline Events: Post', timelineEvents);
                 )
             }
             {
-                timelineEvents && (
+                timelineEvents.length > 0 && (
                     <section class="timeline">
                         <h2>Timeline</h2>
                         <Timeline events={timelineEvents} />
@@ -216,7 +212,7 @@ console.log('Timeline Events: Post', timelineEvents);
                 )
             }
             {
-                relevanceArr && (
+                relevanceArr.length > 0 && (
                     <section class="related">
                         <h2>Related Articles</h2>
                         <CardGroup posts={relevanceArr} numToShow={3} postType={'article'} />

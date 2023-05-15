@@ -1,0 +1,41 @@
+---
+
+import BaseLayout from "./BaseLayout.astro";
+import Timeline from "../components/Timeline.astro";
+
+const { activeProject } = Astro.props;
+const { events } = Astro.props;
+
+let activeCategories = [...new Set(events.map(a => a.postCategory))];
+
+---
+
+<BaseLayout pageTitle={activeProject} activeProject={activeProject}>
+    <main>
+        <h1>{activeProject} Timeline</h1>
+        <section class="timeline">
+
+            {events.length > 0 ? (
+
+                <form class="filter-group">
+                    {activeCategories.map((category) => {
+                        return (
+                            <input type="checkbox" id={`filter${category}`} name="filter" value={category.toLowerCase()} checked/>
+                            <label for={`filter${category}`}>{category}</label>
+                        )
+                    })}
+                </form>
+
+                <Timeline events={events} />
+
+            ) : (
+
+                <p>There are no events in this project.</p>
+
+            )} 
+
+        </section>
+    </main>
+</BaseLayout>
+
+<script src="/scripts/filter.js" is:inline></script>

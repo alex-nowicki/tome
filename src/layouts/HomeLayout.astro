@@ -2,8 +2,6 @@
 import BaseLayout from "./BaseLayout.astro";
 import CardGroup from "../components/CardGroup.astro" 
 
-import "../styles/home.css";
-
 const { activeProject } = Astro.props;
 
 const projects = await Astro.glob('../pages/*.md');
@@ -38,25 +36,31 @@ projects.map((project) => {
 
 <BaseLayout pageTitle={'Tome'} activeProject={activeProject}>
     <main class="home">
-		<!-- <h1>My Projects</h1> -->
+		<h1>Recent Updates</h1>
         { 
             projects.length > 0 ? (
-                <section class="recent-projects">
+                <section>
                     <h2>Recent Projects</h2>
+                    <a href="/projects">All Projects &rarr;</a>
                     <CardGroup posts={projects} numToShow={3} postType={'project'} />
-                    <a href="/projects">All Projects</a>
                 </section>
             ) : (
-                <section class="recent-projects">
+                <section>
+                    <h2>Recent Projects</h2>
                     <p>There are no projects in this Tome.</p>
                 </section>
             )
         }
         {
-            posts.length > 0 && (
-                <section class="recent-articles">
+            posts.length > 0 ? (
+                <section>
                     <h2>Recent Articles</h2>
                     <CardGroup posts={posts} numToShow={3} postType={'article'}/>
+                </section>
+            ) : (
+                <section>
+                    <h2>Recent Articles</h2>
+                    <p>There are no articles in this Tome.</p>
                 </section>
             )
         }

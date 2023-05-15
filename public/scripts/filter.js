@@ -38,29 +38,46 @@ let filterList = function(targetFilter, targetList) {
 
     for (const item of listItems) {
 
-        // Store the item category and bookmark state
+        // Store the item category
         let category = item.dataset.category.toLowerCase();
 
-        // If filter is bookmark, check bookmark state and show or hide accordingly
-        if (targetFilter === 'bookmarks'){
-            if (item.hasAttribute('data-bookmark')){
+        if (targetFilter.type === 'radio'){
+
+            // If filter is bookmark, check bookmark state and show or hide accordingly
+            if (targetFilter.value === 'bookmarks'){
+                if (item.hasAttribute('data-bookmark')){
+                    item.removeAttribute('hidden');
+                } else {
+                    item.setAttribute('hidden', '');
+                }
+
+            // If filter is all, show all items
+            } else if (targetFilter.value === 'all'){
                 item.removeAttribute('hidden');
+
+            // If filter is category, check item category and show or hide accordingly
             } else {
+                if (category !== targetFilter.value){
+                    item.setAttribute('hidden', '');
+                } else {
+                    item.removeAttribute('hidden');
+                } 
+            }
+
+        } else if (targetFilter.type === 'checkbox'){
+
+            // if filter is checked and category matches the item, show the item
+            if (targetFilter.checked && category === targetFilter.value){
+                item.removeAttribute('hidden');
+
+            // Otherwise, hide the item
+            } else if (!targetFilter.checked && category === targetFilter.value) {
                 item.setAttribute('hidden', '');
             }
 
-        // If filter is all, show all items
-        } else if (targetFilter === 'all'){
-            item.removeAttribute('hidden');
-
-        // If filter is category, check item category and show or hide accordingly
-        } else {
-            if (category !== targetFilter){
-                item.setAttribute('hidden', '');
-            } else {
-                item.removeAttribute('hidden');
-            } 
         }
+
+
         
     }
 
@@ -100,16 +117,21 @@ let sortList = function(targetSort, targetList) {
 // Inits & Event Listeners
 //
 
-let filters = document.querySelector('#filters');
-let sort = document.querySelector('#sort');
-let list = document.querySelector('#list');
+let filterGroups = document.querySelectorAll('.filter-group');
+let sortGroups = document.querySelectorAll('.sort-group');
 
-filters.addEventListener('input', (event) => {
-    filterList(event.target.value, list);
-});
-sort.addEventListener('input', (event) => {
-    sortList(event.target.value, list);
-});
+for (const group of filterGroups){
+    group.addEventListener('input', (event) => {
+        filterList(event.target, group.closest('section').querySelector('.list'));
+    });
+}
+
+for (const group of sortGroups){
+    group.addEventListener('input', (event) => {
+        sortList(event.target.value, group.closest('section').querySelector('.list'));
+    });
+}
+
 
 // Check url for query string parameters
 let params = getParams();

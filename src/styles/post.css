@@ -22,6 +22,14 @@ article .content h3 {
     font-weight: 600;
 }
 
+article .content :is(p, li) {
+    font-family: 'Source Serif Pro', serif;
+    font-weight: 500;
+    font-size: 1.125rem;
+    line-height: 1.375;
+}
+
+
 
 
 
@@ -55,14 +63,17 @@ article .link-group .page-preview {
     background-color: var(--gray-80);
     padding: 0.625rem;
     border-radius: 0.25rem;
-    width: clamp(12ch, 16rem, 32ch);
+    /* width: clamp(12ch, 16rem, 32ch); */
+    width: fit-content;
+    /* max-width: 32ch;
+    min-width: fit-content; */
     box-shadow: var(--boxShadow) var(--gray-100);
     font-family: 'Source Serif Pro';
-    /* font-style: italic; */
     font-size: 0.875rem;
     font-weight: 500;
     color: white;
     display: none;
+    z-index: 100;
     
 }
 
@@ -92,25 +103,29 @@ article .link-group:is(:hover, :focus-visible) .page-preview {
 ------------------------------*/
 
 main.post {
+    --detailsOverlap: 180px;
+
     display: grid;
-    grid-template-columns:  clamp(300px, 360px, 25%) 1fr;
+    grid-template-columns:  calc((100vw - (100vw - 100%) - var(--contentWidth) - 8rem) / 2) auto auto;
     grid-template-rows: 1fr;
     grid-template-areas:
-    "nav article";
-    gap: 2rem;
+    "nav article .";
+    gap: 4rem;
 
     height: auto;
-    padding: 2rem;
+    width: auto;
+    margin: calc(100vw - 100%) 0;
+    padding: 3rem 0;
 }
 
 article {
-    --detailsOverlap: 180px;
+    
     --spacing: 4rem;
 
     grid-area: article;
 
     display: grid;
-    grid-template-columns: 900px var(--detailsOverlap) var(--detailsOverlap);
+    grid-template-columns: calc(var(--contentWidth) - var(--detailsOverlap)) var(--detailsOverlap) var(--detailsOverlap);
     grid-template-rows: auto auto var(--spacing) 1fr;
     /* padding: 4rem; */
 }
@@ -254,12 +269,6 @@ article .content {
     border-left: 1px solid var(--gray-10);
 }
 
-article .content p {
-    font-family: 'Source Serif Pro', serif;
-    font-weight: 500;
-    font-size: 1.125rem;
-    line-height: 1.375;
-}
 
 /* DETAILS */
 

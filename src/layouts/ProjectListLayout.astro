@@ -1,8 +1,6 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
-import CardGroup from "../components/CardGroup.astro" 
-
-// import "../styles/home.css";
+import CardGroup from "../components/CardGroup.astro"
 
 const projects = await Astro.glob('../pages/*.md');
 
@@ -11,11 +9,14 @@ const posts = await Astro.glob('../pages/*/*/*.md');
 posts.sort((a, b) => Date.parse(b.frontmatter.date) - Date.parse(a.frontmatter.date));
 
 projects.map((project) => {
+
     let title = project.frontmatter.title;
+
     // Filter the articles assigned to this project
     let projectPosts = posts.filter(post => {
         return post.frontmatter.project === title;
     })
+
     // Store the number of articles in the project object
     project.frontmatter.numArticles = projectPosts.length; 
 
@@ -28,17 +29,18 @@ projects.map((project) => {
             greatestDate = date;
         }
     }
+
     if (greatestDate > 0){
         project.frontmatter.recentEditDate = greatestDate;
     }    
 })
 ---
 
-<BaseLayout pageTitle={'Tome'} >
+<BaseLayout pageTitle={'My Projects'} >
     <main>
 		<h1>My Projects</h1>
-        <section class="projects">
-            <CardGroup posts={projects} numToShow={6} postType={'project'} />
+        <section>
+            <CardGroup posts={projects} numToShow={9} postType={'project'} />
         </section>
 	</main>
 </BaseLayout>

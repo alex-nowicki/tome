@@ -14,6 +14,7 @@
 
     --orange-80: #f37c50;
     --orange-60: #ff9764;
+    --orange-45: #ffac83;
     --orange-30: #ffc1a2;
     --orange-20: #ffdbc9;
     --orange-15: #ffeae0;
@@ -33,7 +34,8 @@
 
     --teal-100: #155972;
     --teal-80: #447a8e; 
-    --teal-60: #739baa; 
+    --teal-60: #739baa;
+    --teal-45: #96b4c0; 
     --teal-30: #b9cdd5; 
     --teal-15: #dce6ea; 
     --teal-10: #e8eef1; 
@@ -41,6 +43,7 @@
 
     --boxShadow: 0 2px 0;
     --borderRadius: 0.5rem;
+    --contentWidth: 900px;
 
 }
 
@@ -63,7 +66,7 @@ body {
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr auto;
     height: 100vh;
-    width: 100vw;
+    width: 100%;
     background-color: var(--gray-5);
 }
 
@@ -84,6 +87,16 @@ body {
 ** TYPOGRAPHY
 ------------------------------*/
 
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;   
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
 :is(ul, ol) > :is(*, li):first-child {
     margin-top: 0 !important;
 }
@@ -91,6 +104,30 @@ body {
 :is(ul, ol) > :is(*, li):last-child {
     margin-bottom: 0 !important;
 }
+
+
+/*
+** FORMS
+------------------------------*/
+
+input, textarea {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+input[type="checkbox"], input[type="radio"] {
+    position: absolute; /* prevent taking any space */
+    /* cross-browser hiding */
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+label {
+    user-select: none;
+}
+
+
 
 /*
 ** ICONS
@@ -117,10 +154,12 @@ svg.icon :is(path, line, circle){
 ------------------------------*/
 
 button {
+    appearance: none;
     background: none;
     border: 0;
     padding: 0;
     cursor: pointer;
+    user-select: none;
 }
 
 :is(button, a) * {
@@ -168,13 +207,13 @@ header {
     background-color: var(--gray-100);
 
     display: grid;
-    grid-template-columns: 1fr 900px 1fr;
-    grid-template-rows: clamp(4rem, 6rem, 8rem);
+    grid-template-columns: calc((100vw - (100vw - 100%) - var(--contentWidth)) / 2) minmax(calc(var(--contentWidth) / 2), var(--contentWidth)) auto;
+    grid-template-rows: 5rem;
     grid-template-areas:
     "nav-global search nav-project";
     align-items: center;
 
-    padding: 0 2rem;
+    padding: 0;
     overflow-y: visible;
 
     position: relative;
@@ -187,6 +226,7 @@ header nav {
     flex-flow: row nowrap;
     align-items: center;
     gap: 1rem;
+    padding: 0 2rem;
 }
 
 header nav .logo {
@@ -206,7 +246,7 @@ header nav .logo path.line {
 
 header nav a {
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 600;
     color: white;
     text-decoration: none;
 }
@@ -233,9 +273,34 @@ header nav.global {
     grid-area: nav-global;
 }
 
+
+
+
 header nav.project {
     grid-area: nav-project;
-    justify-self: flex-end;
+    justify-self: end;
+}
+
+header nav.project p {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    padding: 0 1rem 0 0 ;
+    color: white;
+    font-weight: 600;
+    border-right: 2px solid var(--teal-60);
+}
+
+header nav.project .icon {
+    margin-right: 0.5rem;
+}
+
+header nav.project .icon path {
+    stroke: var(--teal-60);
+}
+
+header nav.project a {
+    font-size: 0.875rem;
 }
 
 
@@ -245,13 +310,11 @@ header nav.project {
 
 header .search-group {
     grid-area: search;
-
+    
     position: relative;
 }
 
 #search-form {
-    grid-area: search;
-
     position: relative;
     overflow-y: visible;
     background-color: var(--gray-5);
@@ -497,6 +560,15 @@ header .project-group .accordion-panel a {
 ** MAIN
 ------------------------------*/
 
+main {
+    width: var(--contentWidth);
+    margin: 0 auto;
+    padding: 3rem 0;
+}
+
+main > section {
+    margin-bottom: 4rem;
+}
 
 
 /*

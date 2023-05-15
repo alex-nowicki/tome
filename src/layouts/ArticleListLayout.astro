@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import IconBookmarks from "../components/IconBookmarks.astro";
-import Timeline from "../components/Timeline.astro";
 
 import { getCatIconAndLabel } from "../scripts/helpers.js"
 import { dateFormatter } from "../scripts/helpers.js"
@@ -23,35 +22,33 @@ const projectPosts = posts.filter(post => {
     return 0;
 });
 
+let activeCategories = [...new Set(projectPosts.map(a => a.frontmatter.category))];
+
 // TODO - Only show the first 10 list items and add a show more button
 
 ---
 
 <BaseLayout pageTitle={activeProject} activeProject={activeProject}>
-    <main class="project">
+    <main>
         <h1>{activeProject} Articles</h1>
-        <section class="articles">
+        <section class="article-list">
 
         {
             projectPosts.length > 0 ? (
             
-                <form id="filters">
+                <form class="filter-group">
                     <input type="radio" id="filterAll" name="filter" value="all" checked/>
                     <label for="filterAll">All</label>
                     <input type="radio" id="filterBookmarks" name="filter" value="bookmarks" />
                     <label for="filterBookmarks">Bookmarks</label>
-                    <input type="radio" id="filterPeople" name="filter" value="people" />
-                    <label for="filterPeople">People</label>
-                    <input type="radio" id="filterGroups" name="filter" value="groups" />
-                    <label for="filterGroups">Groups</label>
-                    <input type="radio" id="filterPlaces" name="filter" value="places" />
-                    <label for="filterPlaces">Places</label>
-                    <input type="radio" id="filterEvents" name="filter" value="events" />
-                    <label for="filterEvents">Events</label>
-                    <input type="radio" id="filterThings" name="filter" value="things" />
-                    <label for="filterThings">Things</label>
+                    {activeCategories.map((category) => {
+                        return (
+                            <input type="radio" id={`filter${category}`} name="filter" value={category.toLowerCase()} />
+                            <label for={`filter${category}`}>{category}</label>
+                        )
+                    })}
                 </form>
-                <form id="sort">
+                <form class="sort-group">
                     <label>Sort by</label>
                     <div class="select-group">
                         <select name="sort" id="sort-select">
@@ -60,16 +57,18 @@ const projectPosts = posts.filter(post => {
                         </select>
                     </div>
                 </form>
-                <ul id="list">
+                <ul class="list">
                     {projectPosts.map((post) => {
-                        return  <li data-title={post.frontmatter.title} data-date={post.frontmatter.date} data-category={post.frontmatter.category}>
-                                    <a href={post.url}>
-                                        <span class="icon-group" set:html={getCatIconAndLabel(post.frontmatter.category).icon}></span>
-                                        <span class="title">{post.frontmatter.title}</span>
-                                        <span class="date">{dateFormatter.format(Date.parse(post.frontmatter.date))}</span>    
-                                    </a>
-                                    <button class="bookmark-toggle" data-title={post.frontmatter.title} data-url={post.url} data-project={post.frontmatter.project}><IconBookmarks /></button>
-                                </li>
+                        return  (
+                            <li data-title={post.frontmatter.title} data-date={post.frontmatter.date} data-category={post.frontmatter.category}>
+                                <a href={post.url}>
+                                    <span class="icon-group" set:html={getCatIconAndLabel(post.frontmatter.category).icon}></span>
+                                    <span class="title">{post.frontmatter.title}</span>
+                                    <span class="date">{dateFormatter.format(Date.parse(post.frontmatter.date))}</span>    
+                                </a>
+                                <button class="bookmark-toggle" data-title={post.frontmatter.title} data-url={post.url} data-project={post.frontmatter.project}><IconBookmarks /></button>
+                            </li>
+                        )
                     })}
                 </ul>
 

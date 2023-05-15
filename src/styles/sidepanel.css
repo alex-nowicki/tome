@@ -6,8 +6,10 @@ nav.sidepanel {
     --spacing: 0.75rem;
 
     grid-area: nav;
+    justify-self: end;
 
-    padding: 2rem;
+    width: clamp(300px, 360px, 25%);
+    padding: 2rem 0;
 }
 
 nav.sidepanel p {

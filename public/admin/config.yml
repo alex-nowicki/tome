@@ -19,7 +19,7 @@ collections:
     create: true
 
     fields:
-      - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/ProjectLayout.astro"}
+      - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/ArticleListLayout.astro"}
       - {label: "Title", name: "title", widget: "string", pattern: [".{1,40}", "Must be no longer than 40 characters"],}
       - {label: "Description", name: "description", widget: "markdown", pattern: [".{1,120}", "Must be no longer than 120 characters"]}
       - {label: "Year Notation", name: "yearNotation", widget: "string"}
