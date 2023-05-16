@@ -12,6 +12,7 @@
 
 :root {
 
+    --orange-100: #da5c32;
     --orange-80: #f37c50;
     --orange-60: #ff9764;
     --orange-45: #ffac83;
@@ -20,6 +21,8 @@
     --orange-15: #ffeae0;
     --orange-10: #fff5ef;
 
+    --brown-100: #795233;
+    --brown-80: #a07548;
     --brown-60: #bfa284;
     --brown-30: #d9c7b5;
     --brown-15: #f2ece6;
@@ -116,6 +119,7 @@ input, textarea {
 }
 
 input[type="checkbox"], input[type="radio"] {
+    appearance: none;
     position: absolute; /* prevent taking any space */
     /* cross-browser hiding */
     opacity: 0;
@@ -123,9 +127,19 @@ input[type="checkbox"], input[type="radio"] {
     height: 0;
 }
 
+input[type="checkbox"]:checked + label .icon {
+    display: none;
+}
+
+input[type="checkbox"]:checked + label .icon {
+    display: flex;
+}
+
 label {
     user-select: none;
 }
+
+
 
 
 

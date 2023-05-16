@@ -1,5 +1,5 @@
 ---
-layout: ../../../layouts/PostLayout.astro
+layout: ../../../layouts/ArticleLayout.astro
 project: Garuda
 category: Events
 title: The Agency Hires the Garuda

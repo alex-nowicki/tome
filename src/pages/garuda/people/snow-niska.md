@@ -1,5 +1,5 @@
 ---
-layout: ../../../layouts/PostLayout.astro
+layout: ../../../layouts/ArticleLayout.astro
 project: Garuda
 category: People
 title: Snow Niska

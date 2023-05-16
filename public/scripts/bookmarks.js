@@ -102,8 +102,8 @@ let initBookmarks = function() {
             // Check if there are any store bookmarks
             if (storedBookmarks){
                 
-                // Show accordion toggle button
-                bookmarksSectionToggle.removeAttribute('hidden');
+                // Show bookmark section
+                bookmarksSection.removeAttribute('hidden');
 
                 // Expand accordion panel to show bookmarks
                 bookmarksSectionToggle.setAttribute('aria-expanded', 'true');
@@ -126,8 +126,8 @@ let initBookmarks = function() {
 
             } else {
                 
-                // Hide toggle button
-                bookmarksSectionToggle.setAttribute('hidden', '');
+                // Hide bookmark section
+                bookmarksSection.setAttribute('hidden', '');
                 
                 // Collapse accordion panel
                 bookmarksSectionToggle.setAttribute('aria-expanded', 'false');

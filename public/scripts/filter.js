@@ -33,6 +33,17 @@ let getParams = function(url = window.location) {
  */
 let filterList = function(targetFilter, targetList) {
 
+    console.log(targetFilter);
+    console.log(targetFilter.checked);
+    console.log(targetFilter.value);
+
+    // Update checked state on input
+    if (targetFilter.checked) {
+        targetFilter.checked = false;
+    } else {
+        targetFilter.checked = true;
+    }
+
     // Get the list items
     let listItems = targetList.querySelectorAll('li');
 

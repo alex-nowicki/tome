@@ -2,11 +2,15 @@
 
 import BaseLayout from "./BaseLayout.astro";
 import Timeline from "../components/Timeline.astro";
+import IconClose from "../components/IconClose.astro";
 
 const { activeProject } = Astro.props;
 const { events } = Astro.props;
 
 let activeCategories = [...new Set(events.map(a => a.postCategory))];
+
+// TODO - Add 'x' symbol to active filters
+// TODO - Add links to events?
 
 ---
 
@@ -21,7 +25,7 @@ let activeCategories = [...new Set(events.map(a => a.postCategory))];
                     {activeCategories.map((category) => {
                         return (
                             <input type="checkbox" id={`filter${category}`} name="filter" value={category.toString().toLowerCase()} checked/>
-                            <label for={`filter${category}`}>{category}</label>
+                            <label for={`filter${category}`}>{category}<IconClose /></label>
                         )
                     })}
                 </form>

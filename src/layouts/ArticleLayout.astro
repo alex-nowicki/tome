@@ -87,7 +87,20 @@ let detectMatches = function(string, terms, relevance){
         }
         // Wrap matches in links
         editedString = editedString.replaceAll(regex, 
-        `<span class="link-group"><a class="link-group" href="${obj.url}">$&</a>${obj.description ? `<span class="page-preview">${obj.description}</span>` : ''}</span>`
+        `${obj.description ? `
+            <span class="link-group">
+                <a href="${obj.url}">$&</a>
+                <span class="page-preview">
+                    <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <circle vector-effect="non-scaling-stroke" cx="12" cy="12" r="11"/>
+                        <path d="M9.39 16.02c0-.35.07-.69.17-1.08l.89-3.59H7.5l.4-1.92h5.4l-1.32 5.63c-.04.16-.07.32-.07.47 0 .74.44 1.04 1.07 1.04.44 0 .84-.13 1.4-.36l.51 1.85c-.78.33-1.57.52-2.67.52-1.72 0-2.84-.96-2.84-2.56ZM10.7 6.6c0-.91.8-1.71 1.8-1.71.92 0 1.58.49 1.58 1.4 0 .98-.81 1.71-1.82 1.71-.81 0-1.56-.46-1.56-1.4Z"/>
+                    </svg>
+                    <span>${obj.description}</span>
+                </span>
+            </span>` 
+            
+        : `<a href="${obj.url}">$&</a>`}`
+        
         );
     }
 
@@ -168,6 +181,7 @@ if (postDetails !== ''){
 
 let timelineEvents = processEventsForTimeline(frontmatter);
 
+// TODO - Tweak content spacing and add different content types for testing
 
 
 ---
@@ -192,6 +206,7 @@ let timelineEvents = processEventsForTimeline(frontmatter);
                 </div>
                 <h1>{frontmatter.title}</h1>
                 <div class="meta">
+                    <button class="bookmark-toggle" data-title={frontmatter.title} data-url={frontmatter.url} data-project={frontmatter.project}><IconBookmarks /></button>
                     <p class="category"><Fragment set:html={getCatIconAndLabel(frontmatter.category).icon} />{getCatIconAndLabel(frontmatter.category).label}</p>
                     <p class="date">Published {dateFormatter.format(Date.parse(frontmatter.date))}</p>
                 </div>
