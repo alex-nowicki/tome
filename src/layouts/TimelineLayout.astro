@@ -2,15 +2,16 @@
 
 import BaseLayout from "./BaseLayout.astro";
 import Timeline from "../components/Timeline.astro";
-import IconClose from "../components/IconClose.astro";
+import IconCloseCircle from "../components/IconCloseCircle.astro";
 
 const { activeProject } = Astro.props;
 const { events } = Astro.props;
 
 let activeCategories = [...new Set(events.map(a => a.postCategory))];
 
-// TODO - Add 'x' symbol to active filters
+// TODO - Fixed left right alignment when filtering
 // TODO - Add links to events?
+// TODO - Fix query string filtering of page, to account for different filter types
 
 ---
 
@@ -25,9 +26,18 @@ let activeCategories = [...new Set(events.map(a => a.postCategory))];
                     {activeCategories.map((category) => {
                         return (
                             <input type="checkbox" id={`filter${category}`} name="filter" value={category.toString().toLowerCase()} checked/>
-                            <label for={`filter${category}`}>{category}<IconClose /></label>
+                            <label for={`filter${category}`}>{category}<IconCloseCircle /></label>
                         )
                     })}
+                </form>
+                <form class="sort-group">
+                    <label>Sort by</label>
+                    <div class="select-group">
+                        <select name="sort" id="sort-select">
+                            <option value="byDateNumAsc" selected>Date Ascending</option>
+                            <option value="byDateNumDesc">Date Descending</option>
+                        </select>
+                    </div>
                 </form>
 
                 <Timeline events={events} />

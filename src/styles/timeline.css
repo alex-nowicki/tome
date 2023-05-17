@@ -4,6 +4,10 @@
 }
 
 .timeline .filter-group {
+    margin-bottom: 1rem;
+}
+
+.timeline .sort-group {
     margin-bottom: 2rem;
 }
 
@@ -49,7 +53,7 @@
 
 }
 
-.timeline ul li:nth-child(even){
+.timeline ul li:not([hidden]):nth-child(even){
     grid-template-columns: 1fr auto 2rem calc(50% - 2rem);
     grid-template-areas: 
     "category date . content";
@@ -108,11 +112,11 @@
     position: relative;
 }
 
-.timeline ul li:nth-child(odd) div {
+.timeline ul li:not([hidden]):nth-child(odd) div {
     justify-self: flex-end;
 }
 
-.timeline ul li:nth-child(even) div {
+.timeline ul li:not([hidden]):nth-child(even) div {
     justify-self: flex-start;
 }
 
@@ -126,7 +130,7 @@
     color: var(--teal-80);
 }
 
-.timeline ul li:nth-child(even) .date{
+.timeline ul li:nth-child(even) .date {
     justify-self: end;
 }
 

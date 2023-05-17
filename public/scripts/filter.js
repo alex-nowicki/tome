@@ -33,15 +33,39 @@ let getParams = function(url = window.location) {
  */
 let filterList = function(targetFilter, targetList) {
 
-    console.log(targetFilter);
-    console.log(targetFilter.checked);
-    console.log(targetFilter.value);
-
     // Update checked state on input
-    if (targetFilter.checked) {
-        targetFilter.checked = false;
-    } else {
-        targetFilter.checked = true;
+    if (targetFilter.type === 'radio'){
+
+        if (targetFilter.hasAttribute('checked')) {
+            targetFilter.removeAttribute('checked');
+        } else {
+            for (const filter of targetFilter.closest('form').querySelectorAll('input[type="radio"]')) {
+                filter.removeAttribute('checked');
+            }
+            targetFilter.setAttribute('checked', '');
+        }
+
+    } else if (targetFilter.type === 'checkbox'){
+
+        if (targetFilter.hasAttribute('checked')) {
+            targetFilter.removeAttribute('checked');
+        } else {
+            targetFilter.setAttribute('checked', '');
+        }
+
+        let checkboxes = targetFilter.closest('form').querySelectorAll('input[type="checkbox"]');
+        let checkedCheckboxes = targetFilter.closest('form').querySelectorAll('input[type="checkbox"]:checked');
+
+        if (checkedCheckboxes.length === 1) {
+            for (const box of checkedCheckboxes) {
+                box.setAttribute('disabled', '');
+            }
+        } else {
+            for (const box of checkboxes) {
+                box.removeAttribute('disabled');
+            }
+        }
+
     }
 
     // Get the list items
@@ -53,6 +77,8 @@ let filterList = function(targetFilter, targetList) {
         let category = item.dataset.category.toLowerCase();
 
         if (targetFilter.type === 'radio'){
+
+            
 
             // If filter is bookmark, check bookmark state and show or hide accordingly
             if (targetFilter.value === 'bookmarks'){
@@ -115,7 +141,15 @@ let sortList = function(targetSort, targetList) {
             a = Date.parse(a.dataset.date);
             b = Date.parse(b.dataset.date);
             return b - a;
-        }        
+        } else if (targetSort === 'byDateNumAsc'){
+            a = a.dataset.date;
+            b = b.dataset.date;
+            return a - b;
+        } else if (targetSort === 'byDateNumDesc'){
+            a = a.dataset.date;
+            b = b.dataset.date;
+            return b - a;
+        }       
     }).forEach((elem) => {
         targetList.appendChild(elem);
     })
@@ -133,6 +167,7 @@ let sortGroups = document.querySelectorAll('.sort-group');
 
 for (const group of filterGroups){
     group.addEventListener('input', (event) => {
+        event.preventDefault;
         filterList(event.target, group.closest('section').querySelector('.list'));
     });
 }
@@ -148,6 +183,6 @@ for (const group of sortGroups){
 let params = getParams();
 
 if (params.filter){
-    filters.querySelector(`input[value="${params.filter}"]`).checked = true;
+    filterGroups.querySelector(`input[value="${params.filter}"]`).setAttribute('checked', '');
     filterList(params.filter, list);
 }

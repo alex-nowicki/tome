@@ -113,31 +113,190 @@ h2 {
 ** FORMS
 ------------------------------*/
 
+form {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    padding: 0;
+    height: auto;  
+}
+
 input, textarea {
     font-family: inherit;
     font-size: inherit;
 }
 
-input[type="checkbox"], input[type="radio"] {
+input:is([type="checkbox"], [type="radio"]) {
     appearance: none;
-    position: absolute; /* prevent taking any space */
+    /* prevent taking any space */
+    position: absolute; 
     /* cross-browser hiding */
     opacity: 0;
     width: 0;
     height: 0;
 }
 
-input[type="checkbox"]:checked + label .icon {
+input:focus-visible + label {
+    outline: var(--teal-100) auto 1px;
+    outline-offset: 2px;
+}
+
+/* CHECKBOX AND RADIO BUTTONS */
+
+input:is([type="checkbox"], [type="radio"]) + label {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    user-select: none;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--gray-100);
+    padding:  0.75rem 1rem;
+    background-color: white;
+    text-decoration: none;
+    border-top: 1px solid var(--gray-10);
+    border-right: 1px solid var(--gray-10);
+    border-left: 1px solid var(--gray-10);
+    border-radius: var(--borderRadius);
+    cursor: pointer;
+    margin-right: 0.5rem;
+    box-shadow: var(--boxShadow) var(--gray-15);
+}
+
+input:is([type="checkbox"], [type="radio"]) + label:hover {
+    background-color: var(--teal-15);
+    border-color: var(--teal-30);
+    box-shadow: var(--boxShadow) var(--teal-30);
+    color: var(--teal-100);
+}
+
+input[type="radio"]:checked + label {
+    background-color: var(--teal-80);
+    border-color: var(--teal-80);
+    box-shadow: var(--boxShadow) var(--teal-100);
+    color: white;
+}
+
+input[type="checkbox"]:checked + label {
+    background-color: var(--teal-80);
+    border-color: var(--teal-80);
+    box-shadow: var(--boxShadow) var(--teal-100);
+    color: white;
+    padding: 0.5rem 1rem;
+}
+
+input[type="checkbox"]:checked + label:hover {
+    background-color: var(--gray-80);
+    border-color: var(--gray-80);
+    box-shadow: var(--boxShadow) var(--gray-100);
+    color: white;
+}
+
+input[type="checkbox"]:checked:disabled + label {
+    padding: 0.75rem 1rem;
+    cursor: default;
+}
+
+input[type="checkbox"]:checked:disabled + label:hover {
+    background-color: var(--teal-80);
+    border-color: var(--teal-80);
+    box-shadow: var(--boxShadow) var(--teal-100);
+}
+
+
+input[type="checkbox"]:checked:disabled + label .icon {
     display: none;
+}
+
+input[type="checkbox"] + label .icon {
+    display: none;
+    margin-left: 0.25rem;
 }
 
 input[type="checkbox"]:checked + label .icon {
     display: flex;
 }
 
-label {
-    user-select: none;
+input[type="checkbox"]:checked + label .icon circle {
+    stroke: none;
+    fill: none;
 }
+
+input[type="checkbox"]:checked + label .icon line {
+    stroke: white;
+}
+
+input[type="checkbox"]:checked + label:hover .icon circle {
+    fill: white;
+}
+
+input[type="checkbox"]:checked + label:hover .icon line {
+    stroke: var(--gray-80);
+}
+
+/* DROP DOWN SELECT INPUTS */
+
+form.sort-group label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-right: 0.5rem;
+}
+
+form.sort-group .select-group {
+    position: relative;
+}
+
+form.sort-group .select-group::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    margin-top: -2px;
+    top: 50%;
+    right: 0.75rem;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-top: 5px solid var(--teal-60);
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    pointer-events: none;
+}
+
+select {
+    appearance: none;
+    padding: 0.5rem 2rem 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: var(--borderRadius);
+    border-top: 1px solid var(--gray-10);
+    border-right: 1px solid var(--gray-10);
+    border-left: 1px solid var(--gray-10);
+    border-bottom: none;
+    box-shadow: var(--boxShadow) var(--gray-15);
+    position: relative;
+    cursor: pointer;
+}
+
+select:hover,
+select:focus {
+    outline: none;
+    background-color: var(--teal-15);
+    border-color: var(--teal-30);
+    box-shadow: var(--boxShadow) var(--teal-30);
+    color: var(--teal-100);
+}
+
+select:active {
+    outline: none;
+}
+
+select option {
+    background-color: white;
+    color: var(--gray-100);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
 
 
 
