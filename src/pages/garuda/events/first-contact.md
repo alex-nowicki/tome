@@ -12,5 +12,10 @@ details:
   startDate:
     year: 0
     yearNotation: FC
+events:
+  - title: Gatekeeper's offer reaches Earth
+    date:
+      year: 4
+      yearNotation: FC
 ---
 H﻿uman explorers encounter the Gatekeeper in the Alpha Centauri system.
