@@ -8,13 +8,12 @@ let filteredPosts;
 // Determine post filtering
 if (activeProject){
     filteredPosts = posts.filter(post => {
-        return post.url.includes(`${activeProject.toLowerCase()}`);
+        return post.frontmatter.project === activeProject;
     })
 } else {
     filteredPosts = posts;
 }
 
-// TODO - Add up/down arrow key handlers for search bar
 // TODO - Convert script to external and make the search results HTML? Not sure I can, as I'm searching through content as well potentially?
 
 ---
@@ -44,6 +43,7 @@ if (activeProject){
     let index = filteredPosts;
 
     // Get DOM elements
+    let searchGroup = document.querySelector('.search-group');
     let searchForm = document.querySelector('#search-form');
     let searchInput = document.querySelector('#search-input');
     let searchResults = document.querySelector('#search-results');
@@ -71,6 +71,45 @@ if (activeProject){
         }
     })
 
+    searchGroup.addEventListener('keydown', function(event){
+        
+        let activeElement = document.activeElement;
+        console.log('activeElement old', activeElement);
+
+        if (event.key === "ArrowDown"){
+            event.preventDefault();
+
+            if (activeElement.matches('input')){
+                console.log('Down arrowing from input');
+                let targetElem = searchResults.querySelector('a');
+                console.log(targetElem);
+                targetElem.focus();
+
+            } else if (activeElement.matches('a')) {
+                console.log('Down arrowing from a');
+                let targetElem = activeElement.closest('li').nextElementSibling;
+                if (targetElem) {
+                    targetElem.querySelector('a').focus();
+                }
+            }
+            
+        } else if (event.key === "ArrowUp"){
+
+            if (activeElement.matches('a')) {
+                console.log('Up arrowing from a');
+                let targetElem = activeElement.closest('li').previousElementSibling;
+                if (targetElem) {
+                    targetElem.querySelector('a').focus();
+                } else {
+                    searchInput.focus();
+                }
+            }
+
+        }
+
+        console.log('activeElement new', document.activeElement);
+    })
+
     let search = function(query) {
 
         // Create a regex for each query
@@ -81,14 +120,18 @@ if (activeProject){
         });
         
         // Get and sort the results
-        let results = index.reduce((results, post, index) => {
+        let results = index.reduce((results, post) => {
 
             // Setup priority count
             let priority = 0;
 
             // Assign priority
             for (let reg of regMap) {
+
+                // Check wether post title includes search query
                 if (reg.test(post.frontmatter.title)) { priority += 100 }
+
+                // Check whether post content includes search query
                 // let occurences = post.content.match(reg);
                 // if (occurences) { priority += occurences.length; }
             }
@@ -144,10 +187,10 @@ if (activeProject){
 
         let myTemplate = function(results) {
             return results.map((match) => {
-                let category = match.post.url.split('/')[2];
+                let category = match.post.frontmatter.category;
                 return  `<li>
                             <a href="${match.post.url}">
-                                <span class="icon-group">${svgs[category]}</span>
+                                <span class="icon-group">${svgs[category.toLowerCase()]}</span>
                                 <span class="title">${match.post.frontmatter.title}</span>
                                 <span class="date">${formatter.format(Date.parse(match.post.frontmatter.date))}</span>
                             </a>

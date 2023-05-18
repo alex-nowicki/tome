@@ -33,6 +33,8 @@ let getParams = function(url = window.location) {
  */
 let filterList = function(targetFilter, targetList) {
 
+    console.log('Filtering');
+
     // Update checked state on input
     if (targetFilter.type === 'radio'){
 
@@ -76,9 +78,7 @@ let filterList = function(targetFilter, targetList) {
         // Store the item category
         let category = item.dataset.category.toLowerCase();
 
-        if (targetFilter.type === 'radio'){
-
-            
+        if (targetFilter.type === 'radio'){         
 
             // If filter is bookmark, check bookmark state and show or hide accordingly
             if (targetFilter.value === 'bookmarks'){
@@ -103,20 +103,47 @@ let filterList = function(targetFilter, targetList) {
 
         } else if (targetFilter.type === 'checkbox'){
 
-            // if filter is checked and category matches the item, show the item
-            if (targetFilter.checked && category === targetFilter.value){
-                item.removeAttribute('hidden');
+            console.log('Setting attributes', targetFilter, category);
 
-            // Otherwise, hide the item
-            } else if (!targetFilter.checked && category === targetFilter.value) {
+            let activeFilters = [];
+            for (const input of targetFilter.closest('form').querySelectorAll('input[checked]')) {
+                activeFilters.push(input.value);
+            }
+
+            if (activeFilters.includes(category)){
+                item.removeAttribute('hidden');
+            } else {
                 item.setAttribute('hidden', '');
             }
 
         }
-
-
         
     }
+
+    let sortSelect = targetList.closest('section').querySelector('select[name="sort"]');
+    console.log(sortSelect.value);
+
+    if (sortSelect) {
+
+        sortList(sortSelect.value, targetList);
+
+    } else {
+
+        let sortType;
+
+        if (listItems[0].dataset.contains('date') && typeof listItems[0].dataset.date == 'number') { sortType = 'byDateNumDesc' }
+        else if (listItems[0].dataset.contains('date') && typeof listItems[0].dataset.date == 'string') { sortType = 'byDate' }
+        else if (listItems[0].dataset.contains('title')) { sortType = 'byTitle' }
+
+        console.log(sortType);
+
+        if (sortType !== undefined) {
+            sortList(sortType, targetList)
+        }
+        
+    }
+
+    
 
 }
 
@@ -128,7 +155,7 @@ let filterList = function(targetFilter, targetList) {
 let sortList = function(targetSort, targetList) {
 
     // Get the list items
-    let listItems = targetList.querySelectorAll('li');
+    let listItems = targetList.querySelectorAll('li:not([hidden])');
 
     Array.from(listItems).sort((a,b) => {
         if (targetSort === 'byTitle'){
@@ -149,9 +176,14 @@ let sortList = function(targetSort, targetList) {
             a = a.dataset.date;
             b = b.dataset.date;
             return b - a;
-        }       
-    }).forEach((elem) => {
-        targetList.appendChild(elem);
+        }
+    
+    // Reverse the list to compensate for insertBefore
+    }).reverse().forEach((elem) => {
+
+        // Add each sorted item to the top of the list
+        targetList.insertBefore(elem, targetList.firstChild);
+
     })
 
 }
@@ -183,6 +215,17 @@ for (const group of sortGroups){
 let params = getParams();
 
 if (params.filter){
-    filterGroups.querySelector(`input[value="${params.filter}"]`).setAttribute('checked', '');
-    filterList(params.filter, list);
+    for (const group of filterGroups){
+        let inputs = group.querySelectorAll('input');
+        let targetInput = group.querySelector(`input[value="${params.filter}"]`)
+        if (targetInput) {
+            // Remove the checked attribute to account for pre-checked filters
+            for (const input of inputs){
+                input.removeAttribute('checked');
+            }
+            filterList(targetInput, group.closest('section').querySelector('.list'));
+        }
+    }
 }
+
+

@@ -7,9 +7,7 @@ import { getCatIconAndLabel } from "../scripts/helpers.js";
 let { events } = Astro.props;
 
 // Generate a full date for each event
-events.map((event, index) => {
-
-    console.log(index);
+events.map((event) => {
 
     if (!event.date.full){
 
@@ -35,14 +33,10 @@ events.map((event, index) => {
 
     }
 
-    console.log(event.date.full, event.date.numerical);
-
 });
 
 // Sort the events array by date
-events.sort((a, b) => a.date.day - b.date.day);
-events.sort((a, b) => a.date.month - b.date.month);
-events.sort((a, b) => a.date.year - b.date.year);
+events.sort((a, b) => a.date.numerical - b.date.numerical);
 
 
 ---

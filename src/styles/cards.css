@@ -1,16 +1,25 @@
+.heading-link-group {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .card-group {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(12rem, 0.33fr));
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
     gap: 1rem;
 
     list-style: none;
     padding: 0;
+    margin: 0;
 }
 
 .card-group .card {
     display: flex;
     flex-flow: column nowrap;
 
+    max-width: 300px;
     background-color: white;
     border-radius: var(--borderRadius);
     border-top: 1px solid var(--gray-10);

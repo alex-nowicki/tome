@@ -9,10 +9,6 @@ const { events } = Astro.props;
 
 let activeCategories = [...new Set(events.map(a => a.postCategory))];
 
-// TODO - Fixed left right alignment when filtering
-// TODO - Add links to events?
-// TODO - Fix query string filtering of page, to account for different filter types
-
 ---
 
 <BaseLayout pageTitle={activeProject} activeProject={activeProject}>

@@ -39,19 +39,6 @@ article .content :is(p, li) {
 ** LINKS & BUTTONS
 ------------------------------*/
 
-article a {
-    color: var(--teal-100);
-    font-weight: 500;
-}
-
-article :is(a, a:visited):hover {
-    color: var(--teal-80);
-}
-
-article a:visited {
-    color: var(--teal-100);         
-}
-
 article .link-group {
     display: inline-flex;
     align-items: center;

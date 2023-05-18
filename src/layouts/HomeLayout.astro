@@ -33,8 +33,6 @@ projects.map((project) => {
     }    
 })
 
-// TODO - Fix styles of All Articles link, ideally place it top right across from header
-
 
 ---
 
@@ -44,8 +42,10 @@ projects.map((project) => {
         { 
             projects.length > 0 ? (
                 <section>
-                    <h2>Recent Projects</h2>
-                    <a href="/projects">All Projects &rarr;</a>
+                    <div class="heading-link-group">
+                        <h2>Recent Projects</h2>
+                        <a href="/projects">View All Projects &rarr;</a>  
+                    </div>
                     <CardGroup posts={projects} numToShow={3} postType={'project'} />
                 </section>
             ) : (

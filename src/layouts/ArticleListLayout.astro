@@ -15,7 +15,7 @@ const activeProject = frontmatter.title;
 // Get project posts
 const posts = await Astro.glob('../pages/*/*/*.md');
 const projectPosts = posts.filter(post => {
-    return post.url.includes(activeProject.toLowerCase());
+    return post.frontmatter.project === activeProject;
 }).sort((a,b) => {
     if (a.frontmatter.title < b.frontmatter.title) return -1;
     if (a.frontmatter.title > b.frontmatter.title) return 0;
@@ -23,8 +23,6 @@ const projectPosts = posts.filter(post => {
 });
 
 let activeCategories = [...new Set(projectPosts.map(a => a.frontmatter.category))];
-
-// TODO - Only show the first 10 list items and add a show more button
 
 ---
 

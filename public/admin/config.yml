@@ -343,6 +343,7 @@ collections:
             widget: "object"
             summary: "{{fields.year}}"
             fields:
+              - {label: "Label", name: "label", widget: "hidden", default: "Start Date"}
               - {label: "Year", name: "year", widget: "number", required: false}
               - {label: "Month - Numerical", name: "month", widget: "number", required: false}
               - {label: "Day - Numerical", name: "day", widget: "number", required: false}

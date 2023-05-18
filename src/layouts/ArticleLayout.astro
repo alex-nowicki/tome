@@ -27,7 +27,7 @@ const postContent = await Astro.props.compiledContent();
 // Get project posts
 const posts = await Astro.glob('../pages/*/*/*.md');
 const projectPosts = posts.filter(post => {
-    return post.url.includes(`${activeProject.toLowerCase()}`) && !post.url.includes(`${activePost}`);
+    return post.frontmatter.project === activeProject && !post.frontmatter.title !== activePost;
 })
 
 // Collect all search terms in an array
@@ -148,7 +148,13 @@ let editedPostContent = detectMatches(postContent, searchArr, null);
                 }
             }).join('');
             valueStr = `<ul>${arrHtmlStr}</ul>`;
+        } else if (valueType === 'object'){
+            let objHtmlStr = Object.values(value).map((objValue) => {
+                return objValue;
+            }).join(' ');
+            valueStr = `<p>${objHtmlStr}</p>`
         }
+
         return `<div><h3>${toTitleCase(key)}</h3>${valueStr}</div>`;
     }).join('');
     if (endStr){
@@ -182,6 +188,8 @@ if (postDetails !== ''){
 let timelineEvents = processEventsForTimeline(frontmatter);
 
 // TODO - Tweak content spacing and add different content types for testing
+// TODO - Details Startdate is undefined and needs to be split into two words
+// TODO - Should the timeline show if only the one event?
 
 
 ---
