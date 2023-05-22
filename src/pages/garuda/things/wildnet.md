@@ -19,3 +19,7 @@ The safest way to transmit data on the WildNet is a timed drop. The sender sends
 ## Stalker AIs
 
 Since the WildNet is hosted in a patchwork of unverifiable servers, criminals and corporations have AIs that spy, collect and sabotage users. It is incredibly risky to access the WildNet from a personal device and without any forms of protection.
+
+## The Walled Garden
+
+A section of the WildNet moderated by the Cloudheads. It is considered the only safe place to share data or do business on the WildNet. Access is only granted to users that contribute to the Walled Garden, usually by donation server space.
