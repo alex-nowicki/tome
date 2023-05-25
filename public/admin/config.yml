@@ -31,11 +31,14 @@ collections:
     label_singular: "Collection"
     name: "collections"
     folder: "src/pages"
+    filter: {field: "category", value: "Collections"}
     path: "{{project}}/collections/{{slug}}"
     create: true
+    slug: "{{slug}}"
 
     fields:
       - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/CollectionLayout.astro"}
+      - {label: "Category", name: "category", widget: "hidden", default: "Collections"}
       - {label: "Title", name: "title", widget: "string", pattern: [".{1,40}", "Must be no longer than 40 characters"], hint: "Title must be no longer than 40 characters."}
       - {label: "Description", name: "description", widget: "text", pattern: [".{1,120}", "Must be no longer than 120 characters"], hint: "Description must be no longer than 120 characters.", required: false}
       - {label: "Body", name: "body", widget: "markdown", required: false}
@@ -47,10 +50,10 @@ collections:
     label_singular: "Person"
     name: "people"
     folder: "src/pages"
-    # filter: {field: "category", value: "People"}
+    filter: {field: "category", value: "People"}
     path: "{{project}}/people/{{slug}}"
     create: true
-    # slug: "{{slug}}"
+    slug: "{{slug}}"
     view_groups: 
       - label: Project
         field: project
@@ -70,6 +73,7 @@ collections:
         collection: "collections"
         search_fields: ["title"]
         value_field: "title"
+        required: false
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "text", pattern: [".{1,120}", "Must be no longer than 120 characters"], hint: "Description must be no longer than 120 characters.", required: false}
@@ -200,6 +204,7 @@ collections:
         collection: "collections"
         search_fields: ["title"]
         value_field: "title"
+        required: false
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "text", pattern: [".{1,120}", "Must be no longer than 120 characters"], hint: "Description must be no longer than 120 characters.", required: false}
@@ -304,6 +309,7 @@ collections:
         collection: "collections"
         search_fields: ["title"]
         value_field: "title"
+        required: false
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "text", pattern: [".{1,120}", "Must be no longer than 120 characters"], hint: "Description must be no longer than 120 characters.", required: false}
@@ -396,6 +402,7 @@ collections:
         collection: "collections"
         search_fields: ["title"]
         value_field: "title"
+        required: false
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "text", pattern: [".{1,120}", "Must be no longer than 120 characters"], hint: "Description must be no longer than 120 characters.", required: false}
@@ -497,6 +504,7 @@ collections:
         collection: "collections"
         search_fields: ["title"]
         value_field: "title"
+        required: false
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "text", pattern: [".{1,120}", "Must be no longer than 120 characters"], hint: "Description must be no longer than 120 characters.", required: false}
