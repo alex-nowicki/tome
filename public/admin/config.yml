@@ -12,6 +12,10 @@ display_url: "https://tome.nowickidesign.com"
 
 collections:
 
+  ##
+  ## Projects
+  ## 
+
   - label: "Projects"
     label_singular: "Project"
     name: "projects"
@@ -25,7 +29,9 @@ collections:
       - {label: "Body", name: "body", widget: "markdown", required: false}
 
 
-
+  ##
+  ## Collections
+  ## 
 
   - label: "Collections"
     label_singular: "Collection"
@@ -50,7 +56,9 @@ collections:
       - {label: "Body", name: "body", widget: "markdown", required: false}
 
 
-
+  ##
+  ## People
+  ## 
 
   - label: "People"
     label_singular: "Person"
@@ -91,7 +99,10 @@ collections:
         field: {label: "Search Term", name: "searchTerm", widget: "string"}
       - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
       - {label: "Body", name: "body", widget: "markdown", required: false}
-       
+
+      ## 
+      ## People - Details
+      ##
 
       - label: "Details"
         name: "details"
@@ -126,6 +137,9 @@ collections:
             summary: "{{fields.profession}}"
             field: {label: "Profession", name: "profession", widget: "string"}
 
+      ## 
+      ## People - Connections
+      ##
 
       - label: "Connections"
         name: "connections"
@@ -161,6 +175,10 @@ collections:
             summary: "{{fields.group}}"
             field: {label: "Group", name: "group", widget: "string"}
 
+      ## 
+      ## People - Events
+      ##
+
       - label: "Notable Events"
         label_singular: "Event"
         name: "events"
@@ -181,7 +199,9 @@ collections:
               - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
 
 
-
+##
+## Groups
+## 
 
   - label: "Groups"
     label_singular: "Group"
@@ -303,7 +323,9 @@ collections:
               - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
 
 
-
+##
+## Places
+## 
 
   - label: "Places"
     label_singular: "Place"
@@ -406,7 +428,9 @@ collections:
               - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
 
 
-
+##
+## Events
+## 
 
   - label: "Events"
     label_singular: "Event"
@@ -518,7 +542,9 @@ collections:
               - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
 
 
-
+##
+## Things
+## 
 
   - label: "Things"
     label_singular: "Things"
