@@ -1,0 +1,87 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import IconBookmarks from "../components/IconBookmarks.astro";
+
+import { getCatIconAndLabel } from "../scripts/helpers.js"
+import { dateFormatter } from "../scripts/helpers.js"
+
+import "../styles/project.css";
+
+const { frontmatter } = Astro.props;
+
+// Determine active project
+const activeProject = frontmatter.title;
+
+// Get project posts
+const posts = await Astro.glob('../pages/*/*/*.md');
+const projectPosts = posts.filter(post => {
+    return post.frontmatter.project === activeProject;
+}).sort((a,b) => {
+    if (a.frontmatter.title < b.frontmatter.title) return -1;
+    if (a.frontmatter.title > b.frontmatter.title) return 0;
+    return 0;
+});
+
+let activeCategories = [...new Set(projectPosts.map(a => a.frontmatter.category))];
+
+---
+
+<BaseLayout pageTitle={activeProject} activeProject={activeProject}>
+    <main>
+        <h1>{activeProject} Articles</h1>
+        <section class="article-list">
+
+        {
+            projectPosts.length > 0 ? (
+            
+                <form class="filter-group">
+                    <input type="radio" id="filterAll" name="filter" value="all" checked/>
+                    <label for="filterAll">All</label>
+                    <input type="radio" id="filterBookmarks" name="filter" value="bookmarks" />
+                    <label for="filterBookmarks">Bookmarks</label>
+                    {activeCategories.map((category) => {
+                        return (
+                            <input type="radio" id={`filter${category}`} name="filter" value={category.toLowerCase()} />
+                            <label for={`filter${category}`}>{category}</label>
+                        )
+                    })}
+                </form>
+                <form class="sort-group">
+                    <label>Sort by</label>
+                    <div class="select-group">
+                        <select name="sort" id="sort-select">
+                            <option value="byTitle" selected>Title</option>
+                            <option value="byDate">Date Published</option>
+                        </select>
+                    </div>
+                </form>
+                <ul class="list">
+                    {projectPosts.map((post) => {
+                        return  (
+                            <li data-title={post.frontmatter.title} data-date={post.frontmatter.date} data-category={post.frontmatter.category}>
+                                <a href={post.url}>
+                                    <span class="icon-group" set:html={getCatIconAndLabel(post.frontmatter.category).icon}></span>
+                                    <span class="title">{post.frontmatter.title}</span>
+                                    <span class="date">{dateFormatter.format(Date.parse(post.frontmatter.date))}</span>    
+                                </a>
+                                <button class="bookmark-toggle" data-title={post.frontmatter.title} data-url={post.url} data-project={post.frontmatter.project}><IconBookmarks /></button>
+                            </li>
+                        )
+                    })}
+                </ul>
+
+            ) : (
+            
+                <p>There are no articles in this project.</p>
+
+            )
+        }
+
+        </section>
+        
+        
+    </main>
+</BaseLayout>
+
+<script src="/scripts/filter.js" is:inline></script>
+<script src="/scripts/bookmarks.js" is:inline defer></script>

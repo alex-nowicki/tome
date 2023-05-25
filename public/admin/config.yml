@@ -228,6 +228,16 @@ collections:
         widget: "object"
         required: false
         fields:
+          - label: "Labels"
+            name: "labels"
+            widget: "hidden"
+            default: 
+              - foundingDate: "Founding Date"
+              - membershipSize: "Membership Size"
+              - orgStructure: "Organizational Structure"
+              - territory: "Territory"
+              - notableMembers: "Notable Members"
+
           - {label: "Founding Date", name: "foundingDate", widget: "string", required: false}
           - {label: "Membership Size", name: "membershipSize", widget: "string", required: false}
           - {label: "Organizational Structure", name: "orgStructure", widget: "string", required: false}
@@ -247,6 +257,13 @@ collections:
         widget: "object"
         required: false
         fields:
+          - label: "Labels"
+            name: "labels"
+            widget: "hidden"
+            default: 
+              - allies: "Allies"
+              - rivals: "Rivals"
+
           - label: "Allies"
             label_singular: "Ally"
             name: "allies"
@@ -333,6 +350,16 @@ collections:
         widget: "object"
         required: false
         fields:
+          - label: "Labels"
+            name: "labels"
+            widget: "hidden"
+            default: 
+              - location: "Location"
+              - population: "Population"
+              - landmarks: "Landmarks"
+              - notableResidents: "Notable Residents"
+              - notableGroups: "Notable Groups"
+
           - {label: "Location", name: "location", widget: "string", required: false}
           - {label: "Population", name: "population", widget: "string", required: false}
           - label: "Landmarks"
@@ -426,12 +453,21 @@ collections:
         widget: "object"
         required: false
         fields:
+          - label: "Labels"
+            name: "labels"
+            widget: "hidden"
+            default: 
+              - startDate: "Start Date"
+              - endDate: "End Date"
+              - location: "Location"
+              - notableParticipants: "Notable Participants"
+              - notableGroups: "Notable Groups"
+
           - label: "Start Date" 
             name: "startDate"
             widget: "object"
             summary: "{{fields.year}}"
             fields:
-              - {label: "Label", name: "label", widget: "hidden", default: "Start Date"}
               - {label: "Year", name: "year", widget: "number", required: false}
               - {label: "Month - Numerical", name: "month", widget: "number", required: false}
               - {label: "Day - Numerical", name: "day", widget: "number", required: false}
