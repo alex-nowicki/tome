@@ -4,7 +4,7 @@ project: Garuda
 category: People
 title: Bopha Krol
 date: 2023-04-24T16:10:41.161Z
-description: Captain of the Garuda.
+description: Captain of the independant starship, the Garuda.
 searchTerms:
   - Bopha Krol
   - Bopha de la Rosa
