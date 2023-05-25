@@ -26,7 +26,7 @@ connections:
       name: Jorani de la Rosa
   romances:
     - Désirée Reid
-  affilitations:
+  affiliations:
     - Strays
     - Interstellar Rescue Agency
 events:

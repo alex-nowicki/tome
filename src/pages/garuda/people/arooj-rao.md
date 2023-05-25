@@ -15,7 +15,7 @@ details:
   professions:
     - BioTech
 connections:
-  affilitations:
+  affiliations:
     - Strays
 ---
 ## Strengths

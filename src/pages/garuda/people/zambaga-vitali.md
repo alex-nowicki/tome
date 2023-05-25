@@ -16,7 +16,7 @@ details:
     - Soldier
     - Bodyguard
 connections:
-  affilitations:
+  affiliations:
     - Niska Nanotech
 ---
 ## History

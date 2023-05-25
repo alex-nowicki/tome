@@ -15,7 +15,7 @@ details:
   professions:
     - Clerk
 connections:
-  affilitations:
+  affiliations:
     - Strays
 ---
 ## Motivation

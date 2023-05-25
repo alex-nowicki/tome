@@ -14,7 +14,7 @@ details:
   professions:
     - Founder and Executive of the Interstellar Rescue Agency
 connections:
-  affilitations:
+  affiliations:
     - Interstellar Rescue Agency
 ---
 > <!--StartFragment-->

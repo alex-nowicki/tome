@@ -17,7 +17,7 @@ details:
   species: Human
   gender: Female
 connections:
-  affilitations:
+  affiliations:
     - Interstellar Rescue Agency
     - Niska Nanotech
 ---

@@ -23,7 +23,7 @@ connections:
       name: Bopha Krol
     - relationship: Mother
       name: Jorani de la Rosa
-  affilitations:
+  affiliations:
     - Cloudheads
 events:
   - title: Birth Year

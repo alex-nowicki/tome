@@ -15,7 +15,7 @@ details:
   professions:
     - Pilot
 connections:
-  affilitations:
+  affiliations:
     - Strays
     - Echos
 ---

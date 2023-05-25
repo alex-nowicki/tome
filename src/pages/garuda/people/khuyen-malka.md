@@ -15,6 +15,6 @@ details:
     - Broker
     - Space Station Administrator
 connections:
-  affilitations:
+  affiliations:
     - Strays
 ---

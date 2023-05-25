@@ -21,8 +21,25 @@ collections:
     fields:
       - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/ArticleListLayout.astro"}
       - {label: "Title", name: "title", widget: "string", pattern: [".{1,40}", "Must be no longer than 40 characters"],}
-      - {label: "Description", name: "description", widget: "markdown", pattern: [".{1,120}", "Must be no longer than 120 characters"]}
-      - {label: "Year Notation", name: "yearNotation", widget: "string"}
+      - {label: "Description", name: "description", widget: "markdown", pattern: [".{1,120}", "Must be no longer than 120 characters"], hint: "Description must be no longer than 120 characters."}
+
+
+
+
+  - label: "Collections"
+    label_singular: "Collection"
+    name: "collections"
+    folder: "src/pages"
+    create: true
+
+    fields:
+      - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/CollectionLayout.astro"}
+      - {label: "Title", name: "title", widget: "string", pattern: [".{1,40}", "Must be no longer than 40 characters"],}
+      - {label: "Description", name: "description", widget: "markdown", pattern: [".{1,120}", "Must be no longer than 120 characters"], required: false}
+      - {label: "Body", name: "body", widget: "markdown", required: false}
+
+
+
 
   - label: "People"
     label_singular: "Person"
@@ -35,8 +52,9 @@ collections:
     view_groups: 
       - label: Project
         field: project
+
     fields:
-      - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/PostLayout.astro"}
+      - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/ArticleLayout.astro"}
       - label: "Project"
         name: "project"
         widget: "relation"
@@ -44,6 +62,12 @@ collections:
         search_fields: ["title"]
         value_field: "title"
       - {label: "Category", name: "category", widget: "hidden", default: "People"}
+      - label: "Collection"
+        name: "collection"
+        widget: "relation"
+        collection: "collections"
+        search_fields: ["title"]
+        value_field: "title"
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "string", pattern: [".{1,120}", "Must be no longer than 120 characters"], required: false}
@@ -56,11 +80,23 @@ collections:
       - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
       - {label: "Body", name: "body", widget: "markdown", required: false}
        
+
       - label: "Details"
         name: "details"
         widget: "object"
         required: false
         fields:
+          - label: "Labels"
+            name: "labels"
+            widget: "hidden"
+            default: 
+              - aliases: "Aliases"
+              - birthplace: "Birthplace"
+              - residence: "Primary Residence"
+              - species: "Species"
+              - gender: "Gender Identity"
+              - professions: "Professions"
+
           - label: "Aliases"
             label_singular: "Alias"
             name: "aliases"
@@ -78,11 +114,20 @@ collections:
             summary: "{{fields.profession}}"
             field: {label: "Profession", name: "profession", widget: "string"}
 
+
       - label: "Connections"
         name: "connections"
         widget: "object"
         required: false
         fields:
+          - label: "Labels"
+            name: "labels"
+            widget: "hidden"
+            default: 
+              - family: "Family"
+              - romances: "Romantic Partners"
+              - affiliations: "Affiliations"
+
           - label: "Family"
             label_singular: "Member"
             name: "family"
@@ -99,7 +144,7 @@ collections:
             field: {label: "Partner", name: "partner", widget: "string"}
           - label: "Affiliations"
             label_singular: "Affiliation"
-            name: "affilitations"
+            name: "affiliations"
             widget: "list"
             summary: "{{fields.group}}"
             field: {label: "Group", name: "group", widget: "string"}
@@ -124,6 +169,8 @@ collections:
               - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
 
 
+
+
   - label: "Groups"
     label_singular: "Group"
     name: "groups"
@@ -135,8 +182,9 @@ collections:
     view_groups: 
       - label: Project
         field: project
+
     fields:
-      - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/PostLayout.astro"}
+      - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/ArticleLayout.astro"}
       - label: "Project"
         name: "project"
         widget: "relation"
@@ -144,6 +192,12 @@ collections:
         search_fields: ["title"]
         value_field: "title"
       - {label: "Category", name: "category", widget: "hidden", default: "Groups"}
+      - label: "Collection"
+        name: "collection"
+        widget: "relation"
+        collection: "collections"
+        search_fields: ["title"]
+        value_field: "title"
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "string", pattern: [".{1,120}", "Must be no longer than 120 characters"], required: false}
@@ -218,6 +272,9 @@ collections:
               - {label: "Day - Numerical", name: "day", widget: "number", required: false}
               - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
 
+
+
+
   - label: "Places"
     label_singular: "Place"
     name: "places"
@@ -229,8 +286,9 @@ collections:
     view_groups: 
       - label: Project
         field: project
+
     fields:
-      - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/PostLayout.astro"}
+      - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/ArticleLayout.astro"}
       - label: "Project"
         name: "project"
         widget: "relation"
@@ -238,6 +296,12 @@ collections:
         search_fields: ["title"]
         value_field: "title"
       - {label: "Category", name: "category", widget: "hidden", default: "Places"}
+      - label: "Collection"
+        name: "collection"
+        widget: "relation"
+        collection: "collections"
+        search_fields: ["title"]
+        value_field: "title"
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "string", pattern: [".{1,120}", "Must be no longer than 120 characters"], required: false}
@@ -301,6 +365,8 @@ collections:
               - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
 
 
+
+
   - label: "Events"
     label_singular: "Event"
     name: "events"
@@ -312,8 +378,9 @@ collections:
     view_groups: 
       - label: Project
         field: project
+
     fields:
-      - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/PostLayout.astro"}
+      - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/ArticleLayout.astro"}
       - label: "Project"
         name: "project"
         widget: "relation"
@@ -321,6 +388,12 @@ collections:
         search_fields: ["title"]
         value_field: "title"
       - {label: "Category", name: "category", widget: "hidden", default: "Events"}
+      - label: "Collection"
+        name: "collection"
+        widget: "relation"
+        collection: "collections"
+        search_fields: ["title"]
+        value_field: "title"
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "string", pattern: [".{1,120}", "Must be no longer than 120 characters"], required: false}
@@ -394,6 +467,8 @@ collections:
               - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
 
 
+
+
   - label: "Things"
     label_singular: "Things"
     name: "things"
@@ -406,7 +481,7 @@ collections:
       - label: Project
         field: project
     fields:
-      - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/PostLayout.astro"}
+      - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/ArticleLayout.astro"}
       - label: "Project"
         name: "project"
         widget: "relation"
@@ -414,6 +489,12 @@ collections:
         search_fields: ["title"]
         value_field: "title"
       - {label: "Category", name: "category", widget: "hidden", default: "Things"}
+      - label: "Collection"
+        name: "collection"
+        widget: "relation"
+        collection: "collections"
+        search_fields: ["title"]
+        value_field: "title"
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "string", pattern: [".{1,120}", "Must be no longer than 120 characters"], required: false}

@@ -15,7 +15,7 @@ details:
   professions:
     - MechTech
 connections:
-  affilitations:
+  affiliations:
     - Strays
     - Uplift Society
 ---
