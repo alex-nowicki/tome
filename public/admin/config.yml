@@ -61,7 +61,7 @@ collections:
         summary: "{{fields.searchTerm}}"
         field: {label: "Search Term", name: "searchTerm", widget: "string"}
         default: 
-          - "{title}"
+          - "{{title}}"
       - {label: "Body", name: "body", widget: "markdown", required: false}
 
 
