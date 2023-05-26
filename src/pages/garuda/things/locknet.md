@@ -2,6 +2,9 @@
 layout: ../../../layouts/ArticleLayout.astro
 project: Garuda
 category: Things
+collections:
+  - Networks
+  - Technology
 title: LockNet
 date: 2023-05-22T16:31:10.572Z
 description: Closed protocol network that requires authentication to access and
