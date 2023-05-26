@@ -5,34 +5,7 @@ import CardGroup from "../components/CardGroup.astro"
 const { activeProject } = Astro.props;
 
 const projects = await Astro.glob('../pages/*.md');
-
 const posts = await Astro.glob('../pages/*/*/*.md');
-
-posts.sort((a, b) => Date.parse(b.frontmatter.date) - Date.parse(a.frontmatter.date));
-
-projects.map((project) => {
-    let title = project.frontmatter.title;
-    // Filter the articles assigned to this project
-    let projectPosts = posts.filter(post => {
-        return post.frontmatter.project === title;
-    })
-    // Store the number of articles in the project object
-    project.frontmatter.numArticles = projectPosts.length; 
-
-    let greatestDate = 0;
-    let key;
-    for (let x in projectPosts){
-        let date = Date.parse(projectPosts[x].frontmatter.date);
-        if (date > greatestDate){
-            key = x;
-            greatestDate = date;
-        }
-    }
-    if (greatestDate > 0){
-        project.frontmatter.recentEditDate = greatestDate;
-    }    
-})
-
 
 ---
 
@@ -46,7 +19,7 @@ projects.map((project) => {
                         <h2>Recent Projects</h2>
                         <a href="/projects">View All Projects &rarr;</a>  
                     </div>
-                    <CardGroup posts={projects} numToShow={3} postType={'project'} />
+                    <CardGroup posts={projects} numToShow={3} sort={'byDateDesc'} />
                 </section>
             ) : (
                 <section>
@@ -59,7 +32,7 @@ projects.map((project) => {
             posts.length > 0 ? (
                 <section>
                     <h2>Recent Articles</h2>
-                    <CardGroup posts={posts} numToShow={3} postType={'article'}/>
+                    <CardGroup posts={posts} numToShow={3} sort={'byDateDesc'} />
                 </section>
             ) : (
                 <section>

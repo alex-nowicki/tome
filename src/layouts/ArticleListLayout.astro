@@ -24,6 +24,12 @@ const projectPosts = posts.filter(post => {
 
 let activeCategories = [...new Set(projectPosts.map(a => a.frontmatter.category))];
 
+if (activeCategories.includes('Collections')){
+    let index = activeCategories.indexOf('Collections');
+    activeCategories.splice(index, 1);
+    activeCategories.unshift('Collections');
+}
+
 ---
 
 <BaseLayout pageTitle={activeProject} activeProject={activeProject}>

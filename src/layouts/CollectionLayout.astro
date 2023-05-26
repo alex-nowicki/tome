@@ -10,12 +10,17 @@ import "../styles/project.css";
 const { frontmatter } = Astro.props;
 
 // Determine active project
-const activeProject = frontmatter.title;
+const activeProject = frontmatter.project;
 
 // Get project posts
 const posts = await Astro.glob('../pages/*/*/*.md');
 const projectPosts = posts.filter(post => {
-    return post.frontmatter.project === activeProject;
+
+    console.log(post.frontmatter);
+    return  post.frontmatter.project === activeProject 
+            && post.frontmatter.category !== 'Collections'
+            && post.frontmatter.collections !== undefined
+            && post.frontmatter.collections.includes(frontmatter.title);
 }).sort((a,b) => {
     if (a.frontmatter.title < b.frontmatter.title) return -1;
     if (a.frontmatter.title > b.frontmatter.title) return 0;
@@ -28,7 +33,7 @@ let activeCategories = [...new Set(projectPosts.map(a => a.frontmatter.category)
 
 <BaseLayout pageTitle={activeProject} activeProject={activeProject}>
     <main>
-        <h1>{activeProject} Articles</h1>
+        <h1>{frontmatter.title} Collection</h1>
         <section class="article-list">
 
         {

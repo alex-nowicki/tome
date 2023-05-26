@@ -57,6 +57,11 @@ export const getCatIconAndLabel = function (category) {
                     </svg>`,
         bookmarks:  `<svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path vector-effect="non-scaling-stroke" d="m4.84 22.61 6.82-6.3c.19-.18.49-.18.68 0l6.82 6.3c.32.3.84.07.84-.37V1.5c0-.28-.22-.5-.5-.5h-15c-.28 0-.5.22-.5.5v20.75c0 .44.52.66.84.37Z"/> 
+                    </svg>`,
+        collections: `<svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path vector-effect="non-scaling-stroke" d="M17 6V1.81c0-.45-.37-.81-.83-.81H2.83c-.46 0-.83.36-.83.81v15.38c0 .45.37.81.83.81H7"/>
+                        <path vector-effect="non-scaling-stroke" d="M7.83 6c-.46 0-.83.36-.83.81v15.38c0 .45.37.81.83.81h13.33c.46 0 .83-.36.83-.81V6.81c0-.45-.37-.81-.83-.81H7.83Z"/>
+                        <path vector-effect="non-scaling-stroke" d="M11.5 10.5h6M11.5 14.5h6M11.5 18.5h4"/>
                     </svg>`
     }
     let icon;
@@ -76,6 +81,9 @@ export const getCatIconAndLabel = function (category) {
     } else if (category === 'Things') {
         icon = svgs.things;
         label = 'Thing';
+    } else if (category === 'Collections') {
+        icon = svgs.collections;
+        label = 'Collection'
     } else {
         icon = svgs.projects;
         label = 'Project';

@@ -9,7 +9,63 @@ import "../styles/cards.css"
 
 const { posts } = Astro.props;
 const { numToShow } = Astro.props;
-const { postType } = Astro.props;
+const { sort } = Astro.props;
+
+const allPosts = await Astro.glob('../pages/*/*/*.md');
+
+posts.map((post) => {
+    if (post.frontmatter.category === 'Collections' || post.frontmatter.category === undefined){
+
+        // Filter articles
+        let filteredPosts;
+
+        if (post.frontmatter.category === 'Collections') {
+            filteredPosts = posts.filter((filterPost) => {
+                return filterPost.frontmatter.collections !== undefined && filterPost.frontmatter.collections.includes(post.frontmatter.title)
+            })
+        } else {
+            filteredPosts = allPosts.filter((filterPost) => {
+                return filterPost.frontmatter.project === post.frontmatter.title;
+            })
+        }
+        
+        // Store the number of articles
+        post.frontmatter.numArticles = filteredPosts.length;
+
+        let greatestDate = 0;
+        let key;
+
+        // Determine the most recently updated article
+        for (let x in filteredPosts){
+            let date = Date.parse(filteredPosts[x].frontmatter.date);
+            if (date > greatestDate){
+                key = x;
+                greatestDate = date;
+            }
+        }
+
+        // If a date is found, store the date
+        if (greatestDate > 0){
+            post.frontmatter.recentEditDate = greatestDate;
+        } else {
+            post.frontmatter.recentEditDate = 0;
+        }
+        
+        console.log(post.frontmatter.title, post.frontmatter.numArticles, post.frontmatter.recentEditDate);
+    }
+})
+
+// Sort the posts by most recently edited
+if (sort === 'byDateDesc'){
+    posts.sort((a, b) => {
+        let aDate = a.frontmatter.recentEditDate !== undefined ? a.frontmatter.recentEditDate : Date.parse(a.frontmatter.date);
+        let bDate = b.frontmatter.recentEditDate !== undefined ? b.frontmatter.recentEditDate : Date.parse(b.frontmatter.date);
+        console.log(aDate, bDate);
+        return bDate - aDate;
+    });
+    
+}
+
 
 ---
 
@@ -21,33 +77,33 @@ const { postType } = Astro.props;
             let icon = getCatIconAndLabel(post.frontmatter.category).icon;
             let label = getCatIconAndLabel(post.frontmatter.category).label;
 
-            if (postType === 'article'){
-                return  <li class="card">
-                            <div class="info-group">
-                                <h3>{post.frontmatter.title}</h3>
-                                <p class="category"><Fragment set:html={icon} />{label}</p>
-                                <p class="description">{post.frontmatter.description}</p>
-                                <div class="meta">
-                                    <p class="date">Published {dateFormatter.format(Date.parse(post.frontmatter.date))}</p>
-                                </div>
-                            </div>
-                            <a href={post.url}>Open Article <IconArrow/></a>    
-                        </li>
-        
-            } else if (postType === 'project'){
-                return  <li class="card">
-                            <div class="info-group">
-                                <h3>{post.frontmatter.title}</h3>
-                                <p class="category"><Fragment set:html={icon} />{label}</p>
-                                <p class="description">{post.frontmatter.description}</p>
-                                <div class="meta">
-                                    <p class="num-articles">{post.frontmatter.numArticles} Articles</p>
-                                    <p class="date" hidden={post.frontmatter.recentEditDate ? null : ''}>Updated {dateFormatter.format(post.frontmatter.recentEditDate)}</p>
-                                </div>
-                            </div>
-                            <a href={post.url}>Open Project <IconArrow/></a>    
-                        </li>
+            let postType
+            if (post.frontmatter.category === 'Collections' || post.frontmatter.category === undefined){
+                postType = label;
+            } else {
+                postType = 'Article';
             }
+
+            let meta;
+            if (postType === 'Article'){
+                meta = `
+                    <p class="date">Published ${dateFormatter.format(Date.parse(post.frontmatter.date))}</p>
+                `;
+            } else {
+                let numArticleString = post.frontmatter.numArticles !== undefined ? `<p class="num-articles">${post.frontmatter.numArticles} Articles</p>` : '';
+                let recentDateString = post.frontmatter.recentEditDate !== undefined && post.frontmatter.recentEditDate > 0 ? `<p class="date">Updated ${dateFormatter.format(post.frontmatter.recentEditDate)}</p>` : '';
+                meta = numArticleString + recentDateString;
+            }
+
+            return  <li class="card">
+                        <div class="info-group">
+                            <h3>{post.frontmatter.title}</h3>
+                            <p class="category"><Fragment set:html={icon} />{label}</p>
+                            <p class="description">{post.frontmatter.description}</p>
+                            <div class="meta" set:html={meta}></div>
+                        </div>
+                        <a href={post.url}>Open {postType} <IconArrow/></a>    
+                    </li>
         
         }
         
