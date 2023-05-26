@@ -2,6 +2,9 @@
 layout: ../../../layouts/ArticleLayout.astro
 project: Garuda
 category: Things
+collections:
+  - Networks
+  - Technology
 title: WildNet
 date: 2023-05-22T16:11:36.662Z
 description: Open protocol network used in the Prosper System.
