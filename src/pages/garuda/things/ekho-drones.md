@@ -14,6 +14,6 @@ searchTerms:
 ---
 Developed by ODI, Exo Kinetic Human Operated (EKHO) Drones are piloted by humans in suspended animation. Their minds are kept active, but their bodies are put in a low activity state, allowing them to operate drones for longer periods of time, uninterrupted. Pilots are only removed from suspended animation once the contract is fulfilled.
 
-Pilots must undergo the Cloudhead neural implant surgery to operate the drones. This surgery is irreversible. Pilots who have completed their contracts are often stigmatized as being lazy, untrustworthy, bad with money, etc.
+Pilots must undergo Cloudjack surgery to operate the drones. This surgery is irreversible. Pilots who have completed their contracts are often stigmatized as being lazy, untrustworthy, bad with money, etc.
 
 Most Pilots are indentured servants, paying off one debt or another.
