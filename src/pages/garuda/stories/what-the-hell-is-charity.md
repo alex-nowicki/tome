@@ -2,7 +2,7 @@
 layout: ../../../layouts/StoryLayout.astro
 project: Garuda
 category: Stories
-title: What the hell is charity?
+title: "Episode 1: What the hell is charity?"
 date: 2023-06-03T14:34:52.230Z
 chapters:
   - scenes:
