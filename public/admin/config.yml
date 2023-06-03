@@ -61,7 +61,6 @@ collections:
       - label: "Chapters"
         name: "chapters"
         widget: "list"
-        summary: "{{fields.summary}}"
         collapsed: false
         required: false
         field:
