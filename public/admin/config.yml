@@ -63,7 +63,9 @@ collections:
         widget: "list"
         collapsed: false
         required: false
-        field:
+        summary: "{{fields.title}}"
+        fields:
+          - {label: "Title", name: "title", widget: "string", required: false}
           - label: "Scenes"
             name: "scenes"
             widget: "list"
