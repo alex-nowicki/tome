@@ -30,6 +30,58 @@ collections:
 
 
   ##
+  ## Stories
+  ##
+
+  - label: "Stories"
+    label_singular: "Story"
+    name: "stories"
+    folder: "src/pages"
+    filter: {field: "category", value: "Stories"}
+    path: "{{project}}/stories/{{slug}}"
+    create: true
+    slug: "{{slug}}"
+    view_groups: 
+      - label: Project
+        field: project
+    
+    fields:
+      - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/StoryLayout.astro"}
+      - label: "Project"
+        name: "project"
+        widget: "relation"
+        collection: "projects"
+        search_fields: ["title"]
+        value_field: "title"
+      - {label: "Category", name: "category", widget: "hidden", default: "Stories"}
+      - {label: "Title", name: "title", widget: "string", pattern: [".{1,40}", "Must be no longer than 40 characters"], hint: "Title must be no longer than 40 characters."}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Description", name: "description", widget: "text", pattern: [".{1,120}", "Must be no longer than 120 characters"], hint: "Description must be no longer than 120 characters.", required: false}
+      - {label: "Body", name: "body", widget: "markdown", required: false}
+      - label: "Chapters"
+        name: "chapters"
+        widget: "list"
+        summary: "{{fields.summary}}"
+        collapsed: false
+        required: false
+        field:
+          - label: "Scenes"
+            name: "scenes"
+            widget: "list"
+            summary: "{{fields.description}}"
+            required: false
+            fields:
+              - label: "POV Character"
+                name: "pov"
+                widget: "relation"
+                collection: "people"
+                search_fields: ["title"]
+                value_field: "title"
+              - {label: "Location", name: "location", widget: "string", required: false}
+              - {label: "Description", name: "description", widget: "markdown"}
+
+
+  ##
   ## Collections
   ##
 
