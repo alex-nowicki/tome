@@ -58,28 +58,55 @@ collections:
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "text", pattern: [".{1,120}", "Must be no longer than 120 characters"], hint: "Description must be no longer than 120 characters.", required: false}
       - {label: "Body", name: "body", widget: "markdown", required: false}
-      - label: "Chapters"
-        name: "chapters"
-        widget: "list"
-        collapsed: false
-        required: false
-        summary: "{{fields.title}}"
-        fields:
-          - {label: "Title", name: "title", widget: "string", required: false}
-          - label: "Scenes"
-            name: "scenes"
-            widget: "list"
-            summary: "{{fields.description}}"
-            required: false
-            fields:
-              - label: "POV Character"
-                name: "pov"
-                widget: "relation"
-                collection: "people"
-                search_fields: ["title"]
-                value_field: "title"
-              - {label: "Location", name: "location", widget: "string", required: false}
-              - {label: "Description", name: "description", widget: "markdown"}
+
+
+  ##
+  ## Chapters
+  ##
+
+  - label: "Chapters"
+    label_singular: "Chapter"
+    name: "chapters"
+    folder: "src/pages"
+    filter: {field: "category", value: "Chapters"}
+    path: "{{project}}/stories/{{story}}/{{slug}}"
+    create: true
+    slug: "{{slug}}"
+    view_groups: 
+      - label: Project
+        field: project
+
+    nested:
+      depth: 100 # max depth to show in the collection folder structure
+    
+    fields:
+      - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/ChapterLayout.astro"}
+      - label: "Project"
+        name: "project"
+        widget: "relation"
+        collection: "projects"
+        search_fields: ["title"]
+        value_field: "title"
+      - label: "Story"
+        name: "story"
+        widget: "relation"
+        collection: "stories"
+        search_fields: ["title"]
+        value_field: "title"
+      - {label: "Category", name: "category", widget: "hidden", default: "Stories"}
+      - {label: "Title", name: "title", widget: "string", pattern: [".{1,40}", "Must be no longer than 40 characters"], hint: "Title must be no longer than 40 characters."}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Description", name: "description", widget: "text", pattern: [".{1,120}", "Must be no longer than 120 characters"], hint: "Description must be no longer than 120 characters.", required: false}
+      - label: "POV Character"
+        name: "pov"
+        widget: "relation"
+        collection: "people"
+        search_fields: ["title"]
+        value_field: "title"
+      - {label: "Body", name: "body", widget: "markdown", required: false}
+      - {label: "Ideas", name: "ideas", widget: "markdown", required: false}
+
+      meta: { path: { widget: string, label: 'Path', index_file: 'index' } }
 
 
   ##
@@ -258,9 +285,9 @@ collections:
               - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
 
 
-##
-## Groups
-## 
+  ##
+  ## Groups
+  ## 
 
   - label: "Groups"
     label_singular: "Group"
@@ -393,9 +420,9 @@ collections:
               - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
 
 
-##
-## Places
-## 
+  ##
+  ## Places
+  ## 
 
   - label: "Places"
     label_singular: "Place"
@@ -505,9 +532,9 @@ collections:
               - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
 
 
-##
-## Events
-## 
+  ##
+  ## Events
+  ## 
 
   - label: "Events"
     label_singular: "Event"
@@ -626,9 +653,9 @@ collections:
               - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
 
 
-##
-## Things
-## 
+  ##
+  ## Things
+  ## 
 
   - label: "Things"
     label_singular: "Things"
