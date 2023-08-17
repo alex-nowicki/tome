@@ -57,55 +57,9 @@ collections:
       - {label: "Title", name: "title", widget: "string", pattern: [".{1,40}", "Must be no longer than 40 characters"], hint: "Title must be no longer than 40 characters."}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "text", pattern: [".{1,120}", "Must be no longer than 120 characters"], hint: "Description must be no longer than 120 characters.", required: false}
-      - {label: "Body", name: "body", widget: "markdown", required: false}
-
-
-  ##
-  ## Chapters
-  ##
-
-  - label: "Chapters"
-    label_singular: "Chapter"
-    name: "chapters"
-    folder: "src/pages"
-    filter: {field: "category", value: "Chapters"}
-    path: "{{project}}/stories/{{story}}/{{slug}}"
-    create: true
-    slug: "{{slug}}"
-    view_groups: 
-      - label: Project
-        field: project
-
-    nested:
-      depth: 100 # max depth to show in the collection folder structure
-    
-    fields:
-      - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/ChapterLayout.astro"}
-      - label: "Project"
-        name: "project"
-        widget: "relation"
-        collection: "projects"
-        search_fields: ["title"]
-        value_field: "title"
-      - label: "Story"
-        name: "story"
-        widget: "relation"
-        collection: "stories"
-        search_fields: ["title"]
-        value_field: "title"
-      - {label: "Category", name: "category", widget: "hidden", default: "Chapters"}
-      - {label: "Title", name: "title", widget: "string", pattern: [".{1,40}", "Must be no longer than 40 characters"], hint: "Title must be no longer than 40 characters."}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Description", name: "description", widget: "text", pattern: [".{1,120}", "Must be no longer than 120 characters"], hint: "Description must be no longer than 120 characters.", required: false}
-      - label: "POV Character"
-        name: "pov"
-        widget: "relation"
-        collection: "people"
-        search_fields: ["title"]
-        value_field: "title"
-        required: false
-      - {label: "Body", name: "body", widget: "markdown", required: false}
       - {label: "Ideas", name: "ideas", widget: "markdown", required: false}
+      - {label: "Questions", name: "questions", widget: "markdown", required: false}
+      - {label: "Body", name: "body", widget: "markdown", required: false}
 
 
   ##
