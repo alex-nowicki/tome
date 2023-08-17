@@ -133,7 +133,6 @@ export const processEventsForTimeline = function(frontmatter) {
         }
 
         events.push(eventStart);
-        // console.log(events);
 
         // If an end date is described
         if (frontmatter.details.endDate){
@@ -152,10 +151,6 @@ export const processEventsForTimeline = function(frontmatter) {
         event.postTitle = frontmatter.title;
 
     })
-
-    
-
-    // console.log(events);
 
     return events;
 

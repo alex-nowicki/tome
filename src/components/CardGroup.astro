@@ -51,7 +51,6 @@ posts.map((post) => {
             post.frontmatter.recentEditDate = 0;
         }
         
-        console.log(post.frontmatter.title, post.frontmatter.numArticles, post.frontmatter.recentEditDate);
     }
 })
 
@@ -60,7 +59,6 @@ if (sort === 'byDateDesc'){
     posts.sort((a, b) => {
         let aDate = a.frontmatter.recentEditDate !== undefined ? a.frontmatter.recentEditDate : Date.parse(a.frontmatter.date);
         let bDate = b.frontmatter.recentEditDate !== undefined ? b.frontmatter.recentEditDate : Date.parse(b.frontmatter.date);
-        console.log(aDate, bDate);
         return bDate - aDate;
     });
     

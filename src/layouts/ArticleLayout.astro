@@ -27,7 +27,8 @@ const postContent = await Astro.props.compiledContent();
 // Get project posts
 const posts = await Astro.glob('../pages/*/*/*.md');
 const projectPosts = posts.filter(post => {
-    return post.frontmatter.project === activeProject && !post.frontmatter.title !== activePost;
+    return  post.frontmatter.project === activeProject 
+            && post.url !== activePost;
 })
 
 // Collect all search terms in an array
@@ -183,15 +184,11 @@ let relevanceArr;
 if (postDetails !== ''){
     editedPostDetails = detectMatches(postDetails, searchArr, editedPostContent.relevance);
     relevanceArr = editedPostDetails.relevance.sort((a, b) => b.score - a.score);
+} else {
+    relevanceArr = editedPostContent.relevance;
 }
 
 let timelineEvents = processEventsForTimeline(frontmatter);
-
-// TODO - Tweak content spacing and add different content types for testing
-// TODO - Details Startdate is undefined and needs to be split into two words
-// TODO - Should the timeline show if only the one event?
-// TODO - Remove duplicate bookmark button from header
-
 
 ---
 
@@ -215,7 +212,6 @@ let timelineEvents = processEventsForTimeline(frontmatter);
                 </div>
                 <h1>{frontmatter.title}</h1>
                 <div class="meta">
-                    <button class="bookmark-toggle" data-title={frontmatter.title} data-url={frontmatter.url} data-project={frontmatter.project}><IconBookmarks /></button>
                     <p class="category"><Fragment set:html={getCatIconAndLabel(frontmatter.category).icon} />{getCatIconAndLabel(frontmatter.category).label}</p>
                     <p class="date">Published {dateFormatter.format(Date.parse(frontmatter.date))}</p>
                 </div>
@@ -228,7 +224,7 @@ let timelineEvents = processEventsForTimeline(frontmatter);
                 )
             }
             {
-                timelineEvents !== undefined && timelineEvents.length > 0 && (
+                timelineEvents !== undefined && timelineEvents.length > 1 && (
                     <section class="timeline">
                         <h2>Timeline</h2>
                         <Timeline events={timelineEvents} />

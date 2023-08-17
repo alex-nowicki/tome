@@ -134,7 +134,7 @@ article {
     grid-area: article;
 
     display: grid;
-    grid-template-columns: calc(var(--contentWidth) - var(--detailsOverlap)) var(--detailsOverlap) var(--detailsOverlap);
+    grid-template-columns: minmax(60%, calc(var(--contentWidth) - var(--detailsOverlap))) minmax(10%, var(--detailsOverlap)) minmax(10%, var(--detailsOverlap));
     grid-template-rows: auto auto var(--spacing) 1fr;
     /* padding: 4rem; */
 }

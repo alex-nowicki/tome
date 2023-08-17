@@ -8,11 +8,20 @@ description: Operator of the Ledger and shipping hub
 searchTerms:
   - Frontier Logistics
 details:
+  labels:
+    - foundingDate: Founding Date
+    - membershipSize: Membership Size
+    - orgStructure: Organizational Structure
+    - territory: Territory
+    - notableMembers: Notable Members
   notableMembers:
     - role: Owner/Operator
       name: Khuyen Malka
   territory: Frontier
 connections:
+  labels:
+    - allies: Allies
+    - rivals: Rivals
   allies:
     - name: Strays
       relationship: Contractors

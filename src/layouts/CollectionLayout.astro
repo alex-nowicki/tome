@@ -15,8 +15,6 @@ const activeProject = frontmatter.project;
 // Get project posts
 const posts = await Astro.glob('../pages/*/*/*.md');
 const projectPosts = posts.filter(post => {
-
-    console.log(post.frontmatter);
     return  post.frontmatter.project === activeProject 
             && post.frontmatter.category !== 'Collections'
             && post.frontmatter.collections !== undefined
