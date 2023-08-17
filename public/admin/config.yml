@@ -93,7 +93,7 @@ collections:
         collection: "stories"
         search_fields: ["title"]
         value_field: "title"
-      - {label: "Category", name: "category", widget: "hidden", default: "Stories"}
+      - {label: "Category", name: "category", widget: "hidden", default: "Chapters"}
       - {label: "Title", name: "title", widget: "string", pattern: [".{1,40}", "Must be no longer than 40 characters"], hint: "Title must be no longer than 40 characters."}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "text", pattern: [".{1,120}", "Must be no longer than 120 characters"], hint: "Description must be no longer than 120 characters.", required: false}
@@ -103,6 +103,7 @@ collections:
         collection: "people"
         search_fields: ["title"]
         value_field: "title"
+        required: false
       - {label: "Body", name: "body", widget: "markdown", required: false}
       - {label: "Ideas", name: "ideas", widget: "markdown", required: false}
 
