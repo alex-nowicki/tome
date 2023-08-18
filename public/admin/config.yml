@@ -424,7 +424,8 @@ collections:
         name: "details"
         widget: "markdown"
         minimal: true
-        default: "## Details
+        default: |
+          ## Details
 
           ### Location
 
@@ -434,12 +435,15 @@ collections:
 
           ### Landmarks
           - 
+          - 
 
           ### Notable Residents
           - 
+          - 
 
           ### Notable Groups  
-          - "
+          - 
+          - 
 
       # - label: "Details"
       #   name: "details"
