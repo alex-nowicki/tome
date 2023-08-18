@@ -423,6 +423,7 @@ collections:
       - label: "Details"
         name: "details"
         widget: "markdown"
+        minimal: true
         default: "
         ## Details
 
