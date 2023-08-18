@@ -424,25 +424,22 @@ collections:
         name: "details"
         widget: "markdown"
         minimal: true
-        default: "
-        ## Details
+        default: "## Details
 
-        ### Location
-
-
-        ### Population
+          ### Location
 
 
-        ### Landmarks
-        - 
+          ### Population
 
-        ### Notable Residents
-        - 
 
-        ### Notable Groups  
-        - 
+          ### Landmarks
+          - 
 
-        "
+          ### Notable Residents
+          - 
+
+          ### Notable Groups  
+          - "
 
       # - label: "Details"
       #   name: "details"
