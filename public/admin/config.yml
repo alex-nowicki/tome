@@ -145,74 +145,45 @@ collections:
 
       - label: "Details"
         name: "details"
-        widget: "object"
+        widget: "markdown"
         required: false
-        fields:
-          - label: "Labels"
-            name: "labels"
-            widget: "hidden"
-            default: 
-              - aliases: "Aliases"
-              - birthplace: "Birthplace"
-              - residence: "Primary Residence"
-              - species: "Species"
-              - gender: "Gender Identity"
-              - professions: "Professions"
+        minimal: true
+        default: |
+          ## Details
 
-          - label: "Aliases"
-            label_singular: "Alias"
-            name: "aliases"
-            widget: "list"
-            summary: "{{fields.alias}}"
-            field: {label: "Alias", name: "alias", widget: "string"}
-          - {label: "Birthplace", name: "birthplace", widget: "string", required: false}
-          - {label: "Primary Residence", name: "residence", widget: "string", required: false}
-          - {label: "Species", name: "species", widget: "string", required: false}
-          - {label: "Gender Identity", name: "gender", widget: "string", required: false}
-          - label: "Professions"
-            label_singular: "Profession"
-            name: "professions"
-            widget: "list"
-            summary: "{{fields.profession}}"
-            field: {label: "Profession", name: "profession", widget: "string"}
+          ### Aliases
+          - 
+          - 
 
-      ## 
-      ## People - Connections
-      ##
+          ### Birthplace
 
-      - label: "Connections"
-        name: "connections"
-        widget: "object"
-        required: false
-        fields:
-          - label: "Labels"
-            name: "labels"
-            widget: "hidden"
-            default: 
-              - family: "Family"
-              - romances: "Romantic Partners"
-              - affiliations: "Affiliations"
 
-          - label: "Family"
-            label_singular: "Member"
-            name: "family"
-            widget: "list"
-            summary: "{{fields.relationship}} - {{fields.name}}"
-            fields:
-              - {label: "Relationship", name: "relationship", widget: "string"}
-              - {label: "Name", name: "name", widget: "string"}
-          - label: "Romantic Partners"
-            label_singular: "Partner"
-            name: "romances"
-            widget: "list"
-            summary: "{{fields.partner}}"
-            field: {label: "Partner", name: "partner", widget: "string"}
-          - label: "Affiliations"
-            label_singular: "Affiliation"
-            name: "affiliations"
-            widget: "list"
-            summary: "{{fields.group}}"
-            field: {label: "Group", name: "group", widget: "string"}
+          ### Primary Residence
+          
+
+          ### Species
+
+
+          ### Gender Identity
+
+
+          ### Professions  
+          - 
+          - 
+
+          ## Connections
+
+          ### Family
+          - 
+          - 
+
+          ### Romantic Partners
+          - 
+          -  
+
+          ### Affiliations
+          - 
+          - 
 
       ## 
       ## People - Events
@@ -287,67 +258,37 @@ collections:
 
       - label: "Details"
         name: "details"
-        widget: "object"
+        widget: "markdown"
         required: false
-        fields:
-          - label: "Labels"
-            name: "labels"
-            widget: "hidden"
-            default: 
-              - foundingDate: "Founding Date"
-              - membershipSize: "Membership Size"
-              - orgStructure: "Organizational Structure"
-              - territory: "Territory"
-              - notableMembers: "Notable Members"
+        minimal: true
+        default: |
+          ## Details
 
-          - {label: "Founding Date", name: "foundingDate", widget: "string", required: false}
-          - {label: "Membership Size", name: "membershipSize", widget: "string", required: false}
-          - {label: "Organizational Structure", name: "orgStructure", widget: "string", required: false}
-          - {label: "Territory", name: "territory", widget: "string", required: false}
-          - label: "Notable Members"
-            label_singular: "Member"
-            name: "notableMembers"
-            widget: "list"
-            summary: "{{fields.role}} - {{fields.name}}"
-            required: false
-            fields:
-              - {label: "Role", name: "role", widget: "string", required: false}
-              - {label: "Name", name: "name", widget: "string"}
+          ### Founding Date
 
-      ##
-      ## Groups - Connections
-      ## 
 
-      - label: "Connections"
-        name: "connections"
-        widget: "object"
-        required: false
-        fields:
-          - label: "Labels"
-            name: "labels"
-            widget: "hidden"
-            default: 
-              - allies: "Allies"
-              - rivals: "Rivals"
+          ### Membership Size
 
-          - label: "Allies"
-            label_singular: "Ally"
-            name: "allies"
-            widget: "list"
-            summary: "{{fields.relationship}} - {{fields.name}}"
-            required: false
-            fields:
-              - {label: "Relationship", name: "relationship", widget: "string", required: false}
-              - {label: "Name", name: "name", widget: "string"}
-          - label: "Rivals"
-            label_singular: "Rival"
-            name: "rivals"
-            widget: "list"
-            summary: "{{fields.relationship}} - {{fields.name}}"
-            required: false
-            fields:
-              - {label: "Relationship", name: "relationship", widget: "string", required: false}
-              - {label: "Name", name: "name", widget: "string"}
+
+          ### Organizational Structure
+          
+
+          ### Territory
+
+
+          ### Notable Members  
+          - 
+          - 
+
+          ## Connections
+
+          ### Allies
+          - 
+          - 
+
+          ### Rivals
+          - 
+          -  
 
       ##
       ## Groups - Events
@@ -423,6 +364,7 @@ collections:
       - label: "Details"
         name: "details"
         widget: "markdown"
+        required: false
         minimal: true
         default: |
           ## Details
@@ -444,47 +386,6 @@ collections:
           ### Notable Groups  
           - 
           - 
-
-      # - label: "Details"
-      #   name: "details"
-      #   widget: "object"
-      #   required: false
-      #   fields:
-      #     - label: "Labels"
-      #       name: "labels"
-      #       widget: "hidden"
-      #       default: 
-      #         - location: "Location"
-      #         - population: "Population"
-      #         - landmarks: "Landmarks"
-      #         - notableResidents: "Notable Residents"
-      #         - notableGroups: "Notable Groups"
-
-      #     - {label: "Location", name: "location", widget: "string", required: false}
-      #     - {label: "Population", name: "population", widget: "string", required: false}
-      #     - label: "Landmarks"
-      #       label_singular: "Landmark"
-      #       name: "landmarks"
-      #       widget: "list"
-      #       summary: "{{fields.name}}"
-      #       required: false
-      #       fields:
-      #         - {label: "Location", name: "location", widget: "string", required: false}
-      #         - {label: "Name", name: "name", widget: "string"}
-      #     - label: "Notable Residents"
-      #       label_singular: "Resident"
-      #       name: "notableResidents"
-      #       widget: "list"
-      #       summary: "{{fields.name}}"
-      #       required: false
-      #       field: {label: "Name", name: "name", widget: "string"}
-      #     - label: "Notable Groups"
-      #       label_singular: "Group"
-      #       name: "notableGroups"
-      #       widget: "list"
-      #       summary: "{{fields.name}}"
-      #       required: false
-      #       field: {label: "Name", name: "name", widget: "string"}
 
       ##
       ## Places - Events
@@ -557,55 +458,46 @@ collections:
       ## Events - Details
       ## 
 
-      - label: "Details"
-        name: "details"
+      - label: "Start Date" 
+        name: "startDate"
         widget: "object"
+        summary: "{{fields.year}}"
+        fields:
+          - {label: "Year", name: "year", widget: "number", required: false}
+          - {label: "Month - Numerical", name: "month", widget: "number", required: false}
+          - {label: "Day - Numerical", name: "day", widget: "number", required: false}
+          - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
+
+      - label: "End Date" 
+        name: "endDate"
+        widget: "object"
+        summary: "{{fields.year}}"
         required: false
         fields:
-          - label: "Labels"
-            name: "labels"
-            widget: "hidden"
-            default: 
-              - startDate: "Start Date"
-              - endDate: "End Date"
-              - location: "Location"
-              - notableParticipants: "Notable Participants"
-              - notableGroups: "Notable Groups"
+          - {label: "Year", name: "year", widget: "number", required: false}
+          - {label: "Month - Numerical", name: "month", widget: "number", required: false}
+          - {label: "Day - Numerical", name: "day", widget: "number", required: false}
+          - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
 
-          - label: "Start Date" 
-            name: "startDate"
-            widget: "object"
-            summary: "{{fields.year}}"
-            fields:
-              - {label: "Year", name: "year", widget: "number", required: false}
-              - {label: "Month - Numerical", name: "month", widget: "number", required: false}
-              - {label: "Day - Numerical", name: "day", widget: "number", required: false}
-              - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
-          - label: "End Date" 
-            name: "endDate"
-            widget: "object"
-            summary: "{{fields.year}}"
-            required: false
-            fields:
-              - {label: "Year", name: "year", widget: "number", required: false}
-              - {label: "Month - Numerical", name: "month", widget: "number", required: false}
-              - {label: "Day - Numerical", name: "day", widget: "number", required: false}
-              - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
-          - {label: "Location", name: "location", widget: "string", required: false}
-          - label: "Notable Participants"
-            label_singular: "Participant"
-            name: "notableParticipants"
-            widget: "list"
-            summary: "{{fields.name}}"
-            required: false
-            field: {label: "Name", name: "name", widget: "string"}
-          - label: "Notable Groups"
-            label_singular: "Group"
-            name: "notableGroups"
-            widget: "list"
-            summary: "{{fields.name}}"
-            required: false
-            field: {label: "Name", name: "name", widget: "string"}
+      - label: "Details"
+        name: "details"
+        widget: "markdown"
+        required: false
+        minimal: true
+        default: |
+          ## Details
+
+          ### Locations
+          - 
+          - 
+
+          ### Notable Participants
+          - 
+          - 
+
+          ### Notable Groups  
+          - 
+          - 
 
       ##
       ## Events - Events
@@ -672,6 +564,18 @@ collections:
         field: {label: "Search Term", name: "searchTerm", widget: "string"}
       - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
       - {label: "Body", name: "body", widget: "markdown", required: false}
+
+      ##
+      ## Things - Details
+      ## 
+
+      - label: "Details"
+        name: "details"
+        widget: "markdown"
+        required: false
+        minimal: true
+        default: |
+          ## Details
 
       ##
       ## Things - Events
