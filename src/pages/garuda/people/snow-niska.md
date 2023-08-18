@@ -11,6 +11,13 @@ searchTerms:
   - Snow
   - Severina Niska
 details:
+  labels:
+    - aliases: Aliases
+    - birthplace: Birthplace
+    - residence: Primary Residence
+    - species: Species
+    - gender: Gender Identity
+    - professions: Professions
   aliases:
     - Severina Niska
   birthplace: Revati, Prosper System

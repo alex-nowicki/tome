@@ -9,6 +9,13 @@ searchTerms:
   - Khuyen Malka
   - Khuyen
 details:
+  labels:
+    - aliases: Aliases
+    - birthplace: Birthplace
+    - residence: Primary Residence
+    - species: Species
+    - gender: Gender Identity
+    - professions: Professions
   species: Human
   gender: Female
   professions:

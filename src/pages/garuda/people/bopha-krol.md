@@ -10,6 +10,13 @@ searchTerms:
   - Bopha de la Rosa
   - Bopha
 details:
+  labels:
+    - aliases: Aliases
+    - birthplace: Birthplace
+    - residence: Primary Residence
+    - species: Species
+    - gender: Gender Identity
+    - professions: Professions
   aliases:
     - Bopha de la Rosa
   birthplace: Revati, Prosper System
@@ -19,6 +26,10 @@ details:
   professions:
     - Captain of the Garuda
 connections:
+  labels:
+    - family: Family
+    - romances: Romantic Partners
+    - affiliations: Affiliations
   family:
     - relationship: Niece
       name: Chantico de la Rosa

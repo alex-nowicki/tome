@@ -9,6 +9,13 @@ searchTerms:
   - Rezki Dumas
   - Rezki
 details:
+  labels:
+    - aliases: Aliases
+    - birthplace: Birthplace
+    - residence: Primary Residence
+    - species: Species
+    - gender: Gender Identity
+    - professions: Professions
   residence: Garuda
   species: Human
   gender: Male

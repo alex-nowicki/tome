@@ -9,6 +9,13 @@ searchTerms:
   - Chantico
   - Chantico de la Rosa
 details:
+  labels:
+    - aliases: Aliases
+    - birthplace: Birthplace
+    - residence: Primary Residence
+    - species: Species
+    - gender: Gender Identity
+    - professions: Professions
   aliases:
     - Chanti
   birthplace: Renati, Prosper System

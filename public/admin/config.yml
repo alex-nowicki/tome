@@ -422,44 +422,67 @@ collections:
 
       - label: "Details"
         name: "details"
-        widget: "object"
-        required: false
-        fields:
-          - label: "Labels"
-            name: "labels"
-            widget: "hidden"
-            default: 
-              - location: "Location"
-              - population: "Population"
-              - landmarks: "Landmarks"
-              - notableResidents: "Notable Residents"
-              - notableGroups: "Notable Groups"
+        widget: "markdown"
+        default: "
+        ## Details
 
-          - {label: "Location", name: "location", widget: "string", required: false}
-          - {label: "Population", name: "population", widget: "string", required: false}
-          - label: "Landmarks"
-            label_singular: "Landmark"
-            name: "landmarks"
-            widget: "list"
-            summary: "{{fields.name}}"
-            required: false
-            fields:
-              - {label: "Location", name: "location", widget: "string", required: false}
-              - {label: "Name", name: "name", widget: "string"}
-          - label: "Notable Residents"
-            label_singular: "Resident"
-            name: "notableResidents"
-            widget: "list"
-            summary: "{{fields.name}}"
-            required: false
-            field: {label: "Name", name: "name", widget: "string"}
-          - label: "Notable Groups"
-            label_singular: "Group"
-            name: "notableGroups"
-            widget: "list"
-            summary: "{{fields.name}}"
-            required: false
-            field: {label: "Name", name: "name", widget: "string"}
+        ### Location
+
+
+        ### Population
+
+
+        ### Landmarks
+        - 
+
+        ### Notable Residents
+        - 
+
+        ### Notable Groups  
+        - 
+
+        "
+
+      # - label: "Details"
+      #   name: "details"
+      #   widget: "object"
+      #   required: false
+      #   fields:
+      #     - label: "Labels"
+      #       name: "labels"
+      #       widget: "hidden"
+      #       default: 
+      #         - location: "Location"
+      #         - population: "Population"
+      #         - landmarks: "Landmarks"
+      #         - notableResidents: "Notable Residents"
+      #         - notableGroups: "Notable Groups"
+
+      #     - {label: "Location", name: "location", widget: "string", required: false}
+      #     - {label: "Population", name: "population", widget: "string", required: false}
+      #     - label: "Landmarks"
+      #       label_singular: "Landmark"
+      #       name: "landmarks"
+      #       widget: "list"
+      #       summary: "{{fields.name}}"
+      #       required: false
+      #       fields:
+      #         - {label: "Location", name: "location", widget: "string", required: false}
+      #         - {label: "Name", name: "name", widget: "string"}
+      #     - label: "Notable Residents"
+      #       label_singular: "Resident"
+      #       name: "notableResidents"
+      #       widget: "list"
+      #       summary: "{{fields.name}}"
+      #       required: false
+      #       field: {label: "Name", name: "name", widget: "string"}
+      #     - label: "Notable Groups"
+      #       label_singular: "Group"
+      #       name: "notableGroups"
+      #       widget: "list"
+      #       summary: "{{fields.name}}"
+      #       required: false
+      #       field: {label: "Name", name: "name", widget: "string"}
 
       ##
       ## Places - Events

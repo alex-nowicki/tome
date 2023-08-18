@@ -9,12 +9,23 @@ searchTerms:
   - Arooj Rao
   - Arooj
 details:
+  labels:
+    - aliases: Aliases
+    - birthplace: Birthplace
+    - residence: Primary Residence
+    - species: Species
+    - gender: Gender Identity
+    - professions: Professions
   birthplace: Rahim, Prosper System
   residence: Garuda
   species: Human (Shezad)
   professions:
     - BioTech
 connections:
+  labels:
+    - family: Family
+    - romances: Romantic Partners
+    - affiliations: Affiliations
   affiliations:
     - Strays
 ---
