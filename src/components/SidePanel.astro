@@ -35,21 +35,21 @@ const thingsPosts = posts.filter(post => {
 ---
 
 <nav class="sidepanel">
+
+    <h2>Recent Articles</h2>
+    <hr />
     
     <div class="bookmarks accordion" hidden>
         <div class="accordion-toggle-group">
-            <p class="icon-group"><IconBookmarks /><span>Bookmarks</span></p>
+            <h3 class="icon-group"><IconBookmarks /><span>Bookmarks</span></h3>
             <button class="accordion-toggle" id="bookmarks-toggle1" type="button" aria-expanded="false" aria-controls="bookmarks-panel1" hidden>
-                <span>show</span>
+                <span>show recent</span>
                 <IconArrow />
             </button>
         </div>
         <ul class="bookmarks-panel accordion-panel" id="bookmarks-panel1" role="region" aria-labelledby="bookmarks-toggle1" hidden></ul>
-        <hr />
     </div>
-    
-
-    
+    <hr />    
     <ul class="tree accordion">
         <TreeSection order={1} category={'People'} CategoryIcon={IconPeople} posts={peoplePosts} activePost={activePost} activeProject={activeProject} />
         <hr />

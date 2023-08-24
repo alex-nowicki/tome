@@ -8,36 +8,55 @@ description: Flamboyant Shezad BioTech of the Garuda.
 searchTerms:
   - Arooj Rao
   - Arooj
-details:
-  labels:
-    - aliases: Aliases
-    - birthplace: Birthplace
-    - residence: Primary Residence
-    - species: Species
-    - gender: Gender Identity
-    - professions: Professions
-  birthplace: Rahim, Prosper System
-  residence: Garuda
-  species: Human (Shezad)
-  professions:
-    - BioTech
-connections:
-  labels:
-    - family: Family
-    - romances: Romantic Partners
-    - affiliations: Affiliations
-  affiliations:
-    - Strays
+details: |
+  ## Details
+
+  ### Aliases
+  * 
+  * 
+
+  ### Birthplace
+
+  Rahim, Prosper System
+
+  ### Primary Residence
+
+  Garuda
+
+  ### Species
+
+  Human (Shezad)
+
+  ### Gender Identity
+
+
+  ### Professions  
+  * BioTech
+  * 
+
+  ## Connections
+
+  ### Family
+  * 
+  * 
+
+  ### Romantic Partners
+  * 
+  *  
+
+  ### Affiliations
+  * Strays
+  *
 ---
 ## Strengths
 
-* Unapologetic (courageous
+* Unapologetic (courageous)
 * Physically strong (genetically modified for high gravity)
 * Fun
 
 ## Weaknesses
 
-* Unapologetic (callous
+* Unapologetic (callous)
 
 ## Quirks
 

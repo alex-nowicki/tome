@@ -115,7 +115,7 @@ main.post {
     --detailsOverlap: 180px;
 
     display: grid;
-    grid-template-columns:  calc((100vw - (100vw - 100%) - var(--contentWidth) - 8rem) / 2) auto auto;
+    grid-template-columns:  calc(1fr + var(--detailsOverlap)) auto 1fr;
     grid-template-rows: 1fr;
     grid-template-areas:
     "nav article .";
@@ -124,7 +124,7 @@ main.post {
     height: auto;
     width: auto;
     margin: calc(100vw - 100%) 0;
-    padding: 3rem 0;
+    padding: 3rem 3rem;
 }
 
 article {
@@ -286,10 +286,6 @@ article .content {
 article .details {
     grid-column: 2 / 4;
     grid-row: 2 / 3;
-
-    display: grid;
-    grid-template-columns: auto;
-    gap: 2rem;
     align-self: flex-start;
 
     padding: 3rem;
@@ -301,22 +297,10 @@ article .details {
     box-shadow: var(--boxShadow) var(--teal-30);
 }
 
-article .details > div {
-    display: grid;
-    grid-template-rows: auto 1fr;
-    gap: 1rem;
-}
-
-article .details > div > div {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
-    gap: 1rem;
-}
-
 .details h2 {
     font-size: 1.125rem;
     font-weight: 700;
-    margin: 0;
+    margin: 0 0 1rem;
     padding-bottom: 0.25rem;
     border-bottom: 2px solid var(--teal-60);
 }
@@ -324,11 +308,11 @@ article .details > div > div {
 .details h3 {
     font-size: 0.875rem;
     font-weight: 600;
-    margin: 0 0 0.25rem;
+    margin: 1rem 0 0.25rem;
 }
 
 .details :is(p, ul) {
-    margin: 0;
+    margin: 0 0 1rem;
 }
 
 .details :is(p, li) {

@@ -19,16 +19,19 @@
 
 - [] What purpose does it serve?
     - Useful in link highlighting, as the category is highlighted and sends to a list of relevant articles: https://tome.nowickidesign.com/garuda/things/wildnet/
+- [] Fix Card Group component to account for collections no longer being included?
 
 
 # Articles
 
 - [] Prevent link highlighting inside of info preview: https://tome.nowickidesign.com/garuda/things/ekho-drones/
 - [] Adjust styling of lists: https://tome.nowickidesign.com/garuda/things/locknet/
-- [] Not sure if I implemented the label object across all collections: https://tome.nowickidesign.com/garuda/events/first-contact/
-- [] Rethink relationship field for Group Connections: https://tome.nowickidesign.com/garuda/groups/frontier-logistics/
-- [] Weird spacing for related articles: https://tome.nowickidesign.com/garuda/groups/frontier-logistics/
 - [] Add a collections tag to each article
-- [] Redesign the nav list
-- [] Cap the number of articles per list in the side nav, add a show all button that takes you to the article list, shown articles should be sorted by most recent, maybe change 'show' to 'show recent'
 - [] Tweak content spacing and add different content types for testing
+- [] Convert existing md files to the new details widget 
+
+
+# Side Panel
+- [] Add right arrow to Show All Articles links in sidepanel
+- [] Need to add an active state to current article and make sure that current article is included in side panel regardless of recent edit? (Maybe that's redundant), would it make more sense to exclude current article?
+- [] Maybe a header with 'Recently Updated Article' might be clearer to add above the sidepanel

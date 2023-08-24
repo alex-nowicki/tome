@@ -9,26 +9,47 @@ const { posts } = Astro.props;
 const { activePost } = Astro.props;
 const { activeProject } = Astro.props;
 
+// Sort the posts by more recent
+posts.sort((a, b) => {
+    let aDate = Date.parse(a.frontmatter.date);
+    let bDate = Date.parse(b.frontmatter.date);
+    return bDate - aDate;
+});
+
 ---
 
 <li>
     <div class="accordion-toggle-group">
-        <a class="icon-group" href={`/${activeProject.toLowerCase()}?filter=${category.toLowerCase()}`}>
+        <h3><a class="icon-group" href={`/${activeProject.toLowerCase()}?filter=${category.toLowerCase()}`}>
             <CategoryIcon />
             <span>{category}</span>
-        </a>
+        </a></h3>
         <button class="accordion-toggle" id={`tree-toggle${order}`} type="button" aria-expanded={activePost.category === category ? 'true' : 'false'} aria-controls={`tree-panel${order}`} hidden={posts.length > 0 ? null : ''}>
-            <span class="toggle-label-show">show</span>
-            <span class="toggle-label-hide">hide</span>
+            <span class="toggle-label-show">show recent</span>
+            <span class="toggle-label-hide">hide recent</span>
             <IconArrow />
         </button>
     </div>
     <ul class="tree-panel accordion-panel" id={`tree-panel${order}`} role="region" aria-labelledby={`tree-toggle${order}`} hidden={activePost.category === category ? null : ''} >
-        {posts.map((post) => 
-            <li class={post.url === activePost.url ? `is-active` : ''}>
-                <a href={post.url}>{post.frontmatter.title}</a>
-                <button class="bookmark-toggle" data-title={post.frontmatter.title} data-url={post.url} data-project={post.frontmatter.project}><IconBookmarks /></button>
-            </li>
-        )}
+        {posts.map((post, index) => {
+            if (index < 6) {
+                return (
+                    <li class={post.url === activePost.url ? `is-active` : ''}>
+                        <a href={post.url}>{post.frontmatter.title}</a>
+                        <button class="bookmark-toggle" data-title={post.frontmatter.title} data-url={post.url} data-project={post.frontmatter.project}><IconBookmarks /></button>
+                    </li>
+                )
+            }
+
+            if (index === 6) {
+                return (
+                    <li class="view-all">
+                        <a href={`/${activeProject.toLowerCase()}?filter=${category.toLowerCase()}`}>View All {category} →</a>    
+                    </li>
+
+                )
+            }
+
+        })}
     </ul>
 </li>

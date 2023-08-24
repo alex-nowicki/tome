@@ -12,6 +12,8 @@ import { dateFormatter } from '../scripts/helpers.js';
 import { getCatIconAndLabel } from '../scripts/helpers.js';
 import { processEventsForTimeline } from '../scripts/helpers.js';
 
+import { marked } from 'marked';
+
 import "../styles/post.css";
 
 const { frontmatter } = Astro.props;
@@ -23,6 +25,11 @@ const activePost = frontmatter.url;
 
 // Get active post content
 const postContent = await Astro.props.compiledContent();
+const postContentRaw = await Astro.props.rawContent();
+
+console.log(frontmatter);
+console.log(postContent);
+console.log(postContentRaw);
 
 // Get project posts
 const posts = await Astro.glob('../pages/*/*/*.md');
@@ -113,72 +120,73 @@ let detectMatches = function(string, terms, relevance){
 
 let editedPostContent = detectMatches(postContent, searchArr, null);
 
-/**
- * Construct an html string from a data object
- * @param  {Object} obj a data object
- * @param  {String} startStr an html string to place at the start
- * @param  {String} endStr an html string to place at the end
- * @return {String} an html string
- */
- let constructHTMLFromObject = function(obj, startStr, endStr){
-    let htmlStr = '';
-    if (startStr){
-        htmlStr += startStr;
-    }
-    htmlStr += Object.keys(obj).map((key) => {
-        let valueStr;
-        let value = obj[key];
-        let valueType = detectType(value);
+// /**
+//  * Construct an html string from a data object
+//  * @param  {Object} obj a data object
+//  * @param  {String} startStr an html string to place at the start
+//  * @param  {String} endStr an html string to place at the end
+//  * @return {String} an html string
+//  */
+//  let constructHTMLFromObject = function(obj, startStr, endStr){
+//     let htmlStr = '';
+//     if (startStr){
+//         htmlStr += startStr;
+//     }
+//     htmlStr += Object.keys(obj).map((key) => {
+//         let valueStr;
+//         let value = obj[key];
+//         let valueType = detectType(value);
 
-        if (valueType === 'string'){
-            valueStr = `<p>${value}</p>`
+//         if (valueType === 'string'){
+//             valueStr = `<p>${value}</p>`
 
-        } else if (valueType === 'array'){
-            let arrHtmlStr;
-            arrHtmlStr = value.map((arrValue) => {
-                let arrValueType = detectType(arrValue);
+//         } else if (valueType === 'array'){
+//             let arrHtmlStr;
+//             arrHtmlStr = value.map((arrValue) => {
+//                 let arrValueType = detectType(arrValue);
 
-                if (arrValueType === 'string'){
-                    return `<li>${arrValue}</li>`;
+//                 if (arrValueType === 'string'){
+//                     return `<li>${arrValue}</li>`;
 
-                } else if (arrValueType === 'object'){
-                    let objHtmlStr = Object.values(arrValue).map((objValue) => {
-                        return objValue;
-                    }).join(': '); 
-                    return `<li>${objHtmlStr}</li>`;
-                }
-            }).join('');
-            valueStr = `<ul>${arrHtmlStr}</ul>`;
-        } else if (valueType === 'object'){
-            let objHtmlStr = Object.values(value).map((objValue) => {
-                return objValue;
-            }).join(' ');
-            valueStr = `<p>${objHtmlStr}</p>`
-        }
+//                 } else if (arrValueType === 'object'){
+//                     let objHtmlStr = Object.values(arrValue).map((objValue) => {
+//                         return objValue;
+//                     }).join(': '); 
+//                     return `<li>${objHtmlStr}</li>`;
+//                 }
+//             }).join('');
+//             valueStr = `<ul>${arrHtmlStr}</ul>`;
+//         } else if (valueType === 'object'){
+//             let objHtmlStr = Object.values(value).map((objValue) => {
+//                 return objValue;
+//             }).join(' ');
+//             valueStr = `<p>${objHtmlStr}</p>`
+//         }
 
-        return `<div><h3>${toTitleCase(key)}</h3>${valueStr}</div>`;
-    }).join('');
-    if (endStr){
-        htmlStr += endStr;
-    }
-    return htmlStr;
- }
+//         return `<div><h3>${toTitleCase(key)}</h3>${valueStr}</div>`;
+//     }).join('');
+//     if (endStr){
+//         htmlStr += endStr;
+//     }
+//     return htmlStr;
+//  }
 
-// Generate HTML for the details
-let postDetails = '';
-if (frontmatter.details){
-    postDetails = constructHTMLFromObject(frontmatter.details, '<div><h2>Details</h2><div>', '</div></div>' );
-}
+// // Generate HTML for the details
+// let postDetails = '';
+// if (frontmatter.details){
+//     postDetails = constructHTMLFromObject(frontmatter.details, '<div><h2>Details</h2><div>', '</div></div>' );
+// }
 
-let postConnections = '';
-if (frontmatter.connections){
-    postConnections = constructHTMLFromObject(frontmatter.connections, '<div><h2>Connections</h2><div>', '</div></div>' );
-}
+// let postConnections = '';
+// if (frontmatter.connections){
+//     postConnections = constructHTMLFromObject(frontmatter.connections, '<div><h2>Connections</h2><div>', '</div></div>' );
+// }
 
-if (postConnections !== ''){
-    postDetails += postConnections;
-}
+// if (postConnections !== ''){
+//     postDetails += postConnections;
+// }
 
+let postDetails = marked.parse(frontmatter.details);
 let editedPostDetails;
 let relevanceArr;
 if (postDetails !== ''){

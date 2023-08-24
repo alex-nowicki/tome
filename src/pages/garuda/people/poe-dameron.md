@@ -11,8 +11,8 @@ details: |
   ## Details
 
   ### Aliases
-  - 
-  - 
+  * 
+  * 
 
   ### Birthplace
 
@@ -27,20 +27,20 @@ details: |
 
 
   ### Professions  
-  - 
-  - 
+  * 
+  * 
 
   ## Connections
 
   ### Family
-  - 
-  - 
+  * 
+  * 
 
   ### Romantic Partners
-  - 
-  -  
+  * 
+  *  
 
   ### Affiliations
-  - 
-  -
+  * 
+  *
 ---

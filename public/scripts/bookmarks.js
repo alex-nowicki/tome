@@ -18,6 +18,17 @@ let initBookmarks = function() {
     // Get the bookmarks from local storage
     let storedBookmarks = JSON.parse(localStorage.getItem('bookmarks'));
 
+    console.log(storedBookmarks);
+
+    // Sort the bookmarks by most recent
+    storedBookmarks.sort((a, b) => {
+        let aDate = Date.parse(a.dateBookmarked);
+        let bDate = Date.parse(b.dateBookmarked);
+        return bDate - aDate;
+    });
+
+    console.log(storedBookmarks);
+
     // Get all the bookmark buttons on the page
     let bookmarkToggles = document.querySelectorAll('.bookmark-toggle');
 
@@ -158,7 +169,8 @@ let bookmarksClickHandler = function(event) {
     let post = {
         title: event.target.dataset.title,
         url: event.target.dataset.url,
-        project: event.target.dataset.project
+        project: event.target.dataset.project,
+        dateBookmarked: new Date()
     }
 
     /**

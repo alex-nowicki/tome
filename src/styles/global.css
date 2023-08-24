@@ -395,7 +395,7 @@ header {
     background-color: var(--gray-100);
 
     display: grid;
-    grid-template-columns: calc((100vw - (100vw - 100%) - var(--contentWidth)) / 2) minmax(calc(var(--contentWidth) / 2), var(--contentWidth)) auto;
+    grid-template-columns: 1fr minmax(450px, 900px) 1fr;
     grid-template-rows: 5rem;
     grid-template-areas:
     "nav-global search nav-project";

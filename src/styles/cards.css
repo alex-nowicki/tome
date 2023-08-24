@@ -7,7 +7,7 @@
 
 .card-group {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(12rem, 300px));
+    grid-template-columns: repeat(auto-fit, minmax(12rem, calc(300px - (2rem / 3))));
     gap: 1rem;
 
     list-style: none;
