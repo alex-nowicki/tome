@@ -9,22 +9,45 @@ searchTerms:
   - Zambaga Vitali
   - Zambaga
   - Zam
-details:
-  labels:
-    - aliases: Aliases
-    - birthplace: Birthplace
-    - residence: Primary Residence
-    - species: Species
-    - gender: Gender Identity
-    - professions: Professions
-  species: Human
-  gender: Female
-  professions:
-    - Soldier
-    - Bodyguard
-connections:
-  affiliations:
-    - Niska Nanotech
+
+details: |
+  ## Details
+
+  ### Aliases
+  * Zam
+  *
+
+  ### Birthplace
+
+
+  ### Primary Residence
+
+  Garuda
+
+  ### Species
+
+  Human
+
+  ### Gender Identity
+
+
+  ### Professions  
+  * Soldier
+  * Bodyguard
+
+  ## Connections
+
+  ### Family
+  *
+  *
+
+  ### Romantic Partners
+  *
+  *
+
+  ### Affiliations
+  * Niska Nanotech
+  * Interstellar Rescue Agency
 ---
 ## History
 

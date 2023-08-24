@@ -7,25 +7,43 @@ date: 2023-04-19T16:10:52.395Z
 searchTerms:
   - Selassie Nalangu
   - Selassie
-details:
-  labels:
-    - aliases: Aliases
-    - birthplace: Birthplace
-    - residence: Primary Residence
-    - species: Species
-    - gender: Gender Identity
-    - professions: Professions
-  residence: Revati
-  species: ""
-  gender: Male
-  professions:
-    - Founder and Executive of the Interstellar Rescue Agency
-connections:
-  affiliations:
-    - Interstellar Rescue Agency
+details: |
+  ## Details
+
+  ### Aliases
+  *
+  *
+
+  ### Birthplace
+
+
+  ### Primary Residence
+
+  Revati, Prosper System
+
+  ### Species
+
+  Human
+
+  ### Gender Identity
+
+
+  ### Professions  
+  * Founder and Executive of the Interstellar Rescue Agency
+  * 
+
+  ## Connections
+
+  ### Family
+  *
+  *
+
+  ### Romantic Partners
+  *
+  *
+
+  ### Affiliations
+  * Interstellar Rescue Agency
+  *
 ---
-> <!--StartFragment-->
->
-> “His heart is as big as a black hole, it sucks everything into it”
->
-> <!--EndFragment-->
+“His heart is as big as a black hole, it sucks everything into it”

@@ -10,23 +10,46 @@ searchTerms:
   - Snow Niska
   - Snow
   - Severina Niska
-details:
-  labels:
-    - aliases: Aliases
-    - birthplace: Birthplace
-    - residence: Primary Residence
-    - species: Species
-    - gender: Gender Identity
-    - professions: Professions
-  aliases:
-    - Severina Niska
-  birthplace: Revati, Prosper System
-  species: Human
-  gender: Female
-connections:
-  affiliations:
-    - Interstellar Rescue Agency
-    - Niska Nanotech
+
+details: |
+  ## Details
+
+  ### Aliases
+  * Severina Niska
+  *
+
+  ### Birthplace
+
+  Revati, Prosper System
+
+  ### Primary Residence
+
+  Garuda
+
+  ### Species
+
+  Human
+
+  ### Gender Identity
+
+
+  ### Professions  
+  * MechTech
+  * 
+
+  ## Connections
+
+  ### Family
+  *
+  *
+
+  ### Romantic Partners
+  *
+  *
+
+  ### Affiliations
+  * Interstellar Rescue Agency
+  * Niska Nanotech
 ---
 ## Motivation
 

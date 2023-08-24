@@ -9,37 +9,45 @@ searchTerms:
   - Bopha Krol
   - Bopha de la Rosa
   - Bopha
-details:
-  labels:
-    - aliases: Aliases
-    - birthplace: Birthplace
-    - residence: Primary Residence
-    - species: Species
-    - gender: Gender Identity
-    - professions: Professions
-  aliases:
-    - Bopha de la Rosa
-  birthplace: Revati, Prosper System
-  residence: Garuda
-  species: Human
-  gender: Male
-  professions:
-    - Captain of the Garuda
-connections:
-  labels:
-    - family: Family
-    - romances: Romantic Partners
-    - affiliations: Affiliations
-  family:
-    - relationship: Niece
-      name: Chantico de la Rosa
-    - relationship: Sister
-      name: Jorani de la Rosa
-  romances:
-    - Désirée Reid
-  affiliations:
-    - Strays
-    - Interstellar Rescue Agency
+details: |
+  ## Details
+
+  ### Aliases
+  * Bopha de la Rosa
+  *
+
+  ### Birthplace
+
+  Revati, Prosper System
+
+  ### Primary Residence
+
+  Garuda
+
+  ### Species
+
+  Human
+
+  ### Gender Identity
+
+
+  ### Professions  
+  * Captain of the Garuda
+  * 
+
+  ## Connections
+
+  ### Family
+  * Niece: Chantico de la Rosa
+  * Sister: Jorani de la Rosa
+
+  ### Romantic Partners
+  * Désirée Reid
+  *
+
+  ### Affiliations
+  * Strays
+  * Interstellar Rescue Agency
 events:
   - title: Bopha and Valentina steal the Garuda
     date:

@@ -8,23 +8,44 @@ description: Cheerful MechTech of the Garuda.
 searchTerms:
   - Manu Igarashi
   - Manu
-details:
-  labels:
-    - aliases: Aliases
-    - birthplace: Birthplace
-    - residence: Primary Residence
-    - species: Species
-    - gender: Gender Identity
-    - professions: Professions
-  residence: Garuda
-  species: Human
-  gender: Male
-  professions:
-    - MechTech
-connections:
-  affiliations:
-    - Strays
-    - Uplift Society
+details: |
+  ## Details
+
+  ### Aliases
+  *
+  *
+
+  ### Birthplace
+
+
+  ### Primary Residence
+
+  Garuda
+
+  ### Species
+
+  Human
+
+  ### Gender Identity
+
+
+  ### Professions  
+  * MechTech
+  * 
+
+  ## Connections
+
+  ### Family
+  *
+  *
+
+  ### Romantic Partners
+  *
+  *
+
+  ### Affiliations
+  * Strays
+  * Uplift Society
 ---
 ## Motivation
 

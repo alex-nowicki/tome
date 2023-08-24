@@ -8,23 +8,45 @@ description: Non-compliant Echo and Pilot of the Garuda.
 searchTerms:
   - Valentina Vas
   - Valentina
-details:
-  labels:
-    - aliases: Aliases
-    - birthplace: Birthplace
-    - residence: Primary Residence
-    - species: Species
-    - gender: Gender Identity
-    - professions: Professions
-  birthplace: ""
-  species: Human (Echo)
-  gender: Female
-  professions:
-    - Pilot
-connections:
-  affiliations:
-    - Strays
-    - Echos
+
+details: |
+  ## Details
+
+  ### Aliases
+  * Val
+  *
+
+  ### Birthplace
+
+
+  ### Primary Residence
+
+  Garuda
+
+  ### Species
+
+  Human
+
+  ### Gender Identity
+
+
+  ### Professions  
+  * Pilot
+  * 
+
+  ## Connections
+
+  ### Family
+  *
+  *
+
+  ### Romantic Partners
+  *
+  *
+
+  ### Affiliations
+  * Strays
+  * 
 ---
 ## History
 

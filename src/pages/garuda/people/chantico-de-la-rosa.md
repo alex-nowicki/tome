@@ -8,30 +8,45 @@ description: ComTech of the Garuda.
 searchTerms:
   - Chantico
   - Chantico de la Rosa
-details:
-  labels:
-    - aliases: Aliases
-    - birthplace: Birthplace
-    - residence: Primary Residence
-    - species: Species
-    - gender: Gender Identity
-    - professions: Professions
-  aliases:
-    - Chanti
-  birthplace: Renati, Prosper System
-  residence: Garuda
-  species: Human
-  gender: Female
-  professions:
-    - ComTech
-connections:
-  family:
-    - relationship: Uncle
-      name: Bopha Krol
-    - relationship: Mother
-      name: Jorani de la Rosa
-  affiliations:
-    - Cloudheads
+details: |
+  ## Details
+
+  ### Aliases
+  * Chanti
+  *
+
+  ### Birthplace
+
+  Revati, Prosper System
+
+  ### Primary Residence
+
+  Garuda
+
+  ### Species
+
+  Human
+
+  ### Gender Identity
+
+
+  ### Professions  
+  * ComTech
+  * 
+
+  ## Connections
+
+  ### Family
+  * Uncle: Bopha Krol
+  * Mother: Jorani de la Rosa
+
+  ### Romantic Partners
+  * Désirée Reid
+  *
+
+  ### Affiliations
+  * Strays
+  * Cloudheads
 events:
   - title: Birth Year
     date:
