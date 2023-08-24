@@ -8,12 +8,34 @@ description: Independent starships operating on the Frontier, unaffiliated with
   an Exchange corporation.
 searchTerms:
   - Strays
-details:
-  territory: Frontier
-  notableMembers:
-    - role: Captain
-      name: Bopha Krol
-    - name: Khuyen Malka
-      role: Broker
+details: |
+  ## Details
+
+  ### Founding Date
+
+
+  ### Membership Size
+
+
+  ### Organizational Structure
+  
+
+  ### Territory
+
+  Frontier
+
+  ### Notable Members  
+  * Captain: Bopha Krol
+  * Broker: Khuyen Malka
+
+  ## Connections
+
+  ### Allies
+  *
+  *
+
+  ### Rivals
+  * The Uncut
+  *
 ---
 I﻿ndependant starships not affiliated with an Exchange corporation.

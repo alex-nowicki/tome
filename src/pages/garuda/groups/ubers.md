@@ -7,19 +7,34 @@ collections:
 title: Ubers
 date: 2023-06-01T17:58:32.447Z
 description: Person born with an optimized human genetic code.
-details:
-  labels:
-    - foundingDate: Founding Date
-    - membershipSize: Membership Size
-    - orgStructure: Organizational Structure
-    - territory: Territory
-    - notableMembers: Notable Members
-connections:
-  labels:
-    - allies: Allies
-    - rivals: Rivals
-  rivals:
-    - name: The Uncut
+details: |
+  ## Details
+
+  ### Founding Date
+
+
+  ### Membership Size
+
+
+  ### Organizational Structure
+  
+
+  ### Territory
+
+
+  ### Notable Members  
+  *
+  *
+
+  ## Connections
+
+  ### Allies
+  *
+  *
+
+  ### Rivals
+  * The Uncut
+  *
 ---
 A person born with an optimized human genetic code. While the procedure itself is cheap, all the useful segments are patented and require a heavy licensing fee, so it is mostly the very wealthy who are able to offer it to their children.
 

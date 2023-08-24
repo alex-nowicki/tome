@@ -186,7 +186,7 @@ let editedPostContent = detectMatches(postContent, searchArr, null);
 //     postDetails += postConnections;
 // }
 
-let postDetails = marked.parse(frontmatter.details);
+let postDetails = frontmatter.details !== undefined ? marked.parse(frontmatter.details) : '';
 let editedPostDetails;
 let relevanceArr;
 if (postDetails !== ''){

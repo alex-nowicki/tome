@@ -9,16 +9,33 @@ date: 2023-06-01T17:55:19.978Z
 description: Illegal clones.
 searchTerms:
   - Doppels
-details:
-  labels:
-    - foundingDate: Founding Date
-    - membershipSize: Membership Size
-    - orgStructure: Organizational Structure
-    - territory: Territory
-    - notableMembers: Notable Members
-connections:
-  labels:
-    - allies: Allies
-    - rivals: Rivals
+details: |
+  ## Details
+
+  ### Founding Date
+
+
+  ### Membership Size
+
+
+  ### Organizational Structure
+  
+
+  ### Territory
+
+
+  ### Notable Members  
+  *
+  *
+
+  ## Connections
+
+  ### Allies
+  *
+  *
+
+  ### Rivals
+  *
+  *
 ---
 Cloning is illegal in Exchange space. Every person born is given an eternal, non-transferable patent for their genetic code.

@@ -8,17 +8,33 @@ description: Extremist group that believes humans should remain untouched by
   bio-engineering.
 searchTerms:
   - Uncut
-details:
-  labels:
-    - foundingDate: Founding Date
-    - membershipSize: Membership Size
-    - orgStructure: Organizational Structure
-    - territory: Territory
-    - notableMembers: Notable Members
-connections:
-  labels:
-    - allies: Allies
-    - rivals: Rivals
-  rivals: []
+details: |
+  ## Details
+
+  ### Founding Date
+
+
+  ### Membership Size
+
+
+  ### Organizational Structure
+  
+
+  ### Territory
+
+
+  ### Notable Members  
+  *
+  *
+
+  ## Connections
+
+  ### Allies
+  *
+  *
+
+  ### Rivals
+  *
+  *
 ---
 Extremist group that believes humans should remain untouched by bio-engineering.

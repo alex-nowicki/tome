@@ -110,16 +110,16 @@ export const processEventsForTimeline = function(frontmatter) {
         if (frontmatter.description !== undefined) { eventStart.description = frontmatter.description };
 
         // If both start date and end date are desribed
-        if (frontmatter.details.startDate && frontmatter.details.endDate){
+        if (frontmatter.startDate && frontmatter.endDate){
 
             eventStart.title = `${frontmatter.title} (Start)`;
-            eventStart.date = frontmatter.details.startDate;
+            eventStart.date = frontmatter.startDate;
 
         // Else if only the start date is described
-        } else if (frontmatter.details.startDate) {
+        } else if (frontmatter.startDate) {
 
             eventStart.title = frontmatter.title;
-            eventStart.date = frontmatter.details.startDate;
+            eventStart.date = frontmatter.startDate;
 
         // Otherwise set the date to unknown
         } else {
@@ -135,11 +135,11 @@ export const processEventsForTimeline = function(frontmatter) {
         events.push(eventStart);
 
         // If an end date is described
-        if (frontmatter.details.endDate){
+        if (frontmatter.endDate){
             events.push({
                 title: `${frontmatter.title} (End)`,
                 description: frontmatter.description !== undefined ? frontmatter.description : null,
-                date: frontmatter.details.endDate
+                date: frontmatter.endDate
             })
         }
 
