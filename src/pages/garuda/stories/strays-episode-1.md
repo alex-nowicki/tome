@@ -2011,26 +2011,24 @@ Snow and Zam head into the tunnels on their own
 
 **Dilemma**: How do we break into the chief house and not get killed?
 
-**Decision**: They DECIDES to create a diversion to draw the guards away from the house, while Zam infiltrates and gets the shots? 
-<!--- This could make a fun pairing where Arooj and Zam go off to get the shots, while Snow and Bopha create the diversion, all the while fighting off the incoming symptoms. Would be a good way to show their different perspectives and approaches. And they would be forced to feel each other's emotions before getting the cure. --->
-<!--- Maybe Zam thinks she can mod her carbine to fire the vaccine, replacing the neural adjents she has --->
+**Decision**: They DECIDE that Snow and Bopha will create a diversion to draw the guards away from the house, while Zam and Arooj infiltrate the house to retrieve the antidote
 
 **Information**: We learn that the guard guarding the pit is immunized against it (meaning there is a cure). They wake him up and get him to tell them where the chief is keeping the shots.
 
 
 ### Scene 7
 
-**Goal**: 
+**Goal**: Bopha WANTS to lure the guards away from the house
 
-**Conflict**:
+**Conflict**: BUT... doesn't want to get shot while doing it
 
-**Disaster**: 
+**Disaster**: Bopha riles up the citizens telling them that their leader is responsible for the virus, because of the emotional sharing, it gets out of hand fast. Or maybe it's Snow who delivers a speech, causing them to riot. 
 
 **Reaction**: 
 
-**Dilemma**: 
+**Dilemma**: How does Bopha keep control of himself as the virus progresses?
 
-**Decision**: 
+**Decision**: He listens to happy music and dances?
 
 **Information**: 
 
@@ -2038,6 +2036,27 @@ Snow and Zam head into the tunnels on their own
 
 ### Scene 
 
+Maybe then the bossman shows up and spins a tale of how they are the cause of their trouble, outsiders, untrustworthy, etc. The crowd turns on them, and just as it seems like they are going to be mobbed, Zam comes up firing her carbine, dropping citizen after citizen. They managed to get the antidote into the carbine to distribute it.
+
+**Goal**: 
+
+**Conflict**:
+
+**Disaster**: 
+
+**Reaction**: 
+
+**Dilemma**: 
+
+**Decision**: 
+
+**Information**: 
+
+
+### Scene 
+
+At this point ODI mercs show up pointing guns, and some lawyer type accusses them of yadi yada. How does Bopha get them out of it?
+
 **Goal**: 
 
 **Conflict**:
@@ -2054,12 +2073,7 @@ Snow and Zam head into the tunnels on their own
 
 
 
-
 ### Ideas/Questions
-
-How do they cure everyone?
-
-ODI shows up with their corporate security and neutralize the infected
 
 They threaten to sue Bopha and co
 
