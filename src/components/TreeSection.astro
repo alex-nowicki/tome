@@ -43,8 +43,8 @@ posts.sort((a, b) => {
 
             if (index === 6) {
                 return (
-                    <li class="view-all">
-                        <a href={`/${activeProject.toLowerCase()}?filter=${category.toLowerCase()}`}>View All {category} →</a>    
+                    <li>
+                        <a class="view-all" href={`/${activeProject.toLowerCase()}?filter=${category.toLowerCase()}`}>View All {category} <IconArrow /></a>    
                     </li>
 
                 )

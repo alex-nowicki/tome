@@ -147,10 +147,11 @@ article .header {
 
     display: grid;
     grid-template-columns: 1fr auto;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto auto 1fr;
     grid-template-areas: 
     "breadcrumbs meta"
-    "title meta";
+    "title meta"
+    "collections meta";
 
     background-color: white;
     padding: var(--spacing) var(--spacing) calc(var(--spacing) / 2) var(--spacing);
@@ -264,6 +265,48 @@ article .header :is(.bookmark-toggle:hover, .bookmark-toggle.is-active) svg path
     stroke: var(--orange-80);
     fill: var(--orange-30);
     opacity: 1;
+}
+
+article .header .collections {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 0.5rem;
+
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0 ;
+}
+
+article .header .collections a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+
+    margin: 0;
+    padding: 0.5rem;
+    background-color: var(--teal-10);
+    border-radius: var(--borderRadius);
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--gray-100);
+}
+
+article .header .collections a:hover {
+    background-color: var(--teal-80);
+    color: white;
+}
+
+article .header .collections svg {
+    width: 1.125rem;
+}
+
+article .header .collections svg :is(path, circle, line) {
+    stroke-width: 1.5px;
+}
+
+article .header .collections a:hover svg :is(path, circle, line) {
+    stroke: white;
 }
 
 /* CONTENT */

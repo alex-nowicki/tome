@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import IconBookmarks from "../components/IconBookmarks.astro";
+import IconArrow from "../components/IconArrow.astro";
 
 import { getCatIconAndLabel } from "../scripts/helpers.js"
 import { dateFormatter } from "../scripts/helpers.js"
@@ -15,20 +16,39 @@ const activeProject = frontmatter.title;
 // Get project posts
 const posts = await Astro.glob('../pages/*/*/*.md');
 const projectPosts = posts.filter(post => {
-    return post.frontmatter.project === activeProject;
+    return post.frontmatter.project === activeProject 
+    && post.frontmatter.category !== 'Stories'
+    && post.frontmatter.category !== 'Collections';
 }).sort((a,b) => {
     if (a.frontmatter.title < b.frontmatter.title) return -1;
     if (a.frontmatter.title > b.frontmatter.title) return 0;
     return 0;
 });
 
+// Get all unique post categories
 let activeCategories = [...new Set(projectPosts.map(a => a.frontmatter.category))];
 
+// Remove Collections from Category list
 if (activeCategories.includes('Collections')){
     let index = activeCategories.indexOf('Collections');
     activeCategories.splice(index, 1);
-    activeCategories.unshift('Collections');
 }
+
+// Remove Stories from Category list
+if (activeCategories.includes('Stories')){
+    let index = activeCategories.indexOf('Stories');
+    activeCategories.splice(index, 1);
+}
+
+// Get all unique post collections
+let activeCollections = [...new Set(projectPosts.filter((post) => {
+    return post.frontmatter.collections !== undefined;
+}).map((post) => {
+    return post.frontmatter.collections;
+}).flat())];
+
+// Add 'Uncollected' collection
+activeCollections.push('Uncollected');
 
 ---
 
@@ -58,13 +78,14 @@ if (activeCategories.includes('Collections')){
                         <select name="sort" id="sort-select">
                             <option value="byTitle" selected>Title</option>
                             <option value="byDate">Date Published</option>
+                            <option value="byCollection">Collection</option>
                         </select>
                     </div>
                 </form>
-                <ul class="list">
+                <ul class="list accordion" data-allow-multiple>
                     {projectPosts.map((post) => {
                         return  (
-                            <li data-title={post.frontmatter.title} data-date={post.frontmatter.date} data-category={post.frontmatter.category}>
+                            <li class="article" data-title={post.frontmatter.title} data-date={post.frontmatter.date} data-category={post.frontmatter.category} data-collections={JSON.stringify(post.frontmatter.collections)}>
                                 <a href={post.url}>
                                     <span class="icon-group" set:html={getCatIconAndLabel(post.frontmatter.category).icon}></span>
                                     <span class="title">{post.frontmatter.title}</span>
@@ -73,6 +94,25 @@ if (activeCategories.includes('Collections')){
                                 <button class="bookmark-toggle" data-title={post.frontmatter.title} data-url={post.url} data-project={post.frontmatter.project}><IconBookmarks /></button>
                             </li>
                         )
+                    })}
+                    {activeCollections.map((collection, index) => {
+
+                        return (
+                            <li class="accordion-group" data-collection={collection} hidden>
+                                <h2>
+                                    <button id={`collection-toggle${index}`} class="accordion-toggle" type="button" aria-expanded="true" aria-controls={`collection-panel${index}`}>
+                                        <span>{collection}</span>
+                                        <span class="icon-group">
+                                            <span class="toggle-label-show">show</span>
+                                            <span class="toggle-label-hide">hide</span>
+                                            <IconArrow />
+                                        </span>
+                                    </button>
+                                </h2>
+                                <ul id={`collection-panel${index}`} class="accordion-panel" role="region" aria-labelledby={`collection-toggle${index}`}></ul>
+                            </li>
+                        )
+
                     })}
                 </ul>
 
@@ -90,4 +130,5 @@ if (activeCategories.includes('Collections')){
 </BaseLayout>
 
 <script src="/scripts/filter.js" is:inline></script>
+<script src="/scripts/accordion.js" is:inline></script>
 <script src="/scripts/bookmarks.js" is:inline defer></script>

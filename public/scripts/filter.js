@@ -33,8 +33,6 @@ let getParams = function(url = window.location) {
  */
 let filterList = function(targetFilter, targetList) {
 
-    console.log('Filtering');
-
     // Update checked state on input
     if (targetFilter.type === 'radio'){
 
@@ -71,7 +69,7 @@ let filterList = function(targetFilter, targetList) {
     }
 
     // Get the list items
-    let listItems = targetList.querySelectorAll('li');
+    let listItems = targetList.querySelectorAll('li.article');
 
     for (const item of listItems) {
 
@@ -103,8 +101,6 @@ let filterList = function(targetFilter, targetList) {
 
         } else if (targetFilter.type === 'checkbox'){
 
-            console.log('Setting attributes', targetFilter, category);
-
             let activeFilters = [];
             for (const input of targetFilter.closest('form').querySelectorAll('input[checked]')) {
                 activeFilters.push(input.value);
@@ -135,8 +131,6 @@ let filterList = function(targetFilter, targetList) {
         else if (listItems[0].dataset.contains('date') && typeof listItems[0].dataset.date == 'string') { sortType = 'byDate' }
         else if (listItems[0].dataset.contains('title')) { sortType = 'byTitle' }
 
-        console.log(sortType);
-
         if (sortType !== undefined) {
             sortList(sortType, targetList)
         }
@@ -154,37 +148,111 @@ let filterList = function(targetFilter, targetList) {
  */
 let sortList = function(targetSort, targetList) {
 
-    // Get the list items
-    let listItems = targetList.querySelectorAll('li:not([hidden])');
+    // Remove cloned items
+    let clonedItems = targetList.querySelectorAll('[data-clone]');
+    for (let clone of clonedItems){
+        clone.remove();
+    }
 
-    Array.from(listItems).sort((a,b) => {
-        if (targetSort === 'byTitle'){
-            a = a.dataset.title;
-            b = b.dataset.title;
-            if (a < b) return -1;
-            if (a > b) return 0;
-            return 0;
-        } else if (targetSort === 'byDate'){
-            a = Date.parse(a.dataset.date);
-            b = Date.parse(b.dataset.date);
-            return b - a;
-        } else if (targetSort === 'byDateNumAsc'){
-            a = a.dataset.date;
-            b = b.dataset.date;
-            return a - b;
-        } else if (targetSort === 'byDateNumDesc'){
-            a = a.dataset.date;
-            b = b.dataset.date;
-            return b - a;
+    // Get the active list items
+    let listItems = Array.from(targetList.querySelectorAll('li.article:not([hidden])'));
+
+    if (targetSort === 'byCollection'){
+
+        sortByCollection(targetList, listItems);
+
+    } else {
+
+        // Hide collection accordions
+        let collectionAccordions = targetList.querySelectorAll('.accordion-group');
+        for (let accordion of collectionAccordions){
+            accordion.setAttribute('hidden', '');
         }
-    
-    // Reverse the list to compensate for insertBefore
-    }).reverse().forEach((elem) => {
 
-        // Add each sorted item to the top of the list
-        targetList.insertBefore(elem, targetList.firstChild);
+        listItems.sort((a,b) => {
+            if (targetSort === 'byTitle'){
+                a = a.dataset.title;
+                b = b.dataset.title;
+                if (a < b) return -1;
+                if (a > b) return 0;
+                return 0;
+            } else if (targetSort === 'byDate'){
+                a = Date.parse(a.dataset.date);
+                b = Date.parse(b.dataset.date);
+                return b - a;
+            } else if (targetSort === 'byDateNumAsc'){
+                a = a.dataset.date;
+                b = b.dataset.date;
+                return a - b;
+            } else if (targetSort === 'byDateNumDesc'){
+                a = a.dataset.date;
+                b = b.dataset.date;
+                return b - a;
+            } else if (targetSort === 'byCollection'){
+                // Already sorted
+            }
+        
+        // Reverse the list to compensate for insertBefore
+        }).reverse().forEach((elem) => {
 
-    })
+            // Add each sorted item to the top of the list
+            targetList.insertBefore(elem, targetList.firstChild);
+
+        })
+
+    }
+
+}
+
+/**
+ * Sort list items by collection
+ * @param  {Node}   targetList The list
+ * @param  {Array}  listItems
+ * @return {Array}  sorted array of items
+ */
+let sortByCollection = function(targetList, listItems) {
+
+    // Get the collection accordions
+    let collectionAccordions = targetList.querySelectorAll('.accordion-group');
+
+    for (let accordion of collectionAccordions) {
+
+        // Get the collection name
+        let collection = accordion.dataset.collection;
+
+        // Get the accordion panel
+        let accordionPanel = accordion.querySelector('.accordion-panel');
+        
+        for (let item of listItems) {
+            
+            if (item.dataset.collections === undefined 
+                && collection === 'Uncollected'){
+                accordionPanel.append(item);
+            
+            } else if (item.dataset.collections !== undefined 
+                && JSON.parse(item.dataset.collections).includes(collection)){
+                
+                    if (item.parentNode.matches('.accordion-panel')){
+                    let clone = item.cloneNode(true);
+                    clone.setAttribute('data-clone', '');
+                    item.parentNode.appendChild(clone);
+                    accordionPanel.append(clone);
+
+                } else {
+                    accordionPanel.append(item);
+                }
+            }
+        };
+
+        console.log(accordionPanel.querySelectorAll('li.article:not([hidden])'));
+
+        if (accordionPanel.querySelectorAll('li.article:not([hidden])').length > 0) {
+            accordion.removeAttribute('hidden')
+        } else {
+            accordion.setAttribute('hidden', '');
+        }
+
+    };
 
 }
 

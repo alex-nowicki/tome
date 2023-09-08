@@ -36,7 +36,7 @@ nav.sidepanel a {
     text-decoration: none;
 }
 
-nav.sidepanel a:hover {
+nav.sidepanel a:not(.view-all):hover {
     color: var(--teal-80);
     text-decoration: underline;
 }
@@ -137,33 +137,4 @@ nav.sidepanel .tree-panel li {
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
-}
-
-nav.sidepanel .tree-panel li.view-all {
-    /* padding: 0.5rem 0 0; */
-}
-
-nav.sidepanel .tree-panel li.view-all a {
-    padding: 0.375rem 0.5rem;
-    background-color: var(--teal-15);
-    border-radius: calc(var(--borderRadius) / 2);
-    border-top: 1px solid var(--teal-30);
-    border-right: 1px solid var(--teal-30);
-    border-left: 1px solid var(--teal-30);
-    box-shadow: var(--boxShadow) var(--teal-30);
-    text-decoration: none;
-    /* background-color: white;
-    border-radius: calc(var(--borderRadius) / 2);
-    border-top: 1px solid var(--gray-10);
-    border-right: 1px solid var(--gray-10);
-    border-left: 1px solid var(--gray-10);
-    box-shadow: var(--boxShadow) var(--gray-15); */
-}
-
-nav.sidepanel .tree-panel li.view-all a:hover {
-    background-color: var(--teal-80);
-    border-color: var(--teal-80);
-    color: white;
-    box-shadow: var(--boxShadow) var(--teal-100);
-
 }

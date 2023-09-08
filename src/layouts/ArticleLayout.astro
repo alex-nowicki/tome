@@ -1,6 +1,7 @@
 ---
 import IconArrow from "../components/IconArrow.astro";
 import IconBookmarks from "../components/IconBookmarks.astro";
+import IconCollections from "../components/IconCollections.astro";
 import BaseLayout from "./BaseLayout.astro";
 import SidePanel from "../components/SidePanel.astro";
 import CardGroup from "../components/CardGroup.astro";
@@ -25,11 +26,6 @@ const activePost = frontmatter.url;
 
 // Get active post content
 const postContent = await Astro.props.compiledContent();
-const postContentRaw = await Astro.props.rawContent();
-
-console.log(frontmatter);
-console.log(postContent);
-console.log(postContentRaw);
 
 // Get project posts
 const posts = await Astro.glob('../pages/*/*/*.md');
@@ -37,6 +33,13 @@ const projectPosts = posts.filter(post => {
     return  post.frontmatter.project === activeProject 
             && post.url !== activePost;
 })
+
+// Get collections
+const collections = posts.filter(post => {
+    return post.frontmatter.category === 'Collections';
+})
+
+console.log(collections);
 
 // Collect all search terms in an array
 let searchArr = [];
@@ -94,8 +97,8 @@ let detectMatches = function(string, terms, relevance){
             }
         }
         // Wrap matches in links
-        editedString = editedString.replaceAll(regex, 
-        `${obj.description ? `
+        let replaceString = obj.description ? 
+            `
             <span class="link-group">
                 <a href="${obj.url}">$&</a>
                 <span class="page-preview">
@@ -105,11 +108,11 @@ let detectMatches = function(string, terms, relevance){
                     </svg>
                     <span>${obj.description}</span>
                 </span>
-            </span>` 
-            
-        : `<a href="${obj.url}">$&</a>`}`
-        
-        );
+            </span>
+            ` 
+
+        : `<a href="${obj.url}">$&</a>`;
+        editedString = editedString.replaceAll(regex, replaceString);
     }
 
     return {
@@ -119,72 +122,6 @@ let detectMatches = function(string, terms, relevance){
 }
 
 let editedPostContent = detectMatches(postContent, searchArr, null);
-
-// /**
-//  * Construct an html string from a data object
-//  * @param  {Object} obj a data object
-//  * @param  {String} startStr an html string to place at the start
-//  * @param  {String} endStr an html string to place at the end
-//  * @return {String} an html string
-//  */
-//  let constructHTMLFromObject = function(obj, startStr, endStr){
-//     let htmlStr = '';
-//     if (startStr){
-//         htmlStr += startStr;
-//     }
-//     htmlStr += Object.keys(obj).map((key) => {
-//         let valueStr;
-//         let value = obj[key];
-//         let valueType = detectType(value);
-
-//         if (valueType === 'string'){
-//             valueStr = `<p>${value}</p>`
-
-//         } else if (valueType === 'array'){
-//             let arrHtmlStr;
-//             arrHtmlStr = value.map((arrValue) => {
-//                 let arrValueType = detectType(arrValue);
-
-//                 if (arrValueType === 'string'){
-//                     return `<li>${arrValue}</li>`;
-
-//                 } else if (arrValueType === 'object'){
-//                     let objHtmlStr = Object.values(arrValue).map((objValue) => {
-//                         return objValue;
-//                     }).join(': '); 
-//                     return `<li>${objHtmlStr}</li>`;
-//                 }
-//             }).join('');
-//             valueStr = `<ul>${arrHtmlStr}</ul>`;
-//         } else if (valueType === 'object'){
-//             let objHtmlStr = Object.values(value).map((objValue) => {
-//                 return objValue;
-//             }).join(' ');
-//             valueStr = `<p>${objHtmlStr}</p>`
-//         }
-
-//         return `<div><h3>${toTitleCase(key)}</h3>${valueStr}</div>`;
-//     }).join('');
-//     if (endStr){
-//         htmlStr += endStr;
-//     }
-//     return htmlStr;
-//  }
-
-// // Generate HTML for the details
-// let postDetails = '';
-// if (frontmatter.details){
-//     postDetails = constructHTMLFromObject(frontmatter.details, '<div><h2>Details</h2><div>', '</div></div>' );
-// }
-
-// let postConnections = '';
-// if (frontmatter.connections){
-//     postConnections = constructHTMLFromObject(frontmatter.connections, '<div><h2>Connections</h2><div>', '</div></div>' );
-// }
-
-// if (postConnections !== ''){
-//     postDetails += postConnections;
-// }
 
 let postDetails = frontmatter.details !== undefined ? marked.parse(frontmatter.details) : '';
 let editedPostDetails;
@@ -197,6 +134,7 @@ if (postDetails !== ''){
 }
 
 let timelineEvents = processEventsForTimeline(frontmatter);
+
 
 ---
 
@@ -219,6 +157,18 @@ let timelineEvents = processEventsForTimeline(frontmatter);
                     })}
                 </div>
                 <h1>{frontmatter.title}</h1>
+                <ul class="collections">
+                    {frontmatter.collections !== undefined && (
+                        frontmatter.collections.map((collection) => {
+                            let collectionPost = collections.filter(post => {
+                                return post.frontmatter.title === collection;
+                            })[0];
+                            return (
+                                <li><a href={collectionPost.url}><IconCollections />{collection}</a></li>
+                            )
+                        })
+                    )}
+                </ul>
                 <div class="meta">
                     <p class="category"><Fragment set:html={getCatIconAndLabel(frontmatter.category).icon} />{getCatIconAndLabel(frontmatter.category).label}</p>
                     <p class="date">Published {dateFormatter.format(Date.parse(frontmatter.date))}</p>

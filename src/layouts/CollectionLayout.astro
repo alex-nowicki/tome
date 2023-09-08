@@ -61,7 +61,7 @@ let activeCategories = [...new Set(projectPosts.map(a => a.frontmatter.category)
                 <ul class="list">
                     {projectPosts.map((post) => {
                         return  (
-                            <li data-title={post.frontmatter.title} data-date={post.frontmatter.date} data-category={post.frontmatter.category}>
+                            <li class="article" data-title={post.frontmatter.title} data-date={post.frontmatter.date} data-category={post.frontmatter.category}>
                                 <a href={post.url}>
                                     <span class="icon-group" set:html={getCatIconAndLabel(post.frontmatter.category).icon}></span>
                                     <span class="title">{post.frontmatter.title}</span>

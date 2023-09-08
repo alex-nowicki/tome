@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
-import CardGroup from "../components/CardGroup.astro" 
+import CardGroup from "../components/CardGroup.astro";
+import IconArrow from "../components/IconArrow.astro";
 
 const { activeProject } = Astro.props;
 
@@ -20,7 +21,7 @@ const filteredPosts = posts.filter(post => {
                 <section>
                     <div class="heading-link-group">
                         <h2>Recent Projects</h2>
-                        <a href="/projects">View All Projects &rarr;</a>  
+                        <a class="view-all" href="/projects">View All Projects <IconArrow /></a>  
                     </div>
                     <CardGroup posts={projects} numToShow={3} sort={'byDateDesc'} />
                 </section>

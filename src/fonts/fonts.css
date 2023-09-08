@@ -41,6 +41,20 @@
 }
 
 @font-face {
+    font-family: 'Poppins';
+    src: url('Poppins-Bold.ttf') format('ttf');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('Poppins-BoldItalic.ttf') format('ttf');
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
     font-family: 'Source Serif Pro';
     src: url('SourceSerifPro-Regular.ttf') format('ttf');
     font-weight: 400;

@@ -372,6 +372,38 @@ a:visited {
     fill: none;
 }
 
+/* View All Buttons */
+
+a.view-all {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+
+    padding: 0.375rem 0.5rem;
+    background-color: var(--teal-15);
+    border-radius: calc(var(--borderRadius) / 2);
+    text-decoration: none;
+}
+
+a.view-all:hover {
+    background-color: var(--teal-80);
+    color: white;
+}
+
+a.view-all svg {
+    width: 0.5rem;
+}
+
+a.view-all svg path {
+    stroke: var(--gray-100);
+    stroke-width: 1.5px;
+}
+
+a.view-all:hover svg path {
+    stroke: white;
+}
+
+
 
 /*
 ** ACCORDIONS
@@ -764,7 +796,13 @@ main > section {
     margin-bottom: 4rem;
 }
 
+.home .heading-link-group {
+    margin: 0 0 1.5rem;
+}
 
+.home .heading-link-group h2 {
+    margin: 0;
+}
 
 
 /*
