@@ -38,8 +38,6 @@ details: |
 ---
 5﻿ Peoples (Nations)
 
-
-
 ## I﻿mperialists
 
 R﻿apacious and expansionist, they've leveraged their fleet of airships to conquer and colonize a large swath of the world. They are ruled by a technocratic autocracy, barons of industry having usurped power from the now dead monarchy.
@@ -56,6 +54,6 @@ M﻿onarchy that has pledged allegiance to the imperium in exchange for some sem
 
 W﻿hile not expressely expansionist, they will add new states to its coalition if both powers consent.
 
-T﻿hey are ruled by Adoptive Monarchy. The monarch has absolute power, but is neutered. An orphan in each state is chosen at random to be adopted by the monarch. These children are raised together and form the sibling council. the previous monarch chooses its heir from these children.
+T﻿hey are ruled by an Adoptive Monarchy. The monarch has absolute power, but is neutered. An orphan in each state is chosen at random to be adopted by the monarch. These children are raised together and form the sibling council. the previous monarch chooses its heir from these children.
 
 A﻿s such, the culture embraces the idea of adoption in many ways. Adopted new cultural practices, adopting foreigners.
