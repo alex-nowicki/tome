@@ -221,6 +221,7 @@ collections:
     path: "{{project}}/groups/{{slug}}"
     create: true
     slug: "{{slug}}"
+    summary: "{{project}}: {{title}}"
     view_groups: 
       - label: Project
         field: project
