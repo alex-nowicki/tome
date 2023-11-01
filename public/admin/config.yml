@@ -41,6 +41,7 @@ collections:
     path: "{{project}}/stories/{{slug}}"
     create: true
     slug: "{{slug}}"
+    summary: "{{project}}: {{title}}"
     view_groups: 
       - label: Project
         field: project
@@ -74,6 +75,10 @@ collections:
     path: "{{project}}/collections/{{slug}}"
     create: true
     slug: "{{slug}}"
+    summary: "{{project}}: {{title}}"
+    view_groups: 
+      - label: Project
+        field: project
 
     fields:
       - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/CollectionLayout.astro"}
@@ -108,6 +113,7 @@ collections:
     path: "{{project}}/people/{{slug}}"
     create: true
     slug: "{{slug}}"
+    summary: "{{project}}: {{title}}"
     view_groups: 
       - label: Project
         field: project
@@ -222,6 +228,10 @@ collections:
     create: true
     slug: "{{slug}}"
     summary: "{{project}}: {{title}}"
+    view_filters: 
+      - label: Project
+        field: project
+        pattern: true
     view_groups: 
       - label: Project
         field: project
@@ -327,6 +337,7 @@ collections:
     path: "{{project}}/places/{{slug}}"
     create: true
     slug: "{{slug}}"
+    summary: "{{project}}: {{title}}"
     view_groups: 
       - label: Project
         field: project
@@ -424,6 +435,7 @@ collections:
     path: "{{project}}/events/{{slug}}"
     create: true
     slug: "{{slug}}"
+    summary: "{{project}}: {{title}}"
     view_groups: 
       - label: Project
         field: project
@@ -536,6 +548,7 @@ collections:
     path: "{{project}}/things/{{slug}}"
     create: true
     slug: "{{slug}}"
+    summary: "{{project}}: {{title}}"
     view_groups: 
       - label: Project
         field: project
