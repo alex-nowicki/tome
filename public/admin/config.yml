@@ -228,10 +228,6 @@ collections:
     create: true
     slug: "{{slug}}"
     summary: "{{project}}: {{title}}"
-    view_filters: 
-      - label: Project
-        field: project
-        pattern: true
     view_groups: 
       - label: Project
         field: project
