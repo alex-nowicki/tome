@@ -48,6 +48,15 @@ details: |
   * Strays
   *
 ---
+
+    <details>
+      <summary>Details</summary>
+
+      undefined
+
+    </details>
+    
+
 ## Motivation
 
 Wants to plan for every eventuality
