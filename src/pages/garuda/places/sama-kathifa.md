@@ -35,9 +35,16 @@ Mwanzo System
 - - -
 
 Type: Terrestrial Planet
-Gravity: 1.4g
+
+Gravity: 1.8g
+
 Atmosphere: Breathable, but low in oxygen
+
+Mean Temperature: 5°C (Earth 15°C)
+
 Name: Arabic (Heavy Sky)
+
+
 
 ## Fauna/Flora
 
