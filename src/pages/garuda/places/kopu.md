@@ -15,6 +15,26 @@ searchTerms:
 
 Mwanzo System
 
+### Type
+
+Terrestrial
+
+### Gravity
+
+0.9g
+
+### Atmosphere
+
+Breathable, high humidity
+
+### Mean Temperature
+
+18°C (Earth 15°C) 
+
+### Name
+
+Maori (Womb)
+
 ### Population
 
 
@@ -33,16 +53,6 @@ Mwanzo System
 [use double horizontal rule to add a details pane]::
 _____
 _____
-
-Type: Terrestrial
-
-Gravity: 0.9g
-
-Atmosphere: Breathable, high humidity
-
-Mean Temperature: 18°C (Earth 15°C) 
-
-Name: Maori (Womb)
 
 ## Topography
 
