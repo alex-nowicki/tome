@@ -5,6 +5,8 @@ category: Places
 collections: []
 title: Sama Kathifa
 date: 2023-12-14T15:27:50.732Z
+searchTerms:
+  - Sama Kathifa
 ---
 ## Details
 
