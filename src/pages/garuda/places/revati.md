@@ -12,7 +12,28 @@ description: Terrestrial moon orbiting a gas giant in the Prosper system.
 ## Details
 
 ### Location
-Propser System
+
+Prosper System
+
+### Type
+
+Terrestrial Moon
+
+### Gravity
+
+1g
+
+### Atmosphere
+
+Breathable
+
+### Mean Temperature
+
+12°C (Earth 15°C)
+
+### Name
+
+Indian (Prosperous)
 
 ### Population
 
@@ -36,5 +57,3 @@ _____
 ## Fauna/Flora
 
 ## History
-
-Terrestial moon orbiting a gas giant. The name means Propserous in Indian. 1g Gravity. Capital of the Exchange
