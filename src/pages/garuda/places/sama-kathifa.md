@@ -2,8 +2,7 @@
 layout: ../../../layouts/ArticleLayout.astro
 project: Garuda
 category: Places
-collections:
-  - Mwanzo System
+collections: []
 title: Sama Kathifa
 date: 2023-12-14T15:27:50.732Z
 ---
@@ -12,6 +11,26 @@ date: 2023-12-14T15:27:50.732Z
 ### Location
 
 Mwanzo System
+
+### Type
+
+Terrestrial Planet
+
+### Gravity
+
+1.8g
+
+### Atmosphere
+
+Breathable, but low in oxygen
+
+### Mean Temperature
+
+5°C (Earth 15°C)
+
+### Name
+
+Arabic (Heavy Sky)
 
 ### Population
 
@@ -33,18 +52,6 @@ Mwanzo System
 - - -
 
 - - -
-
-Type: Terrestrial Planet
-
-Gravity: 1.8g
-
-Atmosphere: Breathable, but low in oxygen
-
-Mean Temperature: 5°C (Earth 15°C)
-
-Name: Arabic (Heavy Sky)
-
-
 
 ## Fauna/Flora
 
