@@ -8,6 +8,11 @@ description: Flamboyant Shezad BioTech of the Garuda.
 searchTerms:
   - Arooj Rao
   - Arooj
+events:
+  - title: Birth Year
+    date:
+      yearNotation: FC
+      year: 107
 ---
 ## Details
 
