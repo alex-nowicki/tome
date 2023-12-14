@@ -8,6 +8,11 @@ description: Fastidious Clerk of the Garuda.
 searchTerms:
   - Rezki Dumas
   - Rezki
+events:
+  - title: Birth Year
+    date:
+      yearNotation: FC
+      year: 96
 ---
 
 ## Details
@@ -32,7 +37,7 @@ Human
 
 
 ### Professions  
-* Clerk
+* ChemTech
 * 
 
 ## Connections
@@ -76,3 +81,9 @@ _____
 ## Quirks
 
 ## History
+
+Born to religious parents, devotees of the Path, a religion that believes the Gate Keeper is shepherding the faithful to paradise.
+
+When the Gatekeeper gifted new planets to humanity, his parents packed their things and took off to join one of many communes popping up on the Frontier, hoping to escape the persecution and fulfill the gatekeepers plan for them.
+
+Rezki 

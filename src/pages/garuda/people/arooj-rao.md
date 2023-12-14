@@ -53,6 +53,10 @@ _____
 
 ## Physical Description
 
+Thick with muscle from her high g upbringing.
+Yellow eyes.
+
+
 ## Motivations
 
 ### Wants
@@ -87,6 +91,6 @@ _____
 
 ## History
 
-Arooj was born on Rahim as a Shezad. Her parents fled the planet to the Frontier when she was 10, settling in the splinter Shezad colony on Sama Kathifa. She resented her parents ‘cowardice’, running away from their home, friends, and family. She never fit into the community on Sama Kathifa. She was always the loudest, the most rambunctious, constantly getting into fights and conflicts with her elders. She hated the isolation of her community, the fear of regular ‘humans’ and the dominant philosophy of ‘symbiosis’ with nature. She left as soon as she was old enough to go back to Rahim.
+Arooj was born on Rahim as a Shezad. Her parents fled the planet to the Frontier when she was 10, settling in the splinter Shezad colony on Sama Kathifa. She resented her parents ‘cowardice’, running away from their home, friends, and family. She never fit into the community on Sama Kathifa. She was always the loudest, the most rambunctious, constantly getting into fights and conflicts with her elders. She hated the isolation of her community, the fear of regular ‘humans’, and the dominant philosophy of ‘symbiosis’ with nature. She left as soon as she was old enough to go back to Rahim.
 
 She did not find home there. She was rejected for the decision of her parents, treated as a traitor, no matter how hard she tried to prove herself. Eventually she came to see, that while the Rahimians were quick to violence, they too were cowards in their own way, hiding themselves from the world. She left Rahim and found work as a BioTech, eventually landing on the Garuda.
