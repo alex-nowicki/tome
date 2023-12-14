@@ -16,4 +16,24 @@ events:
       year: 4
       yearNotation: FC
 ---
-H﻿uman explorers encounter the Gatekeeper in the Alpha Centauri system.
+## Details
+
+### Locations
+* 
+* 
+
+### Notable Participants
+* 
+* 
+
+### Notable Groups  
+* 
+* 
+
+[use double horizontal rule to add a details pane]::
+_____
+_____
+
+## History
+
+Human explorers encounter the Gatekeeper in the Alpha Centauri system.

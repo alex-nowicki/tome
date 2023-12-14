@@ -11,3 +11,10 @@ description: Augments that amplify the sensitivity and spectrum of sense organs.
 searchTerms:
   - Amps
 ---
+## Details
+
+[use double horizontal rule to add a details pane]::
+_____
+_____
+
+## History

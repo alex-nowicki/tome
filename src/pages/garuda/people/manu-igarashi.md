@@ -8,48 +8,58 @@ description: Cheerful MechTech of the Garuda.
 searchTerms:
   - Manu Igarashi
   - Manu
-details: |
-  ## Details
-
-  ### Aliases
-  *
-  *
-
-  ### Birthplace
-
-
-  ### Primary Residence
-
-  Garuda
-
-  ### Species
-
-  Human
-
-  ### Gender Identity
-
-
-  ### Professions  
-  * MechTech
-  * 
-
-  ## Connections
-
-  ### Family
-  *
-  *
-
-  ### Romantic Partners
-  *
-  *
-
-  ### Affiliations
-  * Strays
-  * Uplift Society
 ---
+## Details
+
+### Aliases
+*
+*
+
+### Birthplace
+
+
+### Primary Residence
+
+Garuda
+
+### Species
+
+Human
+
+### Gender Identity
+
+
+### Professions  
+* MechTech
+* 
+
+## Connections
+
+### Family
+*
+*
+
+### Romantic Partners
+*
+*
+
+### Affiliations
+* Strays
+* Uplift Society
+
+[use double horizontal rule to add a details pane]::
+_____
+_____
+
+## Physical Description
+
 ## Motivation
 
+### Wants
+
 Wants to be useful, needed
+
+### Needs
 
 Needs to make peace with his limitations and age
 
@@ -65,6 +75,16 @@ Needs to make peace with his limitations and age
 
 * Too proud to let others help him
 * Easily embarrassed
+
+## Flaws
+
+## Mysteries
+*Unanswered questions the character is driven to discover*
+
+## Secrets
+*Truths the character does not want to reveal*
+
+## Quirks
 
 ## History
 

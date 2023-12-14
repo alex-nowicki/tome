@@ -11,6 +11,14 @@ description: Open protocol network used in the Prosper System.
 searchTerms:
   - WildNet
 ---
+## Details
+
+[use double horizontal rule to add a details pane]::
+_____
+_____
+
+## History
+
 An open network between the first fleet of colony ships during their voyage to Alpha Centauri, the WildNet only received its common name long after landfall. As the necessity for cooperation waned after the initial settling of the Prosper system, corporations established their own closed networks for employees and owners, forgoing any protection they once offered it.
 
 AIs run rampant, mining user information, stealing data and burrowing into connected systems. Presently, the WildNet is mainly used by the poor, criminals, and activists, including the Cloud Heads who have carved their own territory in it called the Garden.

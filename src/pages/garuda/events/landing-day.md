@@ -9,3 +9,22 @@ startDate:
   year: 20
   yearNotation: FC
 ---
+## Details
+
+### Locations
+* 
+* 
+
+### Notable Participants
+* 
+* 
+
+### Notable Groups  
+* 
+* 
+
+[use double horizontal rule to add a details pane]::
+_____
+_____
+
+## History

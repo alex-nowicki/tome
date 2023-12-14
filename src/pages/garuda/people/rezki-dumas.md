@@ -49,31 +49,30 @@ Human
 * Strays
 * 
 
-______
-______
+[use double horizontal rule to add a details pane]::
+_____
+_____
 
+## Physical Description
 
-## Motivation
+## Motivations
 
-Wants to plan for every eventuality
+### Wants
 
-Needs to 
+### Needs
 
-## Fear
-
-Fears the unknown, change, death
+## Fears
 
 ## Strengths
 
-* Incredible attention to detail
-* Mathematics wiz
-
 ## Flaws
 
-* Persnickety
-* Panics when his environment changes
-* Nervous with social interactions, as he tries to plan
+## Mysteries
+*Unanswered questions the character is driven to discover*
+
+## Secrets
+*Truths the character does not want to reveal*
+
+## Quirks
 
 ## History
-
-Fired from a prestigious accounting firm for uncovering shady money transfers and refusing to be quiet about it. He could not stand that the numbers didn’t line up. He was blacklisted and his career was ruined. No firm would hire him, so he ended up working for Bopha as the Clerk.

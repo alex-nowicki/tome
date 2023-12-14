@@ -11,3 +11,10 @@ description: Cerebral and spinal network interface that fully maps human sensory
 searchTerms:
   - Cloudjack
 ---
+## Details
+
+[use double horizontal rule to add a details pane]::
+_____
+_____
+
+## History

@@ -12,6 +12,14 @@ description: Closed protocol network that requires authentication to access and
 searchTerms:
   - LockNet
 ---
+## Details
+
+[use double horizontal rule to add a details pane]::
+_____
+_____
+
+## History
+
 ## Authentication
 
 There are many ways to authenticate a user for a LockNet:

@@ -9,45 +9,6 @@ searchTerms:
   - Bopha Krol
   - Bopha de la Rosa
   - Bopha
-details: |
-  ## Details
-
-  ### Aliases
-  * Bopha de la Rosa
-  *
-
-  ### Birthplace
-
-  Revati, Prosper System
-
-  ### Primary Residence
-
-  Garuda
-
-  ### Species
-
-  Human
-
-  ### Gender Identity
-
-
-  ### Professions  
-  * Captain of the Garuda
-  * 
-
-  ## Connections
-
-  ### Family
-  * Niece: Chantico de la Rosa
-  * Sister: Jorani de la Rosa
-
-  ### Romantic Partners
-  * Désirée Reid
-  *
-
-  ### Affiliations
-  * Strays
-  * Interstellar Rescue Agency
 events:
   - title: Bopha and Valentina steal the Garuda
     date:
@@ -58,9 +19,59 @@ events:
       yearNotation: FC
       year: 96
 ---
+## Details
+
+### Aliases
+* Bopha de la Rosa
+*
+
+### Birthplace
+
+Revati, Prosper System
+
+### Primary Residence
+
+Garuda
+
+### Species
+
+Human
+
+### Gender Identity
+
+
+### Professions  
+* Captain of the Garuda
+* 
+
+## Connections
+
+### Family
+* Niece: Chantico de la Rosa
+* Sister: Jorani de la Rosa
+
+### Romantic Partners
+* Désirée Reid
+*
+
+### Affiliations
+* Strays
+* Interstellar Rescue Agency
+
+[use double horizontal rule to add a details pane]::
+_____
+_____
+
+## Physical Description
+
 ## Motivations
 
+### Wants
+
 Wants to be rich.
+
+### Needs
+
 Needs to be surrounded by people who won’t leave or take advantage of him.
 
 ## Fears
@@ -72,8 +83,10 @@ He fears attachment and often sabotages his own relationships if they get too cl
 ## Flaws
 
 ## Mysteries
+*Unanswered questions the character is driven to discover*
 
 ## Secrets
+*Truths the character does not want to reveal*
 
 ## Quirks
 

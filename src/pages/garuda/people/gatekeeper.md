@@ -8,6 +8,70 @@ description: Sentient artificial intelligence that operates the Mirror Gates.
 searchTerms:
   - Gatekeeper
 ---
+## Details
+
+### Aliases
+* 
+* 
+
+### Birthplace
+
+
+### Primary Residence
+
+
+### Species
+
+
+### Gender Identity
+
+
+### Professions  
+* 
+* 
+
+## Connections
+
+### Family
+* 
+* 
+
+### Romantic Partners
+* 
+* 
+
+### Affiliations
+* 
+* 
+
+[use double horizontal rule to add a details pane]::
+_____
+_____
+
+## Physical Description
+
+## Motivations
+
+### Wants
+
+### Needs
+
+## Fears
+
+## Strengths
+
+## Flaws
+
+## Mysteries
+*Unanswered questions the character is driven to discover*
+
+## Secrets
+*Truths the character does not want to reveal*
+
+## Quirks
+
+## History
+
 Created by a technologically advanced race of isolationist aliens over 500,000 years ago. Its purpose is to control the growth of intelligent space faring species within reach of its creators, as well as gather information about their cultures and technology.
 
 Aggressive species are curtailed, and if they pose an existential threat, they are destroyed or sabotaged.

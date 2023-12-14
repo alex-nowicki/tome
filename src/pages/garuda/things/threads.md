@@ -12,3 +12,10 @@ searchTerms:
   - Threads
   - Threaded
 ---
+## Details
+
+[use double horizontal rule to add a details pane]::
+_____
+_____
+
+## History

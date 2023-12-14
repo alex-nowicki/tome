@@ -9,4 +9,12 @@ description: Method by which the force of gravity between a gravitational engine
 searchTerms:
   - Gravitational Magnification
 ---
+## Details
+
+[use double horizontal rule to add a details pane]::
+_____
+_____
+
+## History
+
 The discovery of Gravitational Magnification on Earth kickstarted the colonization of the Sol system. It solved two major problems that plagued the space industry up to that time: cheap and efficient transportation into and out of orbit by way of the Gravity Tether and artificial gravity.

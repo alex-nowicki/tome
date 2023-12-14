@@ -10,54 +10,63 @@ searchTerms:
   - Snow Niska
   - Snow
   - Severina Niska
-
-details: |
-  ## Details
-
-  ### Aliases
-  * Severina Niska
-  *
-
-  ### Birthplace
-
-  Revati, Prosper System
-
-  ### Primary Residence
-
-  Garuda
-
-  ### Species
-
-  Human
-
-  ### Gender Identity
-
-
-  ### Professions  
-  * MechTech
-  * 
-
-  ## Connections
-
-  ### Family
-  *
-  *
-
-  ### Romantic Partners
-  *
-  *
-
-  ### Affiliations
-  * Interstellar Rescue Agency
-  * Niska Nanotech
 ---
+## Details
+
+### Aliases
+* Severina Niska
+*
+
+### Birthplace
+
+Revati, Prosper System
+
+### Primary Residence
+
+Garuda
+
+### Species
+
+Human
+
+### Gender Identity
+
+
+### Professions  
+* MechTech
+* 
+
+## Connections
+
+### Family
+*
+*
+
+### Romantic Partners
+*
+*
+
+### Affiliations
+* Interstellar Rescue Agency
+* Niska Nanotech
+
+[use double horizontal rule to add a details pane]::
+_____
+_____
+
+## Physical Description
+
 ## Motivation
+
+### Wants
 
 Wants to make the world a better place
 
+### Needs
+
 Needs to …
 
-## Fear
+## Fears
 
 Fears that people are inherently selfish, including herself
 
@@ -73,8 +82,10 @@ Fears that people are inherently selfish, including herself
 * Impatient with people
 
 ## Mysteries
+*Unanswered questions the character is driven to discover*
 
 ## Secrets
+*Truths the character does not want to reveal*
 
 ## Quirks
 
