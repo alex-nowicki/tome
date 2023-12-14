@@ -1,4 +1,5 @@
 ---
+details: ""
 layout: ../../../layouts/ArticleLayout.astro
 project: Garuda
 category: People
@@ -9,9 +10,11 @@ searchTerms:
   - Zambaga Vitali
   - Zambaga
   - Zam
-
-details: |
-
+events:
+  - title: Birth Year
+    date:
+      year: 80
+      yearNotation: FC
 ---
 ## Details
 
