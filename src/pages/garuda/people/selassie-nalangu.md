@@ -7,6 +7,11 @@ date: 2023-04-19T16:10:52.395Z
 searchTerms:
   - Selassie Nalangu
   - Selassie
+events:
+  - title: Birth Year
+    date:
+      year: 85
+      yearNotation: FC
 ---
 ## Details
 
