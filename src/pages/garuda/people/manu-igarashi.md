@@ -8,6 +8,11 @@ description: Cheerful MechTech of the Garuda.
 searchTerms:
   - Manu Igarashi
   - Manu
+events:
+  - title: Birth Year
+    date:
+      yearNotation: FC
+      year: 69
 ---
 ## Details
 
