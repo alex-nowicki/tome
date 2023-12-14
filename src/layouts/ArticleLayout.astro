@@ -25,7 +25,7 @@ const activeProject = frontmatter.project;
 const activePost = frontmatter.url;
 
 // Get active post content
-const postContent = await Astro.props.compiledContent();
+const postHTML = await Astro.props.compiledContent();
 
 // Get project posts
 const posts = await Astro.glob('../pages/*/*/*.md');
@@ -38,8 +38,6 @@ const projectPosts = posts.filter(post => {
 const collections = posts.filter(post => {
     return post.frontmatter.category === 'Collections';
 })
-
-console.log(collections);
 
 // Collect all search terms in an array
 let searchArr = [];
@@ -121,18 +119,26 @@ let detectMatches = function(string, terms, relevance){
     }
 }
 
-let editedPostContent = detectMatches(postContent, searchArr, null);
+// Process HTML to add Wiki crosslinks and relevance
+let editedPostHTML = detectMatches(postHTML, searchArr, null);
 
-let postDetails = frontmatter.details !== undefined ? marked.parse(frontmatter.details) : '';
-let editedPostDetails;
-let relevanceArr;
-if (postDetails !== ''){
-    editedPostDetails = detectMatches(postDetails, searchArr, editedPostContent.relevance);
-    relevanceArr = editedPostDetails.relevance.sort((a, b) => b.score - a.score);
+// Split post content into two sections
+const editedPostHTMLSections = editedPostHTML.string.split('<hr>\n<hr>\n');
+
+let detailsHTMLSection;
+let bodyHTMLSection;
+
+// If HTML was split in two, assign the first section to details, the second to body
+if (editedPostHTMLSections.length > 1){
+    detailsHTMLSection = editedPostHTMLSections[0];
+    bodyHTMLSection = editedPostHTMLSections[1];
+
+// Otherwise, the first and only to body
 } else {
-    relevanceArr = editedPostContent.relevance;
+    bodyHTMLSection = editedPostHTMLSections[0];
 }
 
+// Generate timeline HTML
 let timelineEvents = processEventsForTimeline(frontmatter);
 
 
@@ -175,10 +181,10 @@ let timelineEvents = processEventsForTimeline(frontmatter);
                 </div>
                 <button class="bookmark-toggle" data-title={frontmatter.title} data-url={frontmatter.url} data-project={frontmatter.project}><IconBookmarks /></button>
             </section>
-            <section class="content" set:html={editedPostContent.string}></section>
+            <section class="content" set:html={bodyHTMLSection}></section>
             {
-                editedPostDetails && (
-                    <section class="details" set:html={editedPostDetails.string}></section>
+                detailsHTMLSection && (
+                    <section class="details" set:html={detailsHTMLSection}></section>
                 )
             }
             {
@@ -190,10 +196,10 @@ let timelineEvents = processEventsForTimeline(frontmatter);
                 )
             }
             {
-                relevanceArr !== undefined && relevanceArr.length > 0 && (
+                editedPostHTML.relevance !== undefined && editedPostHTML.relevance.length > 0 && (
                     <section class="related">
                         <h2>Related Articles</h2>
-                        <CardGroup posts={relevanceArr} numToShow={3} />
+                        <CardGroup posts={editedPostHTML.relevance} numToShow={3} />
                     </section>
                 )
             }

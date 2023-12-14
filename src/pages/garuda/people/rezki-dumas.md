@@ -8,54 +8,50 @@ description: Fastidious Clerk of the Garuda.
 searchTerms:
   - Rezki Dumas
   - Rezki
-details: |
-  ## Details
-
-  ### Aliases
-  *
-  *
-
-  ### Birthplace
-
-  Revati, Prosper System
-
-  ### Primary Residence
-
-  Garuda
-
-  ### Species
-
-  Human
-
-  ### Gender Identity
-
-
-  ### Professions  
-  * Clerk
-  * 
-
-  ## Connections
-
-  ### Family
-  *
-  *
-
-  ### Romantic Partners
-  *
-  *
-
-  ### Affiliations
-  * Strays
-  *
 ---
 
-    <details>
-      <summary>Details</summary>
+## Details
 
-      undefined
+### Aliases
+* 
+* 
 
-    </details>
-    
+### Birthplace
+
+Revati, Prosper System
+
+### Primary Residence
+
+Garuda
+
+### Species
+
+Human
+
+### Gender Identity
+
+
+### Professions  
+* Clerk
+* 
+
+## Connections
+
+### Family
+* 
+* 
+
+### Romantic Partners
+* 
+* 
+
+### Affiliations
+* Strays
+* 
+
+______
+______
+
 
 ## Motivation
 

@@ -143,23 +143,16 @@ collections:
         summary: "{{fields.searchTerm}}"
         field: {label: "Search Term", name: "searchTerm", widget: "string"}
       - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
-      - {label: "Body", name: "body", widget: "markdown", required: false}
-
-      ## 
-      ## People - Details
-      ##
-
-      - label: "Details"
-        name: "details"
+      - label: "Body"
+        name: "body"
         widget: "markdown"
         required: false
-        minimal: true
         default: |
           ## Details
 
           ### Aliases
-          *
-          *
+          * 
+          * 
 
           ### Birthplace
 
@@ -174,22 +167,50 @@ collections:
 
 
           ### Professions  
-          *
-          *
+          * 
+          * 
 
           ## Connections
 
           ### Family
-          *
-          *
+          * 
+          * 
 
           ### Romantic Partners
-          *
-          *
+          * 
+          * 
 
           ### Affiliations
-          *
-          *
+          * 
+          * 
+
+          [use double horizontal rule to add a details pane]::
+          _____
+          _____
+
+          ## Physical Description
+
+          ## Motivations
+
+          ### Wants
+
+          ### Needs
+
+          ## Fears
+
+          ## Strengths
+
+          ## Flaws
+
+          ## Mysteries
+          *Unanswered questions the character is driven to discover*
+
+          ## Secrets
+          *Truths the character does not want to reveal*
+
+          ## Quirks
+
+          ## History
 
       ## 
       ## People - Events
@@ -257,17 +278,10 @@ collections:
         summary: "{{fields.searchTerm}}"
         field: {label: "Search Term", name: "searchTerm", widget: "string"}
       - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
-      - {label: "Body", name: "body", widget: "markdown", required: false}
-
-      ##
-      ## Groups - Details
-      ## 
-
-      - label: "Details"
-        name: "details"
+      - label: "Body"
+        name: "body"
         widget: "markdown"
         required: false
-        minimal: true
         default: |
           ## Details
 
@@ -284,18 +298,24 @@ collections:
 
 
           ### Notable Members  
-          *
-          *
+          * 
+          * 
 
           ## Connections
 
           ### Allies
-          *
-          *
+          * 
+          * 
 
           ### Rivals
-          *
-          *
+          * 
+          * 
+          
+          [use double horizontal rule to add a details pane]::
+          _____
+          _____
+
+          ## History
 
       ##
       ## Groups - Events
@@ -363,17 +383,10 @@ collections:
         summary: "{{fields.searchTerm}}"
         field: {label: "Search Term", name: "searchTerm", widget: "string"}
       - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
-      - {label: "Body", name: "body", widget: "markdown", required: false}
-
-      ##
-      ## Places - Details
-      ## 
-
-      - label: "Details"
-        name: "details"
+      - label: "Body"
+        name: "body"
         widget: "markdown"
         required: false
-        minimal: true
         default: |
           ## Details
 
@@ -384,16 +397,24 @@ collections:
 
 
           ### Landmarks
-          *
-          *
+          * 
+          * 
 
           ### Notable Residents
-          *
-          *
+          * 
+          * 
 
           ### Notable Groups  
-          *
-          *
+          * 
+          * 
+
+          [use double horizontal rule to add a details pane]::
+          _____
+          _____
+
+          ## Fauna/Flora
+          
+          ## History
 
       ##
       ## Places - Events
@@ -461,12 +482,6 @@ collections:
         summary: "{{fields.searchTerm}}"
         field: {label: "Search Term", name: "searchTerm", widget: "string"}
       - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
-      - {label: "Body", name: "body", widget: "markdown", required: false}
-
-      ##
-      ## Events - Details
-      ## 
-
       - label: "Start Date" 
         name: "startDate"
         widget: "object"
@@ -476,7 +491,6 @@ collections:
           - {label: "Month - Numerical", name: "month", widget: "number", required: false}
           - {label: "Day - Numerical", name: "day", widget: "number", required: false}
           - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
-
       - label: "End Date" 
         name: "endDate"
         widget: "object"
@@ -487,26 +501,30 @@ collections:
           - {label: "Month - Numerical", name: "month", widget: "number", required: false}
           - {label: "Day - Numerical", name: "day", widget: "number", required: false}
           - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
-
-      - label: "Details"
-        name: "details"
+      - label: "Body"
+        name: "body"
         widget: "markdown"
         required: false
-        minimal: true
         default: |
           ## Details
 
           ### Locations
-          *
-          *
+          * 
+          * 
 
           ### Notable Participants
-          *
-          *
+          * 
+          * 
 
           ### Notable Groups  
-          *
-          *
+          * 
+          * 
+
+          [use double horizontal rule to add a details pane]::
+          _____
+          _____
+
+          ## History
 
       ##
       ## Events - Events
@@ -573,19 +591,18 @@ collections:
         summary: "{{fields.searchTerm}}"
         field: {label: "Search Term", name: "searchTerm", widget: "string"}
       - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
-      - {label: "Body", name: "body", widget: "markdown", required: false}
-
-      ##
-      ## Things - Details
-      ## 
-
-      - label: "Details"
-        name: "details"
+      - label: "Body"
+        name: "body"
         widget: "markdown"
         required: false
-        minimal: true
         default: |
           ## Details
+
+          [use double horizontal rule to add a details pane]::
+          _____
+          _____
+
+          ## History
 
       ##
       ## Things - Events
