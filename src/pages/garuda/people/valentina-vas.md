@@ -8,6 +8,11 @@ description: Non-compliant Echo and Pilot of the Garuda.
 searchTerms:
   - Valentina Vas
   - Valentina
+events:
+  - title: Birth Year
+    date:
+      year: 95
+      yearNotation: FC
 ---
 ## Details
 
