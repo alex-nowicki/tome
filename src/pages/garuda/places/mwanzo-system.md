@@ -12,8 +12,19 @@ searchTerms:
 ---
 ## Details
 
-### Location
+### Star
 
+Red M-Type
+
+### Planets
+
+* Kopu
+* Sama Kathifa
+* Al Uqdah (Asteroid Belt)
+
+### Name
+
+Swahili (Beginnings)
 
 ### Population
 
@@ -22,26 +33,10 @@ searchTerms:
 * 
 * 
 
-### Notable Residents
-* 
-* 
-
-### Notable Groups  
-* 
-* 
-
 [use double horizontal rule to add a details pane]::
 _____
 _____
 
-Star: Red M-Type
 
-Planets:
-
-* Kopu
-* Sama Kathifa
-* Al Uqdah (Asteroid Belt)
-
-Name: Swahili (Beginnings)
 
 ## History
