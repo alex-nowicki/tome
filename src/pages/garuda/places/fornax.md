@@ -3,7 +3,7 @@ layout: ../../../layouts/ArticleLayout.astro
 project: Garuda
 category: Places
 collections:
-  - Planets
+  - Planets/Moons
 title: Fornax
 date: 2023-12-18T17:15:39.917Z
 searchTerms:
