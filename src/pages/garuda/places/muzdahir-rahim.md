@@ -3,7 +3,7 @@ layout: ../../../layouts/ArticleLayout.astro
 project: Garuda
 category: Places
 collections:
-  - Planets
+  - Planets/Moons
 title: Muzdahir (Rahim)
 date: 2023-12-18T15:05:34.541Z
 searchTerms:
