@@ -2,7 +2,8 @@
 layout: ../../../layouts/ArticleLayout.astro
 project: Garuda
 category: Places
-collections: []
+collections:
+  - Planets/Moons
 title: Sama Kathifa
 date: 2023-12-14T15:27:50.732Z
 searchTerms:
