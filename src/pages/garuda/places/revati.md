@@ -4,7 +4,7 @@ project: Garuda
 category: Places
 collections:
   - Planets
-title: Revati
+title: Fanrong
 date: 2023-04-19T16:22:33.495Z
 description: Terrestrial moon orbiting a gas giant in the Prosper system.
   Capital of the Exchange.
@@ -33,7 +33,7 @@ Breathable
 
 ### Name
 
-Indian (Prosperous)
+Mandarin (Prosperous)
 
 ### Population
 
