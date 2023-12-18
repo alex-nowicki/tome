@@ -3,7 +3,7 @@ layout: ../../../layouts/ArticleLayout.astro
 project: Garuda
 category: Places
 collections:
-  - Planets
+  - Planets/Moons
 title: Kopu
 date: 2023-12-14T16:41:00.816Z
 description: Ocean covered planet in the Mwanzo System.
