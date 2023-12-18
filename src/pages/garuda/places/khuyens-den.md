@@ -11,7 +11,7 @@ searchTerms:
 
 ### Location
 
-Fuerza System
+Prosper System
 
 ### Population
 
@@ -31,5 +31,7 @@ Fuerza System
 [use double horizontal rule to add a details pane]::
 _____
 _____
+
+Located in the Prosper System, one of many space stations parked next to the Gatekeeper. 
 
 ## History
