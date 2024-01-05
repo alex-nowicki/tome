@@ -2,8 +2,10 @@
 layout: ../../../layouts/ArticleLayout.astro
 project: Garuda
 category: Groups
-title: Crisa
+title: Khadiri
 date: 2023-12-15T19:29:04.489Z
+searchTerms:
+  - Khadiri
 ---
 ## Details
 
