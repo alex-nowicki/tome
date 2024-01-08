@@ -646,7 +646,7 @@ collections:
 
     fields:
       - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/BaseLayout.astro"}
-      - {label: "Category", name: "category", widget: "hidden", default: "People"}
+      - {label: "Category", name: "category", widget: "hidden", default: "Nested"}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "text", pattern: [".{1,120}", "Must be no longer than 120 characters"], hint: "Description must be no longer than 120 characters.", required: false}
