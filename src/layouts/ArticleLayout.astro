@@ -138,11 +138,8 @@ if (editedPostHTMLSections.length > 1){
     bodyHTMLSection = editedPostHTMLSections[0];
 }
 
-console.log(postHTML);
-
 // Generate timeline HTML
 let timelineEvents = processEventsForTimeline(frontmatter);
-
 
 ---
 
@@ -171,9 +168,11 @@ let timelineEvents = processEventsForTimeline(frontmatter);
                             let collectionPost = collections.filter(post => {
                                 return post.frontmatter.title === collection;
                             })[0];
-                            return (
-                                <li><a href={collectionPost.url}><IconCollections />{collection}</a></li>
-                            )
+                            if (collectionPost) {
+                                return (
+                                    <li><a href={collectionPost.url}><IconCollections />{collection}</a></li>
+                                )
+                            }
                         })
                     )}
                 </ul>
