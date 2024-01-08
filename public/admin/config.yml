@@ -647,7 +647,7 @@ collections:
       summary: '{{title}}' # optional summary for a tree node, defaults to the inferred title field
 
     fields:
-      - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/ArticleLayout.astro"}
+      - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/BaseLayout.astro"}
       - {label: "Category", name: "category", widget: "hidden", default: "People"}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
