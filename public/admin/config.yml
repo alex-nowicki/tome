@@ -648,7 +648,7 @@ collections:
 
     fields:
       - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/ArticleLayout.astro"}
-      - {label: "Category", name: "category", widget: "hidden", default: "Things"}
+      - {label: "Category", name: "category", widget: "hidden", default: "People"}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "text", pattern: [".{1,120}", "Must be no longer than 120 characters"], hint: "Description must be no longer than 120 characters.", required: false}
@@ -657,6 +657,6 @@ collections:
         widget: "markdown"
         required: false
 
-      # adding a meta object with a path property allows editing the path of entries
-      # moving an existing entry will move the entire sub tree of the entry to the new location
-      meta: { path: { widget: string, label: 'Path', index_file: 'index' } }
+    # adding a meta object with a path property allows editing the path of entries
+    # moving an existing entry will move the entire sub tree of the entry to the new location
+    meta: { path: { widget: string, label: 'Path', index_file: 'index' } }
