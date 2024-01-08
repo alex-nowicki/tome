@@ -638,9 +638,7 @@ collections:
     label_singular: "Nested"
     name: "nested"
     folder: "src/pages"
-    path: "nested"
     create: true
-    slug: "{{slug}}"
 
     nested: 
       depth: 5
