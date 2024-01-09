@@ -36,7 +36,8 @@ export async function getStaticPaths () {
         return {
             params: { project: project.toLowerCase() },
             props: {
-                activeProject: project, 
+                activeProject: project,
+                projectPosts: projectPosts, 
                 events: timelineEvents 
             }
         }
@@ -44,8 +45,10 @@ export async function getStaticPaths () {
 }
 
 const { project } = Astro.params;
-const { events } = Astro.props;
 const { activeProject } = Astro.props;
+const { projectPosts } = Astro.props;
+const { events } = Astro.props;
+
 
 ---
-<TimelineLayout activeProject={activeProject} events={events}></TimelineLayout>
+<TimelineLayout activeProject={activeProject} projectPosts={projectPosts} events={events}></TimelineLayout>

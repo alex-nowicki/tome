@@ -51,8 +51,13 @@ events.sort((a, b) => a.date.numerical - b.date.numerical);
 
                 return  (
                     <li data-category={event.postCategory} data-date={event.date.numerical}>
-                        <p class="date">{event.date.full}</p> 
-                        <div>
+                        <div class="label-group">
+                            <p class="date">{event.date.full}</p>
+                            <div class="age-group">
+                                <p>Bopha is 20 years old</p>    
+                            </div> 
+                        </div>
+                        <div class="content-group">
                             <p class="category"><Fragment set:html={icon} />{event.postCategory === 'Events' ? label : event.postTitle}</p>
                             <p class="title">{event.title}</p>
                             { event.description && (

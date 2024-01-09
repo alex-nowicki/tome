@@ -5,9 +5,17 @@ import Timeline from "../components/Timeline.astro";
 import IconCloseCircle from "../components/IconCloseCircle.astro";
 
 const { activeProject } = Astro.props;
+const { projectPosts } = Astro.props;
 const { events } = Astro.props;
 
 let activeCategories = [...new Set(events.map(a => a.postCategory))];
+
+let postsWithStarts = projectPosts.filter((post) => {
+    console.log(events);
+    return post.events
+})
+
+
 
 ---
 
@@ -31,6 +39,20 @@ let activeCategories = [...new Set(events.map(a => a.postCategory))];
                     <div class="select-group">
                         <select name="sort" id="sort-select">
                             <option value="byDateNumAsc" selected>Date Ascending</option>
+                            <option value="byDateNumDesc">Date Descending</option>
+                        </select>
+                    </div>
+                </form>
+                <form class="show-age-group">
+                    <label>Show age</label>
+                    <div class="select-group">
+                        <select name="sort" id="sort-select" multiple>
+                            <option value="none" selected>None</option>
+                            {projectPosts.map((post) => {
+                                return (
+                                    <option value={post.frontmatter.title}>{post.frontmatter.title}</option>
+                                )
+                            })}
                             <option value="byDateNumDesc">Date Descending</option>
                         </select>
                     </div>

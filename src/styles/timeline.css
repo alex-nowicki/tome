@@ -90,7 +90,7 @@
     left: calc(50% - 2px);
 }
 
-.timeline ul li div {
+.timeline ul li .content-group {
     grid-area: content;
 
     display: flex;
@@ -107,26 +107,39 @@
     position: relative;
 }
 
-.timeline ul li:nth-child(odd) div {
+.timeline ul li:nth-child(odd) .content-group {
     justify-self: flex-end;
 }
 
-.timeline ul li:nth-child(even) div {
+.timeline ul li:nth-child(even) .content-group {
     justify-self: flex-start;
 }
 
-.timeline ul li .date {
+.timeline ul li .label-group {
     grid-area: date;
 
     align-self: start;
     margin: 1.5rem 1rem;
+}
+
+.timeline ul li:nth-child(even) .label-group {
+    justify-self: end;
+    text-align: right;
+}
+
+.timeline ul li .date {
     font-weight: 600;
     line-height: 1;
     color: var(--teal-80);
+    margin: 0 0 0.25rem;
 }
 
-.timeline ul li:nth-child(even) .date {
-    justify-self: end;
+.timeline ul li .age-group p {
+    font-weight: 400;
+    line-height: 1;
+    color: var(--teal-80);
+    font-size: 0.875rem;
+
 }
 
 .timeline ul li .title {

@@ -48,18 +48,11 @@ collections:
     
     fields:
       - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/StoryLayout.astro"}
-      - label: "Project"
-        name: "project"
-        widget: "relation"
-        collection: "projects"
-        search_fields: ["title"]
-        value_field: "title"
+      - {label: "Project", name: "project", widget: "relation", collection: "projects", search_fields: ["title"], value_field: "title"}
       - {label: "Category", name: "category", widget: "hidden", default: "Stories"}
       - {label: "Title", name: "title", widget: "string", pattern: [".{1,40}", "Must be no longer than 40 characters"], hint: "Title must be no longer than 40 characters."}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "text", pattern: [".{1,120}", "Must be no longer than 120 characters"], hint: "Description must be no longer than 120 characters.", required: false}
-      - {label: "Ideas", name: "ideas", widget: "markdown", required: false}
-      - {label: "Questions", name: "questions", widget: "markdown", required: false}
       - {label: "Body", name: "body", widget: "markdown", required: false}
 
 
@@ -82,12 +75,7 @@ collections:
 
     fields:
       - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/CollectionLayout.astro"}
-      - label: "Project"
-        name: "project"
-        widget: "relation"
-        collection: "projects"
-        search_fields: ["title"]
-        value_field: "title"
+      - {label: "Project", name: "project", widget: "relation", collection: "projects", search_fields: ["title"], value_field: "title"}
       - {label: "Category", name: "category", widget: "hidden", default: "Collections"}
       - {label: "Title", name: "title", widget: "string", pattern: [".{1,40}", "Must be no longer than 40 characters"], hint: "Title must be no longer than 40 characters."}
       - {label: "Publish Date", name: "date", widget: "datetime"}
@@ -120,29 +108,14 @@ collections:
 
     fields:
       - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/ArticleLayout.astro"}
-      - label: "Project"
-        name: "project"
-        widget: "relation"
-        collection: "projects"
-        search_fields: ["title"]
-        value_field: "title"
+      - {label: "Project", name: "project", widget: "relation", collection: "projects", search_fields: ["title"], value_field: "title"}
       - {label: "Category", name: "category", widget: "hidden", default: "People"}
-      - label: "Collections"
-        label_singular: "Collection"
-        name: "collections"
-        widget: "list"
-        summary: "{{fields.collection}}"
-        field: {label: "Collection", name: "collection", widget: "relation", collection: "collections", search_fields: ["title"], value_field: "title", required: false}
+      - {label: "Collections", label_singular: "Collection", name: "collections", widget: "list", summary: "{{fields.collection}}", field: {label: "Collection", name: "collection", widget: "relation", collection: "collections", search_fields: ["title"], value_field: "title", required: false}}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "text", pattern: [".{1,120}", "Must be no longer than 120 characters"], hint: "Description must be no longer than 120 characters.", required: false}
-      - label: "Search Terms"
-        label_singular: "Search Term"
-        name: "searchTerms"
-        widget: "list"
-        summary: "{{fields.searchTerm}}"
-        field: {label: "Search Term", name: "searchTerm", widget: "string"}
-      - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
+      - {label: "Search Terms", label_singular: "Search Term", name: "searchTerms", widget: "list", summary: "{{fields.searchTerm}}", field: {label: "Search Term", name: "searchTerm", widget: "string"}}
+      - {label: "Image", name: "thumbnail", widget: "image", required: false}
       - label: "Body"
         name: "body"
         widget: "markdown"
@@ -216,6 +189,34 @@ collections:
       ## People - Events
       ##
 
+      - label: "Lifespan"
+        name: "lifespan"
+        widget: "object"
+        required: false
+        fields:
+          - label: "Start Date" 
+            name: "start"
+            widget: "object"
+            summary: "{{fields.year}}"
+            required: false
+            fields:
+              - {label: "Year", name: "year", widget: "number", required: false}
+              - {label: "Month - Numerical", name: "month", widget: "number", required: false}
+              - {label: "Day - Numerical", name: "day", widget: "number", required: false}
+              - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
+              - {label: "Verb", name: "verb", widget: "string", default: "Started", hint: "Past tense verb. *Examples: Born, Founded, Discovered, etc.*"}
+          - label: "End Date" 
+            name: "end"
+            widget: "object"
+            summary: "{{fields.year}}"
+            required: false
+            fields:
+              - {label: "Year", name: "year", widget: "number", required: false}
+              - {label: "Month - Numerical", name: "month", widget: "number", required: false}
+              - {label: "Day - Numerical", name: "day", widget: "number", required: false}
+              - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
+              - {label: "Verb", name: "verb", widget: "string", default: "Ended", hint: "Past tense verb. *Examples: Died, Dissolved, Forgotten, etc.*"}
+
       - label: "Notable Events"
         label_singular: "Event"
         name: "events"
@@ -223,6 +224,7 @@ collections:
         required: false
         summary: "{{fields.date.year}} - {{fields.title}}"
         fields:
+          - {label: "Include in Project Timeline", name: "include", widget: "boolean", default: false}
           - {label: "Title", name: "title", widget: "string"}
           - {label: "Description", name: "description", widget: "text", required: false}
           - label: "Date" 
@@ -234,18 +236,6 @@ collections:
               - {label: "Month - Numerical", name: "month", widget: "number", required: false}
               - {label: "Day - Numerical", name: "day", widget: "number", required: false}
               - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
-          - {label: "Include in Project Timeline", name: "include", widget: "boolean", default: true}
-          - label: "Event Type"
-            name: "type"
-            widget: "select"
-            options: 
-              - {label: "Basic Event", value: "basic"}
-              - {label: "Event Start", value: "start"}
-              - {label: "Event End", value: "end"}
-            default: "basic"
-          - {label: "Start/End Event Prefix", name: "prefix", widget: "string", hint: "Appears below each event in a timeline to show relative age. Example: **Person is** 20 years old"}
-          - {label: "Start/End Event Suffix", name: "suffix", widget: "string", hint: "Appears below each event in a timeline to show relative age. Example: Person is 20 **years old**"}
-
 
 
   ##
@@ -267,29 +257,14 @@ collections:
 
     fields:
       - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/ArticleLayout.astro"}
-      - label: "Project"
-        name: "project"
-        widget: "relation"
-        collection: "projects"
-        search_fields: ["title"]
-        value_field: "title"
+      - {label: "Project", name: "project", widget: "relation", collection: "projects", search_fields: ["title"], value_field: "title"}
       - {label: "Category", name: "category", widget: "hidden", default: "Groups"}
-      - label: "Collections"
-        label_singular: "Collection"
-        name: "collections"
-        widget: "list"
-        summary: "{{fields.collection}}"
-        field: {label: "Collection", name: "collection", widget: "relation", collection: "collections", search_fields: ["title"], value_field: "title", required: false}
+      - {label: "Collections", label_singular: "Collection", name: "collections", widget: "list", summary: "{{fields.collection}}", field: {label: "Collection", name: "collection", widget: "relation", collection: "collections", search_fields: ["title"], value_field: "title", required: false}}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "text", pattern: [".{1,120}", "Must be no longer than 120 characters"], hint: "Description must be no longer than 120 characters.", required: false}
-      - label: "Search Terms"
-        label_singular: "Search Term"
-        name: "searchTerms"
-        widget: "list"
-        summary: "{{fields.searchTerm}}"
-        field: {label: "Search Term", name: "searchTerm", widget: "string"}
-      - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
+      - {label: "Search Terms", label_singular: "Search Term", name: "searchTerms", widget: "list", summary: "{{fields.searchTerm}}", field: {label: "Search Term", name: "searchTerm", widget: "string"}}
+      - {label: "Image", name: "thumbnail", widget: "image", required: false}
       - label: "Body"
         name: "body"
         widget: "markdown"
@@ -372,29 +347,14 @@ collections:
 
     fields:
       - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/ArticleLayout.astro"}
-      - label: "Project"
-        name: "project"
-        widget: "relation"
-        collection: "projects"
-        search_fields: ["title"]
-        value_field: "title"
+      - {label: "Project", name: "project", widget: "relation", collection: "projects", search_fields: ["title"], value_field: "title"}
       - {label: "Category", name: "category", widget: "hidden", default: "Places"}
-      - label: "Collections"
-        label_singular: "Collection"
-        name: "collections"
-        widget: "list"
-        summary: "{{fields.collection}}"
-        field: {label: "Collection", name: "collection", widget: "relation", collection: "collections", search_fields: ["title"], value_field: "title", required: false}
+      - {label: "Collections", label_singular: "Collection", name: "collections", widget: "list", summary: "{{fields.collection}}", field: {label: "Collection", name: "collection", widget: "relation", collection: "collections", search_fields: ["title"], value_field: "title", required: false}}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "text", pattern: [".{1,120}", "Must be no longer than 120 characters"], hint: "Description must be no longer than 120 characters.", required: false}
-      - label: "Search Terms"
-        label_singular: "Search Term"
-        name: "searchTerms"
-        widget: "list"
-        summary: "{{fields.searchTerm}}"
-        field: {label: "Search Term", name: "searchTerm", widget: "string"}
-      - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
+      - {label: "Search Terms", label_singular: "Search Term", name: "searchTerms", widget: "list", summary: "{{fields.searchTerm}}", field: {label: "Search Term", name: "searchTerm", widget: "string"}}
+      - {label: "Image", name: "thumbnail", widget: "image", required: false}
       - label: "Body"
         name: "body"
         widget: "markdown"
@@ -471,29 +431,14 @@ collections:
 
     fields:
       - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/ArticleLayout.astro"}
-      - label: "Project"
-        name: "project"
-        widget: "relation"
-        collection: "projects"
-        search_fields: ["title"]
-        value_field: "title"
+      - {label: "Project", name: "project", widget: "relation", collection: "projects", search_fields: ["title"], value_field: "title"}
       - {label: "Category", name: "category", widget: "hidden", default: "Events"}
-      - label: "Collections"
-        label_singular: "Collection"
-        name: "collections"
-        widget: "list"
-        summary: "{{fields.collection}}"
-        field: {label: "Collection", name: "collection", widget: "relation", collection: "collections", search_fields: ["title"], value_field: "title", required: false}
+      - {label: "Collections", label_singular: "Collection", name: "collections", widget: "list", summary: "{{fields.collection}}", field: {label: "Collection", name: "collection", widget: "relation", collection: "collections", search_fields: ["title"], value_field: "title", required: false}}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "text", pattern: [".{1,120}", "Must be no longer than 120 characters"], hint: "Description must be no longer than 120 characters.", required: false}
-      - label: "Search Terms"
-        label_singular: "Search Term"
-        name: "searchTerms"
-        widget: "list"
-        summary: "{{fields.searchTerm}}"
-        field: {label: "Search Term", name: "searchTerm", widget: "string"}
-      - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
+      - {label: "Search Terms", label_singular: "Search Term", name: "searchTerms", widget: "list", summary: "{{fields.searchTerm}}", field: {label: "Search Term", name: "searchTerm", widget: "string"}}
+      - {label: "Image", name: "thumbnail", widget: "image", required: false}
       - label: "Start Date" 
         name: "startDate"
         widget: "object"
@@ -542,6 +487,34 @@ collections:
       ## Events - Events
       ## 
 
+      - label: "Lifespan"
+        name: "lifespan"
+        widget: "object"
+        required: false
+        fields:
+          - label: "Start Date" 
+            name: "start"
+            widget: "object"
+            summary: "{{fields.year}}"
+            required: false
+            fields:
+              - {label: "Year", name: "year", widget: "number", required: false}
+              - {label: "Month - Numerical", name: "month", widget: "number", required: false}
+              - {label: "Day - Numerical", name: "day", widget: "number", required: false}
+              - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
+              - {label: "Verb", name: "verb", widget: "string", default: "Started", hint: "Past tense verb. *Examples: Born, Founded, Discovered, etc.*"}
+          - label: "End Date" 
+            name: "end"
+            widget: "object"
+            summary: "{{fields.year}}"
+            required: false
+            fields:
+              - {label: "Year", name: "year", widget: "number", required: false}
+              - {label: "Month - Numerical", name: "month", widget: "number", required: false}
+              - {label: "Day - Numerical", name: "day", widget: "number", required: false}
+              - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
+              - {label: "Verb", name: "verb", widget: "string", default: "Ended", hint: "Past tense verb. *Examples: Died, Dissolved, Forgotten, etc.*"}
+              
       - label: "Contributing Events"
         label_singular: "Event"
         name: "events"
@@ -549,6 +522,7 @@ collections:
         required: false
         summary: "{{fields.title}}"
         fields:
+          - {label: "Include in Project Timeline", name: "include", widget: "boolean", default: false}
           - {label: "Title", name: "title", widget: "string"}
           - {label: "Description", name: "description", widget: "text", required: false}
           - label: "Date" 
@@ -560,6 +534,7 @@ collections:
               - {label: "Month - Numerical", name: "month", widget: "number", required: false}
               - {label: "Day - Numerical", name: "day", widget: "number", required: false}
               - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
+
 
 
   ##
@@ -580,29 +555,14 @@ collections:
         field: project
     fields:
       - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/ArticleLayout.astro"}
-      - label: "Project"
-        name: "project"
-        widget: "relation"
-        collection: "projects"
-        search_fields: ["title"]
-        value_field: "title"
+      - {label: "Project", name: "project", widget: "relation", collection: "projects", search_fields: ["title"], value_field: "title"}
       - {label: "Category", name: "category", widget: "hidden", default: "Things"}
-      - label: "Collections"
-        label_singular: "Collection"
-        name: "collections"
-        widget: "list"
-        summary: "{{fields.collection}}"
-        field: {label: "Collection", name: "collection", widget: "relation", collection: "collections", search_fields: ["title"], value_field: "title", required: false}
+      - {label: "Collections", label_singular: "Collection", name: "collections", widget: "list", summary: "{{fields.collection}}", field: {label: "Collection", name: "collection", widget: "relation", collection: "collections", search_fields: ["title"], value_field: "title", required: false}}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "text", pattern: [".{1,120}", "Must be no longer than 120 characters"], hint: "Description must be no longer than 120 characters.", required: false}
-      - label: "Search Terms"
-        label_singular: "Search Term"
-        name: "searchTerms"
-        widget: "list"
-        summary: "{{fields.searchTerm}}"
-        field: {label: "Search Term", name: "searchTerm", widget: "string"}
-      - {label: "Featured Image", name: "thumbnail", widget: "image", required: false}
+      - {label: "Search Terms", label_singular: "Search Term", name: "searchTerms", widget: "list", summary: "{{fields.searchTerm}}", field: {label: "Search Term", name: "searchTerm", widget: "string"}}
+      - {label: "Image", name: "thumbnail", widget: "image", required: false}
       - label: "Body"
         name: "body"
         widget: "markdown"
