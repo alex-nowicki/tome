@@ -234,6 +234,18 @@ collections:
               - {label: "Month - Numerical", name: "month", widget: "number", required: false}
               - {label: "Day - Numerical", name: "day", widget: "number", required: false}
               - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
+          - {label: "Include in Project Timeline", name: "include", widget: "boolean", default: true}
+          - label: "Event Type"
+            name: "type"
+            widget: "select"
+            options: 
+              - {label: "Basic Event", value: "basic"}
+              - {label: "Event Start", value: "start"}
+              - {label: "Event End", value: "end"}
+            default: "basic"
+          - {label: "Start/End Event Prefix", name: "prefix", widget: "string", hint: "Appears below each event in a timeline to show relative age. Example: **Person is** 20 years old"}
+          - {label: "Start/End Event Suffix", name: "suffix", widget: "string", hint: "Appears below each event in a timeline to show relative age. Example: Person is 20 **years old**"}
+
 
 
   ##
