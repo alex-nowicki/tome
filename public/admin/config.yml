@@ -195,7 +195,7 @@ collections:
         required: false
         fields:
           - label: "Start Date" 
-            name: "start"
+            name: "startDate"
             widget: "object"
             summary: "{{fields.year}}"
             required: false
@@ -204,9 +204,9 @@ collections:
               - {label: "Month - Numerical", name: "month", widget: "number", required: false}
               - {label: "Day - Numerical", name: "day", widget: "number", required: false}
               - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
-              - {label: "Verb", name: "verb", widget: "string", default: "Started", hint: "Past tense verb. *Examples: Born, Founded, Discovered, etc.*"}
+              - {label: "Verb", name: "verb", widget: "string", default: "Started", hint: "Past tense verb. *Examples: Born, Founded, Discovered, etc.*", required: false}
           - label: "End Date" 
-            name: "end"
+            name: "endDate"
             widget: "object"
             summary: "{{fields.year}}"
             required: false
@@ -215,7 +215,7 @@ collections:
               - {label: "Month - Numerical", name: "month", widget: "number", required: false}
               - {label: "Day - Numerical", name: "day", widget: "number", required: false}
               - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
-              - {label: "Verb", name: "verb", widget: "string", default: "Ended", hint: "Past tense verb. *Examples: Died, Dissolved, Forgotten, etc.*"}
+              - {label: "Verb", name: "verb", widget: "string", default: "Ended", hint: "Past tense verb. *Examples: Died, Dissolved, Forgotten, etc.*", required: false}
 
       - label: "Notable Events"
         label_singular: "Event"
@@ -224,7 +224,7 @@ collections:
         required: false
         summary: "{{fields.date.year}} - {{fields.title}}"
         fields:
-          - {label: "Include in Project Timeline", name: "include", widget: "boolean", default: false}
+          - {label: "Include in Project Timeline", name: "include", widget: "boolean", default: false, required: false}
           - {label: "Title", name: "title", widget: "string"}
           - {label: "Description", name: "description", widget: "text", required: false}
           - label: "Date" 
@@ -493,7 +493,7 @@ collections:
         required: false
         fields:
           - label: "Start Date" 
-            name: "start"
+            name: "startDate"
             widget: "object"
             summary: "{{fields.year}}"
             required: false
@@ -502,9 +502,9 @@ collections:
               - {label: "Month - Numerical", name: "month", widget: "number", required: false}
               - {label: "Day - Numerical", name: "day", widget: "number", required: false}
               - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
-              - {label: "Verb", name: "verb", widget: "string", default: "Started", hint: "Past tense verb. *Examples: Born, Founded, Discovered, etc.*"}
+              - {label: "Verb", name: "verb", widget: "string", default: "Started", hint: "Past tense verb. *Examples: Born, Founded, Discovered, etc.*", required: false}
           - label: "End Date" 
-            name: "end"
+            name: "endDate"
             widget: "object"
             summary: "{{fields.year}}"
             required: false
@@ -513,7 +513,7 @@ collections:
               - {label: "Month - Numerical", name: "month", widget: "number", required: false}
               - {label: "Day - Numerical", name: "day", widget: "number", required: false}
               - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
-              - {label: "Verb", name: "verb", widget: "string", default: "Ended", hint: "Past tense verb. *Examples: Died, Dissolved, Forgotten, etc.*"}
+              - {label: "Verb", name: "verb", widget: "string", default: "Ended", hint: "Past tense verb. *Examples: Died, Dissolved, Forgotten, etc.*", required: false}
               
       - label: "Contributing Events"
         label_singular: "Event"

@@ -10,10 +10,12 @@ const { events } = Astro.props;
 
 let activeCategories = [...new Set(events.map(a => a.postCategory))];
 
-let postsWithStarts = projectPosts.filter((post) => {
+let postsWithLifespan = projectPosts.filter((post) => {
     console.log(events);
-    return post.events
+    return post.lifespan.startDate || post.lifespan.endDate;
 })
+
+console.log(postsWithLifespan);
 
 
 
