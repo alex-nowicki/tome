@@ -8,6 +8,13 @@ description: Cheerful MechTech of the Garuda.
 searchTerms:
   - Manu Igarashi
   - Manu
+lifespan:
+  startDate:
+    year: 69
+    verb: Born
+  endDate:
+    year: 130
+    verb: Died
 events:
   - title: Birth Year
     date:
