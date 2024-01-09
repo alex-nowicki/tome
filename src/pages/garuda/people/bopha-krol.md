@@ -9,6 +9,10 @@ searchTerms:
   - Bopha Krol
   - Bopha de la Rosa
   - Bopha
+lifespan:
+  startDate:
+    year: 96
+    verb: Born
 events:
   - title: Bopha and Valentina steal the Garuda
     date:
