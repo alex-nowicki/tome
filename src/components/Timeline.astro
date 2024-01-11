@@ -4,36 +4,52 @@ import "../styles/timeline.css"
 
 import { getCatIconAndLabel } from "../scripts/helpers.js";
 
-let { events } = Astro.props;
+const { events } = Astro.props;
+const { postsWithLifespan } = Astro.props;
 
-// Generate a full date for each event
-events.map((event) => {
+let createFullDate = function(date) {
 
-    if (!event.date.full){
+    if (!date.full){
 
         let padWithLeadingZeros = function(num, totalLength) {
             return String(num).padStart(totalLength, '0');
         }
 
-        event.date.full = '';
-        event.date.full = event.date.year !== undefined ? event.date.full += `${event.date.year}` : event.date.full;
-        event.date.full = event.date.year !== undefined && event.date.month ? event.date.full += `-${padWithLeadingZeros(event.date.month, 2)}` : event.date.full;
-        event.date.full = event.date.year !== undefined && event.date.month && event.date.day ? event.date.full += `-${padWithLeadingZeros(event.date.day, 2)}` : event.date.full;
-        event.date.full = event.date.year !== undefined && event.date.yearNotation ? event.date.full += ` ${event.date.yearNotation}` : event.date.full;
+        date.full = '';
+        date.full = date.year !== undefined ? date.full += `${date.year}` : date.full;
+        date.full = date.year !== undefined && date.month ? date.full += `-${padWithLeadingZeros(date.month, 2)}` : date.full;
+        date.full = date.year !== undefined && date.month && date.day ? date.full += `-${padWithLeadingZeros(date.day, 2)}` : date.full;
+        date.full = date.year !== undefined && date.yearNotation ? date.full += ` ${date.yearNotation}` : date.full;
     }
 
-    if (!event.date.numerical){
-        if (event.date.year !== -Infinity) {
-            event.date.numerical = event.date.year !== undefined ? event.date.year * 100 : 0;
-            event.date.numerical += event.date.month !== undefined ? event.date.month * 10 : 0;
-            event.date.numerical += event.date.day !== undefined ? event.date.day : 0;
+    if (!date.numerical){
+
+        if (date.year !== -Infinity) {
+            date.numerical = date.year !== undefined ? date.year * 1000000 : 0;
+            date.numerical += date.month !== undefined ? date.month * 1000 : 0;
+            date.numerical += date.day !== undefined ? date.day : 0;
         } else {
-            event.date.numerical = -Infinity;
+            date.numerical = -Infinity;
         }
 
     }
 
+}
+
+// Generate a full date for each event
+events.map((event) => {
+    createFullDate(event.date);
 });
+
+// Generate a full date for each lifespan
+postsWithLifespan.map((post) => {
+    if (post.frontmatter.lifespan.startDate){
+        createFullDate(post.frontmatter.lifespan.startDate);
+    }
+    if (post.frontmatter.lifespan.endDate){
+        createFullDate(post.frontmatter.lifespan.endDate);
+    }
+})
 
 // Sort the events array by date
 events.sort((a, b) => a.date.numerical - b.date.numerical);
@@ -50,12 +66,37 @@ events.sort((a, b) => a.date.numerical - b.date.numerical);
             let label = getCatIconAndLabel(event.postCategory).label;
 
                 return  (
-                    <li data-category={event.postCategory} data-date={event.date.numerical}>
+                    <li class="event" data-category={event.postCategory} data-date={event.date.numerical}>
                         <div class="label-group">
                             <p class="date">{event.date.full}</p>
-                            <div class="age-group">
-                                <p>Bopha is 20 years old</p>    
-                            </div> 
+                            <ul class="age-group">
+
+                                {postsWithLifespan.map((post) => {
+
+                                    let startDate = post.frontmatter.lifespan.startDate;
+                                    let endDate = post.frontmatter.lifespan.endDate;
+
+                                    console.log(startDate);
+                                    console.log(endDate);
+
+                                    if ((startDate !== undefined && startDate.numerical !== undefined && startDate.numerical < event.date.numerical) 
+                                        && (endDate === undefined || (endDate !== undefined && endDate.numerical !== undefined && event.date.numerical < endDate.numerical))){
+                                        
+                                        return (
+                                            <li>{post.frontmatter.title} {post.frontmatter.lifespan.startDate.verb.toLowerCase()} {~~((event.date.numerical - startDate.numerical) / 1000000)} years ago</li>   
+                                        )
+
+                                    } else if (endDate !== undefined && endDate.numerical !== undefined && event.date.numerical > endDate.numerical) {
+
+                                        return (
+                                            <li>{post.frontmatter.title} {post.frontmatter.lifespan.endDate.verb.toLowerCase()} {~~((event.date.numerical - endDate.numerical) / 1000000)} years ago</li>
+                                        )
+
+                                    }
+                                    
+                                })}                                
+
+                            </ul> 
                         </div>
                         <div class="content-group">
                             <p class="category"><Fragment set:html={icon} />{event.postCategory === 'Events' ? label : event.postTitle}</p>

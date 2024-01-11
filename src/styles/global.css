@@ -136,170 +136,73 @@ input:is([type="checkbox"], [type="radio"]) {
     height: 0;
 }
 
-input:focus-visible + label {
-    outline: var(--teal-100) auto 1px;
-    outline-offset: 2px;
-}
-
-/* CHECKBOX AND RADIO BUTTONS */
-
-input:is([type="checkbox"], [type="radio"]) + label {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    user-select: none;
-    font-size: 1rem;
-    font-weight: 600;
-    line-height: 1;
-    color: var(--gray-100);
-    padding:  0.75rem 1rem;
-    background-color: white;
-    text-decoration: none;
-    border-top: 1px solid var(--gray-10);
-    border-right: 1px solid var(--gray-10);
-    border-left: 1px solid var(--gray-10);
-    border-radius: var(--borderRadius);
-    cursor: pointer;
-    margin-right: 0.5rem;
-    box-shadow: var(--boxShadow) var(--gray-15);
-}
-
-input:is([type="checkbox"], [type="radio"]) + label:hover {
-    background-color: var(--teal-15);
-    border-color: var(--teal-30);
-    box-shadow: var(--boxShadow) var(--teal-30);
-    color: var(--teal-100);
-}
-
-input[type="radio"]:checked + label {
-    background-color: var(--teal-80);
-    border-color: var(--teal-80);
-    box-shadow: var(--boxShadow) var(--teal-100);
-    color: white;
-}
-
-input[type="checkbox"]:checked + label {
-    background-color: var(--teal-80);
-    border-color: var(--teal-80);
-    box-shadow: var(--boxShadow) var(--teal-100);
-    color: white;
-    padding: 0.5rem 1rem;
-}
-
-input[type="checkbox"]:checked + label:hover {
-    background-color: var(--gray-80);
-    border-color: var(--gray-80);
-    box-shadow: var(--boxShadow) var(--gray-100);
-    color: white;
-}
-
-input[type="checkbox"]:checked:disabled + label {
-    padding: 0.75rem 1rem;
-    cursor: default;
-}
-
-input[type="checkbox"]:checked:disabled + label:hover {
-    background-color: var(--teal-80);
-    border-color: var(--teal-80);
-    box-shadow: var(--boxShadow) var(--teal-100);
-}
-
-
-input[type="checkbox"]:checked:disabled + label .icon {
-    display: none;
-}
-
-input[type="checkbox"] + label .icon {
-    display: none;
-    margin-left: 0.25rem;
-}
-
-input[type="checkbox"]:checked + label .icon {
-    display: flex;
-}
-
-input[type="checkbox"]:checked + label .icon circle {
-    stroke: none;
-    fill: none;
-}
-
-input[type="checkbox"]:checked + label .icon line {
-    stroke: white;
-}
-
-input[type="checkbox"]:checked + label:hover .icon circle {
-    fill: white;
-}
-
-input[type="checkbox"]:checked + label:hover .icon line {
-    stroke: var(--gray-80);
-}
-
 /* DROP DOWN SELECT INPUTS */
 
-form.sort-group label {
+label:has(select) {
     font-size: 0.875rem;
     font-weight: 600;
-    margin-right: 0.5rem;
+
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    gap: 0.5rem;
+
+    & .select-group {
+        position: relative;
+    
+        &::after {
+            content: " ";
+            display: block;
+            position: absolute;
+            margin-top: -2px;
+            top: 50%;
+            right: 0.75rem;
+            width: 0.5rem;
+            height: 0.5rem;
+            border-top: 5px solid var(--teal-60);
+            border-right: 5px solid transparent;
+            border-left: 5px solid transparent;
+            pointer-events: none;
+        }
+
+        & select {
+            appearance: none;
+            position: relative;
+            min-height: 2.25rem;
+            padding: 0.5rem 2rem 0.5rem 0.75rem;
+            border-radius: calc(var(--borderRadius) / 1.5);
+            border-top: 1px solid var(--gray-10);
+            border-right: 1px solid var(--gray-10);
+            border-left: 1px solid var(--gray-10);
+            border-bottom: none;
+            box-shadow: var(--boxShadow) var(--gray-15);
+
+            font-size: 0.875rem;
+            font-weight: 500;
+            line-height: 1.3;
+            cursor: pointer;
+        
+            &:hover, &:focus {
+                outline: none;
+                background-color: var(--teal-15);
+                border-color: var(--teal-30);
+                box-shadow: var(--boxShadow) var(--teal-30);
+                color: var(--teal-100);
+            }
+        
+            &:active {
+                outline: none;
+            }
+        
+            & option {
+                background-color: white;
+                color: var(--gray-100);
+                font-size: 0.875rem;
+                font-weight: 500;
+            }
+        }
+    }
 }
-
-form.sort-group .select-group {
-    position: relative;
-}
-
-form.sort-group .select-group::after {
-    content: " ";
-    display: block;
-    position: absolute;
-    margin-top: -2px;
-    top: 50%;
-    right: 0.75rem;
-    width: 0.5rem;
-    height: 0.5rem;
-    border-top: 5px solid var(--teal-60);
-    border-right: 5px solid transparent;
-    border-left: 5px solid transparent;
-    pointer-events: none;
-}
-
-select {
-    appearance: none;
-    padding: 0.5rem 2rem 0.5rem 0.75rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    border-radius: var(--borderRadius);
-    border-top: 1px solid var(--gray-10);
-    border-right: 1px solid var(--gray-10);
-    border-left: 1px solid var(--gray-10);
-    border-bottom: none;
-    box-shadow: var(--boxShadow) var(--gray-15);
-    position: relative;
-    cursor: pointer;
-}
-
-select:hover,
-select:focus {
-    outline: none;
-    background-color: var(--teal-15);
-    border-color: var(--teal-30);
-    box-shadow: var(--boxShadow) var(--teal-30);
-    color: var(--teal-100);
-}
-
-select:active {
-    outline: none;
-}
-
-select option {
-    background-color: white;
-    color: var(--gray-100);
-    font-size: 0.875rem;
-    font-weight: 500;
-}
-
-
-
-
 
 
 /*
@@ -307,19 +210,15 @@ select option {
 ------------------------------*/
 
 svg.icon {
-    width: 1.5rem;;
+    width: 1.5rem;
+
+    & :is(path, line, circle){
+        stroke: var(--gray-100);
+        stroke-width: 2px;
+        fill: none;
+    }
+
 }
-
-svg.icon :is(path, line, circle){
-    stroke: var(--gray-100);
-    stroke-width: 2px;
-    fill: none;
-}
-
-
-/*
-** FLEXBOX
-------------------------------*/
 
 
 /*
@@ -342,65 +241,251 @@ button {
 a {
     color: var(--teal-100);
     font-weight: 500;
+
+    &:hover {
+        color: var(--teal-80);
+    }
+
+    &:visited {
+        color: var(--teal-100);
+        
+        &:hover {
+            color: var(--teal-80);
+        }
+    }
 }
 
-a:visited {
-    color: var(--teal-100);         
+.btn-m {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    min-height: 2.5rem;
+    margin-right: 0;
+    padding: 0.625rem 0.875rem;
+    background-color: white;
+    border-top: 1px solid var(--gray-10);
+    border-right: 1px solid var(--gray-10);
+    border-left: 1px solid var(--gray-10);
+    border-radius: var(--borderRadius);
+    box-shadow: var(--boxShadow) var(--gray-15);
+
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--gray-100);
+    text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+
+    &:hover {
+        background-color: var(--teal-15);
+        border-color: var(--teal-30);
+        box-shadow: var(--boxShadow) var(--teal-30);
+
+        & :is(label, a, button, span) {
+            color: var(--teal-100);
+        }
+
+        & .icon :is(path, circle, line) {
+            stroke: var(--teal-100);
+        }
+    }
+
+    &:has(:checked) {
+        background-color: var(--teal-80);
+        border-color: var(--teal-80);
+        box-shadow: var(--boxShadow) var(--teal-100);
+
+        & :is(label, a, button, span) {
+            color: white;
+        }
+    }
+
+    &:has([type="checkbox"]) {
+
+        & .icon-controls {
+            transform: rotate(45deg);
+        }
+    }
+
+    &:has([type="checkbox"]:checked) {
+
+        &:hover {
+            background-color: var(--teal-15);
+            border-color: var(--teal-30);
+            box-shadow: var(--boxShadow) var(--teal-30);
+
+            & :is(label, a, button, span) {
+                color: var(--teal-100);
+            }
+            
+            & .icon :is(path, circle, line) {
+                stroke: var(--teal-100);
+            }
+        }
+
+        & .icon-controls {
+            transform: none;
+
+            & :is(path, circle, line) {
+                stroke: white;
+            }
+        }
+    }
+
+    &:has([type="checkbox"]:checked:disabled) {
+        cursor: default;
+    
+        &:hover {
+            background-color: var(--teal-80);
+            border-color: var(--teal-80);
+            box-shadow: var(--boxShadow) var(--teal-100);
+
+            & :is(label, a, button, span) {
+                color: white;
+            }
+        }
+    
+        & .icon {
+            display: none;
+        }
+    }
+
+    & .icon {
+        width: 1.125rem;
+        transform-origin: center;
+    
+        & :is(path, circle, line) {
+            stroke-width: 2px;
+        }
+    
+        &.icon-controls {
+
+            &.cross {
+                width: 0.75rem;
+                margin: 0;
+            }
+        }
+    }
 }
 
-:is(a, a:visited):hover {
-    color: var(--teal-80);
-}
-
-
-
-/* Bookmark Buttons */
-
-.bookmark-toggle svg path {
-    fill: none;
-    stroke: var(--teal-60);
-    stroke-width: 2px;
-}
-
-.bookmark-toggle:hover svg path,
-.bookmark-toggle.is-active svg path {
-    fill: var(--orange-30);
-    stroke: var(--orange-80);
-}
-
-.bookmark-toggle.is-active:hover svg path {
-    fill: none;
-}
-
-/* View All Buttons */
-
-a.view-all {
-    display: flex;
+.btn-s {
+    display: inline-flex;
     align-items: center;
     gap: 0.375rem;
 
+    min-height: 2rem;
+    margin: 0;
     padding: 0.375rem 0.5rem;
     background-color: var(--teal-15);
-    border-radius: calc(var(--borderRadius) / 2);
+    border: none;
+    border-radius: calc(var(--borderRadius) / 1.5);
+    box-shadow: none;
+
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--gray-100);
     text-decoration: none;
+    cursor: pointer;
+    user-select: none;
+
+    &:hover  {
+        background-color: var(--orange-45);
+        color: var(--gray-100);
+
+        & :is(label, a, button, span) {
+            color: inherit;
+        }
+
+        & svg :is(path, circle, line) {
+            stroke: var(--gray-100);
+        }
+    }
+
+    &:has(:checked) {
+        background-color: var(--orange-20);
+
+        & icon-controls.cross {
+            transform: none;
+        }
+    }
+
+    &:has([type="checkbox"]) {
+
+        & .icon-controls {
+            transform: rotate(45deg);
+        }
+    }
+
+    &:has([type="checkbox"]:checked) {
+
+        &:hover {
+            background-color: var(--teal-15);
+            color: var(--teal-100);
+
+            & :is(label, a, button, span) {
+                color: inherit;
+            }
+            
+            & .icon :is(path, circle, line) {
+                stroke: var(--teal-100);
+            }
+        }
+
+        & .icon-controls {
+            transform: none;
+        }
+    }
+
+    & .icon {
+        width: 1.125rem;
+    
+        & :is(path, circle, line) {
+            stroke-width: 1.5px;
+        }
+    
+        &.icon-controls {
+
+            &.arrow {
+                width: 0.75rem;
+                margin: 0 0.125rem;
+            }
+
+            &.cross {
+                width: 0.625rem;
+                margin: 0 0.25rem;
+            }
+        }
+    }
 }
 
-a.view-all:hover {
-    background-color: var(--teal-80);
-    color: white;
+:is(.btn-m, .btn-s):has(input:focus-visible) {
+    outline: var(--teal-100) auto 1px;
+    outline-offset: 2px;
 }
 
-a.view-all svg {
-    width: 0.5rem;
-}
+/* Bookmark Buttons */
 
-a.view-all svg path {
-    stroke: var(--gray-100);
-    stroke-width: 1.5px;
-}
+.bookmark-toggle {
+    
+    & svg path {
+        fill: none;
+        stroke: var(--teal-60);
+        stroke-width: 2px;
+    }
 
-a.view-all:hover svg path {
-    stroke: white;
+    &:hover svg path,
+    &.is-active svg path {
+        fill: var(--orange-30);
+        stroke: var(--orange-80);
+    }
+
+    &.is-active:hover svg path {
+        fill: none;
+    }
+
 }
 
 
@@ -411,11 +496,14 @@ a.view-all:hover svg path {
 
 .accordion-panel {
     display: flex;
+
+    &[hidden] {
+        display: none !important;
+    }
+
 }
 
-.accordion-panel[hidden] {
-    display: none !important;
-}
+
 
 
 /*
@@ -424,8 +512,6 @@ a.view-all:hover svg path {
 
 
 header {
-    background-color: var(--gray-100);
-
     display: grid;
     grid-template-columns: 1fr minmax(450px, 900px) 1fr;
     grid-template-rows: 5rem;
@@ -433,352 +519,256 @@ header {
     "nav-global search nav-project";
     align-items: center;
 
+    background-color: var(--gray-100);
     padding: 0;
     overflow-y: visible;
-
     position: relative;
     z-index: 100;
-}
 
+    & nav {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        gap: 1rem;
+        padding: 0 2rem;
 
-header nav {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    gap: 1rem;
-    padding: 0 2rem;
-}
+        & .logo {
+            grid-area: nav;
+            width: 4.5rem;
+            margin-right: 1rem;
 
-header nav .logo {
-    grid-area: nav;
-    width: 4.5rem;
-    margin-right: 1rem;
-}
+            & path.typo {
+                fill: white;
+            }
+            
+            & path.line {
+                fill: var(--orange-60);
+            }
+        }
+        
+        & a {
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            
+            &:visited {
+                color: white;
+            }
 
-header nav .logo path.typo {
-    fill: white;
-}
+            &.is-active {
+                color: var(--orange-60);
+            }
+        }
+        
+        & :is(a, a:visited):hover {
+            color: var(--orange-60);
+        }
+        
+        & p {
+            color: white;
+            margin: 0;
+        }
+        
+        & .icon :is(path, line, circle){
+            stroke: var(--orange-60);
+            stroke-width: 1.5px;
+        }
+        
+        &.global {
+            grid-area: nav-global;
+        }
+        
+        &.project {
+            grid-area: nav-project;
+            justify-self: end;
 
-header nav .logo path.line {
-    fill: var(--orange-60);
-}
+            & p {
+                display: flex;
+                flex-flow: row nowrap;
+                align-items: center;
+                padding: 0 1rem 0 0 ;
+                color: white;
+                font-weight: 600;
+                border-right: 2px solid var(--teal-60);
+            }
+            
+            & .icon {
+                margin-right: 0.5rem;
 
+                & path {
+                    stroke: var(--teal-60);
+                }
+            }
+                        
+            & a {
+                font-size: 0.875rem;
+            }
+        }
+    }
 
-header nav a {
-    font-size: 1rem;
-    font-weight: 600;
-    color: white;
-    text-decoration: none;
-}
+    & .search-group {
+        grid-area: search;
+        
+        position: relative;
 
-header nav a:visited {
-    color: white;
-}
+        & .search-form {
+            position: relative;
+            overflow-y: visible;
+            background-color: var(--gray-5);
+            height: 3rem;
+            width: 100%;
+            border: none;
+            border-radius: var(--borderRadius);
+            box-shadow: 0 4px 0 var(--orange-60);
+        }
+        
+        & .search-form:has(+ .search-results:not([hidden])) {
+            border-radius: var(--borderRadius) var(--borderRadius) 0 0;
+        }
+        
+        & .search-input {
+            background-color: transparent;
+            height: 100%;
+            width: 100%;
+            padding: 0 3.5rem 0 1rem;
+            border: none;
 
-header nav :is(a, a:visited):hover {
-    color: var(--orange-60);
-}
+            &:focus {
+                outline: none;
+            }
+        }
+        
+        & .search-submit {
+            display: flex;
+            position: absolute;
+            right: 1rem;
+            top: 0.75rem;
 
-header nav a.is-active {
-    color: var(--orange-60);
-}
+            & .search-submit-icon {
+                width: 1.5rem;
 
-header nav p {
-    color: white;
-    margin: 0;
-}
+                & :is(circle, line) {
+                    fill: none;
+                    stroke: var(--orange-60);
+                    stroke-width: 3px;
+                }
+            }
+        }
+        
+        & .search-results {
+            grid-area: results;
+        
+            position: absolute;
+            top: 3rem;
+            width: 100%;
+        
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+            list-style: none;
 
-header nav .icon :is(path, line, circle){
-    stroke: var(--orange-60);
-    stroke-width: 1.5px;
-}
+            & li {
+                display: flex;
+                flex-flow: row nowrap;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                text-decoration: none;
 
-header nav.global {
-    grid-area: nav-global;
-}
+                &.error {
+                    padding-left: 1rem;
+                    font-weight: 500;
+                    background-color: var(--teal-15);
+                    box-shadow: var(--boxShadow) var(--teal-30);
+                    border-radius: 0 0 var(--borderRadius) var(--borderRadius);
+                    border-top: 2px solid var(--teal-30);
+                    border-right: 1px solid var(--teal-30);
+                    border-left: 1px solid var(--teal-30);
+                }
+                
+                & svg {
+                    width: 1.125rem;
+                }
+                
+                & > a {
+                    display: flex;
+                    flex-flow: row nowrap;
+                    align-items: center;
+                    gap: 1rem;
+                    text-decoration: none;
+                    color: var(--gray-100);
+                    font-weight: 500;
+                    flex-grow: 1;
+                    line-height: 1;
+                    padding: 1rem 1.5rem 1rem 0;
+                    background-color: var(--teal-15);
+                    border-top: 2px solid var(--teal-30);
+                    border-right: 1px solid var(--teal-30);
+                    border-left: 1px solid var(--teal-30);
 
+                    &:is(:hover, :focus, :focus-visible) {
+                        color: white;
+                        background-color: var(--teal-80);
+                        border-top-color: var(--teal-100);
+                        border-right-color: var(--teal-80);
+                        border-left-color: var(--teal-80);
 
+                        & svg :is(path, circle, line){
+                            stroke: white;
+                        }
+                        
+                        & .date {
+                            color: white;
+                        }
+                    }
 
+                    & .title {
+                        flex-grow: 1;
+                    }
+                    
+                    & .date {
+                        font-size: 0.875rem;
+                        color: var(--teal-80);
+                    }
 
-header nav.project {
-    grid-area: nav-project;
-    justify-self: end;
-}
+                    & .icon-group {
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 0.375rem;
+                        padding: 0 1rem;
+                        border-right: 2px solid var(--teal-30);
 
-header nav.project p {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    padding: 0 1rem 0 0 ;
-    color: white;
-    font-weight: 600;
-    border-right: 2px solid var(--teal-60);
-}
+                        & svg :is(path, circle, line) {
+                            stroke-width: 1.5px;
+                        }
+                    }
+                }
 
-header nav.project .icon {
-    margin-right: 0.5rem;
-}
-
-header nav.project .icon path {
-    stroke: var(--teal-60);
-}
-
-header nav.project a {
-    font-size: 0.875rem;
-}
-
-
-
-
-
-
-header .search-group {
-    grid-area: search;
+                &:last-child > a {
+                    border-radius: 0 0 var(--borderRadius) var(--borderRadius);
+                    box-shadow: var(--boxShadow) var(--teal-30);
     
-    position: relative;
-}
+                    &:is(:hover, :focus, :focus-visible) {
+                        box-shadow: var(--boxShadow) var(--teal-100);
+                    }
+                }
 
-#search-form {
-    position: relative;
-    overflow-y: visible;
-    background-color: var(--gray-5);
-    height: 3rem;
-    width: 100%;
-    border: none;
-    border-radius: var(--borderRadius);
-    box-shadow: 0 4px 0 var(--orange-60);
-}
+                &:last-child:not(.error):hover {
+                    box-shadow: var(--boxShadow) var(--teal-100);
+                    border-radius: 0 0 var(--borderRadius) var(--borderRadius);
+                }
 
-#search-form.is-open {
-    border-radius: var(--borderRadius) var(--borderRadius) 0 0;
-}
-
-#search-input {
-    background-color: transparent;
-    height: 100%;
-    width: 100%;
-    padding: 0 3.5rem 0 1rem;
-    border: none;
-}
-
-#search-input:focus {
-    outline: none;
-}
-
-#search-submit {
-    display: flex;
-    position: absolute;
-    right: 1rem;
-    top: 0.75rem;
-}
-
-#search-submit .search-submit-icon {
-    width: 1.5rem;
-}
-
-#search-submit .search-submit-icon :is(circle, line) {
-    fill: none;
-    stroke: var(--orange-60);
-    stroke-width: 3px;
-}
-
-#search-results {
-    grid-area: results;
-
-    position: absolute;
-    top: 3rem;
-    width: 100%;
-
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-#search-results li {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    text-decoration: none;
-}
-
-#search-results li.error {
-    border-top: 2px solid var(--teal-30);
-    border-right: 1px solid var(--teal-30);
-    border-left: 1px solid var(--teal-30);
-}
-
-#search-results li svg {
-    width: 1.125rem;
-}
-
-#search-results li > a {
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    gap: 1rem;
-    text-decoration: none;
-    color: var(--gray-100);
-    font-weight: 500;
-    flex-grow: 1;
-    line-height: 1;
-    padding: 1rem 1.5rem 1rem 0;
-    background-color: var(--teal-15);
-    border-top: 2px solid var(--teal-30);
-    border-right: 1px solid var(--teal-30);
-    border-left: 1px solid var(--teal-30);
-}
-
-#search-results li > a:is(:hover, :focus, :focus-visible) {
-    color: white;
-    background-color: var(--teal-80);
-    border-top-color: var(--teal-100);
-    border-right-color: var(--teal-80);
-    border-left-color: var(--teal-80);
-}
-
-#search-results li:not(:last-child) > a:is(:hover, :focus, :focus-visible) {
-    margin-bottom: -2px;
-    border-bottom: 2px solid var(--teal-100);
-    z-index: 1;
-}
-
-#search-results li:last-child > a {
-    border-radius: 0 0 var(--borderRadius) var(--borderRadius);
-    box-shadow: var(--boxShadow) var(--teal-30);
-}
-
-#search-results li:last-child > a:is(:hover, :focus, :focus-visible) {
-    box-shadow: var(--boxShadow) var(--teal-100);
-}
-
-#search-results li > a .icon-group {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.375rem;
-    padding: 0 1rem;
-    border-right: 2px solid var(--teal-30);
-}
-
-#search-results li > a svg :is(path, circle, line) {
-    stroke-width: 1.5px;
-}
-
-#search-results li > a:is(:hover, :focus, :focus-visible) svg :is(path, circle, line){
-    stroke: white;
-}
-
-#search-results li > a .title {
-    flex-grow: 1;
-}
-
-#search-results li > a .date {
-    font-size: 0.875rem;
-    color: var(--teal-80);
-}
-
-#search-results li > a:is(:hover, :focus, :focus-visible) .date {
-    color: white;
-}
-
-#search-results li:last-child:not(.error):hover {
-    box-shadow: var(--boxShadow) var(--teal-100);
-    border-radius: 0 0 var(--borderRadius) var(--borderRadius);
-}
-
-#search-results li.error {
-    padding-left: 1rem;
-    font-weight: 500;
-    background-color: var(--teal-15);
-    box-shadow: var(--boxShadow) var(--teal-30);
-    border-radius: 0 0 var(--borderRadius) var(--borderRadius);
-}
-
-
-
-
-
-
-
-
-header .project-group {
-    grid-area: project;
-    justify-self: flex-end;
-    
-    display: flex;
-    flex-flow: column nowrap;
-    margin-bottom: calc(var(--spacing) * 2);
-}
-
-
-header .project-group .accordion-toggle-group {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-    padding: 1rem 1.5rem;
-    background-color: var(--orange-60);
-    border-radius: 0.75rem;
-}
-
-header .project-group :is(.icon-group, .accordion-toggle){
-    display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
-    margin: 0;
-}
-
-header .project-group .icon-group span {
-    font-size: 1.25rem;
-    font-weight: 500;
-    margin-left: 0.375rem;
-    color: white;
-}
-
-header .project-group .icon-group svg path {
-    stroke: var(--orange-60);
-}
-
-header .project-group .accordion-toggle span {
-    font-size: 0.875rem;
-    font-weight: 600;
-    margin-right: 0.375rem;
-    color: white;
-}
-
-header .project-group .accordion-toggle svg {
-    width: 1rem;
-}
-
-header .project-group .accordion-toggle svg path {
-    stroke: white;
-}
-
-header .project-group .accordion-panel {
-    display: flex;
-    flex-flow: column nowrap;
-    gap: 0.5rem;
-    margin: 0;
-    padding: 0.75rem;
-    background-color: var(--teal-15);
-}
-
-header .project-group .accordion-panel li {
-    padding-bottom: 0.5rem;
-    border-bottom: 2px solid var(--teal-30);
-}
-
-header .project-group .accordion-panel li:last-child {
-    padding-bottom: 0;
-    border-bottom: none;
-}
-
-header .project-group .accordion-panel a {
-    font-size: 0.875rem;
-    font-weight: 500;
+                &:not(:last-child) > a:is(:hover, :focus, :focus-visible) {
+                    margin-bottom: -2px;
+                    border-bottom: 2px solid var(--teal-100);
+                    z-index: 1;
+                }
+            }
+        }
+    }
 }
 
 

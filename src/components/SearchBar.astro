@@ -1,4 +1,7 @@
 ---
+import { getCatIconAndLabel } from "../scripts/helpers.js"
+import { dateFormatter } from "../scripts/helpers.js"
+
 const { activeProject } = Astro.props;
 
 // Get project posts
@@ -14,195 +17,38 @@ if (activeProject){
     filteredPosts = posts;
 }
 
-// TODO - Convert script to external and make the search results HTML? Not sure I can, as I'm searching through content as well potentially?
-
 ---
 
-<div class="search-group accordion">
-    <form id="search-form">
-        <input id="search-input" class="text-field" type="search" minlength="3" placeholder={activeProject ? `Search articles in ${activeProject}` : 'Search articles'} autocomplete="off"/>
+<div id="search-articles" class="search-group accordion" data-list=".search-results" data-items="li.result">
+    <form class="search-form">
+        <input class="search-input" class="text-field" type="search" minlength="3" placeholder={activeProject ? `Search articles in ${activeProject}` : 'Search articles'} autocomplete="off" data-type="title"/>
         <!-- <button id="search-clear" type="button" aria-label="Clear Search">
             <svg viewbox="0 0 32 32">
                 <line y1="16" x1="0" y2="16" x2="32"/>
                 <line y1="16" x1="0" y2="16" x2="32"/>
             </svg>
         </button> -->
-        <button id="search-submit" class="submit" type="button" >
+        <button class="search-submit" class="submit" type="button" >
             <svg class="search-submit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <circle cx="9.5" cy="9.5" r="7.5"/>
                 <line x1="14.8" y1="14.8" x2="22" y2="22"/>
             </svg>
         </button>
     </form>
-    <ul id="search-results" hidden></ul>
+    <ul class="search-results" hidden>
+        {filteredPosts.map((post) => {
+            return (
+                <li class="result" data-title={post.frontmatter.title} hidden>
+                    <a href={post.url}>
+                        <span class="icon-group" set:html={getCatIconAndLabel(post.frontmatter.category).icon}></span>
+                        <span class="title">{post.frontmatter.title}</span>
+                        <span class="date">{dateFormatter.format(Date.parse(post.frontmatter.date))}</span>
+                    </a>
+                </li>
+            )
+        })}
+        <li class="error" hidden>
+            <p>No matches were found.</p>
+        </li>
+    </ul>
 </div>
-
-<script define:vars={{filteredPosts}}>
-
-    // Store index of posts
-    let index = filteredPosts;
-
-    // Get DOM elements
-    let searchGroup = document.querySelector('.search-group');
-    let searchForm = document.querySelector('#search-form');
-    let searchInput = document.querySelector('#search-input');
-    let searchResults = document.querySelector('#search-results');
-
-    let stopWords = ['a', 'an', 'and', 'are', 'aren\'t', 'as', 'by', 'can', 'cannot', 'can\'t', 'could', 'couldn\'t', 'how', 'is', 'isn\'t', 'it', 'its', 'it\'s', 'that', 'the', 'their', 'there', 'they', 'they\'re', 'them', 'to', 'too', 'us', 'very', 'was', 'we', 'well', 'were', 'what', 'whatever', 'when', 'whenever', 'where', 'with', 'would', 'yet', 'you', 'your', 'yours', 'yourself', 'yourselves', 'the'];
-
-    // Make sure required content exists
-    if (!searchForm || !searchInput || !searchResults || !index) return;
-
-    searchForm.addEventListener('submit', function(event){
-        // Prevents default submit server call and triggers search function
-        event.preventDefault();
-        search(searchInput.value);
-        searchResults.removeAttribute('hidden');
-    })
-
-    searchForm.addEventListener('input', function(event){
-        if (searchInput.value.length > 2){
-            search(searchInput.value);
-            searchForm.classList.add('is-open');
-            searchResults.removeAttribute('hidden');
-        } else {
-            searchForm.classList.remove('is-open');
-            searchResults.setAttribute('hidden', '');
-        }
-    })
-
-    searchGroup.addEventListener('keydown', function(event){
-        
-        let activeElement = document.activeElement;
-        console.log('activeElement old', activeElement);
-
-        if (event.key === "ArrowDown"){
-            event.preventDefault();
-
-            if (activeElement.matches('input')){
-                console.log('Down arrowing from input');
-                let targetElem = searchResults.querySelector('a');
-                console.log(targetElem);
-                targetElem.focus();
-
-            } else if (activeElement.matches('a')) {
-                console.log('Down arrowing from a');
-                let targetElem = activeElement.closest('li').nextElementSibling;
-                if (targetElem) {
-                    targetElem.querySelector('a').focus();
-                }
-            }
-            
-        } else if (event.key === "ArrowUp"){
-
-            if (activeElement.matches('a')) {
-                console.log('Up arrowing from a');
-                let targetElem = activeElement.closest('li').previousElementSibling;
-                if (targetElem) {
-                    targetElem.querySelector('a').focus();
-                } else {
-                    searchInput.focus();
-                }
-            }
-
-        }
-
-        console.log('activeElement new', document.activeElement);
-    })
-
-    let search = function(query) {
-
-        // Create a regex for each query
-        let regMap = query.toLowerCase().split(' ').filter((word) => {
-            return word.length && !stopWords.includes(word);
-        }).map((word) => {
-            return new RegExp(word, 'i');
-        });
-        
-        // Get and sort the results
-        let results = index.reduce((results, post) => {
-
-            // Setup priority count
-            let priority = 0;
-
-            // Assign priority
-            for (let reg of regMap) {
-
-                // Check wether post title includes search query
-                if (reg.test(post.frontmatter.title)) { priority += 100 }
-
-                // Check whether post content includes search query
-                // let occurences = post.content.match(reg);
-                // if (occurences) { priority += occurences.length; }
-            }
-
-            // If any matches, push to results
-            if (priority > 0) {
-                results.push({
-                    priority: priority,
-                    post: post
-                });
-            }
-
-            return results;
-
-        }, []).sort((post1, post2) => {
-            return post1.priority - post2.priority;
-        });
-
-        // Display the results
-        showResults(results);
-
-    }
-
-    let svgs = {
-        people: `<svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    <circle vector-effect="non-scaling-stroke" cx="12" cy="5.5" r="4.5"/>
-    <path vector-effect="non-scaling-stroke" d="m2 22.18 2.32-6.95c.41-1.23 1.55-2.05 2.85-2.05h9.68c1.29 0 2.44.83 2.85 2.05l2.32 6.95"/>
-</svg>`,
-        groups: `<svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    <circle vector-effect="non-scaling-stroke" cx="15.08" cy="15.08" r="7.92"/>
-    <circle vector-effect="non-scaling-stroke" cx="8.92" cy="8.92" r="7.92"/>
-</svg>`,
-        places: `<svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    <path vector-effect="non-scaling-stroke" d="M11.93 5.86h.01c1.78 0 3.23 1.45 3.24 3.24 0 1.79-1.44 3.25-3.23 3.25h-.03c-1.78 0-3.23-1.46-3.23-3.25s1.45-3.24 3.24-3.24Z"/>
-    <path vector-effect="non-scaling-stroke" d="M12 1c4.5 0 8.15 3.69 8.15 8.23 0 1.97-.29 3.33-1.39 5.12-.83 1.35-4.24 5.96-5.88 8.16-.44.59-1.32.59-1.76 0-1.63-2.2-5.05-6.81-5.88-8.16-1.11-1.79-1.4-3.15-1.39-5.12C3.85 4.69 7.5 1 12 1Z"/>
-</svg>`,
-        events: `<svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    <circle vector-effect="non-scaling-stroke" cx="12" cy="12" r="11"/>
-    <path vector-effect="non-scaling-stroke" d="M11.5 12.5V5M11.5 12.5h6"/>
-</svg>`,
-        things: `<svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    <path vector-effect="non-scaling-stroke" d="m1.5 5.63 10.5 4.7M12 1 1.5 5.63v12.74L12 23l10.5-4.63V5.63L12 1zM22.5 5.63 12 10.33M12 10.33V23"/>
-</svg>`
-    }
-
-    let showResults = function(results) {
-
-        // Create a new Intl.DateTimeFormat object
-        let formatter = new Intl.DateTimeFormat('en-US', {
-            dateStyle: 'medium',
-            timeStyle: 'short' 
-        });
-
-        let myTemplate = function(results) {
-            return results.map((match) => {
-                let category = match.post.frontmatter.category;
-                return  `<li>
-                            <a href="${match.post.url}">
-                                <span class="icon-group">${svgs[category.toLowerCase()]}</span>
-                                <span class="title">${match.post.frontmatter.title}</span>
-                                <span class="date">${formatter.format(Date.parse(match.post.frontmatter.date))}</span>
-                            </a>
-                        </li>`
-            }).join('')
-        }
-
-        if (results.length) {
-            searchResults.innerHTML = myTemplate(results);
-        } else {
-            searchResults.innerHTML = `<li class="error"><p>No matches were found.</p></li>`;
-        }
-    }
-
-</script>

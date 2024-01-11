@@ -170,7 +170,7 @@ let timelineEvents = processEventsForTimeline(frontmatter);
                             })[0];
                             if (collectionPost) {
                                 return (
-                                    <li><a href={collectionPost.url}><IconCollections />{collection}</a></li>
+                                    <li><a class="btn-s" href={collectionPost.url}><IconCollections />{collection}</a></li>
                                 )
                             }
                         })
@@ -209,5 +209,3 @@ let timelineEvents = processEventsForTimeline(frontmatter);
         
     </main>
 </BaseLayout>
-
-<script src="/scripts/bookmarks.js" is:inline></script>

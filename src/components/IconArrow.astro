@@ -1,3 +1,6 @@
-<svg class="icon show" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+---
+const {classes} = Astro.props;
+---
+<svg class:list={["icon", "arrow", classes]} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
     <path vector-effect="non-scaling-stroke" d="m6.5 1 11 11-11 11"/>
 </svg>

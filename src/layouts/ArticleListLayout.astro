@@ -50,6 +50,8 @@ let activeCollections = [...new Set(projectPosts.filter((post) => {
 // Add 'Uncollected' collection
 activeCollections.push('Uncollected');
 
+console.log(activeCollections);
+
 ---
 
 <BaseLayout pageTitle={activeProject} activeProject={activeProject}>
@@ -60,28 +62,38 @@ activeCollections.push('Uncollected');
         {
             projectPosts.length > 0 ? (
             
-                <form class="filter-group">
-                    <input type="radio" id="filterAll" name="filter" value="all" checked/>
-                    <label for="filterAll">All</label>
-                    <input type="radio" id="filterBookmarks" name="filter" value="bookmarks" />
-                    <label for="filterBookmarks">Bookmarks</label>
+                <form class="filter-group" data-list="section.article-list ul.list" data-items="li.article" data-sort="section.article-list .sort-group">
+                    <label class="btn-m">
+                        <span>All</span>
+                        <input type="radio" name="filter" value="all" data-type="all" checked/>
+                    </label>
+                    <label class="btn-m">
+                        <span>Bookmarks</span>
+                        <input type="radio" name="filter" value="bookmarks" data-type="bookmark"/>
+                    </label>
                     {activeCategories.map((category) => {
                         return (
-                            <input type="radio" id={`filter${category}`} name="filter" value={category.toLowerCase()} />
-                            <label for={`filter${category}`}>{category}</label>
+                            <label class="btn-m">
+                                <span>{category}</span>
+                                <input type="radio" name="filter" value={category.toLowerCase()} data-type="category"/>
+                            </label>
                         )
                     })}
                 </form>
-                <form class="sort-group">
-                    <label>Sort by</label>
-                    <div class="select-group">
-                        <select name="sort" id="sort-select">
-                            <option value="byTitle" selected>Title</option>
-                            <option value="byDate">Date Published</option>
-                            <option value="byCollection">Collection</option>
-                        </select>
-                    </div>
+
+                <form class="sort-group" data-list="section.article-list ul.list" data-items="li.article">
+                    <label>
+                        <span>Sort by</span>
+                        <div class="select-group">
+                            <select name="sort" id="sort-select">
+                                <option value="byTitle" selected>Title</option>
+                                <option value="byDate">Date Published</option>
+                                <option value="byCollection">Collection</option>
+                            </select>
+                        </div>
+                    </label>
                 </form>
+
                 <ul class="list accordion" data-allow-multiple>
                     {projectPosts.map((post) => {
                         return  (
@@ -129,6 +141,4 @@ activeCollections.push('Uncollected');
     </main>
 </BaseLayout>
 
-<script src="/scripts/filter.js" is:inline></script>
 <script src="/scripts/accordion.js" is:inline></script>
-<script src="/scripts/bookmarks.js" is:inline defer></script>

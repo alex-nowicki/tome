@@ -3,6 +3,8 @@
 import BaseLayout from "./BaseLayout.astro";
 import Timeline from "../components/Timeline.astro";
 import IconCloseCircle from "../components/IconCloseCircle.astro";
+import IconClose from "../components/IconClose.astro";
+import { getCatIconAndLabel } from "../scripts/helpers.js"
 
 const { activeProject } = Astro.props;
 const { projectPosts } = Astro.props;
@@ -10,12 +12,28 @@ const { events } = Astro.props;
 
 let activeCategories = [...new Set(events.map(a => a.postCategory))];
 
-// let postsWithLifespan = projectPosts.filter((post) => {
-//     console.log(events);
-//     return post.lifespan.startDate || post.lifespan.endDate;
-// })
+let postsWithLifespan = projectPosts.filter((post) => {
+    return post.frontmatter.lifespan !== undefined 
+        && (
 
-// console.log(postsWithLifespan);
+            (post.frontmatter.lifespan.startDate !== undefined 
+            && (post.frontmatter.lifespan.startDate.year !== undefined
+                || post.frontmatter.lifespan.startDate.month !== undefined
+                || post.frontmatter.lifespan.startDate.day !== undefined
+            ))
+
+        || 
+
+            (post.frontmatter.lifespan.endDate !== undefined
+            && (post.frontmatter.lifespan.endDate.year !== undefined
+                || post.frontmatter.lifespan.endDate.month !== undefined
+                || post.frontmatter.lifespan.endDate.day !== undefined
+            ))
+
+        );
+})
+
+console.log(postsWithLifespan);
 
 
 
@@ -28,39 +46,58 @@ let activeCategories = [...new Set(events.map(a => a.postCategory))];
 
             {events.length > 0 ? (
 
-                <form class="filter-group">
+                <form class="filter-group" data-list="section.timeline ul.list" data-items="li.event" data-sort="section.timeline .sort-group">
                     {activeCategories.map((category) => {
                         return (
-                            <input type="checkbox" id={`filter${category}`} name="filter" value={category.toString().toLowerCase()} checked/>
-                            <label for={`filter${category}`}>{category}<IconCloseCircle /></label>
+                            <label class="btn-m">
+                                <span>{category}</span>
+                                <input type="checkbox" name="filter" value={category.toString().toLowerCase()} data-type="category" checked/>
+                                <IconClose classes={'icon-controls'}/>
+                            </label>
                         )
                     })}
                 </form>
-                <form class="sort-group">
-                    <label>Sort by</label>
-                    <div class="select-group">
-                        <select name="sort" id="sort-select">
-                            <option value="byDateNumAsc" selected>Date Ascending</option>
-                            <option value="byDateNumDesc">Date Descending</option>
-                        </select>
-                    </div>
-                </form>
-                <form class="show-age-group">
-                    <label>Show age</label>
-                    <div class="select-group">
-                        <select name="sort" id="sort-select" multiple>
-                            <option value="none" selected>None</option>
-                            {projectPosts.map((post) => {
-                                return (
-                                    <option value={post.frontmatter.title}>{post.frontmatter.title}</option>
-                                )
-                            })}
-                            <option value="byDateNumDesc">Date Descending</option>
-                        </select>
-                    </div>
+
+                <form class="sort-group" data-list="section.timeline ul.list" data-items="li.event">
+                    <label>
+                        <span>Sort by</span>
+                        <div class="select-group">
+                            <select name="sort" id="sort-select">
+                                <option value="byDateNumAsc" selected>Date Ascending</option>
+                                <option value="byDateNumDesc">Date Descending</option>
+                            </select>
+                        </div>
+                    </label>
                 </form>
 
-                <Timeline events={events} />
+                <div id="search-timeline-compare" class="search-group accordion" data-list=".search-results" data-items="label.result">
+                    <form class="search-form">
+                        <input class="search-input" class="text-field" type="search"  minlength="3" placeholder={"Compare lifespan"} autocomplete="off" data-type="title"/>
+                        <button class="search-submit" class="submit" type="button" >
+                            <svg class="search-submit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <circle cx="9.5" cy="9.5" r="7.5"/>
+                                <line x1="14.8" y1="14.8" x2="22" y2="22"/>
+                            </svg>
+                        </button>
+                    </form>
+                    <output class="search-results">
+                        {postsWithLifespan.map((post) => {
+                            return (
+                                <label class="btn-s result" data-title={post.frontmatter.title.toLowerCase()} hidden>
+                                    <span class="icon-group" set:html={getCatIconAndLabel(post.frontmatter.category).icon}></span>
+                                    <span class="title">{post.frontmatter.title}</span>
+                                    <IconClose classes={'icon-controls'}/> 
+                                    <input type="checkbox" name="compare" value={post.frontmatter.title.toLowerCase()} data-type="title"></input>
+                                </label>
+                            )
+                        })}
+                        <div class="error" hidden>
+                            <p>No matches were found.</p>
+                        </div>
+                    </output>
+                </div>
+
+                <Timeline events={events} postsWithLifespan={postsWithLifespan}/>
 
             ) : (
 
@@ -71,5 +108,3 @@ let activeCategories = [...new Set(events.map(a => a.postCategory))];
         </section>
     </main>
 </BaseLayout>
-
-<script src="/scripts/filter.js" is:inline></script>

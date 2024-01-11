@@ -3,7 +3,7 @@
 //
 
 /**
- * Filter list
+ * Get URL parameters
  * @param  {String} url The url to get query string parameters
  */
 let getParams = function(url = window.location) {
@@ -26,12 +26,7 @@ let getParams = function(url = window.location) {
 
 }
 
-/**
- * Filter list
- * @param  {Node} targetFilter The filter to apply
- * @param  {Node} targetList The list
- */
-let filterList = function(targetFilter, targetList) {
+let updateInputStates = function(targetFilter) {
 
     // Update checked state on input
     if (targetFilter.type === 'radio'){
@@ -68,137 +63,183 @@ let filterList = function(targetFilter, targetList) {
 
     }
 
-    // Get the list items
-    let listItems = targetList.querySelectorAll('li.article');
+}
 
-    for (const item of listItems) {
+/**
+ * Filter list
+ * @param  {Object} targetFilter The filter object containing the following data
+ * @param  {Node} targetFilter.input The input target
+ * @param  {Array} targetFilter.values The form values
+ * @param  {String} targetFilter.type The filter type
+ * @param  {Node} targetFilter.list The filter list container
+ * @param  {Nodelist} targetFilter.items The filter list items
+ * @param  {Node} targetFilter.sort The paired sort group, if available
+ */
+let filterList = function(targetFilter) {
 
-        // Store the item category
-        let category = item.dataset.category.toLowerCase();
+    console.log(targetFilter);
 
-        if (targetFilter.type === 'radio'){         
+    updateInputStates(targetFilter.input);
 
-            // If filter is bookmark, check bookmark state and show or hide accordingly
-            if (targetFilter.value === 'bookmarks'){
-                if (item.hasAttribute('data-bookmark')){
-                    item.removeAttribute('hidden');
-                } else {
-                    item.setAttribute('hidden', '');
-                }
+    let positiveResults = false;
 
-            // If filter is all, show all items
-            } else if (targetFilter.value === 'all'){
+    for (const item of targetFilter.items) {
+
+        // If the item has a button, and the button is pressed, bail
+        if (item.querySelector(':checked')) break;
+
+        if (targetFilter.type === 'category'){
+
+            // Store the item category
+            let category = item.dataset.category.toLowerCase();
+
+            // Check item category and show or hide accordingly
+            if (targetFilter.values.includes(category)){
                 item.removeAttribute('hidden');
-
-            // If filter is category, check item category and show or hide accordingly
-            } else {
-                if (category !== targetFilter.value){
-                    item.setAttribute('hidden', '');
-                } else {
-                    item.removeAttribute('hidden');
-                } 
-            }
-
-        } else if (targetFilter.type === 'checkbox'){
-
-            let activeFilters = [];
-            for (const input of targetFilter.closest('form').querySelectorAll('input[checked]')) {
-                activeFilters.push(input.value);
-            }
-
-            if (activeFilters.includes(category)){
-                item.removeAttribute('hidden');
+                positiveResults = true;
             } else {
                 item.setAttribute('hidden', '');
             }
 
+        } else if (targetFilter.type === 'title'){
+
+            // Store the item title
+            let title = item.dataset.title.toLowerCase();
+
+            // Check item title and show or hide accordingly
+            if (targetFilter.values.includes(title)){
+                item.removeAttribute('hidden');
+                positiveResults = true;
+            } else {
+                item.setAttribute('hidden', '');
+            }
+
+        } else if (targetFilter.type === 'bookmark'){
+
+            // Check bookmark state and show or hide accordingly
+            if (item.hasAttribute('data-bookmark')){
+                item.removeAttribute('hidden');
+                positiveResults = true;
+            } else {
+                item.setAttribute('hidden', '');
+            }
+
+        } else if (targetFilter.type === 'all'){
+
+            // Show all items
+            item.removeAttribute('hidden');
+            positiveResults = true;
+
         }
         
     }
 
-    let sortSelect = targetList.closest('section').querySelector('select[name="sort"]');
-    console.log(sortSelect.value);
+    let targetSort = {};
+    targetSort.list = targetFilter.list;
+    targetSort.items = targetFilter.items;
 
-    if (sortSelect) {
+    if (targetFilter.sort) targetSort.type = targetFilter.sort;
 
-        sortList(sortSelect.value, targetList);
-
-    } else {
-
-        let sortType;
-
-        if (listItems[0].dataset.contains('date') && typeof listItems[0].dataset.date == 'number') { sortType = 'byDateNumDesc' }
-        else if (listItems[0].dataset.contains('date') && typeof listItems[0].dataset.date == 'string') { sortType = 'byDate' }
-        else if (listItems[0].dataset.contains('title')) { sortType = 'byTitle' }
-
-        if (sortType !== undefined) {
-            sortList(sortType, targetList)
-        }
-        
+    if (targetSort.type !== undefined && positiveResults) {
+        sortList(targetSort);
     }
 
-    
+    let errorMessage = targetFilter.list.querySelector('.error');
+   
+    if (errorMessage){
+        
+        // If there are no positive results,
+        if (!positiveResults && errorMessage !== undefined) {
+
+            // Reveal the error message
+            targetFilter.list.querySelector('.error').removeAttribute('hidden');
+
+        } else {
+            // Reveal the error message
+            targetFilter.list.querySelector('.error').setAttribute('hidden', '');
+        }
+    }
 
 }
 
+
 /**
  * Sort list
- * @param  {Node} targetSort The param to sort the filter by
- * @param  {Node} targetList The list
+ * @param  {Object} targetSort The sort object containing the following data
+ * @param  {String} targetSort.type The sort type
+ * @param  {Node} targetSort.list The sort list container
+ * @param  {Nodelist} targetSort.items The sort list items
  */
-let sortList = function(targetSort, targetList) {
+let sortList = function(targetSort) {
+
+    console.log(targetSort);
 
     // Remove cloned items
-    let clonedItems = targetList.querySelectorAll('[data-clone]');
-    for (let clone of clonedItems){
-        clone.remove();
+    for (let item of targetSort.items){
+        if (item.hasAttribute('data-clone')) item.remove();
     }
 
-    // Get the active list items
-    let listItems = Array.from(targetList.querySelectorAll('li.article:not([hidden])'));
+    // Filter list to only include active (shown) items
+    targetSort.items = Array.from(targetSort.items).filter((item) => {
+        return !item.hasAttribute('hidden');
+    })
 
-    if (targetSort === 'byCollection'){
+    if (targetSort.type === 'byCollection'){
 
-        sortByCollection(targetList, listItems);
+        sortByCollection(targetSort);
 
     } else {
 
         // Hide collection accordions
-        let collectionAccordions = targetList.querySelectorAll('.accordion-group');
+        let collectionAccordions = targetSort.list.querySelectorAll('.accordion-group');
         for (let accordion of collectionAccordions){
             accordion.setAttribute('hidden', '');
         }
 
-        listItems.sort((a,b) => {
-            if (targetSort === 'byTitle'){
+        targetSort.items.sort((a,b) => {
+            if (targetSort.type === 'byTitle'){
                 a = a.dataset.title;
                 b = b.dataset.title;
                 if (a < b) return -1;
                 if (a > b) return 0;
                 return 0;
-            } else if (targetSort === 'byDate'){
+            } else if (targetSort.type === 'byDate'){
+                console.log('sorting by date')
                 a = Date.parse(a.dataset.date);
                 b = Date.parse(b.dataset.date);
                 return b - a;
-            } else if (targetSort === 'byDateNumAsc'){
+            } else if (targetSort.type === 'byDateNumAsc'){
                 a = a.dataset.date;
                 b = b.dataset.date;
                 return a - b;
-            } else if (targetSort === 'byDateNumDesc'){
+            } else if (targetSort.type === 'byDateNumDesc'){
                 a = a.dataset.date;
                 b = b.dataset.date;
                 return b - a;
-            } else if (targetSort === 'byCollection'){
+            } else if (targetSort.type === 'byCollection'){
                 // Already sorted
+            } else if (targetSort.type === 'byPriority'){
+                a = a.dataset.priority;
+                b = b.dataset.priority;
+                return b - a;
             }
         
-        // Reverse the list to compensate for insertBefore
-        }).reverse().forEach((elem) => {
-
-            // Add each sorted item to the top of the list
-            targetList.insertBefore(elem, targetList.firstChild);
-
         })
+        
+        // If sorting by priority, add each item to the bottom of the list
+        if (targetSort.type === 'byPriority'){
+
+            targetSort.items.forEach((elem) => {
+                targetSort.list.lastElementChild.after(elem);
+            });
+
+        // Otherwise, reverse the results and add each sorted item to the top of the list
+        } else {
+
+            targetSort.items.reverse().forEach((elem) => {
+                targetSort.list.firstElementChild.before(elem);
+            })
+        }
 
     }
 
@@ -206,14 +247,14 @@ let sortList = function(targetSort, targetList) {
 
 /**
  * Sort list items by collection
- * @param  {Node}   targetList The list
- * @param  {Array}  listItems
- * @return {Array}  sorted array of items
+ * @param  {Object} targetSort The sort object containing the following data
+ * @param  {Node} targetSort.list The sort list container
+ * @param  {Nodelist} targetSort.items The sort list items
  */
-let sortByCollection = function(targetList, listItems) {
+let sortByCollection = function(targetSort) {
 
     // Get the collection accordions
-    let collectionAccordions = targetList.querySelectorAll('.accordion-group');
+    let collectionAccordions = targetSort.list.querySelectorAll('.accordion-group[data-collection]');
 
     for (let accordion of collectionAccordions) {
 
@@ -223,36 +264,119 @@ let sortByCollection = function(targetList, listItems) {
         // Get the accordion panel
         let accordionPanel = accordion.querySelector('.accordion-panel');
         
-        for (let item of listItems) {
+        for (let item of targetSort.items) {
             
-            if (item.dataset.collections === undefined 
+            // If the item has no collections assigned and the current accordion in 'uncollected', add the item
+            if (item.dataset.collections === undefined
                 && collection === 'Uncollected'){
                 accordionPanel.append(item);
             
+            // Otherwise, if the item has collections assigned and they include the current accordion collection, add the item
             } else if (item.dataset.collections !== undefined 
                 && JSON.parse(item.dataset.collections).includes(collection)){
                 
-                    if (item.parentNode.matches('.accordion-panel')){
-                    let clone = item.cloneNode(true);
-                    clone.setAttribute('data-clone', '');
-                    item.parentNode.appendChild(clone);
-                    accordionPanel.append(clone);
+                // If the item is already in a collection accordion, clone it
+                if (item.parentNode.matches('.accordion-panel')){
+                let clone = item.cloneNode(true);
+                clone.setAttribute('data-clone', '');
+                item.parentNode.appendChild(clone);
+                accordionPanel.append(clone);
 
+                // Otherwise, move it
                 } else {
                     accordionPanel.append(item);
                 }
             }
         };
 
-        console.log(accordionPanel.querySelectorAll('li.article:not([hidden])'));
-
+        // If the accordion contains at least one item, show it
         if (accordionPanel.querySelectorAll('li.article:not([hidden])').length > 0) {
             accordion.removeAttribute('hidden')
+        
+        // Otherwise, hide it
         } else {
             accordion.setAttribute('hidden', '');
         }
 
     };
+
+}
+
+/**
+ * Search list
+ * @param  {Object} targetSearch The filter object containing the following data
+ */
+let searchList = function(targetSearch) {
+
+    let stopWords = ['a', 'an', 'and', 'are', 'aren\'t', 'as', 'by', 'can', 'cannot', 'can\'t', 'could', 'couldn\'t', 'how', 'is', 'isn\'t', 'it', 'its', 'it\'s', 'that', 'the', 'their', 'there', 'they', 'they\'re', 'them', 'to', 'too', 'us', 'very', 'was', 'we', 'well', 'were', 'what', 'whatever', 'when', 'whenever', 'where', 'with', 'would', 'yet', 'you', 'your', 'yours', 'yourself', 'yourselves', 'the'];
+
+    // Create a regex for each query
+    let regMap = targetSearch.value.toLowerCase().split(' ').filter((word) => {
+        return word.length && !stopWords.includes(word);
+    }).map((word) => {
+        return new RegExp(word, 'i');
+    });
+    
+    // Get and sort the results
+    let results = Array.from(targetSearch.items).reduce((results, item) => {
+
+        // Reset priority
+        item.removeAttribute('data-priority');
+
+        // Setup priority count
+        let priority = 0;
+
+        // Assign priority
+        for (let reg of regMap) {
+
+            // Check whether post title includes search query
+            if (reg.test(item.dataset.title)) { 
+                
+                // If so, add to priority
+                priority += 100;
+
+                let titleWords = item.dataset.title.split(' ');
+
+                // Check whether post title starts with search query
+                titleWords.forEach((word) => {
+                    if (word.toLowerCase().startsWith(targetSearch.value.toLowerCase())) {
+
+                        // If so, add to priority
+                        priority += 1000;
+    
+                    }
+                });                
+
+            }
+
+            // Check whether post content includes search query
+            // let occurences = item.dataset.content.match(reg);
+            // if (occurences) { priority += occurences.length; }
+        }
+
+        // If any matches, push to results
+        if (priority > 0) {
+            item.setAttribute('data-priority', priority);
+            results.push(item);
+        }
+
+        return results;
+
+    }, []);
+
+    console.log(results);
+
+    // Display the results
+    filterList({
+        input: targetSearch.input,
+        values: results.map((item) => {
+            return item.dataset.title.toLowerCase();
+        }),
+        type: targetSearch.type,
+        list: targetSearch.list,
+        items: targetSearch.items,
+        sort: 'byPriority'
+    });
 
 }
 
@@ -264,34 +388,134 @@ let sortByCollection = function(targetList, listItems) {
 
 let filterGroups = document.querySelectorAll('.filter-group');
 let sortGroups = document.querySelectorAll('.sort-group');
+let searchGroups = document.querySelectorAll('.search-group');
 
 for (const group of filterGroups){
     group.addEventListener('input', (event) => {
         event.preventDefault;
-        filterList(event.target, group.closest('section').querySelector('.list'));
+        filterList({
+            input: event.target,
+            values: Array.from(group.querySelectorAll('input:checked, select')).map((input) => input.value),
+            type: event.target.dataset.type,
+            list: document.querySelector(group.dataset.list),
+            items: document.querySelectorAll(`${group.dataset.list} ${group.dataset.items}`),
+            sort: document.querySelector(group.dataset.sort).value
+        });
     });
 }
 
 for (const group of sortGroups){
     group.addEventListener('input', (event) => {
-        sortList(event.target.value, group.closest('section').querySelector('.list'));
+        sortList({
+            input: event.target,
+            type: event.target.value, 
+            list: document.querySelector(group.dataset.list),
+            items: document.querySelectorAll(`${group.dataset.list} ${group.dataset.items}`)
+        })
     });
+}
+
+for (const group of searchGroups){
+
+    let input = group.querySelector('input');
+    let list = group.querySelector(group.dataset.list);
+    let items = group.querySelectorAll(`${group.dataset.list} ${group.dataset.items}`);
+
+    group.addEventListener('input', function(event){
+        if (input.value.length > 2){
+            searchList({
+                input: input,
+                value: input.value,
+                type: input.dataset.type,
+                list: list,
+                items: items
+            });
+            list.removeAttribute('hidden');
+        } else if (!list.querySelector(":checked")) {
+            list.setAttribute('hidden', '');
+        }
+    })
+
+    group.addEventListener('submit', (event) => {
+        // Prevents default submit server call and triggers search function
+        event.preventDefault();
+        searchList({
+            input: input,
+            value: value,
+            type: input.dataset.type,
+            list: list,
+            items: items
+        });
+        list.removeAttribute('hidden');
+    })
+
+    group.addEventListener('keydown', function(event){
+        
+        let activeElement = document.activeElement;
+        console.log('activeElement old', activeElement);
+
+        if (event.key === "ArrowDown"){
+            event.preventDefault();
+
+            if (activeElement.matches('input')){
+                console.log('Down arrowing from input');
+                let targetElem = list.querySelector('a');
+                console.log(targetElem);
+                targetElem.focus();
+
+            } else if (activeElement.matches('a')) {
+                console.log('Down arrowing from a');
+                let targetElem = activeElement.closest('li').nextElementSibling;
+                if (targetElem) {
+                    targetElem.querySelector('a').focus();
+                }
+            }
+            
+        } else if (event.key === "ArrowUp"){
+
+            if (activeElement.matches('a')) {
+                console.log('Up arrowing from a');
+                let targetElem = activeElement.closest('li').previousElementSibling;
+                if (targetElem) {
+                    targetElem.querySelector('a').focus();
+                } else {
+                    input.focus();
+                }
+            }
+
+        }
+
+    })
+
 }
 
 
 // Check url for query string parameters
 let params = getParams();
 
+// If url contains parameters,
 if (params.filter){
+
+    // Check to see if the page contains a filter group
     for (const group of filterGroups){
         let inputs = group.querySelectorAll('input');
         let targetInput = group.querySelector(`input[value="${params.filter}"]`)
+
+        // If it does, apply the filter
         if (targetInput) {
+
             // Remove the checked attribute to account for pre-checked filters
             for (const input of inputs){
                 input.removeAttribute('checked');
             }
-            filterList(targetInput, group.closest('section').querySelector('.list'));
+
+            filterList({
+                input: targetInput,
+                values: [params.filter],
+                type: targetInput.dataset.type,
+                list: document.querySelector(group.dataset.list),
+                items: document.querySelectorAll(`${group.dataset.list} ${group.dataset.items}`)
+            });
         }
     }
 }

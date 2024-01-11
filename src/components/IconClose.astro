@@ -1,4 +1,7 @@
-<svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+---
+const {classes} = Astro.props;
+---
+<svg class:list={["icon", "cross", classes]} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
     <line vector-effect="non-scaling-stroke" x1="2" y1="2" x2="22" y2="22"/>
     <line vector-effect="non-scaling-stroke" x1="22" y1="2" x2="2" y2="22"/>
 </svg>
