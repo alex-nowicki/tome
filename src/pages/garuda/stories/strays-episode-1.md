@@ -37,44 +37,48 @@ Bopha grips his hand and shakes it, “Deal”. Their Qs link and make the deal 
 The chumps nearly jump out of their seats, Bopha a little jealous of their innocent excitement. He watches them stumble out of the Den, Blue Eyes tugging at the other’s jacket to stop him from keeling over.
 
 He scans the room, recognizing some other Strays he’s worked with in the past, but all make sure to avoid eye contact, back turned towards him. He takes another draught of beer and curses them all. Ever since Khuyen stripped him off the Roster, they’ve avoided him like the plague. The Roster fills an entire wall of the bar, ship crests of all Strays in good standing mounted one next to the other. The empty space where the Garuda’s crest should be draws his eye like a black hole. 
-It was one the proudest days of his life, when he hoisted it up onto the wall. He should have known that the universe would eventually shit on his dream like it has his entire life. It feels like a lifetime ago, when he and Val first rolled up in their new ship, eager to make names for themselves, to find a place to call home outside of the Exchange. Everything seemed possible back then. The Gatekeeper had just offered humanity three new star systems to call their own, new worlds unspoiled by the megacorps. Dreamers of all kinds made their way out to the Frontier to build colonies, to explore, and the Strays were the glue that made it all work. Bopha looks around the bar, and sees only a shadow of its former self. No dreamers left here, unless you count the corporate brats playing out their fantasy gap years. Little by little the megacorps bought and stole everything and everyone, leaving only a few standouts hanging on by a thread. Bopha takes another swig, noticing that he’s emptied it already. He glances over at the door to Old Lady's office, reminding himself why he’s here in the first place. But the thought of bending over backwards and begging for a handout makes his stomach turn. He’s never begged his whole life and he doesn’t plan on starting now. He’s 9,000 credits richer. It might not solve all his problems, but it’ll buy some fuel and food for the next week. Crew wages might have to wait a bit, though, but hopefully the chumps will be as stupid when they’re sober. So instead of getting off his ass, he orders himself another brew.
+
+It was one the proudest days of his life, when he hoisted it up onto the wall. He should have known that the universe would eventually shit on his dream like it has his entire life. It feels like a lifetime ago, when he and Val first rolled up in their new ship, eager to make names for themselves, to find a place to call home outside of the Exchange. Everything seemed possible back then. The Gatekeeper had just offered humanity two new star systems to call their own, new worlds unspoiled by the megacorps. Dreamers of all kinds made their way out to the Frontier to build colonies, to explore, and the Strays were the glue that made it all work. Bopha looks around the bar, and sees only a shadow of its former self. No dreamers left here, unless you count the corporate brats playing out their fantasy gap years. Little by little the megacorps bought and stole everything and everyone, leaving only a few standouts hanging on by a thread. Bopha takes another swig, noticing that he’s emptied it already. He glances over at the door to Old Lady's office, reminding himself why he’s here in the first place. But the thought of bending over backwards and begging for a handout makes his stomach turn. He’s never begged his whole life and he doesn’t plan on starting now. He’s 9,000 credits richer than he was a few minutes ago, but that's just tiny drop in the bucket for what he needs for Val's treatment, not to mention fuel, food and crew wages. If he's good at anything, it's procrastinating. He promises himself to head over there after just one more brew. He flicks an order on the embedded slate, watching a few more credits disappear from his account.
 
 While he waits, Bopha rolls up his right sleeve, taking a deep breath and willing his janky arm lock bracer to open. It takes a couple tries for the outdated tech to register his heart rate and adrenal activity as safe. He’s been meaning to get a new one for a while, but credits seem to vanish just as quickly as they come these days. The bracer slides open, revealing a half dozen slots, implanted directly into his arm, a thick vein of high bandwidth cable snaking up and under his arm all the way to his spine. He pulls out the burner Q he uses for his less than honest business deals and fishes his real one out of his pocket, slotting it back in place. Crisp white lines paint across his retinas, loading up his custom interface. Three unread messages, blink a soft red in the bottom right of his vision. 
-He opens the first, <Rezki: Have you met with Khuyen yet?>
 
-And the second, <Rezki: How did the meeting go?>
+He opens the first, <Val: You meet with her yet?>
 
-And the third, <Rezki: Captain, you HAVE to meet with her, right?!!>
+And the second, <Val: You better not be just sitting and getting drunk.>
 
-Bopha rolls his eyes. A whiz with numbers, but Rezki can be an absolute pain in the ass. Sometimes it’s easy to understand why he got blacklisted from his corporate firm. When he bites into something, he doesn’t let go no matter what. 
+And the third, <Val: Bopha, you can't avoid her forever.>
+
+Bopha rolls his eyes. He loves Val more than he does his real sister, but sometimes he wishes she wouldn't nag him like one.
+
 He dismisses the notifications and instead subvocalizes an encrypted message, attaching info on the two chumps. He hesitates on the last word, but bites his lip and sends it { another fish for your net, saamnap }.
 
 A few seconds later, { you’ll get the usual if they show up }.
 
-Bopha’s heart sinks. He starts composing a reply when Valentina sits down across from him, the seat creaking under the weight of her metal frame.
+Bopha’s heart sinks. Not that he was expecting much, but her message is all business. He starts composing a reply when Valentina sits down across from him, the old printed leather booth creaking as she slides in.
 
-“Don’t do it Bopha.” Her face is a glossy red mask with black eyes.
+“Don’t do it Bopha.” The words come out a little fast. Each timed to the beat of her foot tapping against the floor. She's got her metronome cranked up, which means one of two things, she's busy working on a project or she's pissed. Bopha doesn't need to ask to know which one she is right now.
 
 “Don’t do what?” 
-Valentina tilts her head and even though her metallic face doesn’t have eyebrows, he can feel her raising one. “Don’t send that reply.”
+
+Valentina tilts her head, and frowns like you would at puppy caught eating out of the trash. “Don’t send that reply.”
 
 “Were you reading my lips? I told you I don’t like that.”
 
 “You never minded me doing it to a mark.”
 
-“Well that’s different isn’t it.” Bopha looks away, gazing off across the dimly lit Den. It’s busier than usual for this time, but then again, more and more Strays are struggling to get work, so where the hell else are you going to spend your time. A silence sets over the table, only the soft whirring of Valentina’s heart pump, pushing fluids to her human brain.
+“Well that’s different isn’t it.” Bopha looks away, gazing off across the dimly lit Den. It’s busier than usual for this time, but then again, more and more Strays are struggling to get work, so where the hell else are you going to spend your time. A silence sets over the table. Bopha notices the soft thump of Val's tapping slowing down slightly.
 
 Val breaks the silence first, “She’s bad news Bopha.”
 
-Bopha looks back into her inky black eyes. So easy to mistake her for something not human with that ubiquitous Echo face, but hidden behind it is the brain of his closest friend. But like all close friends, they always think they know your life best.
+Bopha looks back at her, counting the blinks, so perfectly synced to her metronome. Val is the closest friend he's ever had. But like all close friends, they always think they know your life best.
 
 “We’re not doing this again Val.”
 
-“She’s trouble and we don’t need trouble right now.”
+“She’s trouble and we don’t need trouble right now.” The swagger of her diction mimicking that of her favourite shred-hop group.
 
 For the thousandth time Bopha bites back telling her that without Desiree, Val wouldn’t even be here talking to him. “This has nothing to do with we? Alright? Let it go.”
 
-“Fine,” She holds her hands up in surrender, “I’ll stay out of it.”
+“Fine."
 
 She looks down at the empty pints littering the table, “So either you met with Khuyen and it went terribly, or you chickened out and you're here hiding behind a wall of glass. Which is it?”
 
@@ -86,35 +90,67 @@ As much as he cherishes their friendship, right now, he really wishes she would 
 
 A bar drone rolls its way to the table, a tray of drinks clinking and sloshing. It claws one and serves to Bopha, but before he can grab it, Val steals it away. “Nope, you’ve had enough.”
 
-“Oh come one Val.”
+“Oh come on Val.”
 
 “We need work, Bopha. Scamming teens out of some cash isn’t going to pay the bills. So swallow that stupid pride of yours and make up with Khuyen.”
 
 “It’s not that easy.”
 
-She tilts her head, reproaching him, he can only imagine that when she had real eyes, that look must have been one hell of a guilt trip. “Bopha, we had one bad job… more like one spectacularly bad job, but either way, Khuyen would have chewed us out and moved on if it hadn’t been for that big ego of yours.”
+“Bopha, we had one bad job… a spectacularly bad job, but either way, Khuyen would have chewed us out and moved on if it weren't for your ego.”
 
 Bopha remembers the exchange well, and no amount of ass kissing would have smoothed over the Old Lady’s fury. Granted, some of the choice words he called her probably didn’t help. “We don’t need her Val, we became Strays to get away from having to owe our livelihoods to someone else.”
 
-Val reaches across the table and grabs his hand. He feels the cold touch of her rubbery fingers. “Bopha, that was then, this is now. The Frontier’s changed and we need to change with it. Can you do that for–”
+Val reaches across the table and grabs his hand. He feels the pulse of the metronome through her fingers, gently pressing with the ubiquitous beat. “Bopha, that was then, this is now. The Frontier’s changing and we need to change with it. Can you do that for–”
 
-Val’s grip on his hand tightens, as her head jerks from side to side, warning symbols flash across her visor, juddering yellows and reds. Bopha grabs her hand and tries to rip it off his hand which feels like it’s about to be crushed into pulp. “Val, Val, come on, snap out of it.”
+Val’s whole body just freezes, the top tapping stopping, the gentle presses gone from her hand. Bopha blood turns to ice as reaches across and shakes her shoulder. “Val, Val, come on, snap out of it.”
 
-And just as the pain in his hand reaches its peak, the pressure releases, the warnings messages disappear and Val is back as if nothing happened. 
-“–me?” She has no clue that it happened. Bopha lets out a sigh and pulls his hand from his grip, massaging it under the table.
+Suddenly, the spell breaks and she gasps for air, drawing in a dozen quick breaths before slowing down to a regular rhythm.
 
-“What is it?” She tilts her head confused, and he doesn’t have it in him to explain. He’d been ignoring the increasing twitches, and stutters in the last few weeks, hoping it wasn’t happening again. Especially not after what he had to do to get her treatment last time. The tech had promised that she’d be in good shape for another few years, but either he was a lying bastard or he hadn’t accounted for the fact that she’s non-compliant. Echos like her are recycled as soon as they deviate, but Val’s biological brain has been outsmarting the cybernetic wiring that’s supposed to keep her slaved for nearly a decade, so who the hell knows what’s happening up there, it’s not like you can just call tech support. No, for this kind of problem, you need someone much smarter than a tech, and unfortunately for both of them, someone much more expensive.
+“Are you alright?”
 
-“Nothing, just the brew getting to my head.” He looks at his friend, terrified of having to see her slowly rot away, until she’s nothing but an empty husk. She’s the closest thing he’s ever had to a family. At least family that he wants to be around for more than 5 minutes at a time. “Okay, I’m going.” Bopha stands up from the table, feeling the homebrew a little more than he expected. 
-“Please try not to burn any more bridges, okay?”
+She nods tentatively.
+
+Bopha's heart is beating a mile a minute. The doc said the seizures would come back, but he figured they had more time, she'd been doing so well since the last treatment. 
+
+"Don't look at me like that." 
+
+He can see the panic in her eyes, even though she's doing her best to hide it. "Val-"
+
+She holds up her hand to dismiss it, "We knew it would happen again. And it did. I'm not going to stop living my life because my brain is fucked. I've lived my whole life with it. Nothing's changed."
+
+Everything's changed. Bopha knows it. He knew it the moment the seizures started a few months ago, Val barely clinging to life in the med bay while they raced across the system to find a doctor who would treat her and keep her secret. The treatment worked but the price was steep. Steeper than anything Bopha could muster from the odd jobs Khuyen threw their way. So he reached out to Desiree and she made him an offer. He blew up the frigate and their spot on the roster. He promised that would be it, but what other options does he have? The doc recommended an off the books specialist who could properly remove the device burrowed in her brain, but his fee makes the doctor's look like parking change. He hoped he'd have more time to get the credits.
+
+"Val, we need to talk about this."
+
+"We have, we've gone through the options. It is what it is."
+
+"Not all of them. We could sell the Garuda."
+
+Val's eyebrows shoot up, a rare expression of surprise for her normally steely face. "No."
+
+"Let's just think about it."
+
+"No Bopha. There's nothing to think about. The Garuda's our home. If I'm going to die, I want to die there."
+
+A tear escapes down Val's cheek, she quickly wipes it away, doubling down on a tough stare to mask it.
+
+"Alright. Okay. It's off the table."
+
+She nods. 
+
+"You should go see Arooj so she can run some tests." She waves his words away like an annoying fly.
+
+"You need to see Khuyen and I'm not leaving until you do." She crosses her arms and settles in. Val's one of the toughest people he knows, and one of the most stubborn. She would die right there, in that shitty old booth just to prove a point.
+
+“Okay, I’m going.” Bopha stands up from the table, feeling the homebrew a little more than he expected. 
+
+“Don't fuck this up Bopha.”
 
 Bopha puts on a grin, touching his chest in fake affront, “Me? Everybody loves me.”
 
-“Uhuh.”
+A small smile creeps onto her face, "If that were true, we'd be a lot richer." She stands up from the table, taking it slow, testing her balance. Bopha suppresses the desire to help her out, knowing she'd hate him for it.
 
-“You should probably do some Echo stuff while I’m gone. You know, blend in, wipe some tables or something.”
-
-“You’re such an asshole.” Valentina stands up, “I’m heading back to the ship. Get us a job, or I’m changing the access codes and I’m naming myself Captain.”
+"I'm locking you out of the Garuda until you talk to her, so don't get lost on the way there."
 
 Bopha watches her walk off the smile fading from his face. He takes a deep breath and then makes his way through the loose crowd of drunkards. He reaches the back wall of the bar, where two overly Threaded brutes guard the door to the back.
 
@@ -166,16 +202,17 @@ Bopha walks through into the back, large stainless steel vats filling every avai
 
 “Khuyen!”
 
-She swings and misses, a fly escaping. “God dammit. Who’s the fucking idiot?” She turns around on the desk, still clutching her flip flop in one hand. “Bopha Krol. Why don’t you come a bit closer so I can at least squash one annoyance today.”
+She swings and misses, a fly escaping. “God dammit. Who’s the fucking idiot?” She turns around on the desk, still clutching her flip flop in one hand. “Bopha Krol. Why don’t you come a bit closer so I can at least squash one bug today.”
 
 “It’s nice to see you too.” Bopha walks over and offers a hand. “Let me help you down.”
 
 She smacks his hand with the flip flop, “You think I didn’t hear you calling me the Old Lady outside.”
 
 Bopha winces, “Just a term of endearment.” 
+
 Khuyen sprightly steps down onto her chair and back to the floor. “Is that so?” She fixes him with a sharp gaze. She would have made an excellent principal, or investigator.
 
-“So what brings the unreliable captain of the Garuda to my office. Uninvited I might add.”
+“So what brings the unreliable captain of the Garuda to my office. Uninvited, I might add.”
 
 “I thought we should catch up and work things out.”
 
@@ -202,6 +239,7 @@ Khuyen’s flip flop slams down on the table, “Got ya you piece of shit!” Sh
 “Don’t be stupid, there’s a dozen Strays out there with a better crew then yours.”
 
 “But I do have the fastest ship.” 
+
 “Quick and useless is still useless.”
 
 “Khuyen. I’m asking you to give me another chance.”
@@ -214,6 +252,12 @@ Bopha clenches his jaw, holding back the wave of anger building up.
 
 “Yes.” He forces the word out of his mouth, every muscle in his face fighting it.
 
+"I want to hear you say it."
+
+Bopha has a mind to snatch the flip flop and beat her over the head with it, but he the image of Val freezing at the table calms him, centers his mind to what's important.
+
+"I'm begging you." He tried his best to inflect the words with the most defiance possible, but it just comes out petulant.
+
 Khuyen smiles. “It’s nice to know that even you can swallow that overblown pride. I might have something for a fast ship. Before you get excited. It’s a shit contract. I’ve already had three Strays refuse it. The pay is low, and the client is, well, strange. And there’s a catch.”
 
 “There always is, isn’t there? What is it?”
@@ -223,6 +267,7 @@ Khuyen smiles. “It’s nice to know that even you can swallow that overblown p
 Bopha shakes his head vigorously, “That’s not how Strays work.”
 
 “As I said, it’s a shit contract. But it is a job, and it pays. So what will it be? Your pride or your work?” 
+
 Bopha knows he has no choice. If he wants to help Val, he needs the credits, though by the sounds of it, it won’t even cover their expenses. But if he can get the Garuda back on the roster, maybe there’s something. It feels like a fool's hope, but it’s all he’s got.
 
 “Alright, I’ll take it, but you put the Garuda back on the Roster.”
@@ -247,7 +292,7 @@ They shake hands, their Qs exchanging info.
 “Always a pleasure,” Bopha packs as much sarcasm as he can into those three words, and just because he can’t help himself, “... Old Lady.” 
 “I’m going to pretend I didn’t hear that. Don’t fuck this up.”
 
-Bopha hurries out of the back room, hoping to not get clobbered by the jack up siblings at the door.
+"Why does everyone keep saying that?" Bopha hurries out of the back room, hoping to not get clobbered by the jacked up siblings at the door.
 
 ## Chapter 2
 
@@ -285,7 +330,7 @@ Rezki’s lip twitches a little, as if Bopha just stepped on his toe. “There i
 
 “Rezki, I pay ‘you’ to figure this stuff out.”
 
-“But–”Hokori
+“But–”
 
 Bopha raises his hand, “Just figure it out Rezki.”
 
@@ -1909,172 +1954,3 @@ Zam drops their semi-paralyzed guide to the ground with a thump, shouldering her
 I still want to get to the riot? How does Arooj inoculate the whole community. 
 
 CONTINUE
-
-
-
-## Outline
-
-### Scene 1
-
-**Goal**: Bopha WANTS to get the job done and go home
-
-**Conflict**: BUT… the community chief shows up with armed thugs telling them to go away
-
-**Disaster**: INTERRUPTED
-
-**Reaction**
-
-**Dilemma**
-
-**Decision**
-
-**Information**: Chief looks nervous, tries to get them away quickly
-
-
-### Scene 2
-
-**Goal**: Bopha WANTS to go back to the ship
-
-**Conflict**: BUT… Snow refuses to leave until they investigate further. She will not take no for an answer.
-
-**Disaster**: Bopha refuses to go into the tunnels
-…SO…
-Snow and Zam head into the tunnels on their own
-
-**Reaction**: Bopha is annoyed and upset, and worried about his contract
-
-**Dilemma**: “How do I keep Snow alive and convince her to give up?”
-
-**Decision**: Bopha DECIDES to follow Snow into the tunnels
-
-**Information**: 
-
-
-### Scene 3
-
-**Goal**: Bopha WANTS to find Snow and convince her to leave
-
-**Conflict**: BUT… the tunnels are a maze
-
-**Disaster**: Bopha and Arooj find Snow and Zam just as they are captured with high tech gear and thrown into a pit.
-
-**Reaction**: Bopha is confused and concerned by the weaponry and why these people have it. Annoyed that there is yet another obstacle to him getting off planet.
-
-**Dilemma**: “How do I free Snow and Zam?”
-
-**Decision**: Bopha DECIDES to attack the guard and free them
-
-
-### Scene 4
-
-**Goal**: Bopha WANTS to rescue Snow and get back to the ship
-
-**Conflict**: BUT… Guard, locked gate, rappel down into the pit
-
-**Disaster**: Bopha frees Snow and Zam, but Snow won’t leave until they talk with their contact who was also imprisoned.
-
-**Reaction**: Bopha is impatient and annoyed, hurrying them to get out of there
-
-**Dilemma**: “Should I just leave them?”
-
-**Decision**: INTERRUPTION
-
-**Information**: We learn that the virus is manmade, as it is copyrighted
-
-
-### Scene 5
-
-**Goal**: Bopha WANTS to escape
-
-**Conflict**: BUT… Musical tones attract a giant sharkslug into the pit
-
-**Disaster**: They manage to blow it up, opening a passage out of the pit, but their contact dies in the explosion, infected both Bopha and Snow
-
-**Reaction**: Bopha is afraid of what will happen to him if he doesn’t get a cure
-
-**Dilemma**: How do I cure myself?
-
-**Decision**: Bopha DECIDES to check the guard to see why he isn’t infected
-
-**Information**: 
-
-
-### Scene 6
-
-**Goal**: Bopha WANTS to cure himself
-
-**Conflict**: BUT… he doesn’t know if there is a cure, or where to find it
-
-**Disaster**: They check the unconscious guard and learn that he is immunized against the virus. He doesn’t want to tell them where they are keeping the shots. 
-
-**Reaction**: Bopha is relieved that there is a cure, but at a loss of how to get it
-
-**Dilemma**: How do we break into the chief house and not get killed?
-
-**Decision**: They DECIDE that Snow and Bopha will create a diversion to draw the guards away from the house, while Zam and Arooj infiltrate the house to retrieve the antidote
-
-**Information**: We learn that the guard guarding the pit is immunized against it (meaning there is a cure). They wake him up and get him to tell them where the chief is keeping the shots.
-
-
-### Scene 7
-
-**Goal**: Bopha WANTS to lure the guards away from the house
-
-**Conflict**: BUT... doesn't want to get shot while doing it
-
-**Disaster**: Bopha riles up the citizens telling them that their leader is responsible for the virus, because of the emotional sharing, it gets out of hand fast. Or maybe it's Snow who delivers a speech, causing them to riot. 
-
-**Reaction**: 
-
-**Dilemma**: How does Bopha keep control of himself as the virus progresses?
-
-**Decision**: He listens to happy music and dances?
-
-**Information**: 
-
-
-
-### Scene 
-
-Maybe then the bossman shows up and spins a tale of how they are the cause of their trouble, outsiders, untrustworthy, etc. The crowd turns on them, and just as it seems like they are going to be mobbed, Zam comes up firing her carbine, dropping citizen after citizen. They managed to get the antidote into the carbine to distribute it.
-
-**Goal**: 
-
-**Conflict**:
-
-**Disaster**: 
-
-**Reaction**: 
-
-**Dilemma**: 
-
-**Decision**: 
-
-**Information**: 
-
-
-### Scene 
-
-At this point ODI mercs show up pointing guns, and some lawyer type accusses them of yadi yada. How does Bopha get them out of it?
-
-**Goal**: 
-
-**Conflict**:
-
-**Disaster**: 
-
-**Reaction**: 
-
-**Dilemma**: 
-
-**Decision**: 
-
-**Information**: 
-
-
-
-### Ideas/Questions
-
-They threaten to sue Bopha and co
-
-Bopha comes up with a clever solution to get out of there
