@@ -296,53 +296,34 @@ They shake hands, their Qs exchanging info.
 
 ## Chapter 2
 
-Bopha steps through the airlock into the Garuda. The absence of the smell of stale homebrew is jarring, like walking into a forest glade after a three day bender. He kicks off his shoes and stores them in the locker, slapping his sandals down and slipping his feet in. He wiggles his toes and breathes out, it’s nice to be home. That little moment of peace is promptly shattered, when Rezki appears hurriedly in the airlock hatch. He is a picture of clean lines and perfect hygiene. It’s almost as jarring as the smell. After a few hours of grime, Rezki in his perfectly cut suit, with its subtle emerald shimmer and neatly trimmed mustache feels like he’s walked into a palace.
+Bopha steps through the airlock into the Garuda. The absence of the smell of stale homebrew is jarring, like walking into a forest glade after a three day bender. He kicks off his shoes and stores them in the locker, slapping his sandals down and slipping his feet in. He wiggles his toes and breathes out, it’s nice to be home. That little moment of peace is promptly shattered, when Rezki stumbles into the airlock, sporting only his underwear, body covered in hundreds of brightly coloured eyes. Paint is dripping from his fingers onto the floor. He looks like a toddler's canvas, most of the eyes malformed and smudged copies of the Pilgrim's tattoo on his forehead of two interlocking circles with an eye in the overlap. 
 
-“Captain. You didn’t respond to any of my messages. I sent seven.”
+"Rezki! You're getting paint all over the floor." Bopha exhales the words, no real fight in him, long resigned to the fact that while his crew are brilliant at what they do, there's a reason why they work for him for low wages and negligible prospects. Who else would put up with this shit?
 
-“Only seven? I’m proud of you, that’s got to be a new record.” Bopha pushes past him and into the Garuda.
+Rezki turns to Bopha, squinting as if he were small insect he hadn't noticed till now, "You shouldn't be here little bird. The path is long and you will lose yourself."
 
-Rezki walks after him, “Captain, as the ship’s clerk, I must be kept apprised of all contracts so as to best balance our accounts. And frankly, our accounts are very much not balanced.”
+Through Rezki's sweaty long hair, Bopha can see that his eyes are black orbs, the pupils fully dilated. His breath smells of soil and rosemary, side effects of whatever narcotic concoction he's invented this time. 
 
-“Don’t worry so much Rezki, I’ve got it handled.”
+"Rezki, we fucking talked about this. If you want to get stoned and search for the meaning of whatever, you do it in your cabin, no dripping this shit all over the ship." 
 
-“Handled how?”
+Rezki fixes him with a very serious stare, "I know. I too seek the Hidden Path little bird."
 
-“We got a contract with Khuyen.”
+"I swear to god Rezki, if you call me little bird again-"
 
-Rezki’s shoulders relax, “Oh thank god. Can you send me the numbers?”
+Rezki turns suddenly and walks back out of the airlock into the ship, "It's this way, yes, this way..." Muttering to himself as he disappears down the passageway, "Come little bird."
 
-Some people are addicted to drugs, Rezki is addicted to math. He orders his Q to send over the details. Rezki’s eyes flick back and forth, ingesting the details.
+Bopha takes a deep breath and sighs, starring at the paint drying on the floor. "I need a beer." 
 
-“Nothing upfront?” The alarm is back in his eyes.
+He walks out of the airlock, careful to not get any paint on his sandals and makes his way to the messhall. There he's greeted by a cacophony of sounds erupting from the kitchen, a jumble of clanging pots, sizzling oil, squeaks and an overwhelmed Manu, barking orders. The ship’s MechTech is stirring a frying pan with one hand, chunks of mushrooms flying out of it, as a fesnyng of ferrets scamper all over the kitchen, chirping and whistling alarmingly, trying to direct the blind chef’s movements. A red sauce is bubbling angrily nearby, spraying the wall with specks of tomato.
 
-“Khuyen had me over the table. This is the best we could get.” Bopha lies, kicking himself for not even haggling on it.
+Bopha shakes his head. From one mess to another. The old man has taken to cooking recently, after Chantico complained about the taste of their rations. The man is an excellent mechanic, blind or not, but his pathological need to be helpful rarely ends up being anything near helpful. Smoke starts to seep from the oven. One of the ferrets barks wildly.
 
-“We can’t afford the fuel we need to get to,” his eyes flick for the info, “...Revati.”
-
-“Here, should be enough to get us there.” Bopha transfers the 9,000 credits to the ship’s account.
-
-“And where does this come from?”
-
-“Rezki, who cares, just put it under miscellaneous.”
-
-Rezki’s lip twitches a little, as if Bopha just stepped on his toe. “There is no ‘miscellaneous’ in our accounts. Every item is accounted for, every credit has its home.”
-
-“Rezki, I pay ‘you’ to figure this stuff out.”
-
-“But–”
-
-Bopha raises his hand, “Just figure it out Rezki.”
-
-Rezki purses his lips and stomps off. Bopha shakes his head, muttering mockingly “Welcome back Captain, thanks for getting us work, Captain.” Bopha wanders into the messhall, a cacophony of sounds erupting from the kitchen. A jumble of clanging pots, sizzling oil, squeaks and an overwhelmed Manu, barking orders. The ship’s MechTech is stirring a frying pan with one hand, chunks of mushrooms flying out of it, as a fesnyng of ferrets scamper all over the kitchen, chirping and whistling alarmingly, trying to direct the blind chef’s movements. A red sauce is bubbling angrily nearby, spraying the wall with specks of tomato.
-
-Bopha shakes his head. The old man has taken to cooking recently, after Chantico complained about the taste of their rations. The man is an excellent mechanic, blind or not, but his pathological need to be helpful rarely ends up being anything near helpful. Smoke starts to seep from the oven. One of the ferrets barks wildly.
-
-“Bugger,” Manu drops the frying pan on the stove top, as the ferret on his shoulder whistles direction into his ear. With the grace of a sighted man, he throws the oven open and grips the casserole dish with both hands, unphased by the heat, throwing it on the stove top, smashing into the sauce pot, sending a wave of it against the wall.
+“Bugger,” Manu drops the frying pan on the stove top, as the ferret on his shoulder whistles direction into his ear. With the grace of a sighted man, he throws the oven open and grips the casserole dish with both hands, unphased by the heat, throwing it on the stove top, smashing into the sauce pot, sloshing a wave of sauce against the wall.
 
 “Made a right bung job of it, eh mokos?” One of the ferrets notices Bopha, and squawks. Bopha recognises the distinctive white stripe down its spine. That little shit, Hokori. Bopha gives it the stink eye, and it sticks its tongue out, turns around and waves its asshole at him.
 
-“Captain,” Manu quickly rubs his big calloused hands on his apron and smiles directly at Bopha, sidestepping in front of the stove, he can only imagine to hide the absolute disaster unfolding. One of the ferrets scampers onto the counter and switches off all the induction magnets. 
+“Captain,” Manu quickly rubs his big calloused hands on his apron and smiles directly at Bopha, sidestepping in front of the stove, he can only imagine to hide the absolute disaster unfolding. One of the ferrets scampers onto the counter and switches off all the induction magnets.
+
 “What’s cooking Manu?”
 
 “Just figured the crew needed a hearty meal to get morale up.”
@@ -363,13 +344,13 @@ Bopha looks over the kitchen, “Sure did. Well, I’ll leave you to it, just go
 
 “Anything you need, you let me know, boss.”
 
-“Will do,” Bopha turns tail, but not before giving the finger to , who hisses in return.
+“Will do,” Bopha turns tail, but not before giving the finger to Hokori, who hisses in return.
 
-Bopha wipes his hand on a nearby towel and pops in the straw, taking a long draught of cold beer. “That’s what I needed.”
+Bopha wipes his hand on a nearby towel and pops in the straw, taking a long draught of cold beer. “That’s the stuff.”
 
 Bopha heads to his cabin, hearing the heavy thuds of Arooj’s fists on Chantico’s door. Bopha sighs, truly not wanting to wade into another argument between the two. He really needs to install a secret passage to his quarters to side step his crazy crew.
 
-“Chantico! I know you’re in there, open the door, we need to talk.” Arooj towers over the door, the bristling muscles of her thickset frame taught with anger. She’s lost much of the silver gray fur typical of the Shehzadians from Sama Kathifa since joining the crew, only thin patches remain on her forearms and down her spine, but her imposing height, strength and large yellow eyes make her unmistakably one of Shezhad’s bio-engineered brood. Bopha, who can count the Shehzad’s he’s met on one hand, is actually getting used to the strange way she looks. Most people never meet a Shezhadian, fewer still have seen one without the heavy cloaks and masks they wear to hide their modifications. Arooj, is anything but inconspicuous, wearing a garish collection of the most trendy fashion items, a long red leather duster, cut at the spine to show off her fur, mirror earrings dangling from her ears like wind chimes and a completely ridiculous pair of pointed shoes, making her already gigantic feet even bigger.
+“Chantico! I know you’re in there, open the door, we need to talk.” Arooj towers over the door, the bristling muscles of her thickset frame taught with anger. She’s lost much of the silver gray fur typical of the Khadiri from Sama Kathifa since joining the crew, only thin patches remain on her forearms and down her spine, but her imposing height, strength and large yellow eyes make her unmistakably one of Khadira's bio-engineered brood. Bopha, who can count the Khadiri he’s met on one hand, is actually getting used to the strange way she looks. Most people never meet a Khadiri, fewer still have seen one without the heavy cloaks and masks they wear to hide their modifications. Arooj, is anything but inconspicuous, wearing a garish collection of the most trendy fashion items, a long red leather duster, cut at the spine to show off her fur, mirror earrings dangling from her ears like wind chimes and a completely ridiculous pair of pointed shoes, making her already gigantic feet even bigger.
 
 She sniffs the air and looks over to Bopha, her yellow eyes with big black pupils pin him, “Bopha, tell your niece to open the door.”
 
@@ -423,7 +404,7 @@ When he imagined becoming a starship captain, he certainly didn’t think there 
 
 “Hey, that’s so rude, how did you override me?”
 
-The cabin is typical, except for the custom jackchair housing his niece. Her eyes are closed, her bald head covered in inputs, cables running from them into the chair.
+The cabin is typical, except most of the furniture is missing, replaced by a large interface pod. His niece is laying in it, her eyes are closed, her short cropped hair growing in patches around the scars and inputs from the cloudjack. Thick bundles of data cables run from the pod into the ship's computers.
 
 “I called in a favour from a friend. No more locking me out of my own ship Chantico.”
 
@@ -437,7 +418,7 @@ Bopha looks up to one of the cameras in the corner of the room. “Don’t make 
 
 “Don’t Bopha, it’s not funny.”
 
-“It’s a little funny.” Bopha takes a pen from a nearby desk and walks over to Chantico. He pulls off the cap and leans in to write something on her face, just as Chantico’s eyes open, expression returning to her face.
+“It’s a little funny.” Bopha takes a pen from a nearby desk and walks over to Chantico. He opens the lid of the pod and leans in to write something on her face, just as Chantico’s eyes open, expression returning to her face.
 
 “You’re such a child, Bopha.” Her voice is muddled, the vocal cords not getting enough practice. She stretches her face, blinking rapidly.
 
@@ -479,13 +460,13 @@ Bopha shakes his head and takes a sip of beer, the pouch empty. He leans down an
 
 He shuts the door behind him, hearing the lock click. Chantico will be spending the next few days rooting out the overrides he had installed. Here’s hoping she’s not as good as the guy he got.
 
-He finally makes it to his cabin, opening the door and spotting his ancient leather chair, “Hello my old friend.” He collapses into it, fitting perfectly. He closes his eyes and looks forward to not thinking for a solid five minutes, but curse his brain, the image of Val glitching just barges right in. He has no idea how he’s going to afford the care she needs. With the low pay and Khuyen’s extra cut, there won’t be much to go around. Problems for tomorrow when his brain isn’t so fogged up with brew. He opens up a link to the local network node to distract himself, requesting info on the Intergalactic Rescue Agency. The first search hit is a newsreel from those two morning show baffoons, Mint and Olaf. He downloads the packet and spools it up, the video painting itself across his vision.
+He finally makes it to his cabin, opening the door and spotting his ancient leather chair, “Hello my old friend.” He collapses into it, fitting perfectly. He closes his eyes and looks forward to not thinking for a solid five minutes, but curse his brain, the image of Val freezing like a shut off drone just barges right in. He has no idea how he’s going to find the credits for the care she needs. With the low pay and Khuyen’s extra cut, there won’t be much to go around. He considers reaching out to Desiree to see if there's anything she could do. By all accounts, the last job he did for her went perfectly, except for getting kicked off the roster. Problems for tomorrow when his brain isn’t so fogged up with brew. He opens up a link to the local network node to distract himself, requesting info on the Intergalactic Rescue Agency. The first search hit is a newsreel from those two morning show baffoons, Mint and Olaf. He downloads the packet and spools it up, the video painting itself across his vision.
 
 “Welcome to Silver Sunrise, the best morning news show as voted by you, employees of the ODI corporation. I’m your host Mint Fonseca, and as always, I’m joined by my co-host Olaf Banza. We have an incredible show for you today, starting with a truly bizarre press conference that happened yesterday afternoon. Take it away Olaf.”
 
 “Thank you Mint. Social was buzzing yesterday with a rare sighting of none other than the controversial Niska Nanotech heiress, Severina Niska. The heiress, who hadn't been spotted since last year’s scandal, attended a press conference for a new company launch.”
 
-Video cuts to Severina at a podium, tall and beautiful, though she takes pains to hide it with an asymmetric haircut of bright white hair, and heavy, jagged makeup popular with the illegal Antiwork movement. The funny thing is, even with all that effort, the millions of credits that went into tailoring her genome still win out. “I’m here today to announce my patronage of the Interstellar Rescue Agency. Selassie’s vision for an organization that offers aid to those who need it, when they need it, without taking a single credit in payment. We live in a political system that benefits only a few, while the many struggle to survive. If you’re a colony in the Frontier struggling to repair a water filtration system and the corporation that sold it to you refusing to service it, because their parent company wants the land instead. IRA offers a glimpse of what our worlds could be like if we chose generosity over profit. If you need help, we will be there for you, connect to this Q node–”
+Video cuts to Severina at a podium, tall and beautiful, though she takes pains to hide it with an asymmetric haircut of bright white hair, and heavy, jagged makeup popular with the illegal Antiwork movement. The funny thing is, even with all that effort, the millions of credits that went into tailoring her genome still win out. “I’m here today to announce my patronage of the Interstellar Rescue Agency. Selassie’s vision for an organization that offers aid to those who need it, when they need it, without taking a single credit in payment. We live in a political system that benefits only a few, while the many struggle to survive. If you’re a colony in the Frontier struggling to repair a water filtration system and the corporation that sold it to you is refusing to service it, because their parent company wants the land instead. IRA offers a glimpse of what our worlds could be like if we chose generosity over profit. If you need help, we will be there for you, connect to this Q node–”
 
 The video cuts back to the hosts, Mint laughing with her dazzlingly perfect teeth as if she’s in a perfume ad. “Outrageous. You think she’s hit the bottom, but then she keeps going.”
 
@@ -495,14 +476,17 @@ Video cuts to an older man, shriveled up like a prune with triangular spectacles
 
 “Severina exhibits all the symptoms of what we call Histrionic Personality Disorder, or more commonly known as Attention Seeking disorder. One of the symptoms is being easily influenced by others. This Selassie character seems to me, to be taking advantage of her illness, to promote his obviously fraudulent org–”
 
-The video pauses as his Q pings with a call request. Ugh, he considers ignoring it, but then he sees the address. He sits up and accepts the call.
+The video pauses as his Q pings with a call request. Ugh, he considers ignoring it, but then he sees the address. He sits up, brush himself down and accepts the call.
 
-“Hiya,” He tries his best to sound casual, but his heart is thudding in his chest. 
-“Hi Bopha, it’s nice to see you.” Désirée’s perfect face, framed with long tight copper curls and those dark deep eyes, nearly melts him where he sits. A hint of a smile, both teasing and predatory, makes the longing in his heart that much more unbearable.
+“Hiya,” He tries his best to sound casual, but his heart is thudding in his chest.
 
-“You too, it’s been too long.” Her expression shifts, the eyes creasing slightly, the smile stiffening. He upset her, what an idiot. This is why she doesn’t call. “I mean, it always feels so long when I don’t see you.” He blurts out, feeling smaller in his chair, hoping she won’t just cut the call.
+“Hi Bopha, it’s nice to see you.” Désirée’s perfect face, framed with long tight copper curls and those dark deep eyes, nearly melts him where he sits. A hint of a smile, both teasing and predatory, makes the longing in his heart that much more unbearable. It's been months since she's called him and as much as he's tried to ignore it, he's missed her.
 
-Her expression softens and the muscles in his neck relax, not realizing that he was holding them taught, “I know pup. We’ll have to meet soon then, so you don’t forget.”
+“You too, it’s been too long.” Her smile stiffens. Desiree hates expectation and he curses himself for saying it. “I mean, it always feels so long when I don’t see you.” He blurts out, feeling smaller in his chair.
+
+Her expression softens and the muscles in his neck relax, not realizing that he was holding them taught. Their conversations are so often like this, a tightrope balancing act, like inching towards a tiger and hoping she doesn't take a bite.
+
+“I know pup. We’ll have to meet soon then, so you don’t forget.”
 
 His heart nearly leaps out of his chest, his mind desperately trying to keep cool, “I’d like that.”
 
@@ -510,58 +494,62 @@ His heart nearly leaps out of his chest, his mind desperately trying to keep coo
 
 Bopha can’t help but frown at that. How did she find out? He just met with Khuyen an hour ago. She notices, “I have eyes and ears everywhere, you know that.”
 
-“Yeah, it’s a weird one, but it’ll get us back on the roster.”
+“Yeah, it’s a shit contract, but it might get us back on the roster.”
 
 “I’ve got a proposal for you.”
 
-“What proposal?” Bopha’s mercenary mind kicks in, wondering where this is going. Desiree’s ‘business’ isn’t something he likes to pry into it, because frankly the less he knows the better. Her fleet of ships have a reputation and so does she.
+“What kind of proposal?” Bopha’s mercenary mind kicks in. Desiree's proposal usually come with a big payday if you can stomach the work.
 
-“I have a job for you. For someone I can trust.”
+“I’ve got a package waiting for you on Fanrong. I need you to take it into the IRA office and plug it into the CEO’s network node.”
 
-“What kind of job?”
+Bopha can't help but remember watching the frigate explode from Garuda's bridge. Blowing up an empty ship is one thing, but an office building?
 
-“Don’t worry pup, nothing you can’t handle. I’ve got a package waiting for you in Revati. I need you to take it into the IRA office and plug it into the CEO’s network node.”
+"Don’t worry pup, it's not that kind of job." Desiree reads his mind, "It's just a simple data transfer, no harm done."
 
-“Desiree, this is my chance back on the Roster. Any fuck up and Khuyen’s going to blame me.”
+Desiree’s business dealings rarely end without somekind of harm, "I don't know Desiree. We need this contract, if things go south, Khuyen's going to blame me and then we're really shit out of luck."
 
-“It’s an easy job Bopha and I’ll make it worth the risk.”
+“You worry too much about that old hag." She waves it off, like an annoying bug, "I’ll make it worth the risk.”
 
 Bopha perks up, knowing full well that he needs the cash and it’s not exactly like he’s got many other options. “How much?”
 
 “100,000 credits.”
 
-That’s a whole lot of credits for an easy job. Bopha’s warning bells are ringing, left and right. Who the hell is Desiree working for? “Why me? With that kind of cash, you hack it remotely.”
+That’s a whole lot of credits for an 'easy' job. Bopha’s warning bells are ringing. Who the hell is Desiree working for to throw that kind of cash around? “Why me? For that much, you could get a pro to do it.”
 
-“Their security is better than expected,” the annoyance in her voice gives away that she’s tried that way before and failed. “and it needs to be untraceable. If you give yourself away, you get nothing, understand?”
+“Are you saying you're not a pro?" She teases.
 
-Bopha has survived this long knowing when a deal is too good to be true, and this one reeks of it, but he trusts Desiree and she’s not someone to swindle and get away with it.
+He smiles, feeling his cheeks flush, "Well maybe not a spywork, but other things."
 
-“I’ll have to talk it over with Val.”
+She laughs, a rare genuine laugh, a high pitched cascade. "You certainly have the ego of one." The smile fades and they're back to business talk, "The client wants it untraceable. Pros leave a trail, even the best ones. But a Stray Captain, already invited into the CEO office is about as untraceable as it gets. So long as you don't get caught that is.”
 
-“You’re the captain aren’t you?”
+Bopha doesn't need to ask what happens if he gets caught. Whatever they have between them, she wouldn't lose a wink of sleep letting him take the fall. She's a mercernary as they come. Val thinks that makes her trouble, but she's known trouble. She can never break his trust, because he would never trust her.
 
-“Yes, but–”
+Likely, that's why he's the perfect fit for the job. Easy to blame him if things go wrong and if her client has deep pockets, nobody would suspect they'd hire a lowly worm like him. He'd be just one more desperate idiot looking to make a buck.
 
-“Bopha, there’s other Strays who can do this for me. If I can’t count on you…” Her eyes turn fierce, his blood turns cold, like she’s turned off the tap and his heart will suffocate if she doesn’t turn it back on.
+Bopha has survived this long knowing when a deal is too good to be true, and this one reeks of it. “Let me think it over.”
 
-“No, no, I’ll do it.”
+“What's there to think about? Either you want the job or not. If I can’t count on you, I can find someone else I can.” She spits the words out, and Bopha feels their sting. But as much as he wants to please her, the calculating part of his brain is doing the math.
 
-“Good,” a smile, slight but enough to melt the ice in his veins, “The package will be waiting for you when you dock. Destroy it after the job is done and message me.”
+As shady as her dealings are, Desiree's not a swindler. If she says the money's good, the money's good. And sometimes to get ahead you got to gamble. Bopha's never been one to mull things over for too long, better to jump and see where you land. “Alright, I’ll do it.”
 
-“Of course.”
+“Good,” a slight smile returns, proud to have gotten her way, “The package will be waiting for you when you dock. Destroy it after the job is done and message me.”
 
-“I look forward to celebrating.” She winks at him and cuts the call, Bopha’s entire body goes slack in his chair, feeling the sweat trickling on his brow. 100 000 credits. Not enough to get Val the treatment she needs, but not far off it. Bopha grins, thinking maybe his fortune is turning around after all.
+“Sure.”
+
+“I look forward to celebrating.” She winks at him and cuts the call, Bopha’s entire body goes slack in his chair, feeling the sweat trickling on his brow.
+
+100 000 credits. Not enough to get Val the treatment she needs, but not far off it. That's if it doesn't blow up in his face before he can cash the cheque.
  
 ## Chapter 3
 
-Bopha steps out of the lift onto the bridge of the Garuda, the flickering lights of consoles and panels washed out by Prosper’s soft orange light. His eyes are drawn up to the glassteel dome that covers the nose of the ship, a gas giant of browns and golds swallowing up much of the view. Three moons are in sight, but their destination is impossible to mistake. Ships of all sizes and shapes seem drawn to it like a magnet, a steady stream of lights making the journey to and from Revati, the capital of the Exchange.
+Bopha steps out of the lift onto the bridge of the Garuda, the flickering lights of consoles and panels washed out by Prosper’s soft orange light. His eyes are drawn up to the glassteel dome that covers the nose of the ship, the brown and gold gas giant Revati swallowing up much of the view. Three moons are in sight, but their destination is impossible to mistake. Ships of all sizes and shapes seem drawn to it like a magnet, a steady stream of lights making the journey to and from Fanrong, the capital of the Exchange.
 
 “How long has it been Val?”
 
 Valentina is plugged into her pilot’s seat, reclining fully to face the dome, while her hands grip and adjust flight sticks and tap away at a ring of consoles.
 
-“Three years.” He can tell she’s a little on edge. They both grew up on Revati and did everything they could to escape it. Coming back is never easy, there’s always a part of the brain that fears being trapped by it again.
-	“Never looks as bad from up here.”
+“Three years.” He can tell she’s a little on edge. They both grew up on Fanrong and did everything they could to escape it. Coming back is never easy, there’s always a part of the brain that fears being trapped by it again.
+“Never looks as bad from up here.”
 
 “Yeah.”
 
@@ -622,9 +610,9 @@ The lift drops down into the cargo bay, Rezki, frowning, pointing and directing 
 But supplies are the least of his concerns right now, as he's been mulling over his plan to get Desiree’s package installed without getting noticed and likely thrown into a corporate goulag. His ‘master’ plan that he devised while imbibing a few too many beers last night is starting to seem more like a bad idea than some stroke of genius. But a bad idea is better than no idea at all, so he calls over to Manu, “Manu, I want you to join Rezki and I to meet the client.”
 
 “I’d love to boss!” A huge smile fills the man’s grizzled face. Bopha could have asked him to empty the ship’s sewage tank and he’s pretty sure he would have been just as keen to help out.
-	“Captain, do we really need Manu and those… things?” Rezki grimaces as he motions to the skittering ferrets hoping from crate to crate.
-	“Yes Rezki, Manu will be there to handle any technical questions they may have.” And those ferrets, as dumb as it now sounds, are the key to his plan. Bopha pats his pocket, making sure he didn’t forget the key ingredient. The crinkle of the packaging causes one of the ferrets to raise its head, ears pointed towards him, little nose snuffling the air. Not just yet, you little bugger.
-	“Fine. But you will get your weasels to behave.”
+“Captain, do we really need Manu and those… things?” Rezki grimaces as he motions to the skittering ferrets hoping from crate to crate.
+“Yes Rezki, Manu will be there to handle any technical questions they may have.” And those ferrets, as dumb as it now sounds, are the key to his plan. Bopha pats his pocket, making sure he didn’t forget the key ingredient. The crinkle of the packaging causes one of the ferrets to raise its head, ears pointed towards him, little nose snuffling the air. Not just yet, you little bugger.
+“Fine. But you will get your weasels to behave.”
 
 “They’re ferrets, not weasels, Rezki. And they have names.”
 
@@ -815,7 +803,7 @@ Bopha ears perk up. He pauses his card game, dismissing it from his interface.
 Selassie must be using some kind of stimulant because it’s been over an hour of quite possibly torture level boredom and he still has that energetic smile plastered on his face. It’s a little unsettling.
 
 “Do you have any questions Captain, Manu?”
-	“None for me,” That’s why he pays Rezki, so he doesn’t have to pay attention at these kinds of meetings. It’s expensive, but worth every penny. “Manu?”
+“None for me,” That’s why he pays Rezki, so he doesn’t have to pay attention at these kinds of meetings. It’s expensive, but worth every penny. “Manu?”
 
 Bopha turns to Manu who is snoring softly next to him. Manu sleeps with his eyes open, a side effect of his accident. He gently nudges the man. Manu takes a quick breath in, the ferrets rousing from their respective naps as well.
 
@@ -1060,7 +1048,7 @@ Manu walks up to him, offering some homemade snacks. “Want one boss? Made them
 
 The entire crew is gathered in the mess hall. Save for the cargo bay, it’s the only place, now that there are two more, where they can all meet without having elbows in each other’s sides. Bopha had to nearly drag Chantico out for their inaugural assignment meeting with the Agency, so she’s skulking as far away from everyone else as possible, light flickering over her eyes with god knows what. You can force the body, but the mind does whatever it wants.
 
-Rezki is sat directly next to Snow, constantly looking over her shoulder at her tablet, to Snow’s continual annoyance. Snow is setting up a portable holo projector on the bolted down dining table. Arooj is lounged out on the sofa, tauntingly staring at Zambaga, who has yet to break eye contact. Good chance that Zambaga, as someone who’s worked up the corporate security ladder, has seen combat on Muzdahir against the Shezhadians there. That might cause some problems down the road, but so long as it's just a staring contest, he’ll park that problem for later.
+Rezki is sat directly next to Snow, constantly looking over her shoulder at her tablet, to Snow’s continual annoyance. Snow is setting up a portable holo projector on the bolted down dining table. Arooj is lounged out on the sofa, tauntingly staring at Zambaga, who has yet to break eye contact. Good chance that Zambaga, as someone who’s worked up the corporate security ladder, has seen combat on Muzdahir against the Khadiriians there. That might cause some problems down the road, but so long as it's just a staring contest, he’ll park that problem for later.
 
 Snow flicks a switch and the iris of the holo projector opens, a swarm of holos buzzing out of it, forming a perfect luminescent white cube over the table.  
 “Captain, is everyone here?”
@@ -1069,7 +1057,7 @@ The lift comes down from the upper deck, Val stepping out and walking over.
 “All here now.”
 
 Snow starts tapping away at a tablet, the holos coalescing into a sphere.
-	“This should be good,” Val whispers to him as she settles in next to him.
+“This should be good,” Val whispers to him as she settles in next to him.
 
 “Who do you think is crazy enough to call these guys for help?”
 
@@ -1146,7 +1134,7 @@ Her face is beat red, fists balled up.
 
 As much as he’s enjoying getting under her skin, he needs the job and thinks he may be pushing a little too far, “Look, those colonists need help. We’re going to help them. We may not be some fancy biotech firm with pristine white lab coats, but we get the job done. Working on the Frontier is messy work. Welcome to messy.”
 
-“You trust that Shezhadian?”
+“You trust that Khadiriian?”
 
 Bopha wonders what she means by that. He knows bigotry against them runs deep in the corporate world, but he figured someone funding this kind of lovey dovey bullshit would be more open-minded.
 
@@ -1239,7 +1227,7 @@ Bopha doesn’t know what that means.
 “Why now? Selassie has been working on the Agency for the better part of his life.”
 
 “That is a good question. Selassie is an extraordinary person, and I am very fond of him.”
-	They both shoot a glance at each other at that comment.
+They both shoot a glance at each other at that comment.
 
 “But he is only one piece of a larger puzzle. Without you Snow, his ideas would not flourish and without you Bopha, those ideas would not be tested. So here I am, seeing everything come together. Only time will tell whether this lonely tree bears fruit.”
 
@@ -1511,8 +1499,8 @@ A gust of wind kicks up some sand, he throws a hand in front of his face to shie
 “Quit complaining, at least you’re not covered in fur.” Arooj puts her toolbox down, sliding her arms through the suit sleeves and lifting the hood over her head. She clicks a button on the sleeve, and the fabric unfurls, covering her legs and torso snugly.
 
 “You look like a stuffed sausage in there. How are the seals?” Bopha does a little walk around her, checking to make sure the multitude of patches are holding. Arooj taps away at the integrated panel, checking systems.
-	“Everything’s nominal. You should get yours on.”
-	“Yeah,” Bopha steps back into the shuttle, Snow and Zam already outfitted in their suits, looking as skeptical as always.
+“Everything’s nominal. You should get yours on.”
+“Yeah,” Bopha steps back into the shuttle, Snow and Zam already outfitted in their suits, looking as skeptical as always.
 
 Bopha puts his on, annoyed at the chaffing around his thighs. He sticks his gun to his waist and they all head out into the sun. Bopha locks up the shuttle, “Alright, let’s do this.”
 
@@ -1653,7 +1641,7 @@ His face changes, as he looks from Snow to the rest of the crew.
 
 “Nice to meet you. That’s Zambaga, Bopha and Arooj.”
 
-His eyes widen at the sight of Arooj. He’s probably never seen a Shezhadian before.
+His eyes widen at the sight of Arooj. He’s probably never seen a Khadiriian before.
 
 “Hi.” He says meekly.
 
