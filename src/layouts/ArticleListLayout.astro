@@ -62,7 +62,9 @@ console.log(activeCollections);
         {
             projectPosts.length > 0 ? (
             
-                <form class="filter-group" data-list="section.article-list ul.list" data-items="li.article" data-sort="section.article-list .sort-group">
+                <form class="filter-group" 
+                data-list-selector="section.article-list ul.list" 
+                data-sort-selector="section.article-list .sort-group select">
                     <label class="btn-m">
                         <span>All</span>
                         <input type="radio" name="filter" value="all" data-type="all" checked/>
@@ -81,23 +83,27 @@ console.log(activeCollections);
                     })}
                 </form>
 
-                <form class="sort-group" data-list="section.article-list ul.list" data-items="li.article">
+                <form class="sort-group" 
+                data-list-selector="section.article-list ul.list">
                     <label>
                         <span>Sort by</span>
                         <div class="select-group">
                             <select name="sort" id="sort-select">
-                                <option value="byTitle" selected>Title</option>
-                                <option value="byDate">Date Published</option>
-                                <option value="byCollection">Collection</option>
+                                <option value='{ "list": { "id": "byName" } }' selected>Title</option>
+                                <option value='{ "list": { "id": "byDate" } }'>Date Published</option>
+                                <option value='{ "list": { "id": "byName" }, "sublist": { "id": "byName" } }'>Collection</option>
                             </select>
                         </div>
                     </label>
                 </form>
 
-                <ul class="list accordion" data-allow-multiple>
+                <ul class="list accordion" data-allow-multiple
+                data-list>
                     {projectPosts.map((post) => {
                         return  (
-                            <li class="article" data-title={post.frontmatter.title} data-date={post.frontmatter.date} data-category={post.frontmatter.category} data-collections={JSON.stringify(post.frontmatter.collections)}>
+                            <li class="article" data-title={post.frontmatter.title} data-date={post.frontmatter.date} data-category={post.frontmatter.category}
+                            data-item
+                            data-sublists={JSON.stringify(post.frontmatter.collections)}>
                                 <a href={post.url}>
                                     <span class="icon-group" set:html={getCatIconAndLabel(post.frontmatter.category).icon}></span>
                                     <span class="title">{post.frontmatter.title}</span>
@@ -108,9 +114,11 @@ console.log(activeCollections);
                         )
                     })}
                     {activeCollections.map((collection, index) => {
-
                         return (
-                            <li class="accordion-group" data-collection={collection} hidden>
+                            <li class="accordion-group"
+                            data-sublist
+                            data-sublist-name={collection}
+                            hidden>
                                 <h2>
                                     <button id={`collection-toggle${index}`} class="accordion-toggle" type="button" aria-expanded="true" aria-controls={`collection-panel${index}`}>
                                         <span>{collection}</span>
@@ -121,10 +129,10 @@ console.log(activeCollections);
                                         </span>
                                     </button>
                                 </h2>
-                                <ul id={`collection-panel${index}`} class="accordion-panel" role="region" aria-labelledby={`collection-toggle${index}`}></ul>
+                                <ul id={`collection-panel${index}`} class="accordion-panel" role="region" aria-labelledby={`collection-toggle${index}`} 
+                                data-sublist-bin></ul>
                             </li>
                         )
-
                     })}
                 </ul>
 

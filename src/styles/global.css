@@ -422,20 +422,20 @@ a {
     &:has([type="checkbox"]:checked) {
 
         &:hover {
-            background-color: var(--teal-15);
-            color: var(--teal-100);
+            background-color: var(--orange-45);
+            color: var(--gray-100);
 
             & :is(label, a, button, span) {
                 color: inherit;
             }
             
             & .icon :is(path, circle, line) {
-                stroke: var(--teal-100);
+                stroke: var(--gray-100);
             }
         }
 
         & .icon-controls {
-            transform: none;
+            transform: rotate(0deg);
         }
     }
 
@@ -447,6 +447,7 @@ a {
         }
     
         &.icon-controls {
+            transition: transform 0.1s ease;
 
             &.arrow {
                 width: 0.75rem;

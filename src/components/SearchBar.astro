@@ -19,7 +19,9 @@ if (activeProject){
 
 ---
 
-<div id="search-articles" class="search-group accordion" data-list=".search-results" data-items="li.result">
+<div id="search-articles" class="search-group accordion" 
+data-list-selector="#search-articles .search-results"
+data-sort='{ "list": { "id": "byPriority" } }'>
     <form class="search-form">
         <input class="search-input" class="text-field" type="search" minlength="3" placeholder={activeProject ? `Search articles in ${activeProject}` : 'Search articles'} autocomplete="off" data-type="title"/>
         <!-- <button id="search-clear" type="button" aria-label="Clear Search">
@@ -38,7 +40,9 @@ if (activeProject){
     <ul class="search-results" hidden>
         {filteredPosts.map((post) => {
             return (
-                <li class="result" data-title={post.frontmatter.title} hidden>
+                <li class="result" 
+                data-item
+                data-title={post.frontmatter.title} hidden>
                     <a href={post.url}>
                         <span class="icon-group" set:html={getCatIconAndLabel(post.frontmatter.category).icon}></span>
                         <span class="title">{post.frontmatter.title}</span>

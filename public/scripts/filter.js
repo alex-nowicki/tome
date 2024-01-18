@@ -29,29 +29,29 @@ let getParams = function(url = window.location) {
 let updateInputStates = function(targetFilter) {
 
     // Update checked state on input
-    if (targetFilter.type === 'radio'){
+    if (targetFilter.input.type === 'radio'){
 
-        if (targetFilter.hasAttribute('checked')) {
-            targetFilter.removeAttribute('checked');
+        if (targetFilter.input.hasAttribute('checked')) {
+            targetFilter.input.removeAttribute('checked');
         } else {
-            for (const filter of targetFilter.closest('form').querySelectorAll('input[type="radio"]')) {
+            for (const filter of targetFilter.input.closest('form').querySelectorAll('input[type="radio"]')) {
                 filter.removeAttribute('checked');
             }
-            targetFilter.setAttribute('checked', '');
+            targetFilter.input.setAttribute('checked', '');
         }
 
-    } else if (targetFilter.type === 'checkbox'){
+    } else if (targetFilter.input.type === 'checkbox'){
 
-        if (targetFilter.hasAttribute('checked')) {
-            targetFilter.removeAttribute('checked');
+        if (targetFilter.input.hasAttribute('checked')) {
+            targetFilter.input.removeAttribute('checked');
         } else {
-            targetFilter.setAttribute('checked', '');
+            targetFilter.input.setAttribute('checked', '');
         }
 
-        let checkboxes = targetFilter.closest('form').querySelectorAll('input[type="checkbox"]');
-        let checkedCheckboxes = targetFilter.closest('form').querySelectorAll('input[type="checkbox"]:checked');
+        let checkboxes = targetFilter.input.closest('form').querySelectorAll('input[type="checkbox"]');
+        let checkedCheckboxes = targetFilter.input.closest('form').querySelectorAll('input[type="checkbox"]:checked');
 
-        if (checkedCheckboxes.length === 1) {
+        if ((targetFilter.min && checkedCheckboxes.length <= targetFilter.min) || (targetFilter.max && checkedCheckboxes.length >= targetFilter.max)) {
             for (const box of checkedCheckboxes) {
                 box.setAttribute('disabled', '');
             }
@@ -77,16 +77,16 @@ let updateInputStates = function(targetFilter) {
  */
 let filterList = function(targetFilter) {
 
-    console.log(targetFilter);
+    console.log('targetFilter', targetFilter);
 
-    updateInputStates(targetFilter.input);
+    updateInputStates(targetFilter);
 
-    let positiveResults = false;
+    let positiveResults = 0;
 
     for (const item of targetFilter.items) {
 
-        // If the item has a button, and the button is pressed, bail
-        if (item.querySelector(':checked')) break;
+        // If the item has a button, and the button is pressed, skip
+        if (item.querySelector(':checked')) continue;
 
         if (targetFilter.type === 'category'){
 
@@ -96,7 +96,7 @@ let filterList = function(targetFilter) {
             // Check item category and show or hide accordingly
             if (targetFilter.values.includes(category)){
                 item.removeAttribute('hidden');
-                positiveResults = true;
+                positiveResults += 1;
             } else {
                 item.setAttribute('hidden', '');
             }
@@ -109,7 +109,7 @@ let filterList = function(targetFilter) {
             // Check item title and show or hide accordingly
             if (targetFilter.values.includes(title)){
                 item.removeAttribute('hidden');
-                positiveResults = true;
+                positiveResults += 1;
             } else {
                 item.setAttribute('hidden', '');
             }
@@ -119,7 +119,7 @@ let filterList = function(targetFilter) {
             // Check bookmark state and show or hide accordingly
             if (item.hasAttribute('data-bookmark')){
                 item.removeAttribute('hidden');
-                positiveResults = true;
+                positiveResults += 1;
             } else {
                 item.setAttribute('hidden', '');
             }
@@ -128,38 +128,53 @@ let filterList = function(targetFilter) {
 
             // Show all items
             item.removeAttribute('hidden');
-            positiveResults = true;
+            positiveResults += 1;
 
         }
         
     }
 
-    let targetSort = {};
-    targetSort.list = targetFilter.list;
-    targetSort.items = targetFilter.items;
+    if (targetFilter.sort) {
 
-    if (targetFilter.sort) targetSort.type = targetFilter.sort;
+        let targetSort = targetFilter.sort;
+    
+        if (targetSort.input) {
+            targetSort.type = JSON.parse(targetSort.input.value);
+        }
 
-    if (targetSort.type !== undefined && positiveResults) {
-        sortList(targetSort);
+        if (targetSort.type !== undefined && positiveResults > 0) {
+            sortList(targetSort);
+        }
+
     }
 
-    let errorMessage = targetFilter.list.querySelector('.error');
+    if (targetFilter.list) {
+
+        let errorMessage = targetFilter.list.querySelector('.error');
    
-    if (errorMessage){
-        
-        // If there are no positive results,
-        if (!positiveResults && errorMessage !== undefined) {
-
-            // Reveal the error message
-            targetFilter.list.querySelector('.error').removeAttribute('hidden');
-
-        } else {
-            // Reveal the error message
-            targetFilter.list.querySelector('.error').setAttribute('hidden', '');
+        if (errorMessage){
+            
+            // If there are no positive results,
+            if (positiveResults === 0 && !targetFilter.list.querySelector(':checked') && errorMessage !== undefined) {
+    
+                // Reveal the error message
+                targetFilter.list.querySelector('.error').removeAttribute('hidden');
+    
+            } else {
+                // Reveal the error message
+                targetFilter.list.querySelector('.error').setAttribute('hidden', '');
+            }
         }
-    }
 
+        let counter = targetFilter.list.querySelector('.counter');
+
+        if (counter){
+
+            counter.innerHTML = positiveResults;
+
+        }
+
+    }
 }
 
 
@@ -172,72 +187,85 @@ let filterList = function(targetFilter) {
  */
 let sortList = function(targetSort) {
 
-    console.log(targetSort);
+    console.log('targetSort at start of function', targetSort);
 
     // Remove cloned items
-    for (let item of targetSort.items){
-        if (item.hasAttribute('data-clone')) item.remove();
-    }
+    [...targetSort.list.querySelectorAll('[data-clone]')].forEach((item) => item.remove());
+
+    // Reset items list
+    targetSort.items = targetSort.list.querySelectorAll('[data-item]');
 
     // Filter list to only include active (shown) items
     targetSort.items = Array.from(targetSort.items).filter((item) => {
         return !item.hasAttribute('hidden');
     })
 
-    if (targetSort.type === 'byCollection'){
+    if (targetSort.type.sublist){
 
-        sortByCollection(targetSort);
+        sortBySublist(targetSort);
 
     } else {
 
-        // Hide collection accordions
-        let collectionAccordions = targetSort.list.querySelectorAll('.accordion-group');
-        for (let accordion of collectionAccordions){
-            accordion.setAttribute('hidden', '');
+        // If no sort option is defined, bail
+        if (!targetSort.type.list) return;
+
+        // If list has sublists, hide them
+        if (targetSort.sublists) {
+            for (let sublist of targetSort.sublists){
+                sublist.setAttribute('hidden', '');
+            }
         }
 
         targetSort.items.sort((a,b) => {
-            if (targetSort.type === 'byTitle'){
+            if (targetSort.type.list.id === 'byName'){
                 a = a.dataset.title;
                 b = b.dataset.title;
                 if (a < b) return -1;
                 if (a > b) return 0;
                 return 0;
-            } else if (targetSort.type === 'byDate'){
-                console.log('sorting by date')
+            } else if (targetSort.type.list.id === 'byDate'){
                 a = Date.parse(a.dataset.date);
                 b = Date.parse(b.dataset.date);
                 return b - a;
-            } else if (targetSort.type === 'byDateNumAsc'){
+            } else if (targetSort.type.list.id === 'byDateNumAsc'){
                 a = a.dataset.date;
                 b = b.dataset.date;
                 return a - b;
-            } else if (targetSort.type === 'byDateNumDesc'){
+            } else if (targetSort.type.list.id === 'byDateNumDesc'){
                 a = a.dataset.date;
                 b = b.dataset.date;
                 return b - a;
-            } else if (targetSort.type === 'byCollection'){
-                // Already sorted
-            } else if (targetSort.type === 'byPriority'){
+            } else if (targetSort.type.list.id === 'byPriority'){
                 a = a.dataset.priority;
                 b = b.dataset.priority;
                 return b - a;
             }
         
         })
+
+        let targetContainer = targetSort.list;
+
+        // If items are in a sublist, determine which container to append it to
+        if (targetSort.type.sublist) {
+            if (targetSort.items[0].closest('[data-sublist-bin')) {
+                targetContainer = targetSort.items[0].closest('[data-sublist-bin');
+            } else {
+                targetContainer = targetSort.items[0].closest('[data-sublist');
+            }
+        }
         
         // If sorting by priority, add each item to the bottom of the list
-        if (targetSort.type === 'byPriority'){
+        if (targetSort.type.list.id === 'byPriority'){
 
             targetSort.items.forEach((elem) => {
-                targetSort.list.lastElementChild.after(elem);
+                targetContainer.lastElementChild.after(elem);
             });
 
         // Otherwise, reverse the results and add each sorted item to the top of the list
         } else {
 
             targetSort.items.reverse().forEach((elem) => {
-                targetSort.list.firstElementChild.before(elem);
+                targetContainer.firstElementChild.before(elem);
             })
         }
 
@@ -246,59 +274,89 @@ let sortList = function(targetSort) {
 }
 
 /**
- * Sort list items by collection
+ * Sort list items by group
  * @param  {Object} targetSort The sort object containing the following data
  * @param  {Node} targetSort.list The sort list container
  * @param  {Nodelist} targetSort.items The sort list items
  */
-let sortByCollection = function(targetSort) {
+let sortBySublist = function(targetSort) {
 
-    // Get the collection accordions
-    let collectionAccordions = targetSort.list.querySelectorAll('.accordion-group[data-collection]');
+    console.log('items start of sort by sublist', targetSort.items.length);
 
-    for (let accordion of collectionAccordions) {
+    if (targetSort.type.sublist.id === 'byCondition'){
 
-        // Get the collection name
-        let collection = accordion.dataset.collection;
+        // Get the true bin
+        let trueBin = targetSort.list.querySelector('[data-sublist-true]');
+        let falseBin = targetSort.list.querySelector('[data-sublist-false]');
 
-        // Get the accordion panel
-        let accordionPanel = accordion.querySelector('.accordion-panel');
-        
         for (let item of targetSort.items) {
-            
-            // If the item has no collections assigned and the current accordion in 'uncollected', add the item
-            if (item.dataset.collections === undefined
-                && collection === 'Uncollected'){
-                accordionPanel.append(item);
-            
-            // Otherwise, if the item has collections assigned and they include the current accordion collection, add the item
-            } else if (item.dataset.collections !== undefined 
-                && JSON.parse(item.dataset.collections).includes(collection)){
-                
-                // If the item is already in a collection accordion, clone it
-                if (item.parentNode.matches('.accordion-panel')){
-                let clone = item.cloneNode(true);
-                clone.setAttribute('data-clone', '');
-                item.parentNode.appendChild(clone);
-                accordionPanel.append(clone);
 
-                // Otherwise, move it
-                } else {
-                    accordionPanel.append(item);
-                }
+            console.log(targetSort.type.sublist)
+
+            // If the item meets the condition, move it into the true group
+            if (item.matches(targetSort.type.sublist.condition)){
+
+                trueBin.append(item);
+            } else {
+                console.log('does not meet condition');
+                falseBin.append(item);
             }
-        };
 
-        // If the accordion contains at least one item, show it
-        if (accordionPanel.querySelectorAll('li.article:not([hidden])').length > 0) {
-            accordion.removeAttribute('hidden')
-        
-        // Otherwise, hide it
-        } else {
-            accordion.setAttribute('hidden', '');
         }
 
-    };
+    } else {
+
+        for (let sublist of targetSort.sublists) {
+
+            // Get the sublist bin
+            let bin = sublist.querySelector('[data-sublist-bin]') ? sublist.querySelector('[data-sublist-bin]') : sublist;
+
+            // Get the sublist name
+            let name = sublist.dataset.sublistName;
+
+            for (let item of targetSort.items) {
+
+                // If the item is a clone, skip
+                if (item.hasAttribute('data-clone')) continue;
+                
+                // If the item has no sublists assigned and the current bin in 'uncollected', add the item
+                if (item.dataset.sublists === undefined
+                    && name === 'Uncollected'){
+                    bin.append(item);
+                
+                // Otherwise, if the item has sublists assigned and they include the current bin, add the item
+                } else if (item.dataset.sublists !== undefined 
+                    && JSON.parse(item.dataset.sublists).includes(name)){
+
+                    // Get the sublist, if the item is in one
+                    let closestSublist = item.closest('[data-sublist]');
+                    
+                    // If the item is already in another sublist, clone it
+                    if (closestSublist && closestSublist.dataset.sublistName !== name){
+
+                        let clone = item.cloneNode(true);
+                        clone.setAttribute('data-clone', '');
+                        bin.append(clone);
+
+                    // Otherwise, move it
+                    } else {
+                        bin.append(item);
+                    }
+                }
+            }
+
+            // If the sublist contains at least one item, show it
+            if (bin.querySelectorAll('[data-item]:not([hidden])').length > 0) {
+                sublist.removeAttribute('hidden')
+            
+            // Otherwise, hide it
+            } else {
+                sublist.setAttribute('hidden', '');
+            }
+
+        }
+
+    }
 
 }
 
@@ -341,6 +399,8 @@ let searchList = function(targetSearch) {
                 titleWords.forEach((word) => {
                     if (word.toLowerCase().startsWith(targetSearch.value.toLowerCase())) {
 
+                        console.log('Start with priority', item);
+
                         // If so, add to priority
                         priority += 1000;
     
@@ -364,8 +424,6 @@ let searchList = function(targetSearch) {
 
     }, []);
 
-    console.log(results);
-
     // Display the results
     filterList({
         input: targetSearch.input,
@@ -375,7 +433,7 @@ let searchList = function(targetSearch) {
         type: targetSearch.type,
         list: targetSearch.list,
         items: targetSearch.items,
-        sort: 'byPriority'
+        sort: targetSearch.sort 
     });
 
 }
@@ -393,42 +451,86 @@ let searchGroups = document.querySelectorAll('.search-group');
 for (const group of filterGroups){
     group.addEventListener('input', (event) => {
         event.preventDefault;
+
+        console.log('Start of filter click event');
+
+        let list = document.querySelector(group.dataset.listSelector);
+        let items = group.dataset.itemsSelector ? list.querySelectorAll(group.dataset.itemsSelector) : list.querySelectorAll('[data-item]');
+        let sublists = group.dataset.sublistsSelector ? list.querySelectorAll(group.dataset.sublistsSelector) : list.querySelectorAll('[data-sublist]');
+        let sort = document.querySelector(`${group.dataset.sortSelector}`);
+
         filterList({
             input: event.target,
             values: Array.from(group.querySelectorAll('input:checked, select')).map((input) => input.value),
             type: event.target.dataset.type,
-            list: document.querySelector(group.dataset.list),
-            items: document.querySelectorAll(`${group.dataset.list} ${group.dataset.items}`),
-            sort: document.querySelector(group.dataset.sort).value
+            min: group.dataset.min ? parseInt(group.dataset.min) : undefined,
+            max: group.dataset.max ? parseInt(group.dataset.max) : undefined,
+            list: list,
+            items: items,
+            sort: {
+                input: sort ? sort : undefined,
+                type: {
+                    list: sort ? JSON.parse(sort.value).list : undefined,
+                    sublist: sort ? JSON.parse(sort.value).sublist : undefined
+                },
+                list: list,
+                items: items,
+                sublists: sublists ? sublists : undefined
+            }
         });
     });
 }
 
 for (const group of sortGroups){
     group.addEventListener('input', (event) => {
+        event.preventDefault;
+
+        console.log('Start of sort click event');
+
+        let list = document.querySelector(group.dataset.listSelector);
+        let items = group.dataset.itemsSelector ? list.querySelectorAll(group.dataset.itemsSelector) : list.querySelectorAll('[data-item]');
+        let sublists = group.dataset.sublistsSelector ? list.querySelectorAll(group.dataset.sublistsSelector) : list.querySelectorAll('[data-sublist]');
+
+        console.log(items);
+
         sortList({
             input: event.target,
-            type: event.target.value, 
-            list: document.querySelector(group.dataset.list),
-            items: document.querySelectorAll(`${group.dataset.list} ${group.dataset.items}`)
+            type: {
+                list: group.dataset.sort ? JSON.parse(group.dataset.sort).list : JSON.parse(event.target.value).list,
+                sublist: group.dataset.sort ? JSON.parse(group.dataset.sort).sublist : JSON.parse(event.target.value).sublist
+            },
+            list: list,
+            items: items,
+            sublists: sublists ? sublists : undefined
         })
     });
 }
 
 for (const group of searchGroups){
 
-    let input = group.querySelector('input');
-    let list = group.querySelector(group.dataset.list);
-    let items = group.querySelectorAll(`${group.dataset.list} ${group.dataset.items}`);
-
     group.addEventListener('input', function(event){
+
+        let input = group.querySelector('input');
+        let list = group.querySelector(group.dataset.listSelector);
+        let items = group.dataset.itemsSelector ? list.querySelectorAll(group.dataset.itemsSelector) : list.querySelectorAll('[data-item]');
+        let sublists = group.dataset.sublistsSelector ? list.querySelectorAll(group.dataset.sublistsSelector) : list.querySelectorAll('[data-sublist]');
+
         if (input.value.length > 2){
             searchList({
                 input: input,
                 value: input.value,
                 type: input.dataset.type,
                 list: list,
-                items: items
+                items: items,
+                sort: {
+                    list: list,
+                    items: items,
+                    type: {
+                        list: group.dataset.sort ? JSON.parse(group.dataset.sort).list : undefined,
+                        sublist: group.dataset.sort ? JSON.parse(group.dataset.sort).sublist : undefined
+                    },
+                    sublists: sublists ? sublists : undefined
+                }
             });
             list.removeAttribute('hidden');
         } else if (!list.querySelector(":checked")) {
@@ -439,12 +541,27 @@ for (const group of searchGroups){
     group.addEventListener('submit', (event) => {
         // Prevents default submit server call and triggers search function
         event.preventDefault();
+
+        let input = group.querySelector('input');
+        let list = group.querySelector(group.dataset.listSelector);
+        let items = group.dataset.itemsSelector ? list.querySelectorAll(group.dataset.itemsSelector) : list.querySelectorAll('[data-item]');
+        let sublists = group.dataset.sublistsSelector ? list.querySelectorAll(group.dataset.sublistsSelector) : list.querySelectorAll('[data-sublist]');
+
         searchList({
             input: input,
-            value: value,
+            value: input.value,
             type: input.dataset.type,
             list: list,
-            items: items
+            items: items,
+            sort: {
+                list: list,
+                items: items,
+                type: {
+                    list: group.dataset.sort ? JSON.parse(group.dataset.sort).list : undefined,
+                    sublist: group.dataset.sort ? JSON.parse(group.dataset.sort).sublist : undefined
+                },
+                sublists: sublists ? sublists : undefined
+            }
         });
         list.removeAttribute('hidden');
     })
@@ -452,19 +569,19 @@ for (const group of searchGroups){
     group.addEventListener('keydown', function(event){
         
         let activeElement = document.activeElement;
-        console.log('activeElement old', activeElement);
+        // console.log('activeElement old', activeElement);
 
         if (event.key === "ArrowDown"){
             event.preventDefault();
 
             if (activeElement.matches('input')){
-                console.log('Down arrowing from input');
+                // console.log('Down arrowing from input');
                 let targetElem = list.querySelector('a');
-                console.log(targetElem);
+                // console.log(targetElem);
                 targetElem.focus();
 
             } else if (activeElement.matches('a')) {
-                console.log('Down arrowing from a');
+                // console.log('Down arrowing from a');
                 let targetElem = activeElement.closest('li').nextElementSibling;
                 if (targetElem) {
                     targetElem.querySelector('a').focus();
@@ -474,7 +591,7 @@ for (const group of searchGroups){
         } else if (event.key === "ArrowUp"){
 
             if (activeElement.matches('a')) {
-                console.log('Up arrowing from a');
+                // console.log('Up arrowing from a');
                 let targetElem = activeElement.closest('li').previousElementSibling;
                 if (targetElem) {
                     targetElem.querySelector('a').focus();
@@ -509,12 +626,15 @@ if (params.filter){
                 input.removeAttribute('checked');
             }
 
+            let list = document.querySelector(group.dataset.listSelector);
+            let items = list.querySelectorAll('[data-item]');
+
             filterList({
                 input: targetInput,
                 values: [params.filter],
                 type: targetInput.dataset.type,
-                list: document.querySelector(group.dataset.list),
-                items: document.querySelectorAll(`${group.dataset.list} ${group.dataset.items}`)
+                list: list,
+                items: items
             });
         }
     }
