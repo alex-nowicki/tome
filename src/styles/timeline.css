@@ -2,17 +2,17 @@
     display: grid;
     grid-template-rows: auto 1fr;
 
-    & .filter-group {
+    & > form.filter-group {
         display: flex;
         gap: 0.5rem;
         margin-bottom: 1rem;
     }
     
-    & .sort-group {
+    & > form.sort-group {
         margin-bottom: 2rem;
     }
 
-    & .search-group {
+    & > .search-group {
         padding: 1rem 0;
         margin: 0 0 2rem;
         border-top: 2px solid var(--gray-15);
@@ -68,15 +68,13 @@
         
         & .search-results {
             display: grid;
-            grid-template-columns: minmax(30%, 200px) 1fr;
-            grid-template-rows: auto 1fr;
+            grid-template-columns: 1fr min(30%, 300px);
+            grid-template-rows: auto;
             grid-template-areas: 
-            "active-label inactive-label"
-            "active-items inactive-items";
+            "inactive active";
             align-items: start;
-            justify-items: start;
+            align-content: space-between;
             column-gap: 2rem;
-            row-gap: 0.5rem;
 
             padding: 0;
             margin: 1rem 0 0;
@@ -85,10 +83,13 @@
                 font-size: 0.75rem;
                 font-weight: 500;
                 color: var(--gray-60);
-                margin: 0;
+                margin: 0 0 0.5rem;
             }
 
-            & > ul {
+            & ul {
+                display: flex;
+                flex-flow: row wrap;
+                gap: 0.25rem;
                 list-style: none;
                 padding: 0;
                 margin: 0;
@@ -98,20 +99,12 @@
                 margin: 0;
             }
 
-            & .active-label {
-                grid-area: active-label;
+            & .active {
+                grid-area: active;
             }
 
-            & .inactive-label {
-                grid-area: inactive-label;
-            }
-
-            & .inactive-items {
-                grid-area: inactive-items;
-            }
-
-            & .active-items {
-                grid-area: active-items;
+            & .inactive {
+                grid-area: inactive;
             }
 
             & .error {

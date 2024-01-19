@@ -62,33 +62,42 @@ console.log(activeCollections);
         {
             projectPosts.length > 0 ? (
             
-                <form class="filter-group" 
+                <form 
+                data-filter-group 
                 data-list-selector="section.article-list ul.list" 
                 data-sort-selector="section.article-list .sort-group select">
                     <label class="btn-m">
                         <span>All</span>
-                        <input type="radio" name="filter" value="all" data-type="all" checked/>
+                        <input type="radio" name="filter" value="all" 
+                        data-filter-trigger 
+                        data-type="all" checked/>
                     </label>
                     <label class="btn-m">
                         <span>Bookmarks</span>
-                        <input type="radio" name="filter" value="bookmarks" data-type="bookmark"/>
+                        <input type="radio" name="filter" value="bookmarks" 
+                        data-filter-trigger 
+                        data-type="bookmark"/>
                     </label>
                     {activeCategories.map((category) => {
                         return (
                             <label class="btn-m">
                                 <span>{category}</span>
-                                <input type="radio" name="filter" value={category.toLowerCase()} data-type="category"/>
+                                <input type="radio" name="filter" value={category.toLowerCase()} 
+                                data-filter-trigger 
+                                data-type="category"/>
                             </label>
                         )
                     })}
                 </form>
 
-                <form class="sort-group" 
+                <form 
+                data-sort-group 
                 data-list-selector="section.article-list ul.list">
                     <label>
                         <span>Sort by</span>
                         <div class="select-group">
-                            <select name="sort" id="sort-select">
+                            <select name="sort" id="sort-select"
+                            data-sort-trigger>
                                 <option value='{ "list": { "id": "byName" } }' selected>Title</option>
                                 <option value='{ "list": { "id": "byDate" } }'>Date Published</option>
                                 <option value='{ "list": { "id": "byName" }, "sublist": { "id": "byName" } }'>Collection</option>
@@ -121,7 +130,7 @@ console.log(activeCollections);
                             hidden>
                                 <h2>
                                     <button id={`collection-toggle${index}`} class="accordion-toggle" type="button" aria-expanded="true" aria-controls={`collection-panel${index}`}>
-                                        <span>{collection}</span>
+                                        <span>{collection} <span class="meta"><span class="counter">0</span> Articles</span></span>
                                         <span class="icon-group">
                                             <span class="toggle-label-show">show</span>
                                             <span class="toggle-label-hide">hide</span>

@@ -46,7 +46,8 @@ console.log(postsWithLifespan);
 
             {events.length > 0 ? (
 
-                <form class="filter-group" 
+                <form 
+                data-filter-group 
                 data-list-selector="section.timeline ul.list" 
                 data-items-selector="li.event" 
                 data-sort-selector="section.timeline .sort-group" 
@@ -92,37 +93,44 @@ console.log(postsWithLifespan);
                     data-list 
                     data-list-selector="section.timeline ul.list" 
                     data-items-selector="li.compare"
-                    data-max="3">
-                        <p class="label active-label">Active <span class="counter">0</span>/3</p>
-                        <p class="label inactive-label">Results</p>
-                        <ul class="active-items" 
+                    data-max="3" hidden>
+                        <div class="active sort-group"
                         data-sublist 
-                        data-sublist-true></ul>
-                        <ul class="inactive-item" 
+                        data-sublist-true
+                        data-list-selector="#search-timeline-compare .search-results" 
+                        data-items-selector="li.result" 
+                        data-sort='{ "list": { "id": "byName" }, "sublist": { "id": "byCondition", "condition": ":has(:checked)", "clone": true } }' hidden>
+                            <p class="label">Active <span class="counter">0</span>/3</p>
+                            <ul data-sublist-bin></ul>
+                        </div>
+                        <div class="inactive sort-group"
                         data-sublist 
-                        data-sublist-false>
-                            {postsWithLifespan.map((post) => {
-                                return (
-                                    <li class="result sort-group" 
-                                    data-item 
-                                    data-title={post.frontmatter.title.toLowerCase()} 
-                                    data-list-selector="#search-timeline-compare .search-results" 
-                                    data-items-selector="li.result" 
-                                    data-sort='{ "list": { "id": "byName" }, "sublist": { "id": "byCondition", "condition": ":has(:checked)" } }' 
-                                    hidden>
-                                        <label class="btn-s">
-                                            <span class="icon-group" set:html={getCatIconAndLabel(post.frontmatter.category).icon}></span>
-                                            <span class="title">{post.frontmatter.title}</span>
-                                            <IconClose classes={'icon-controls'}/> 
-                                            <input type="checkbox" name="compare" value={post.frontmatter.title.toLowerCase()} data-type="title"></input>
-                                        </label>
-                                    </li>
-                                )
-                            })}
-                            <li class="error" hidden>
-                                <p>No matches were found.</p>
-                            </li>
-                        </ul>
+                        data-sublist-false
+                        data-list-selector="#search-timeline-compare .search-results" 
+                        data-items-selector="li.result" 
+                        data-sort='{ "list": { "id": "byName" }, "sublist": { "id": "byCondition", "condition": ":has(:checked)", "clone": true } }'>
+                            <p class="label">Search Results</p>
+                            <ul data-sublist-bin>
+                                {postsWithLifespan.map((post) => {
+                                    return (
+                                        <li class="result" 
+                                        data-item 
+                                        data-title={post.frontmatter.title.toLowerCase()} 
+                                        hidden>
+                                            <label class="btn-s">
+                                                <span class="icon-group" set:html={getCatIconAndLabel(post.frontmatter.category).icon}></span>
+                                                <span class="title">{post.frontmatter.title}</span>
+                                                <IconClose classes={'icon-controls'}/> 
+                                                <input type="checkbox" name="compare" value={post.frontmatter.title.toLowerCase()} data-type="title"></input>
+                                            </label>
+                                        </li>
+                                    )
+                                })}
+                                <li class="error" hidden>
+                                    <p>No matches were found.</p>
+                                </li>
+                            </ul>
+                        </div>
                     </form>
                 </div>
                 
