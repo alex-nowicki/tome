@@ -16,10 +16,10 @@ lifespan:
 events:
   - title: Bopha and Valentina steal the Garuda
     date:
-            year: 124
+      year: 124
   - title: Birth Year
     date:
-            year: 96
+      year: 96
 ---
 ## Details
 

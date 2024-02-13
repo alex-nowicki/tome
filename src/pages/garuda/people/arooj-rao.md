@@ -11,7 +11,7 @@ searchTerms:
 events:
   - title: Birth Year
     date:
-            year: 105
+      year: 105
 ---
 ## Details
 

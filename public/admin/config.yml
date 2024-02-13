@@ -446,25 +446,6 @@ collections:
       - {label: "Description", name: "description", widget: "text", pattern: [".{1,120}", "Must be no longer than 120 characters"], hint: "Description must be no longer than 120 characters.", required: false}
       - {label: "Search Terms", label_singular: "Search Term", name: "searchTerms", widget: "list", summary: "{{fields.searchTerm}}", field: {label: "Search Term", name: "searchTerm", widget: "string"}}
       - {label: "Image", name: "thumbnail", widget: "image", required: false}
-      - label: "Start Date" 
-        name: "startDate"
-        widget: "object"
-        summary: "{{fields.year}}"
-        fields:
-          - {label: "Year", name: "year", widget: "number", required: false}
-          - {label: "Month - Numerical", name: "month", widget: "number", required: false}
-          - {label: "Day - Numerical", name: "day", widget: "number", required: false}
-          - {label: "Common Era", name: "isCommonEra", widget: "boolean", default: true, required: false}
-      - label: "End Date" 
-        name: "endDate"
-        widget: "object"
-        summary: "{{fields.year}}"
-        required: false
-        fields:
-          - {label: "Year", name: "year", widget: "number", required: false}
-          - {label: "Month - Numerical", name: "month", widget: "number", required: false}
-          - {label: "Day - Numerical", name: "day", widget: "number", required: false}
-          - {label: "Common Era", name: "isCommonEra", widget: "boolean", default: true, required: false}
       - label: "Body"
         name: "body"
         widget: "markdown"

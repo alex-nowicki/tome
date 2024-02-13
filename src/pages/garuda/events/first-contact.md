@@ -7,12 +7,10 @@ date: 2023-04-19T16:27:42.803Z
 description: Human space explorer encounter the Gatekeeper in Alpha Centauri.
 searchTerms:
   - First Contact
-startDate:
-  year: 0
-  events:
-  - title: Gatekeeper's offer reaches Earth
-    date:
-      year: 4
+lifespan:
+  startDate:
+    year: 4
+    verb: Made
 ---
 ## Details
 

@@ -11,7 +11,7 @@ searchTerms:
 events:
   - title: Birth Year
     date:
-            year: 107
+      year: 107
 ---
 
 ## Details

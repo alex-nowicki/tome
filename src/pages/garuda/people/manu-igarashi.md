@@ -18,7 +18,7 @@ lifespan:
 events:
   - title: Birth Year
     date:
-            year: 69
+      year: 69
 ---
 ## Details
 
