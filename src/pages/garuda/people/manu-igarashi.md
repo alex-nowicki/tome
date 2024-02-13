@@ -18,8 +18,7 @@ lifespan:
 events:
   - title: Birth Year
     date:
-      yearNotation: FC
-      year: 69
+            year: 69
 ---
 ## Details
 

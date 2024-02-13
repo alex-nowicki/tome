@@ -26,7 +26,14 @@ collections:
       - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/ArticleListLayout.astro"}
       - {label: "Title", name: "title", widget: "string", pattern: [".{1,40}", "Must be no longer than 40 characters"], hint: "Title must be no longer than 40 characters."}
       - {label: "Description", name: "description", widget: "text", pattern: [".{1,120}", "Must be no longer than 120 characters"], hint: "Description must be no longer than 120 characters."}
-      - {label: "Body", name: "body", widget: "markdown", required: false}
+      - label: "Timeline Options"
+        name: "timeline"
+        widget: "object"
+        required: false
+        fields:
+          - {label: "Show Era Notation", name: "showNotation", widget: "boolean", default: false, required: false}
+          - {label: "Common Era Notation", name: "commonEraNotation", widget: "string", default: "CE", hint: "Default is CE.", required: false}
+          - {label: "Before Common Era Notation", name: "beforeCommonEraNotation", widget: "string", default: "BCE", hint: "Default is BCE.", required: false}
 
 
   ##
@@ -203,7 +210,7 @@ collections:
               - {label: "Year", name: "year", widget: "number", required: false}
               - {label: "Month - Numerical", name: "month", widget: "number", required: false}
               - {label: "Day - Numerical", name: "day", widget: "number", required: false}
-              - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
+              - {label: "Common Era", name: "isCommonEra", widget: "boolean", default: true, required: false}
               - {label: "Verb", name: "verb", widget: "string", default: "Started", hint: "Past tense verb. *Examples: Born, Founded, Discovered, etc.*", required: false}
           - label: "End Date" 
             name: "endDate"
@@ -214,7 +221,7 @@ collections:
               - {label: "Year", name: "year", widget: "number", required: false}
               - {label: "Month - Numerical", name: "month", widget: "number", required: false}
               - {label: "Day - Numerical", name: "day", widget: "number", required: false}
-              - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
+              - {label: "Common Era", name: "isCommonEra", widget: "boolean", default: true, required: false}
               - {label: "Verb", name: "verb", widget: "string", default: "Ended", hint: "Past tense verb. *Examples: Died, Dissolved, Forgotten, etc.*", required: false}
 
       - label: "Notable Events"
@@ -235,7 +242,7 @@ collections:
               - {label: "Year", name: "year", widget: "number"}
               - {label: "Month - Numerical", name: "month", widget: "number", required: false}
               - {label: "Day - Numerical", name: "day", widget: "number", required: false}
-              - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
+              - {label: "Common Era", name: "isCommonEra", widget: "boolean", default: true, required: false}
 
 
   ##
@@ -325,7 +332,7 @@ collections:
               - {label: "Year", name: "year", widget: "number"}
               - {label: "Month - Numerical", name: "month", widget: "number", required: false}
               - {label: "Day - Numerical", name: "day", widget: "number", required: false}
-              - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
+              - {label: "Common Era", name: "isCommonEra", widget: "boolean", default: true, required: false}
 
 
   ##
@@ -409,7 +416,7 @@ collections:
               - {label: "Year", name: "year", widget: "number"}
               - {label: "Month - Numerical", name: "month", widget: "number", required: false}
               - {label: "Day - Numerical", name: "day", widget: "number", required: false}
-              - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
+              - {label: "Common Era", name: "isCommonEra", widget: "boolean", default: true, required: false}
 
 
   ##
@@ -447,7 +454,7 @@ collections:
           - {label: "Year", name: "year", widget: "number", required: false}
           - {label: "Month - Numerical", name: "month", widget: "number", required: false}
           - {label: "Day - Numerical", name: "day", widget: "number", required: false}
-          - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
+          - {label: "Common Era", name: "isCommonEra", widget: "boolean", default: true, required: false}
       - label: "End Date" 
         name: "endDate"
         widget: "object"
@@ -457,7 +464,7 @@ collections:
           - {label: "Year", name: "year", widget: "number", required: false}
           - {label: "Month - Numerical", name: "month", widget: "number", required: false}
           - {label: "Day - Numerical", name: "day", widget: "number", required: false}
-          - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
+          - {label: "Common Era", name: "isCommonEra", widget: "boolean", default: true, required: false}
       - label: "Body"
         name: "body"
         widget: "markdown"
@@ -501,7 +508,7 @@ collections:
               - {label: "Year", name: "year", widget: "number", required: false}
               - {label: "Month - Numerical", name: "month", widget: "number", required: false}
               - {label: "Day - Numerical", name: "day", widget: "number", required: false}
-              - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
+              - {label: "Common Era", name: "isCommonEra", widget: "boolean", default: true, required: false}
               - {label: "Verb", name: "verb", widget: "string", default: "Started", hint: "Past tense verb. *Examples: Born, Founded, Discovered, etc.*", required: false}
           - label: "End Date" 
             name: "endDate"
@@ -512,7 +519,7 @@ collections:
               - {label: "Year", name: "year", widget: "number", required: false}
               - {label: "Month - Numerical", name: "month", widget: "number", required: false}
               - {label: "Day - Numerical", name: "day", widget: "number", required: false}
-              - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
+              - {label: "Common Era", name: "isCommonEra", widget: "boolean", default: true, required: false}
               - {label: "Verb", name: "verb", widget: "string", default: "Ended", hint: "Past tense verb. *Examples: Died, Dissolved, Forgotten, etc.*", required: false}
               
       - label: "Contributing Events"
@@ -533,7 +540,7 @@ collections:
               - {label: "Year", name: "year", widget: "number"}
               - {label: "Month - Numerical", name: "month", widget: "number", required: false}
               - {label: "Day - Numerical", name: "day", widget: "number", required: false}
-              - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
+              - {label: "Common Era", name: "isCommonEra", widget: "boolean", default: true, required: false}
 
 
 
@@ -597,4 +604,4 @@ collections:
               - {label: "Year", name: "year", widget: "number"}
               - {label: "Month - Numerical", name: "month", widget: "number", required: false}
               - {label: "Day - Numerical", name: "day", widget: "number", required: false}
-              - {label: "Year Notation", name: "yearNotation", widget: "string", required: false}
+              - {label: "Common Era", name: "isCommonEra", widget: "boolean", default: true, required: false}

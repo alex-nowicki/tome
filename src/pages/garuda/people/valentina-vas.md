@@ -12,7 +12,6 @@ events:
   - title: Birth Year
     date:
       year: 95
-      yearNotation: FC
 ---
 ## Details
 

@@ -4,10 +4,11 @@ import "../styles/timeline.css"
 
 import { getCatIconAndLabel } from "../scripts/helpers.js";
 
+const { activeProject } = Astro.props;
 const { events } = Astro.props;
 const { postsWithLifespan } = Astro.props;
 
-let createFullDate = function(date) {
+let createFullDate = function(date, project) {
 
     if (!date.full){
 
@@ -15,11 +16,17 @@ let createFullDate = function(date) {
             return String(num).padStart(totalLength, '0');
         }
 
+        let notation = null;
+
+        if (date.year !== undefined && project.frontmatter.timeline.notation){
+            notation = date.isCommonEra ? project.frontmatter.timeline.commonEraNotation : project.frontmatter.timeline.beforeCommonEraNotation;
+        }
+
         date.full = '';
         date.full = date.year !== undefined ? date.full += `${date.year}` : date.full;
         date.full = date.year !== undefined && date.month ? date.full += `-${padWithLeadingZeros(date.month, 2)}` : date.full;
         date.full = date.year !== undefined && date.month && date.day ? date.full += `-${padWithLeadingZeros(date.day, 2)}` : date.full;
-        date.full = date.year !== undefined && date.yearNotation ? date.full += ` ${date.yearNotation}` : date.full;
+        date.full = notation ? date.full += ` ${notation}` : date.full;
     }
 
     if (!date.numerical){
@@ -28,6 +35,8 @@ let createFullDate = function(date) {
             date.numerical = date.year !== undefined ? date.year * 1000000 : 0;
             date.numerical += date.month !== undefined ? date.month * 1000 : 0;
             date.numerical += date.day !== undefined ? date.day : 0;
+            if (!date.isCommonEra) date.numerical * -1;
+            
         } else {
             date.numerical = -Infinity;
         }
@@ -38,16 +47,16 @@ let createFullDate = function(date) {
 
 // Generate a full date for each event
 events.map((event) => {
-    createFullDate(event.date);
+    createFullDate(event.date, activeProject);
 });
 
 // Generate a full date for each lifespan
 postsWithLifespan.map((post) => {
     if (post.frontmatter.lifespan.startDate){
-        createFullDate(post.frontmatter.lifespan.startDate);
+        createFullDate(post.frontmatter.lifespan.startDate, activeProject);
     }
     if (post.frontmatter.lifespan.endDate){
-        createFullDate(post.frontmatter.lifespan.endDate);
+        createFullDate(post.frontmatter.lifespan.endDate, activeProject);
     }
 })
 

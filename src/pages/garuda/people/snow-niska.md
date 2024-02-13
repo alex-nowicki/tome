@@ -14,7 +14,6 @@ events:
   - title: Birth Year
     date:
       year: 105
-      yearNotation: FC
 ---
 ## Details
 

@@ -64,19 +64,19 @@ console.log(activeCollections);
             
                 <form 
                 data-filter-group 
-                data-list-selector="section.article-list ul.list" 
-                data-sort-selector="section.article-list .sort-group select">
+                data-filter-list-selector="section.article-list ul.list" 
+                data-filter-sort-selector="section.article-list [data-sort-trigger]">
                     <label class="btn-m">
                         <span>All</span>
                         <input type="radio" name="filter" value="all" 
                         data-filter-trigger 
-                        data-type="all" checked/>
+                        data-filter-type="all" checked/>
                     </label>
                     <label class="btn-m">
                         <span>Bookmarks</span>
                         <input type="radio" name="filter" value="bookmarks" 
                         data-filter-trigger 
-                        data-type="bookmark"/>
+                        data-filter-type="bookmark"/>
                     </label>
                     {activeCategories.map((category) => {
                         return (
@@ -84,7 +84,7 @@ console.log(activeCollections);
                                 <span>{category}</span>
                                 <input type="radio" name="filter" value={category.toLowerCase()} 
                                 data-filter-trigger 
-                                data-type="category"/>
+                                data-filter-type="category"/>
                             </label>
                         )
                     })}
@@ -92,7 +92,7 @@ console.log(activeCollections);
 
                 <form 
                 data-sort-group 
-                data-list-selector="section.article-list ul.list">
+                data-sort-list-selector="section.article-list ul.list">
                     <label>
                         <span>Sort by</span>
                         <div class="select-group">

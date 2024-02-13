@@ -48,28 +48,32 @@ console.log(postsWithLifespan);
 
                 <form 
                 data-filter-group 
-                data-list-selector="section.timeline ul.list" 
-                data-items-selector="li.event" 
-                data-sort-selector="section.timeline .sort-group" 
-                data-min="1">
+                data-filter-list-selector="section.timeline ul.list" 
+                data-filter-items-selector="li.event" 
+                data-filter-sort-selector="section.timeline [data-sort-trigger]" 
+                data-filter-min="1">
                     {activeCategories.map((category) => {
                         return (
                             <label class="btn-m">
                                 <span>{category}</span>
-                                <input type="checkbox" name="filter" value={category.toString().toLowerCase()} data-type="category" checked/>
+                                <input type="checkbox" name="filter" value={category.toString().toLowerCase()} 
+                                data-filter-trigger
+                                data-filter-type="category" checked/>
                                 <IconClose classes={'icon-controls'}/>
                             </label>
                         )
                     })}
                 </form>
 
-                <form class="sort-group" 
-                data-list-selector="section.timeline ul.list" 
-                data-items-selector="li.event">
+                <form 
+                data-sort-group
+                data-sort-list-selector="section.timeline ul.list" 
+                data-sort-items-selector="li.event">
                     <label>
                         <span>Sort by</span>
                         <div class="select-group">
-                            <select name="sort" id="sort-select">
+                            <select name="sort" id="sort-select"
+                            data-sort-trigger>
                                 <option value='{ "list": { "id": "byDateNumAsc" } }' selected>Date Ascending</option>
                                 <option value='{ "list": { "id": "byDateNumDesc" } }'>Date Descending</option>
                             </select>
@@ -77,64 +81,65 @@ console.log(postsWithLifespan);
                     </label>
                 </form>
 
-                <div id="search-timeline-compare" class="search-group accordion" 
-                data-list-selector=".search-results" 
-                data-items-selector="li.result">
-                    <form class="search-form">
-                        <input class="search-input" class="text-field" type="search"  minlength="3" placeholder={"Compare lifespan"} autocomplete="off" data-type="title"/>
-                        <button class="search-submit" class="submit" type="button" >
+                <div id="search-timeline-compare" class="accordion">
+                    <p>Show lifespan</p>
+                    <form class="search-form"
+                    data-search-group
+                    data-search-list-selector="#search-timeline-compare .search-results [data-list-bin]" 
+                    data-search-items-selector="li.result"
+                    data-search-sort-type='{ "list": { "id": "byPriority" } }'>
+                        <input class="search-input" class="text-field" type="search"  minlength="3" placeholder={"Filter articles"} autocomplete="off" 
+                        data-search-trigger 
+                        data-search-type="title"/>
+                        <button class="search-submit" class="submit" type="button" 
+                        data-search-trigger>
                             <svg class="search-submit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                                 <circle cx="9.5" cy="9.5" r="7.5"/>
                                 <line x1="14.8" y1="14.8" x2="22" y2="22"/>
                             </svg>
                         </button>
                     </form>
-                    <form class="search-results filter-group" 
+                    <form class="search-results" 
                     data-list 
-                    data-list-selector="section.timeline ul.list" 
-                    data-items-selector="li.compare"
-                    data-max="3" hidden>
-                        <div class="active sort-group"
-                        data-sublist 
-                        data-sublist-true
-                        data-list-selector="#search-timeline-compare .search-results" 
-                        data-items-selector="li.result" 
-                        data-sort='{ "list": { "id": "byName" }, "sublist": { "id": "byCondition", "condition": ":has(:checked)", "clone": true } }' hidden>
-                            <p class="label">Active <span class="counter">0</span>/3</p>
-                            <ul data-sublist-bin></ul>
-                        </div>
-                        <div class="inactive sort-group"
-                        data-sublist 
-                        data-sublist-false
-                        data-list-selector="#search-timeline-compare .search-results" 
-                        data-items-selector="li.result" 
-                        data-sort='{ "list": { "id": "byName" }, "sublist": { "id": "byCondition", "condition": ":has(:checked)", "clone": true } }'>
-                            <p class="label">Search Results</p>
-                            <ul data-sublist-bin>
-                                {postsWithLifespan.map((post) => {
-                                    return (
-                                        <li class="result" 
-                                        data-item 
-                                        data-title={post.frontmatter.title.toLowerCase()} 
-                                        hidden>
-                                            <label class="btn-s">
-                                                <span class="icon-group" set:html={getCatIconAndLabel(post.frontmatter.category).icon}></span>
-                                                <span class="title">{post.frontmatter.title}</span>
-                                                <IconClose classes={'icon-controls'}/> 
-                                                <input type="checkbox" name="compare" value={post.frontmatter.title.toLowerCase()} data-type="title"></input>
-                                            </label>
-                                        </li>
-                                    )
-                                })}
-                                <li class="error" hidden>
-                                    <p>No matches were found.</p>
-                                </li>
-                            </ul>
-                        </div>
+                    data-filter-group
+                    data-filter-list-selector="section.timeline ul.list" 
+                    data-filter-items-selector="li.compare"
+                    data-filter-max="3" 
+                    data-sort-group 
+                    data-sort-list-selector="#search-timeline-compare .search-results [data-list-bin]" 
+                    data-sort-items-selector="li.result" 
+                    data-sort-type='{ "list": { "id": "byName" } }'>
+                        <p class="label">Search Results</p>
+                        <ul data-list-bin>
+                            {postsWithLifespan.map((post, index) => {
+                                return (
+                                    <li class="result" 
+                                    data-item 
+                                    data-title={post.frontmatter.title.toLowerCase()} 
+                                    hidden={index < 5 ? null : ''}>
+                                        <label class="btn-s">
+                                            <span class="icon-group" set:html={getCatIconAndLabel(post.frontmatter.category).icon}></span>
+                                            <span class="title">{post.frontmatter.title}</span>
+                                            <IconClose classes={'icon-controls'}/> 
+                                            <input type="checkbox" name="compare" value={post.frontmatter.title.toLowerCase()} 
+                                            data-filter-trigger 
+                                            data-filter-type="title"
+                                            data-sort-trigger></input>
+                                        </label>
+                                    </li>
+                                )
+                            })}
+                            <li class="error" hidden>
+                                <p>No matches were found.</p>
+                            </li>
+                            <li>
+                                <button class="btn-s">Show More</button>     
+                            </li>
+                        </ul>
                     </form>
                 </div>
                 
-                <Timeline events={events} postsWithLifespan={postsWithLifespan} />
+                <Timeline activeProject={activeProject} events={events} postsWithLifespan={postsWithLifespan} />
 
             ) : (
 

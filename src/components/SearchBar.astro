@@ -19,25 +19,31 @@ if (activeProject){
 
 ---
 
-<div id="search-articles" class="search-group accordion" 
-data-list-selector="#search-articles .search-results"
-data-sort='{ "list": { "id": "byPriority" } }'>
+<div id="search-articles" class="accordion" 
+data-search-group
+data-search-list-selector="#search-articles .search-results"
+data-search-sort-type='{ "list": { "id": "byPriority" } }'>
     <form class="search-form">
-        <input class="search-input" class="text-field" type="search" minlength="3" placeholder={activeProject ? `Search articles in ${activeProject}` : 'Search articles'} autocomplete="off" data-type="title"/>
+        <input class="search-input" class="text-field" type="search" minlength="3" placeholder={activeProject ? `Search articles in ${activeProject}` : 'Search articles'} autocomplete="off" 
+        data-search-trigger 
+        data-search-type="title"/>
         <!-- <button id="search-clear" type="button" aria-label="Clear Search">
             <svg viewbox="0 0 32 32">
                 <line y1="16" x1="0" y2="16" x2="32"/>
                 <line y1="16" x1="0" y2="16" x2="32"/>
             </svg>
         </button> -->
-        <button class="search-submit" class="submit" type="button" >
+        <button class="search-submit" class="submit" type="button" 
+        data-search-trigger>
             <svg class="search-submit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <circle cx="9.5" cy="9.5" r="7.5"/>
                 <line x1="14.8" y1="14.8" x2="22" y2="22"/>
             </svg>
         </button>
     </form>
-    <ul class="search-results" hidden>
+    <ul class="search-results" 
+    data-list 
+    hidden>
         {filteredPosts.map((post) => {
             return (
                 <li class="result" 

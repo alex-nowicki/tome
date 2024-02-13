@@ -11,8 +11,7 @@ searchTerms:
 events:
   - title: Birth Year
     date:
-      yearNotation: FC
-      year: 105
+            year: 105
 ---
 ## Details
 

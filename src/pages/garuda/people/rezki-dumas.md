@@ -11,8 +11,7 @@ searchTerms:
 events:
   - title: Birth Year
     date:
-      yearNotation: FC
-      year: 107
+            year: 107
 ---
 
 ## Details

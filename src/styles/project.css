@@ -4,13 +4,13 @@
 
 .article-list {
 
-    & > form.filter-group {
+    & > [data-filter-group] {
         display: flex;
         gap: 0.5rem;
         margin-bottom: 1rem;
     }
 
-    & > form.sort-group {
+    & [data-sort-group] {
         margin-bottom: 2rem;
     }
 

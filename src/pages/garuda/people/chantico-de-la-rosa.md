@@ -11,17 +11,14 @@ searchTerms:
 events:
   - title: Birth Year
     date:
-      yearNotation: FC
-      year: 115
+            year: 115
   - title: Chantico undergoes Cloudhead augment surgery
     date:
-      yearNotation: FC
-      year: 132
+            year: 132
       month: 5
   - title: Chantico joins the crew of the Garuda
     date:
-      yearNotation: FC
-      year: 132
+            year: 132
       month: 6
 ---
 ## Details

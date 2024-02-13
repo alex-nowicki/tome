@@ -9,12 +9,10 @@ searchTerms:
   - First Contact
 startDate:
   year: 0
-  yearNotation: FC
-events:
+  events:
   - title: Gatekeeper's offer reaches Earth
     date:
       year: 4
-      yearNotation: FC
 ---
 ## Details
 

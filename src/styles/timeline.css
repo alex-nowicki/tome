@@ -2,17 +2,17 @@
     display: grid;
     grid-template-rows: auto 1fr;
 
-    & > form.filter-group {
+    & > [data-filter-group] {
         display: flex;
         gap: 0.5rem;
         margin-bottom: 1rem;
     }
     
-    & > form.sort-group {
+    & > [data-sort-group] {
         margin-bottom: 2rem;
     }
 
-    & > .search-group {
+    &  #search-timeline-compare {
         padding: 1rem 0;
         margin: 0 0 2rem;
         border-top: 2px solid var(--gray-15);
@@ -68,13 +68,12 @@
         
         & .search-results {
             display: grid;
-            grid-template-columns: 1fr min(30%, 300px);
+            grid-template-columns: auto 1fr;
             grid-template-rows: auto;
             grid-template-areas: 
-            "inactive active";
+            "active inactive";
             align-items: start;
             align-content: space-between;
-            column-gap: 2rem;
 
             padding: 0;
             margin: 1rem 0 0;
@@ -101,6 +100,8 @@
 
             & .active {
                 grid-area: active;
+                padding-right: 1rem;
+                border-right: 2px solid var(--gray-15);
             }
 
             & .inactive {

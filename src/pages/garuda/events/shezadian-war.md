@@ -10,7 +10,6 @@ searchTerms:
 startDate:
   label: Start Date
   year: 60
-  yearNotation: FC
 ---
 ## Details
 

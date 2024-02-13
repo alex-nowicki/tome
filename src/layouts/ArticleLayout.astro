@@ -192,7 +192,7 @@ let timelineEvents = processEventsForTimeline(frontmatter);
                 timelineEvents !== undefined && timelineEvents.length > 1 && (
                     <section class="timeline">
                         <h2>Timeline</h2>
-                        <Timeline events={timelineEvents} />
+                        <Timeline activeProject={activeProject} events={timelineEvents} />
                     </section>
                 )
             }

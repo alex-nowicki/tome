@@ -14,11 +14,9 @@ events:
   - title: Birth Year
     date:
       year: 80
-      yearNotation: FC
-  - title: Assigned as Snow's Bodyguard
+        - title: Assigned as Snow's Bodyguard
     date:
-      yearNotation: FC
-      year: 112
+            year: 112
 ---
 ## Details
 

@@ -11,7 +11,6 @@ events:
   - title: Birth Year
     date:
       year: 85
-      yearNotation: FC
 ---
 ## Details
 

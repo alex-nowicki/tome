@@ -608,7 +608,7 @@ header {
         }
     }
 
-    & .search-group {
+    & [data-search-group] {
         grid-area: search;
         
         position: relative;
