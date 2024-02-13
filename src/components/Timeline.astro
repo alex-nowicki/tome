@@ -58,14 +58,18 @@ events.map((event) => {
 });
 
 // Generate a full date for each lifespan
-postsWithLifespan.map((post) => {
-    if (post.frontmatter.lifespan.startDate){
-        createFullDate(post.frontmatter.lifespan.startDate, project);
-    }
-    if (post.frontmatter.lifespan.endDate){
-        createFullDate(post.frontmatter.lifespan.endDate, project);
-    }
-})
+if (postsWithLifespan) {
+
+    postsWithLifespan.map((post) => {
+        if (post.frontmatter.lifespan.startDate){
+            createFullDate(post.frontmatter.lifespan.startDate, project);
+        }
+        if (post.frontmatter.lifespan.endDate){
+            createFullDate(post.frontmatter.lifespan.endDate, project);
+        }
+    })
+
+}
 
 // Sort the events array by date
 events.sort((a, b) => a.date.numerical - b.date.numerical);
@@ -90,7 +94,7 @@ events.sort((a, b) => a.date.numerical - b.date.numerical);
                             <p class="date">{event.date.full}</p>
                             <ul class="compare-group">
 
-                                {postsWithLifespan.map((post) => {
+                                {postsWithLifespan && postsWithLifespan.map((post) => {
 
                                     let startDate = post.frontmatter.lifespan.startDate;
                                     let endDate = post.frontmatter.lifespan.endDate;
