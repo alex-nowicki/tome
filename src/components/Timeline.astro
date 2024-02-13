@@ -8,12 +8,14 @@ const { activeProject } = Astro.props;
 const { events } = Astro.props;
 const { postsWithLifespan } = Astro.props;
 
+
+
 const projectPosts = await Astro.glob('../pages/*.md');
 const project = projectPosts.filter(post => {
     return  post.frontmatter.title === activeProject;
 })[0];
 
-console.log(project);
+console.log(postsWithLifespan);
 
 let createFullDate = function(date, project) {
 
@@ -106,7 +108,7 @@ events.sort((a, b) => a.date.numerical - b.date.numerical);
                                             <li class="compare"  
                                             data-item 
                                             data-title={post.frontmatter.title}
-                                            hidden>{post.frontmatter.title} {post.frontmatter.lifespan.startDate.verb.toLowerCase()} {~~((event.date.numerical - startDate.numerical) / 1000000)} years ago</li>   
+                                            hidden={postsWithLifespan.length === 1 ? null : ''}>{post.frontmatter.title} {post.frontmatter.lifespan.startDate.verb.toLowerCase()} {~~((event.date.numerical - startDate.numerical) / 1000000)} years ago</li>   
                                         )
 
                                     } else if (endDate !== undefined && endDate.numerical !== undefined && event.date.numerical > endDate.numerical) {
@@ -115,7 +117,7 @@ events.sort((a, b) => a.date.numerical - b.date.numerical);
                                             <li class="compare" 
                                             data-item 
                                             data-title={post.frontmatter.title} 
-                                            hidden>{post.frontmatter.title} {post.frontmatter.lifespan.endDate.verb.toLowerCase()} {~~((event.date.numerical - endDate.numerical) / 1000000)} years ago</li>
+                                            hidden={postsWithLifespan.length === 1 ? null : ''}>{post.frontmatter.title} {post.frontmatter.lifespan.endDate.verb.toLowerCase()} {~~((event.date.numerical - endDate.numerical) / 1000000)} years ago</li>
                                         )
 
                                     }

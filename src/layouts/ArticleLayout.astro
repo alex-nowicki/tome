@@ -141,6 +141,10 @@ if (editedPostHTMLSections.length > 1){
 // Generate timeline HTML
 let timelineEvents = processEventsForTimeline(frontmatter);
 
+// If the post has a lifespan defined
+
+let postsWithLifespan = frontmatter.lifespan ? [Astro.props] : null;
+
 ---
 
 <BaseLayout pageTitle={frontmatter.title} activeProject={activeProject}>
@@ -192,7 +196,7 @@ let timelineEvents = processEventsForTimeline(frontmatter);
                 timelineEvents !== undefined && timelineEvents.length > 1 && (
                     <section class="timeline">
                         <h2>Timeline</h2>
-                        <Timeline activeProject={activeProject} events={timelineEvents} />
+                        <Timeline activeProject={activeProject} events={timelineEvents} postsWithLifespan={postsWithLifespan} />
                     </section>
                 )
             }

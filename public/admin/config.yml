@@ -32,8 +32,8 @@ collections:
         required: false
         fields:
           - {label: "Show Era Notation", name: "showNotation", widget: "boolean", default: false, required: false}
-          - {label: "Common Era Notation", name: "commonEraNotation", widget: "string", default: "CE", hint: "Default is CE.", required: false}
-          - {label: "Before Common Era Notation", name: "beforeCommonEraNotation", widget: "string", default: "BCE", hint: "Default is BCE.", required: false}
+          - {label: "Common Era Notation", name: "commonEraNotation", widget: "string", default: "CE", required: false}
+          - {label: "Before Common Era Notation", name: "beforeCommonEraNotation", widget: "string", default: "BCE", required: false}
 
 
   ##
