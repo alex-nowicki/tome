@@ -8,6 +8,13 @@ const { activeProject } = Astro.props;
 const { events } = Astro.props;
 const { postsWithLifespan } = Astro.props;
 
+const projectPosts = await Astro.glob('../pages/*.md');
+const project = projectPosts.filter(post => {
+    return  post.frontmatter.title === activeProject;
+})[0];
+
+console.log(project);
+
 let createFullDate = function(date, project) {
 
     if (!date.full){
@@ -36,7 +43,7 @@ let createFullDate = function(date, project) {
             date.numerical += date.month !== undefined ? date.month * 1000 : 0;
             date.numerical += date.day !== undefined ? date.day : 0;
             if (!date.isCommonEra) date.numerical * -1;
-            
+
         } else {
             date.numerical = -Infinity;
         }
@@ -47,16 +54,16 @@ let createFullDate = function(date, project) {
 
 // Generate a full date for each event
 events.map((event) => {
-    createFullDate(event.date, activeProject);
+    createFullDate(event.date, project);
 });
 
 // Generate a full date for each lifespan
 postsWithLifespan.map((post) => {
     if (post.frontmatter.lifespan.startDate){
-        createFullDate(post.frontmatter.lifespan.startDate, activeProject);
+        createFullDate(post.frontmatter.lifespan.startDate, project);
     }
     if (post.frontmatter.lifespan.endDate){
-        createFullDate(post.frontmatter.lifespan.endDate, activeProject);
+        createFullDate(post.frontmatter.lifespan.endDate, project);
     }
 })
 
