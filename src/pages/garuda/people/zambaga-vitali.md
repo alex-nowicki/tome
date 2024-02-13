@@ -14,7 +14,7 @@ events:
   - title: Birth Year
     date:
       year: 80
-- title: Assigned as Snow's Bodyguard
+  - title: Assigned as Snow's Bodyguard
     date:
       year: 112
 ---
