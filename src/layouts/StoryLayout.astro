@@ -2,7 +2,6 @@
 import IconArrow from "../components/IconArrow.astro";
 import IconBookmarks from "../components/IconBookmarks.astro";
 import BaseLayout from "./BaseLayout.astro";
-import SidePanel from "../components/SidePanel.astro";
 import CardGroup from "../components/CardGroup.astro";
 import Timeline from "../components/Timeline.astro";
 
@@ -168,7 +167,6 @@ let editedPostContent = detectMatches(postContent, searchArr, null);
 
 <BaseLayout pageTitle={frontmatter.title} activeProject={activeProject}>
     <main class="post">
-        <SidePanel activeProject={activeProject} activePost={frontmatter} />
         <article>
             <section class="header">
                 <div class="breadcrumbs">

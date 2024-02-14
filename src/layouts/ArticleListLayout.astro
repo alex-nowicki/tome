@@ -52,10 +52,17 @@ activeCollections.push('Uncollected');
 
 console.log(activeCollections);
 
+const pagePath = frontmatter.url.split('/');
+
 ---
 
 <BaseLayout pageTitle={activeProject} activeProject={activeProject}>
     <main>
+        <div class="breadcrumbs">
+            <a href="">{activeProject}</a>
+            <IconArrow />
+            <a href="">Articles</a>
+        </div>
         <h1>{activeProject} Articles</h1>
         <section class="article-list">
 

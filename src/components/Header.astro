@@ -1,41 +1,26 @@
 ---
 import Logo from "./LogoTome.astro";
 import Search from "./SearchBar.astro";
-import IconProjects from "./IconProjects.astro";
 
 const { activeProject } = Astro.props;
 
 // Generate list of projects
-const projectPages = await Astro.glob('../pages/*.md');
-const projects = [];
-for (const page of projectPages){
-    let project = {
-        url: page.url,
-        title: page.frontmatter.title
-    }
-    if (project.title !== activeProject){
-        projects.push(project);
-    }
-}
+// const projectPages = await Astro.glob('../pages/*.md');
+// const projects = [];
+// for (const page of projectPages){
+//     let project = {
+//         url: page.url,
+//         title: page.frontmatter.title
+//     }
+//     if (project.title !== activeProject){
+//         projects.push(project);
+//     }
+// }
 
 
 ---
 
 <header>
-    <nav class="global">
-        <Logo />
-        <a href="/" class={Astro.url.pathname === '/' && 'is-active'}>Home</a>
-        <a href="/projects" class={Astro.url.pathname === '/projects' && 'is-active'}>My Projects</a>
-    </nav>
+    <Logo />
     <Search activeProject={activeProject} />
-    {
-        activeProject && (
-            <nav class="project" hidden={activeProject ? null : ''}>
-                <p><IconProjects /><span>{activeProject}</span></p>
-                <a href={activeProject ? `/${activeProject.toLowerCase()}` : ''} class={Astro.url.pathname === `/${activeProject.toLowerCase()}` && 'is-active'}>Articles</a>
-                <a href={activeProject ? `/${activeProject.toLowerCase()}/timeline` : ''} class={Astro.url.pathname === `/${activeProject.toLowerCase()}/timeline` && 'is-active'}>Timeline</a>
-            </nav>    
-        )
-    }
-    
 </header>

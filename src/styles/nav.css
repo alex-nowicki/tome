@@ -1,15 +1,80 @@
 /*
-** SIDEPANEL
+** NAVIGATION
 ------------------------------*/
 
-nav.sidepanel {
+/*
+** GLOBAL
+------------------------------*/
+
+nav.global {
+    grid-area: nav-global;
+
+    background-color: var(--orange-15);
+    border-right: 1px solid var(--orange-30);
+
+    & ul {
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        list-style: none;
+        padding: 0;
+
+        & li {
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+            justify-content: center;
+            height: 4rem;
+            width: 100%;
+            font-size: 0.75rem;
+            font-weight: 500;
+
+            & a {
+                display: flex;
+                flex-flow: column nowrap;
+                align-items: center;
+                width: 100%;
+
+                &.is-active {
+                    border-right: 4px solid var(--orange-80);
+
+                }
+
+                & svg {
+                    width: 2rem;
+                    height: 2rem;
+                
+                    & :is(line, circle, path) {
+                        stroke: var(--gray-100);
+                    }
+                }
+            }
+
+        }
+
+        & hr {
+            padding: 0 1rem;
+            border: 1px solid var(--orange-45);
+            margin: 0;
+        }
+
+    }
+
+}
+
+
+/*
+** RECENT ARTICLES
+------------------------------*/
+
+nav.articles {
     --spacing: 0.75rem;
 
-    grid-area: nav;
+    grid-area: nav-articles;
     justify-self: end;
 
     width: clamp(240px, 300px, 360px);
-    padding: 2rem 0;
+    padding: 3rem;
 
     & h2 {
         font-size: 1.25rem;

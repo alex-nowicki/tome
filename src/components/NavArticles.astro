@@ -9,10 +9,9 @@ import IconThings from "./IconThings.astro";
 
 import TreeSection from "./TreeSection.astro";
 
-import '../styles/sidepanel.css';
+import '../styles/nav.css';
 
-const { activeProject } = Astro.props;
-const { activePost } = Astro.props;
+const { activeProject, activePost } = Astro.props;
 
 // Collect posts and filter by category
 const posts = await Astro.glob('../pages/*/*/*.md');
@@ -34,7 +33,7 @@ const thingsPosts = posts.filter(post => {
 
 ---
 
-<nav class="sidepanel">
+<nav class="articles">
 
     <h2>Recent Articles</h2>
     <hr />

@@ -5,16 +5,11 @@
 main.post {
     --detailsOverlap: 180px;
 
-    display: grid;
-    grid-template-columns:  calc(1fr + var(--detailsOverlap)) auto 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas:
-    "nav article .";
-    gap: 4rem;
+    grid-area: main / main / main / overflow;
 
     height: auto;
     width: auto;
-    margin: calc(100vw - 100%) 0;
+    margin: 0;
     padding: 3rem 3rem;
 }
 
@@ -24,7 +19,6 @@ main.post {
 ------------------------------*/
 
 article {
-    
     --spacing: 4rem;
 
     grid-area: article;
@@ -53,34 +47,6 @@ article {
         border-right: 1px solid var(--gray-10);
         border-left: 1px solid var(--gray-10);
         position: relative;
-
-        & .breadcrumbs {
-            grid-area: breadcrumbs;
-
-            display: flex;
-            flex-flow: row nowrap;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-
-            & a {
-                font-size: 0.875rem;
-                color: var(--teal-80);
-
-                &:last-child::after {
-                    content: none;
-                    margin: 0;
-                }
-            }
-        
-            & svg {
-                width: 0.5rem;
-
-                & path {
-                    stroke: var(--teal-80);
-                }
-            }
-        }
 
         & .title {
             grid-area: title;

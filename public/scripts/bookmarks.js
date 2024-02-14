@@ -97,14 +97,14 @@ let initBookmarks = function() {
 
     if (main.classList.contains('post')){
 
-        // Get the sidepanel element
-        let sidepanel = document.querySelector('.sidepanel');
+        // Get the article nav element
+        let articlesNav = document.querySelector('nav.articles');
 
-        // If sidepanel is present, init its bookmarks
-        if (sidepanel){
+        // If the article nav is present, init its bookmarks
+        if (articlesNav){
 
             // Get the bookmarks section elements
-            let bookmarksSection = sidepanel.querySelector('.bookmarks');
+            let bookmarksSection = articlesNav.querySelector('.bookmarks');
             let bookmarksSectionToggle = bookmarksSection.querySelector('.accordion-toggle');
             let bookmarksSectionPanel = bookmarksSection.querySelector('.bookmarks-panel');
 

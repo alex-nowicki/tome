@@ -3,6 +3,7 @@
 ------------------------------*/
 
 .article-list {
+    grid-area: content;
 
     & > [data-filter-group] {
         display: flex;

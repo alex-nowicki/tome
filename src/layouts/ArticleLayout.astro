@@ -1,9 +1,8 @@
 ---
 import IconArrow from "../components/IconArrow.astro";
 import IconBookmarks from "../components/IconBookmarks.astro";
-import IconCollections from "../components/IconCollections.astro";
+import IconCollections from "../components/IconArticles.astro";
 import BaseLayout from "./BaseLayout.astro";
-import SidePanel from "../components/SidePanel.astro";
 import CardGroup from "../components/CardGroup.astro";
 import Timeline from "../components/Timeline.astro";
 
@@ -147,9 +146,8 @@ let postsWithLifespan = frontmatter.lifespan ? [Astro.props] : null;
 
 ---
 
-<BaseLayout pageTitle={frontmatter.title} activeProject={activeProject}>
+<BaseLayout pageTitle={frontmatter.title} activeProject={activeProject} activePost={frontmatter}>
     <main class="post">
-        <SidePanel activeProject={activeProject} activePost={frontmatter} />
         <article>
             <section class="header">
                 <div class="breadcrumbs">

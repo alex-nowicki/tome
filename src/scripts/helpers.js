@@ -31,37 +31,36 @@ export const dateFormatter = new Intl.DateTimeFormat('en-US', {
 */
 export const getCatIconAndLabel = function (category) {
     let svgs = {
-        people: `<svg class="icon icon-category xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        people: `<svg class="icon icon-category" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <circle vector-effect="non-scaling-stroke" cx="12" cy="5.5" r="4.5"/>
                     <path vector-effect="non-scaling-stroke" d="m2 22.18 2.32-6.95c.41-1.23 1.55-2.05 2.85-2.05h9.68c1.29 0 2.44.83 2.85 2.05l2.32 6.95"/>
                 </svg>`,
-        groups: `<svg class="icon icon-category xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        groups: `<svg class="icon icon-category" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <circle vector-effect="non-scaling-stroke" cx="15.08" cy="15.08" r="7.92"/>
                     <circle vector-effect="non-scaling-stroke" cx="8.92" cy="8.92" r="7.92"/>
                 </svg>`,
-        places: `<svg class="icon icon-category xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        places: `<svg class="icon icon-category" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <path vector-effect="non-scaling-stroke" d="M11.93 5.86h.01c1.78 0 3.23 1.45 3.24 3.24 0 1.79-1.44 3.25-3.23 3.25h-.03c-1.78 0-3.23-1.46-3.23-3.25s1.45-3.24 3.24-3.24Z"/>
                     <path vector-effect="non-scaling-stroke" d="M12 1c4.5 0 8.15 3.69 8.15 8.23 0 1.97-.29 3.33-1.39 5.12-.83 1.35-4.24 5.96-5.88 8.16-.44.59-1.32.59-1.76 0-1.63-2.2-5.05-6.81-5.88-8.16-1.11-1.79-1.4-3.15-1.39-5.12C3.85 4.69 7.5 1 12 1Z"/>
                 </svg>`,
-        events: `<svg class="icon icon-category xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        events: `<svg class="icon icon-category" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <circle vector-effect="non-scaling-stroke" cx="12" cy="12" r="11"/>
                     <path vector-effect="non-scaling-stroke" d="M11.5 12.5V5M11.5 12.5h6"/>
                 </svg>`,
-        things: `<svg class="icon icon-category xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        things: `<svg class="icon icon-category" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <path vector-effect="non-scaling-stroke" d="m1.5 5.63 10.5 4.7M12 1 1.5 5.63v12.74L12 23l10.5-4.63V5.63L12 1zM22.5 5.63 12 10.33M12 10.33V23"/>
                 </svg>`,
-        projects:   `<svg class="icon icon-category xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        projects:   `<svg class="icon icon-category" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path vector-effect="non-scaling-stroke" d="M17 23V2"/>
                         <path vector-effect="non-scaling-stroke" d="M5.5 2H4c-.55 0-1 .45-1 1v19c0 .55.45 1 1 1h16c.55 0 1-.45 1-1V3c0-.55-.45-1-1-1h-7.5"/>
                         <path vector-effect="non-scaling-stroke" d="M6.81 10.79 8.89 9.4c.07-.04.15-.04.22 0l2.08 1.39c.13.09.31 0 .31-.17V1.2c0-.11-.09-.2-.2-.2H6.7c-.11 0-.2.09-.2.2v9.43c0 .16.18.26.31.17Z"/>
                     </svg>`,
-        bookmarks:  `<svg class="icon icon-category xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        bookmarks:  `<svg class="icon icon-category" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path vector-effect="non-scaling-stroke" d="m4.84 22.61 6.82-6.3c.19-.18.49-.18.68 0l6.82 6.3c.32.3.84.07.84-.37V1.5c0-.28-.22-.5-.5-.5h-15c-.28 0-.5.22-.5.5v20.75c0 .44.52.66.84.37Z"/> 
                     </svg>`,
-        collections: `<svg class="icon icon-category xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <path vector-effect="non-scaling-stroke" d="M17 6V1.81c0-.45-.37-.81-.83-.81H2.83c-.46 0-.83.36-.83.81v15.38c0 .45.37.81.83.81H7"/>
-                        <path vector-effect="non-scaling-stroke" d="M7.83 6c-.46 0-.83.36-.83.81v15.38c0 .45.37.81.83.81h13.33c.46 0 .83-.36.83-.81V6.81c0-.45-.37-.81-.83-.81H7.83Z"/>
-                        <path vector-effect="non-scaling-stroke" d="M11.5 10.5h6M11.5 14.5h6M11.5 18.5h4"/>
+        collections: `<svg class="icon icon-category" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M13.83 1.69 2.98 12.53c-.08.08-.13.18-.14.28l-1.3 9.07c-.05.33.24.61.57.57l9.07-1.3c.11-.02.21-.06.28-.14L22.3 10.17c.2-.2.2-.51 0-.71l-7.77-7.77c-.2-.2-.51-.2-.71 0Z"/>
+                        <circle cx="7.82" cy="16.18" r="2"/>
                     </svg>`
     }
     let icon;

@@ -2,13 +2,11 @@
 
 import BaseLayout from "./BaseLayout.astro";
 import Timeline from "../components/Timeline.astro";
-import IconCloseCircle from "../components/IconCloseCircle.astro";
 import IconClose from "../components/IconClose.astro";
+import IconArrow from "../components/IconArrow.astro";
 import { getCatIconAndLabel } from "../scripts/helpers.js"
 
-const { activeProject } = Astro.props;
-const { projectPosts } = Astro.props;
-const { events } = Astro.props;
+const { activeProject, projectPosts, events } = Astro.props;
 
 let activeCategories = [...new Set(events.map(a => a.postCategory))];
 
@@ -38,6 +36,11 @@ let postsWithLifespan = projectPosts.filter((post) => {
 
 <BaseLayout pageTitle={activeProject} activeProject={activeProject}>
     <main>
+        <div class="breadcrumbs">
+            <a href="./">{activeProject}</a>
+            <IconArrow />
+            <a href="">Timeline</a>
+        </div>
         <h1>{activeProject} Timeline</h1>
         <section class="timeline">
 

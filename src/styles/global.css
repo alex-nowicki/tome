@@ -66,8 +66,13 @@ html {
 
 body {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 4rem 1fr var(--contentWidth) 1fr 4rem;
     grid-template-rows: auto 1fr auto;
+    grid-template-areas: 
+    "header header header header header"
+    "nav-global nav-articles main overflow ."
+    "footer footer footer footer footer";
+
     height: 100vh;
     width: 100%;
     background-color: var(--gray-5);
@@ -92,7 +97,8 @@ body {
 
 h1 {
     font-size: 2.5rem;
-    font-weight: 700;   
+    font-weight: 700;
+    margin: 0 0 1.5rem;   
 }
 
 h2 {
@@ -513,11 +519,13 @@ a {
 
 
 header {
+    grid-area: header;
+
     display: grid;
     grid-template-columns: 1fr minmax(450px, 900px) 1fr;
     grid-template-rows: 5rem;
     grid-template-areas:
-    "nav-global search nav-project";
+    "logo search .";
     align-items: center;
 
     background-color: var(--gray-100);
@@ -526,88 +534,20 @@ header {
     position: relative;
     z-index: 100;
 
-    & nav {
-        display: flex;
-        flex-flow: row nowrap;
-        align-items: center;
-        gap: 1rem;
-        padding: 0 2rem;
+    & .logo {
+        grid-area: logo;
+        width: 4.5rem;
+        margin-left: 2rem;
 
-        & .logo {
-            grid-area: nav;
-            width: 4.5rem;
-            margin-right: 1rem;
-
-            & path.typo {
-                fill: white;
-            }
-            
-            & path.line {
-                fill: var(--orange-60);
-            }
+        & path.typo {
+            fill: white;
         }
         
-        & a {
-            font-size: 1rem;
-            font-weight: 600;
-            color: white;
-            text-decoration: none;
-            
-            &:visited {
-                color: white;
-            }
-
-            &.is-active {
-                color: var(--orange-60);
-            }
-        }
-        
-        & :is(a, a:visited):hover {
-            color: var(--orange-60);
-        }
-        
-        & p {
-            color: white;
-            margin: 0;
-        }
-        
-        & .icon :is(path, line, circle){
-            stroke: var(--orange-60);
-            stroke-width: 1.5px;
-        }
-        
-        &.global {
-            grid-area: nav-global;
-        }
-        
-        &.project {
-            grid-area: nav-project;
-            justify-self: end;
-
-            & p {
-                display: flex;
-                flex-flow: row nowrap;
-                align-items: center;
-                padding: 0 1rem 0 0 ;
-                color: white;
-                font-weight: 600;
-                border-right: 2px solid var(--teal-60);
-            }
-            
-            & .icon {
-                margin-right: 0.5rem;
-
-                & path {
-                    stroke: var(--teal-60);
-                }
-            }
-                        
-            & a {
-                font-size: 0.875rem;
-            }
+        & path.line {
+            fill: var(--orange-60);
         }
     }
-
+        
     & [data-search-group] {
         grid-area: search;
         
@@ -778,8 +718,10 @@ header {
 ------------------------------*/
 
 main {
-    width: var(--contentWidth);
+    grid-area: main;
+
     margin: 0 auto;
+    width: 100%;
     padding: 3rem 0;
 }
 
@@ -797,10 +739,45 @@ main > section {
 
 
 /*
+** BREADCRUMBS
+------------------------------*/
+
+.breadcrumbs {
+    grid-area: breadcrumbs;
+
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+
+    & a {
+        font-size: 0.875rem;
+        color: var(--teal-80);
+
+        &:last-child::after {
+            content: none;
+            margin: 0;
+        }
+    }
+
+    & svg {
+        width: 0.5rem;
+
+        & path {
+            stroke: var(--teal-80);
+        }
+    }
+}
+
+
+/*
 ** FOOTER
 ------------------------------*/
 
 footer {
+    grid-area: footer;
+
     background-color: var(--teal-80);
     display: flex;
     flex-flow: column nowrap;
