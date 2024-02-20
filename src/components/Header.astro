@@ -1,5 +1,6 @@
 ---
 import Logo from "./LogoTome.astro";
+import NavGlobal from "./NavGlobal.astro";
 import Search from "./SearchBar.astro";
 
 const { activeProject } = Astro.props;
@@ -22,5 +23,6 @@ const { activeProject } = Astro.props;
 
 <header>
     <Logo />
+    <NavGlobal activeProject={activeProject} />
     <Search activeProject={activeProject} />
 </header>

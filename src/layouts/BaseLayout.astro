@@ -14,7 +14,7 @@ const { pageTitle, activeProject, activePost } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
@@ -24,7 +24,6 @@ const { pageTitle, activeProject, activePost } = Astro.props;
   </head>
   <body>
     <Header activeProject={activeProject} />
-    <NavGlobal activeProject={activeProject}/>
     {
 
       activePost && (

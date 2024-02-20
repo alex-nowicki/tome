@@ -3,8 +3,11 @@ import IconProjects from "./IconProjects.astro";
 import IconHome from "./IconHome.astro";
 import IconArticles from "./IconArticles.astro";
 import IconTimeline from "./IconTimeline.astro";
+import IconSearch from "./IconSearch.astro";
+import IconArrow from "./IconArrow.astro";
+import SearchBar from "./SearchBar.astro";
 
-import '../styles/nav.css';
+import '../styles/header.css';
 
 const { activeProject } = Astro.props;
 const { activePost } = Astro.props;
@@ -13,18 +16,17 @@ const { activePost } = Astro.props;
 
 <nav class="global">
 
-    <ul class="tree accordion">
-        <li><a href="/" class={Astro.url.pathname === '/' && 'is-active'} title="Home"><IconHome /></a></li>
-        <hr>
-        <li><a href="/projects" class={Astro.url.pathname === '/projects' && 'is-active'} title="My Project"><IconProjects /></a></li>
-        
+    <ul class="links">
+        <li><a href="/" class={Astro.url.pathname === '/' && 'is-active'} title="Home"><IconHome /><span>Home</span></a></li>        
         {
             activeProject && (
 
-                <hr/>
-                <li><a href={activeProject ? `/${activeProject.toLowerCase()}` : ''} class={Astro.url.pathname === `/${activeProject.toLowerCase()}` && 'is-active'} title={activeProject + ' Articles'}><IconArticles /></a></li>
-                <hr>
-                <li><a href={activeProject ? `/${activeProject.toLowerCase()}/timeline` : ''} class={Astro.url.pathname === `/${activeProject.toLowerCase()}/timeline` && 'is-active'} title={activeProject + ' Timeline'}><IconTimeline /></a></li>
+                <hr class="project-separator">
+
+                <!-- <h2><IconProjects /><span>{activeProject}</span></h2> -->
+                <h2>{activeProject}<IconArrow /></h2>
+                <li><a href={activeProject ? `/${activeProject.toLowerCase()}` : ''} class={Astro.url.pathname === `/${activeProject.toLowerCase()}` && 'is-active'} title={activeProject + ' Articles'}><IconArticles /><span>Articles</span></a></li>
+                <li><a href={activeProject ? `/${activeProject.toLowerCase()}/timeline` : ''} class={Astro.url.pathname === `/${activeProject.toLowerCase()}/timeline` && 'is-active'} title={activeProject + ' Timeline'}><IconTimeline /><span>Timeline</span></a></li>
 
             )
         }

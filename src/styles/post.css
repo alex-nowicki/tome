@@ -293,3 +293,61 @@ section.related {
 
     margin-top: var(--spacing);
 }
+
+
+
+@media screen and (width <= 1280px) {
+
+    nav.articles {
+        display: none;
+    }
+
+    main.post {
+        grid-area: main;
+        padding: 3rem 0;
+
+        & article {
+            --spacing: 3rem;
+
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto auto auto;
+
+            & .header {
+                grid-column: 2 / 3;
+            }
+
+            & .details {
+                grid-column: 1 / 4;
+                columns: 20ch auto;
+                padding: 2rem;
+                box-shadow: none;
+                border-radius: 0;
+                border-bottom: 1px solid var(--teal-15);
+
+                & h2 {
+                    column-span: all;
+                }
+
+                & h3 {
+                    break-after: avoid;
+                }
+
+                & h2 + h3 {
+                    margin-top: 0;
+                }
+
+                & ul {
+                    break-inside: avoid;
+                }
+            }
+
+            & .content {
+                grid-column: 2 / 3;
+                grid-row: 3 / 4;
+                padding: var(--spacing);
+            }
+        }
+
+    }
+
+}

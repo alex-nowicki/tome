@@ -40,6 +40,7 @@
     --teal-60: #739baa;
     --teal-45: #96b4c0; 
     --teal-30: #b9cdd5; 
+    --teal-20: #d0dee3; 
     --teal-15: #dce6ea; 
     --teal-10: #e8eef1; 
     --teal-5: #f3f7f8; 
@@ -47,9 +48,9 @@
     --boxShadow: 0 2px 0;
     --borderRadius: 0.5rem;
     --contentWidth: 900px;
+    --padding: 3rem;
 
 }
-
 
 
 /*
@@ -66,12 +67,12 @@ html {
 
 body {
     display: grid;
-    grid-template-columns: 4rem 1fr var(--contentWidth) 1fr 4rem;
+    grid-template-columns: 1fr var(--contentWidth) 1fr;
     grid-template-rows: auto 1fr auto;
     grid-template-areas: 
-    "header header header header header"
-    "nav-global nav-articles main overflow ."
-    "footer footer footer footer footer";
+    "header header header"
+    "nav-articles main overflow"
+    "footer footer footer";
 
     height: 100vh;
     width: 100%;
@@ -511,208 +512,6 @@ a {
 }
 
 
-
-
-/*
-** HEADER
-------------------------------*/
-
-
-header {
-    grid-area: header;
-
-    display: grid;
-    grid-template-columns: 1fr minmax(450px, 900px) 1fr;
-    grid-template-rows: 5rem;
-    grid-template-areas:
-    "logo search .";
-    align-items: center;
-
-    background-color: var(--gray-100);
-    padding: 0;
-    overflow-y: visible;
-    position: relative;
-    z-index: 100;
-
-    & .logo {
-        grid-area: logo;
-        width: 4.5rem;
-        margin-left: 2rem;
-
-        & path.typo {
-            fill: white;
-        }
-        
-        & path.line {
-            fill: var(--orange-60);
-        }
-    }
-        
-    & [data-search-group] {
-        grid-area: search;
-        
-        position: relative;
-
-        & .search-form {
-            position: relative;
-            overflow-y: visible;
-            background-color: var(--gray-5);
-            height: 3rem;
-            width: 100%;
-            border: none;
-            border-radius: var(--borderRadius);
-            box-shadow: 0 4px 0 var(--orange-60);
-        }
-        
-        & .search-form:has(+ .search-results:not([hidden])) {
-            border-radius: var(--borderRadius) var(--borderRadius) 0 0;
-        }
-        
-        & .search-input {
-            background-color: transparent;
-            height: 100%;
-            width: 100%;
-            padding: 0 3.5rem 0 1rem;
-            border: none;
-
-            &:focus {
-                outline: none;
-            }
-        }
-        
-        & .search-submit {
-            display: flex;
-            position: absolute;
-            right: 1rem;
-            top: 0.75rem;
-
-            & .search-submit-icon {
-                width: 1.5rem;
-
-                & :is(circle, line) {
-                    fill: none;
-                    stroke: var(--orange-60);
-                    stroke-width: 3px;
-                }
-            }
-        }
-        
-        & .search-results {
-            grid-area: results;
-        
-            position: absolute;
-            top: 3rem;
-            width: 100%;
-        
-            display: flex;
-            flex-flow: column nowrap;
-            align-items: center;
-            margin: 0;
-            padding: 0;
-            list-style: none;
-
-            & li {
-                display: flex;
-                flex-flow: row nowrap;
-                align-items: center;
-                justify-content: space-between;
-                width: 100%;
-                text-decoration: none;
-
-                &.error {
-                    padding-left: 1rem;
-                    font-weight: 500;
-                    background-color: var(--teal-15);
-                    box-shadow: var(--boxShadow) var(--teal-30);
-                    border-radius: 0 0 var(--borderRadius) var(--borderRadius);
-                    border-top: 2px solid var(--teal-30);
-                    border-right: 1px solid var(--teal-30);
-                    border-left: 1px solid var(--teal-30);
-                }
-                
-                & svg {
-                    width: 1.125rem;
-                }
-                
-                & > a {
-                    display: flex;
-                    flex-flow: row nowrap;
-                    align-items: center;
-                    gap: 1rem;
-                    text-decoration: none;
-                    color: var(--gray-100);
-                    font-weight: 500;
-                    flex-grow: 1;
-                    line-height: 1;
-                    padding: 1rem 1.5rem 1rem 0;
-                    background-color: var(--teal-15);
-                    border-top: 2px solid var(--teal-30);
-                    border-right: 1px solid var(--teal-30);
-                    border-left: 1px solid var(--teal-30);
-
-                    &:is(:hover, :focus, :focus-visible) {
-                        color: white;
-                        background-color: var(--teal-80);
-                        border-top-color: var(--teal-100);
-                        border-right-color: var(--teal-80);
-                        border-left-color: var(--teal-80);
-
-                        & svg :is(path, circle, line){
-                            stroke: white;
-                        }
-                        
-                        & .date {
-                            color: white;
-                        }
-                    }
-
-                    & .title {
-                        flex-grow: 1;
-                    }
-                    
-                    & .date {
-                        font-size: 0.875rem;
-                        color: var(--teal-80);
-                    }
-
-                    & .icon-group {
-                        display: inline-flex;
-                        align-items: center;
-                        gap: 0.375rem;
-                        padding: 0 1rem;
-                        border-right: 2px solid var(--teal-30);
-
-                        & svg :is(path, circle, line) {
-                            stroke-width: 1.5px;
-                        }
-                    }
-                }
-
-                &:last-child > a {
-                    border-radius: 0 0 var(--borderRadius) var(--borderRadius);
-                    box-shadow: var(--boxShadow) var(--teal-30);
-    
-                    &:is(:hover, :focus, :focus-visible) {
-                        box-shadow: var(--boxShadow) var(--teal-100);
-                    }
-                }
-
-                &:last-child:not(.error):hover {
-                    box-shadow: var(--boxShadow) var(--teal-100);
-                    border-radius: 0 0 var(--borderRadius) var(--borderRadius);
-                }
-
-                &:not(:last-child) > a:is(:hover, :focus, :focus-visible) {
-                    margin-bottom: -2px;
-                    border-bottom: 2px solid var(--teal-100);
-                    z-index: 1;
-                }
-            }
-        }
-    }
-}
-
-
 /*
 ** MAIN
 ------------------------------*/
@@ -722,11 +521,15 @@ main {
 
     margin: 0 auto;
     width: 100%;
-    padding: 3rem 0;
+    padding: var(--padding) 0;
 }
 
 main > section {
     margin-bottom: 4rem;
+}
+
+main > *:last-child {
+    margin-bottom: 0 !important;
 }
 
 .home .heading-link-group {
@@ -783,7 +586,7 @@ footer {
     flex-flow: column nowrap;
     align-items: center;
     
-    padding: 2rem 0;
+    padding: calc(var(--padding) / 2) 0;
 }
 
 .logo-nowicki {
@@ -819,4 +622,75 @@ svg {
 [hidden] {
     pointer-events: none !important;
     display: none !important;
+}
+
+
+
+
+/*
+** RESPONSIVE
+------------------------------*/
+
+/* LAPTOPS AND LARGE LANDSCAPE TABLETS */
+
+
+@media screen and (width <= 1280px) {
+    body {
+        grid-template-columns: var(--padding) 1fr var(--padding);
+        grid-template-rows: auto 1fr auto;
+        grid-template-areas: 
+        "header header header"
+        ". main ."
+        "footer footer footer";
+    }
+}
+
+
+@media screen and (720px <= width <= 1024px) and (orientation: landscape) {
+    :root {
+        --contentWidth: 80svmax;
+    }
+
+    html {
+        font-size: 14px;
+    }
+}
+
+/* LARGE PORTRAIT TABLETS */
+
+/* @media screen and (720px <= width <= 1024px) and (orientation: portrait) { */
+@media screen and (width <= 1024px) and (orientation: portrait) {
+    :root {
+        --contentWidth: 60svmin;
+    }
+
+    html {
+        font-size: 14px;
+    }
+}
+
+/* SMALL LANSCAPE TABLETS AND PHONES */
+
+@media screen and (width <= 720px) and (orientation: landscape) {
+    :root {
+        --contentWidth: 80svmax;
+        --padding: 2rem;
+    }
+
+    html {
+        font-size: 14px;
+    }
+}
+
+/* SMALL PORTRAIT TABLETS AND PHONES */
+
+@media screen and (width <= 720px) and (orientation: portrait) {
+    :root {
+        --contentWidth: 80svmin;
+        --padding: 2rem;
+    }
+
+    html {
+        font-size: 14px;
+    }
 }

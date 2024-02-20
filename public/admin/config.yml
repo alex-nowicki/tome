@@ -24,7 +24,7 @@ collections:
 
     fields:
       - {label: "Layout", name: "layout", widget: "hidden", default: "../../../layouts/ArticleListLayout.astro"}
-      - {label: "Title", name: "title", widget: "string", pattern: [".{1,40}", "Must be no longer than 40 characters"], hint: "Title must be no longer than 40 characters."}
+      - {label: "Title", name: "title", widget: "string", pattern: [".{1,30}", "Must be no longer than 30 characters"], hint: "Title must be no longer than 30 characters."}
       - {label: "Description", name: "description", widget: "text", pattern: [".{1,120}", "Must be no longer than 120 characters"], hint: "Description must be no longer than 120 characters."}
       - label: "Timeline Options"
         name: "timeline"
