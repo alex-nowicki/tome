@@ -699,7 +699,30 @@ document.addEventListener('keydown', (event) => {
 
 })
 
+document.addEventListener('click', (event) => {
 
+    let target = event.target;
+
+    if (target.matches('.show-more')){
+
+        let list = target.closest('[data-list-bin]');
+        
+        if (!list) return;
+
+        let hiddenItems = list.querySelectorAll('[data-item][hidden]');
+
+        if (hiddenItems.length > 0){
+
+            for (let i = 0; i < hiddenItems.length && i < 5; i++) {
+                hiddenItems[i].removeAttribute('hidden');
+            }
+
+        }
+
+    }
+
+
+})
 
 
 // Check url for query string parameters

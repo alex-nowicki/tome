@@ -11,6 +11,77 @@
 //
 
 /**
+ * Update an existing local storage item
+ * @param  {String} id The name of the local storage item
+ * @param  {Object} data The data to update
+ * @param  {String} updateType The type of update to perform
+ * @param  {Number} max The maximum number of data items per id
+ */
+let updateStorage = function ({id, data, updateType = 'add', max = null}){
+
+    // Get item from local storage and parse
+    let storedItem = localStorage.getItem(id);
+    storedItem = JSON.parse(storedItem);
+
+    // Check if the data already exists
+    let itemIndex = storedItem.findIndex(item => item.url === data.url);
+    if (itemIndex !== -1){
+
+        // If update type is toggle
+        if (updateType === 'toggle'){
+
+            // Remove data from item
+            storedItem.splice(itemIndex, 1);
+
+        }
+        
+    } else {
+    
+        // Otherwise, add data to item
+        storedItem.push(data);
+    
+    }
+
+    // Check if item is not empty
+    if (storedItem.length > 0){
+
+        if (max) {
+            console.log('before sort', storedItem);
+            storedItem.sort((a, b) => {
+                a.date - b.date
+            });
+            console.log('after sort', storedItem);
+        }
+
+        // If so, stringify and store in local storage
+        storedItem = JSON.stringify(storedItem);
+        localStorage.setItem('bookmarks', storedItem);
+
+    } else {
+
+        // Otherwise, remove item from local storage
+        localStorage.removeItem('bookmarks');
+    
+    }
+}
+
+/**
+ * Set a local storage item
+ * @param  {String} id The name of the local storage item
+ * @param  {Object} data The data to set
+ */
+let setStorage = function ({id, data}){
+
+    // Create an empty array, and push the data to it
+    let storedItem = [];
+    storedItem.push(data);
+
+    // Stringify and store in local storage
+    storedItem = JSON.stringify(storedItem);
+    localStorage.setItem(id, storedItem);
+}
+
+/**
  * Get bookmarks and update page
  */
 let initBookmarks = function() {
@@ -158,7 +229,7 @@ let initBookmarks = function() {
  * Update bookmarks on click events
  * @param  {Event} event The event object
  */
-let bookmarksClickHandler = function(event) {
+let updateBookmarks = function(event) {
 
     // Only run on bookmark toggles
     if (!event.target.matches('.bookmark-toggle')) return;
@@ -171,72 +242,23 @@ let bookmarksClickHandler = function(event) {
         dateBookmarked: new Date()
     }
 
-    /**
-     * Update an existing local storage item
-     * @param  {String} id The name of the local storage item
-     * @param  {Object} data The data to update
-     */
-    let updateStorage = function (id, data){
-
-        // Get item from local storage and parse
-        let storedItem = localStorage.getItem(id);
-        storedItem = JSON.parse(storedItem);
-
-        // Check if the data already exists
-        let itemIndex = storedItem.findIndex(item => item.url === data.url);
-        if (itemIndex !== -1){
-            
-            // If so, remove data from item
-            storedItem.splice(itemIndex, 1);
-
-        } else {
-        
-            // Otherwise, add data to item
-            storedItem.push(data);
-      
-        }
-
-        // Check if item is not empty
-        if (storedItem.length > 0){
-
-            // If so, stringify and store in local storage
-            storedItem = JSON.stringify(storedItem);
-            localStorage.setItem('bookmarks', storedItem);
-
-        } else {
-
-            // Otherwise, remove item from local storage
-            localStorage.removeItem('bookmarks');
-        
-        }
-    }
-
-    /**
-     * Set a local storage item
-     * @param  {String} id The name of the local storage item
-     * @param  {Object} data The data to set
-     */
-    let setStorage = function (id, data){
-
-        // Create an empty array, and push the data to it
-        let storedItem = [];
-        storedItem.push(data);
-
-        // Stringify and store in local storage
-        storedItem = JSON.stringify(storedItem);
-        localStorage.setItem(id, storedItem);
-    }
-
     // Check if local storage has item
     if (localStorage.getItem('bookmarks')){
 
         // If so, update with new data
-        updateStorage('bookmarks', post);
+        updateStorage({
+            id: 'bookmarks',
+            data: post,
+            updateType: 'toggle'
+        });
 
     } else {
       
         // Otherwise, create a new item
-        setStorage('bookmarks', post);
+        setStorage({
+            id: 'bookmarks',
+            data: post
+        });
     
     }
 
@@ -244,14 +266,53 @@ let bookmarksClickHandler = function(event) {
     initBookmarks();
 
 }
-  
+
+/**
+ * Update recently accessed articles on page load
+ * @param  {Event} event The event object
+ */
+let updateRecentArticles = function(event) {
+
+    let bookmarkBtn = document.querySelector('main.post article section.header .bookmark-toggle');
+
+    if (!bookmarkBtn) return;
+
+    let post = {
+        title: bookmarkBtn.dataset.title,
+        url: bookmarkBtn.dataset.url,
+        project: bookmarkBtn.dataset.project,
+        dateVisited: new Date()
+    }
+
+    // Check if local storage has item
+    if (localStorage.getItem('recent')){
+
+        // If so, update with new data
+        updateStorage({
+            id: 'recent',
+            data: post,
+            max: 6
+        });
+
+    } else {
+        
+        // Otherwise, create a new item
+        setStorage({
+            id: 'recent',
+            data: post
+        });
+    
+    }
+
+}
   
 //
 // Inits & Event Listeners
 //
 
 initBookmarks();
-document.addEventListener('click', bookmarksClickHandler);
+document.addEventListener('click', updateBookmarks);
+updateRecentArticles();
 
   
 //

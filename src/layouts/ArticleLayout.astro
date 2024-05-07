@@ -26,6 +26,8 @@ const activePost = frontmatter.url;
 // Get active post content
 const postHTML = await Astro.props.compiledContent();
 
+console.log('postHTML', postHTML);
+
 // Get project posts
 const posts = await Astro.glob('../pages/*/*/*.md');
 const projectPosts = posts.filter(post => {
@@ -65,8 +67,10 @@ searchArr.sort((a, b) => b.term.length - a.term.length);
  * @return {Object} an object including the edited string and updated relevance score object
  */
 let detectMatches = function(string, terms, relevance){
+
     let editedString = string;
     let editedRelevance;
+
     if (relevance){
         editedRelevance = relevance;
     } else {
@@ -74,14 +78,41 @@ let detectMatches = function(string, terms, relevance){
     }
     
     for (const obj of terms){
+
         let post = {...obj.post};
         let term = obj.term;
-        // Replace quote marks with regex that captures all types
+
+        // Replace all quote mark type in search term with standard quote marks
         term = term.replaceAll("'", "['’]");
-        term = term.replaceAll('"', '[“”"]');
-        let pattern = `(?<!<a[^>]*)(?<!<[^>]*)(${term})(?![^<]*<\/a>)`;
+        term = term.replaceAll('"', '[“”"]'); 
+
+        // Create the regex pattern
+        let pattern = `(?<!<span class="link-group"[^<]*)(?<!<[^>]*)(${term})(?![^>]*<\/a>)(?![^>]*(?:<\/span>[^<]*){2,})`;
+        /*
+        (?<!<span class="link-group"[^<]*)
+        Ignore term if it ispreceeded by '<span class="link-group"' 
+        GREP: Negative lookbehind
+        ~~~
+        (?<!<[^>]*)
+        Ignore term if it is preceeded by a '<', unless between it and the '<' is a '>'
+        ex: '<term>' will not match, but '<>term' will match
+        GREP: Negative lookbehind
+        ~~~ 
+        (${term})
+        GREP: Capture group
+        ~~~
+        (?![^>]*<\/a>)
+        Ignore term if it is followed by '</a>', unless between it and '</a>' is a '>' 
+        GREP: Negative lookahead
+        ~~~
+        (?![^>]*(?:<\/span>[^<]*){2,})
+        Ignore term if it is followed by 2 or more '</span>' (accounting for character in between closing tags), unless between it and the closing tags is a '>'
+        ex: term</span></span> will not match, </span>term</span> will match
+        GREP: Negative lookahead
+        */
         let flags = 'gi'; // g for global and i for case-insensitive
         let regex = new RegExp(pattern, flags);
+
         // Detect matches and add to relevance score
         let matches = editedString.match(regex);
         if (matches && matches.length > 0){
@@ -93,6 +124,7 @@ let detectMatches = function(string, terms, relevance){
                 editedRelevance.push(post);
             }
         }
+
         // Wrap matches in links
         let replaceString = obj.description ? 
             `
@@ -110,6 +142,7 @@ let detectMatches = function(string, terms, relevance){
 
         : `<a href="${obj.url}">$&</a>`;
         editedString = editedString.replaceAll(regex, replaceString);
+
     }
 
     return {

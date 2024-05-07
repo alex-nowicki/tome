@@ -20,6 +20,19 @@ header {
     position: relative;
     z-index: 100;
 
+    /* LAPTOPS AND LARGE LANDSCAPE TABLETS */
+    @media screen and (width <= 1024px) and (orientation: portrait) {
+        & {
+            grid-template-columns: auto auto 1fr;
+            grid-template-rows: 3.5rem;
+            align-content: center;
+    
+            padding: 0 0 0 1rem;
+            transition: grid-template-columsn 0.5s ease;
+        }
+    }
+    
+
 
     /*
     ** LOGO
@@ -35,6 +48,14 @@ header {
         
         & path.line {
             fill: var(--orange-60);
+        }
+
+        /* LAPTOPS AND LARGE LANDSCAPE TABLETS */
+        @media screen and (width <= 1024px) and (orientation: portrait) {
+            & {
+                margin: 0;
+                width: 3rem;
+            }
         }
     }
 
@@ -106,11 +127,14 @@ header {
 
                     & span {
                         margin-left: 0.75rem;
+
+                        @media screen and (width <= 1366px) {
+                            & {
+                                display: none;
+                            }
+                        }
                     }
                 }
-
-
-
             }
 
             & h2 {
@@ -144,6 +168,26 @@ header {
                 background-color: var(--orange-60);
                 border: none;
                 margin: 0;
+            }
+        }
+
+        /* LAPTOPS AND LARGE LANDSCAPE TABLETS */
+        @media screen and (width <= 1024px) and (orientation: portrait) {
+            & { 
+            
+                & ul.links {
+                    flex-flow: row nowrap;
+                    border-right: none;
+                    overflow: hidden;
+    
+                    & hr {
+                        display: none;
+                    }
+    
+                    & h2 {
+                        display: none;
+                    }
+                }
             }
         }
     }
@@ -319,6 +363,77 @@ header {
                 }
             }
         }
+
+        /* LAPTOPS AND LARGE LANDSCAPE TABLETS */
+        @media screen and (width <= 1024px) and (orientation: portrait) {
+            & { 
+                height: 100%;
+                position: static;
+    
+                & .search-form {
+                    height: 100%;
+                    box-shadow: none;
+                    border-radius: 0;
+                    border-bottom: 4px solid var(--orange-60);
+                }
+    
+                & .search-form:has(+ .search-results:not([hidden])) {
+                    border-radius: 0;
+                    border-color: var(--teal-45);
+                }
+                
+                & .search-submit {
+                    width: 3.5rem;
+                    height: 3.5rem;
+                }
+    
+                & .search-results {
+                    top: 3.5rem;
+                    left: 0;
+                    max-height: 100vh;
+                    
+                    & li {
+    
+                        &.error {
+                            min-height: 3.5rem;
+                            border-radius: 0;
+                            border-left: none;
+                            border-right: none;
+                            border-top: none;
+                            box-shadow: none;
+                            border-bottom: 2px solid var(--teal-30);
+                        }
+    
+                        & > a {
+                            min-height: 3.5rem;
+                            border-left: none;
+                            border-right: none;
+                            border-top: none;
+                            border-bottom: 2px solid var(--teal-30);
+    
+                            &:is(:hover, :focus, :focus-visible) {
+                                border-left: none;
+                                border-right: none;
+                                border-bottom-color: var(--teal-100);
+                            }
+                        }
+    
+                        &:last-child > a {
+                            border-radius: 0;
+                            box-shadow: none;
+    
+                            &:is(:hover, :focus, :focus-visible) {
+                                box-shadow: none;
+                            }
+                        }
+    
+                        &:has(+ * > a:is(:hover, :focus, :focus-visible)) > a {
+                            border-bottom-color: var(--teal-100);
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -471,35 +586,9 @@ nav.articles {
 ** RESPONSIVE
 ------------------------------*/
 
-@media screen and (width <= 1366px) {
-
-    header {
-
-        & nav.global {
-
-            & ul li a span {
-                display: none;
-            }
-
-        }
-    }
-
-}
-
 /* LAPTOPS AND LARGE LANDSCAPE TABLETS */
 
 @media screen and (720px <= width <= 1024px) and (orientation: landscape) {
-
-    header {
-
-        & nav.global {
-
-            & ul li a span {
-                display: none;
-            }
-
-        }
-    }
 
 }
 
@@ -508,125 +597,6 @@ nav.articles {
 /* @media screen and (720px <= width <= 1024px) and (orientation: portrait) { */
 @media screen and (width <= 1024px) and (orientation: portrait) {
 
-    header {
-        grid-template-columns: auto auto 1fr;
-        grid-template-rows: 3.5rem;
-        align-content: center;
-
-        padding: 0 0 0 1rem;
-        transition: grid-template-columsn 0.5s ease;
-
-        /* &:has(input.search-input:not([hidden])){
-            grid-template-columns: auto 4rem 1fr;
-        } */
-
-        & .logo {
-            /* display: none; */
-            margin: 0;
-            width: 3rem;
-        }
-          
-        & nav.global { 
-    
-            & ul.links {
-                flex-flow: row nowrap;
-                border-right: none;
-                overflow: hidden;
-    
-                & li {
-    
-                    & :is(a, button) {
-    
-                        &.is-active {
-
-                        }
-                    }
-                }
-
-                & hr {
-                    display: none;
-                }
-
-                & h2 {
-                    display: none;
-                }
-            }
-    
-    
-        }
-    
-        & [data-search-group] { 
-            height: 100%;
-            position: static;
-
-            & .search-form {
-                height: 100%;
-                box-shadow: none;
-                border-radius: 0;
-                border-bottom: 4px solid var(--orange-60);
-
-                & .search-input {
-
-                }
-            }
-
-            & .search-form:has(+ .search-results:not([hidden])) {
-                border-radius: 0;
-                border-color: var(--teal-45);
-            }
-            
-            & .search-submit {
-                width: 3.5rem;
-                height: 3.5rem;
-            }
-
-            & .search-results {
-                top: 3.5rem;
-                left: 0;
-                max-height: 100vh;
-                
-                & li {
-
-                    &.error {
-                        min-height: 3.5rem;
-                        border-radius: 0;
-                        border-left: none;
-                        border-right: none;
-                        border-top: none;
-                        box-shadow: none;
-                        border-bottom: 2px solid var(--teal-30);
-                    }
-
-                    & > a {
-                        min-height: 3.5rem;
-                        border-left: none;
-                        border-right: none;
-                        border-top: none;
-                        border-bottom: 2px solid var(--teal-30);
-
-                        &:is(:hover, :focus, :focus-visible) {
-                            border-left: none;
-                            border-right: none;
-                            border-bottom-color: var(--teal-100);
-                        }
-                    }
-
-                    &:last-child > a {
-                        border-radius: 0;
-                        box-shadow: none;
-
-                        &:is(:hover, :focus, :focus-visible) {
-                            box-shadow: none;
-                        }
-                    }
-
-                    &:has(+ * > a:is(:hover, :focus, :focus-visible)) > a {
-                        border-bottom-color: var(--teal-100);
-                    }
-                }
-            }
-        }
-    }
 }
 
 /* SMALL LANSCAPE TABLETS AND PHONES */

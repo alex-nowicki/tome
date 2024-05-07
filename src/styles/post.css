@@ -156,6 +156,10 @@ article {
             font-size: 1.25rem;
             font-weight: 600;
         }
+
+        & ul {
+            padding: 0 0 0 1.2rem;
+        }
     
         & :is(p, li) {
             /* font-family: 'Source Serif Pro', serif;
@@ -305,12 +309,15 @@ section.related {
     main.post {
         grid-area: main;
         padding: 3rem 0;
+        margin: 0 auto;
 
         & article {
             --spacing: 3rem;
 
             grid-template-columns: 1fr;
             grid-template-rows: auto auto auto auto;
+
+            max-width: 70ch;
 
             & .header {
                 grid-column: 2 / 3;

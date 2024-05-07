@@ -31,7 +31,6 @@ let postsWithLifespan = projectPosts.filter((post) => {
         );
 })
 
-
 ---
 
 <BaseLayout pageTitle={activeProject} activeProject={activeProject}>
@@ -81,11 +80,11 @@ let postsWithLifespan = projectPosts.filter((post) => {
                     </label>
                 </form>
 
-                <div id="search-timeline-compare" class="accordion">
-                    <p>Show lifespan</p>
-                    <form class="search-form"
+                <form id="show-lifespan" class="accordion">
+                    <label>Show lifespan</label>
+                    <fieldset class="search-form"
                     data-search-group
-                    data-search-list-selector="#search-timeline-compare .search-results [data-list-bin]" 
+                    data-search-list-selector="#show-lifespan .search-results [data-list-bin]" 
                     data-search-items-selector="li.result"
                     data-search-sort-type='{ "list": { "id": "byPriority" } }'>
                         <input class="search-input" class="text-field" type="search"  minlength="3" placeholder={"Filter articles"} autocomplete="off" 
@@ -98,25 +97,24 @@ let postsWithLifespan = projectPosts.filter((post) => {
                                 <line x1="14.8" y1="14.8" x2="22" y2="22"/>
                             </svg>
                         </button>
-                    </form>
-                    <form class="search-results" 
+                    </fieldset>
+                    <fieldset class="search-results" 
                     data-list 
                     data-filter-group
                     data-filter-list-selector="section.timeline ul.list" 
                     data-filter-items-selector="li.compare"
                     data-filter-max="3" 
                     data-sort-group 
-                    data-sort-list-selector="#search-timeline-compare .search-results [data-list-bin]" 
+                    data-sort-list-selector="#show-lifespan .search-results [data-list-bin]" 
                     data-sort-items-selector="li.result" 
                     data-sort-type='{ "list": { "id": "byName" } }'>
-                        <p class="label">Search Results</p>
                         <ul data-list-bin>
                             {postsWithLifespan.map((post, index) => {
                                 return (
                                     <li class="result" 
                                     data-item 
                                     data-title={post.frontmatter.title.toLowerCase()} 
-                                    hidden={index < 5 ? null : ''}>
+                                    hidden={index < 1 ? null : ''}>
                                         <label class="btn-s">
                                             <span class="icon-group" set:html={getCatIconAndLabel(post.frontmatter.category).icon}></span>
                                             <span class="title">{post.frontmatter.title}</span>
@@ -133,11 +131,11 @@ let postsWithLifespan = projectPosts.filter((post) => {
                                 <p>No matches were found.</p>
                             </li>
                             <li>
-                                <button class="btn-s">Show More</button>     
+                                <button class="btn-s show-more">Show More</button>     
                             </li>
                         </ul>
-                    </form>
-                </div>
+                    </fieldset>
+                </form>
                 
                 <Timeline activeProject={activeProject} events={events} postsWithLifespan={postsWithLifespan} />
 
