@@ -58,7 +58,7 @@ collections:
       - {label: "Project", name: "project", widget: "relation", collection: "projects", search_fields: ["title"], value_field: "title"}
       - {label: "Category", name: "category", widget: "hidden", default: "Stories"}
       - {label: "Title", name: "title", widget: "string", pattern: [".{1,40}", "Must be no longer than 40 characters"], hint: "Title must be no longer than 40 characters."}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Publish Date", name: "date", widget: "datetime", default:"{{now}}"}
       - {label: "Description", name: "description", widget: "text", pattern: [".{1,120}", "Must be no longer than 120 characters"], hint: "Description must be no longer than 120 characters.", required: false}
       - {label: "Body", name: "body", widget: "markdown", required: false}
 
@@ -85,7 +85,7 @@ collections:
       - {label: "Project", name: "project", widget: "relation", collection: "projects", search_fields: ["title"], value_field: "title"}
       - {label: "Category", name: "category", widget: "hidden", default: "Collections"}
       - {label: "Title", name: "title", widget: "string", pattern: [".{1,40}", "Must be no longer than 40 characters"], hint: "Title must be no longer than 40 characters."}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Publish Date", name: "date", widget: "datetime", default: "{{now}}"}
       - {label: "Description", name: "description", widget: "text", pattern: [".{1,120}", "Must be no longer than 120 characters"], hint: "Description must be no longer than 120 characters.", required: false}
       - label: "Search Terms"
         label_singular: "Search Term"
@@ -119,7 +119,7 @@ collections:
       - {label: "Category", name: "category", widget: "hidden", default: "People"}
       - {label: "Collections", label_singular: "Collection", name: "collections", widget: "list", summary: "{{fields.collection}}", field: {label: "Collection", name: "collection", widget: "relation", collection: "collections", search_fields: ["title"], value_field: "title", required: false}}
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Publish Date", name: "date", widget: "datetime", default: "{{now}}"}
       - {label: "Description", name: "description", widget: "text", pattern: [".{1,120}", "Must be no longer than 120 characters"], hint: "Description must be no longer than 120 characters.", required: false}
       - {label: "Search Terms", label_singular: "Search Term", name: "searchTerms", widget: "list", summary: "{{fields.searchTerm}}", field: {label: "Search Term", name: "searchTerm", widget: "string"}}
       - {label: "Image", name: "thumbnail", widget: "image", required: false}
@@ -268,7 +268,7 @@ collections:
       - {label: "Category", name: "category", widget: "hidden", default: "Groups"}
       - {label: "Collections", label_singular: "Collection", name: "collections", widget: "list", summary: "{{fields.collection}}", field: {label: "Collection", name: "collection", widget: "relation", collection: "collections", search_fields: ["title"], value_field: "title", required: false}}
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Publish Date", name: "date", widget: "datetime", default: "{{now}}"}
       - {label: "Description", name: "description", widget: "text", pattern: [".{1,120}", "Must be no longer than 120 characters"], hint: "Description must be no longer than 120 characters.", required: false}
       - {label: "Search Terms", label_singular: "Search Term", name: "searchTerms", widget: "list", summary: "{{fields.searchTerm}}", field: {label: "Search Term", name: "searchTerm", widget: "string"}}
       - {label: "Image", name: "thumbnail", widget: "image", required: false}
@@ -358,7 +358,7 @@ collections:
       - {label: "Category", name: "category", widget: "hidden", default: "Places"}
       - {label: "Collections", label_singular: "Collection", name: "collections", widget: "list", summary: "{{fields.collection}}", field: {label: "Collection", name: "collection", widget: "relation", collection: "collections", search_fields: ["title"], value_field: "title", required: false}}
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Publish Date", name: "date", widget: "datetime", default: "{{now}}"}
       - {label: "Description", name: "description", widget: "text", pattern: [".{1,120}", "Must be no longer than 120 characters"], hint: "Description must be no longer than 120 characters.", required: false}
       - {label: "Search Terms", label_singular: "Search Term", name: "searchTerms", widget: "list", summary: "{{fields.searchTerm}}", field: {label: "Search Term", name: "searchTerm", widget: "string"}}
       - {label: "Image", name: "thumbnail", widget: "image", required: false}
@@ -442,7 +442,7 @@ collections:
       - {label: "Category", name: "category", widget: "hidden", default: "Events"}
       - {label: "Collections", label_singular: "Collection", name: "collections", widget: "list", summary: "{{fields.collection}}", field: {label: "Collection", name: "collection", widget: "relation", collection: "collections", search_fields: ["title"], value_field: "title", required: false}}
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Publish Date", name: "date", widget: "datetime", default: "{{now}}"}
       - {label: "Description", name: "description", widget: "text", pattern: [".{1,120}", "Must be no longer than 120 characters"], hint: "Description must be no longer than 120 characters.", required: false}
       - {label: "Search Terms", label_singular: "Search Term", name: "searchTerms", widget: "list", summary: "{{fields.searchTerm}}", field: {label: "Search Term", name: "searchTerm", widget: "string"}}
       - {label: "Image", name: "thumbnail", widget: "image", required: false}
@@ -547,7 +547,7 @@ collections:
       - {label: "Category", name: "category", widget: "hidden", default: "Things"}
       - {label: "Collections", label_singular: "Collection", name: "collections", widget: "list", summary: "{{fields.collection}}", field: {label: "Collection", name: "collection", widget: "relation", collection: "collections", search_fields: ["title"], value_field: "title", required: false}}
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Publish Date", name: "date", widget: "datetime", default: "{{now}}"}
       - {label: "Description", name: "description", widget: "text", pattern: [".{1,120}", "Must be no longer than 120 characters"], hint: "Description must be no longer than 120 characters.", required: false}
       - {label: "Search Terms", label_singular: "Search Term", name: "searchTerms", widget: "list", summary: "{{fields.searchTerm}}", field: {label: "Search Term", name: "searchTerm", widget: "string"}}
       - {label: "Image", name: "thumbnail", widget: "image", required: false}

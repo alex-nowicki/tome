@@ -419,6 +419,14 @@ a {
         }
     }
 
+    &:has(:disabled) {
+        pointer-events: none;
+
+        & .icon-controls {
+            display: none;
+        }
+    }
+
     &:has([type="checkbox"]) {
 
         & .icon-controls {

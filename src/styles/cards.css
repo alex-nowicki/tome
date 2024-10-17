@@ -15,8 +15,9 @@
     margin: 0;
 
     & .card {
-        display: flex;
-        flex-flow: column nowrap;
+        display: grid;
+        grid-template-columns: auto;
+        grid-template-rows: 1fr auto;
     
         background-color: white;
         border-radius: var(--borderRadius);
@@ -25,16 +26,23 @@
         border-left: 1px solid var(--gray-10);
 
         & .info-group {
-            display: flex;
-            flex-flow: column nowrap;
-            align-items: flex-start;
+            display: grid;
+            grid-template-columns: auto;
+            grid-template-rows: auto auto auto 1fr;
+            grid-template-areas: 
+            "title"
+            "category"
+            "description"
+            "meta";
+            align-items: start;
+            justify-items: start;
             gap: 1rem;
         
             padding: 2rem;
-            flex-grow: 1;
         }
         
         & h3 {
+            grid-area: title;
             margin: 0;
             font-size: 1.25rem;
             font-weight: 600;
@@ -50,6 +58,8 @@
         }
         
         & .meta {
+            grid-area: meta;
+            align-self: end;
             display: flex;
             flex-flow: column nowrap;
             gap: 0.25rem;
@@ -59,6 +69,7 @@
         }
         
         & .category {
+            grid-area: category;
             display: inline-flex;
             align-items: center;
             gap: 0.375rem;
@@ -77,6 +88,7 @@
         }
                
         & .description {
+            grid-area: description;
             font-family: 'Source Serif Pro', serif;
             font-weight: 600;
             font-style: italic;
@@ -119,6 +131,56 @@
                     stroke: var(--teal-100);
                 }
             }
+        }
+    }
+
+    & .card.compact {
+        grid-template-columns: 1fr auto;
+        box-shadow: var(--boxShadow) var(--gray-15);
+
+        & .info-group {
+            grid-template-columns: auto 1fr;
+            grid-template-rows: auto auto;
+            grid-template-areas: 
+            "category title"
+            "meta meta";
+            gap: 0.5rem;
+        
+            padding: 1.25rem;
+        }
+
+        & h3 {
+            font-size: 1.125rem;
+        }
+
+        & .meta {
+            margin-top: 0;
+        }
+
+        & .category {
+            padding: 0.375rem;
+
+            & span {
+                display: none;
+            }
+
+            & svg {
+                width: 1rem;
+            }
+        }
+
+        & .description {
+            display: none;
+        }
+
+        & a {
+            padding: 0.5rem;
+            border-radius: 0 var(--borderRadius) var(--borderRadius) 0;
+
+            & span {
+                display: none;
+            }
+            
         }
     }
 }

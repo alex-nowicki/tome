@@ -185,7 +185,7 @@ let editedPostContent = detectMatches(postContent, searchArr, null);
                 <h1>{frontmatter.title}</h1>
                 <div class="meta">
                     <p class="category"><Fragment set:html={getCatIconAndLabel(frontmatter.category).icon} />{getCatIconAndLabel(frontmatter.category).label}</p>
-                    <p class="date">Published {dateFormatter.format(Date.parse(frontmatter.date))}</p>
+                    <p class="date">Updated {dateFormatter.format(Date.parse(frontmatter.date))}</p>
                 </div>
             </section>
             <section class="content" set:html={editedPostContent.string}></section>            

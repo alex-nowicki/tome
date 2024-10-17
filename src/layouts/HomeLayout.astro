@@ -16,35 +16,40 @@ const filteredPosts = posts.filter(post => {
 <BaseLayout pageTitle={'Tome'} activeProject={activeProject}>
     <main class="home">
 		<h1>Recent Updates</h1>
+        {
+            posts.length > 0 ? (
+                <section class="recent" hidden>
+                    <h2>Jump Back In</h2>
+                    <ul class="card-group"></ul>
+                </section>
+            ) : ''
+        }
+        {
+            posts.length > 0 ? (
+                <section>
+                    <h2>Recently Updated Articles</h2>
+                    <CardGroup posts={filteredPosts} numToShow={3} sort={'byDateDesc'} />
+                </section>
+            ) : ''
+        }
         { 
             projects.length > 0 ? (
                 <section>
                     <div class="heading-link-group">
-                        <h2>Recent Projects</h2>
+                        <h2>My Projects</h2>
                         <a class="btn-s" href="/projects">View All Projects <IconArrow classes={'icon-controls'}/></a>  
                     </div>
                     <CardGroup posts={projects} numToShow={3} sort={'byDateDesc'} />
                 </section>
             ) : (
                 <section>
-                    <h2>Recent Projects</h2>
+                    <h2>My Projects</h2>
                     <p>There are no projects in this Tome.</p>
                 </section>
             )
         }
-        {
-            posts.length > 0 ? (
-                <section>
-                    <h2>Recent Articles</h2>
-                    <CardGroup posts={filteredPosts} numToShow={3} sort={'byDateDesc'} />
-                </section>
-            ) : (
-                <section>
-                    <h2>Recent Articles</h2>
-                    <p>There are no articles in this Tome.</p>
-                </section>
-            )
-        }
+
 
 	</main>
 </BaseLayout>
+

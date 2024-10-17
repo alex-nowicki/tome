@@ -85,7 +85,7 @@ if (sort === 'byDateDesc'){
             let meta;
             if (postType === 'Article'){
                 meta = `
-                    <p class="date">Published ${dateFormatter.format(Date.parse(post.frontmatter.date))}</p>
+                    <p class="date">Updated ${dateFormatter.format(Date.parse(post.frontmatter.date))}</p>
                 `;
             } else {
                 let numArticleString = post.frontmatter.numArticles !== undefined ? `<p class="num-articles">${post.frontmatter.numArticles} Articles</p>` : '';
@@ -96,14 +96,39 @@ if (sort === 'byDateDesc'){
             return  <li class="card">
                         <div class="info-group">
                             <h3>{post.frontmatter.title}</h3>
-                            <p class="category"><Fragment set:html={icon} />{label}</p>
+                            <p class="category"><Fragment set:html={icon} /><span>{label}</span></p>
                             <p class="description">{post.frontmatter.description}</p>
                             <div class="meta" set:html={meta}></div>
                         </div>
-                        <a href={post.url}>Open {postType} <IconArrow/></a>    
+                        <a href={post.url} aria-label="Open Article"><span>Open {postType}</span><IconArrow/></a>    
                     </li>
         
         }
         
     })}
 </ul>
+
+<!-- <li class="card">
+    <div class="info-group">
+        <h3>{post.frontmatter.title}</h3>
+        <p class="category"><Fragment set:html={icon} />{label}</p>
+        <p class="description">{post.frontmatter.description}</p>
+        <div class="meta" set:html={meta}></div>
+    </div>
+    <a href={post.url}>Open {postType} <IconArrow/></a>    
+</li>
+
+<li class="article" data-title="Aisiki" data-date="2023-12-18T19:44:20.442Z" data-category="Places" data-item="" data-sublists="[&quot;Planets/Moons&quot;]">
+
+    <a href="/garuda/places/aisiki">
+        <span class="icon-group">
+            <svg class="icon icon-category" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"></span>
+        <span class="title">Aisiki</span>
+        <span class="date">Dec 18, 2023, 3:44 PM</span>    
+    </a>
+
+    <button class="bookmark-toggle" data-title="Aisiki" data-url="/garuda/places/aisiki" data-project="Garuda">
+        <svg class="icon icon-category" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"></svg>
+    </button>
+
+</li> -->

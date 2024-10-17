@@ -26,15 +26,26 @@ let getParams = function(url = window.location) {
 
 }
 
+/**
+ * Update input selection state
+ * @param  {Object} targetFilter The filter object containing the following data
+ * @param  {Node} targetFilter.input The input target
+ * @param  {Number} targetFilter.min Minimum number of selected inputs
+ * @param  {Number} targetFilter.max Maximum number of selected inputs
+ */
 let updateInputStates = function(targetFilter) {
 
-    let input = targetFilter.input;
+    // Get the argument values
+	let {input, min, max} = targetFilter;
 
-    // Update checked state on input
+    // For input groups that allow a single selection,
     if (input.type === 'radio'){
 
+        // If input is currently selected, deselect it
         if (input.hasAttribute('checked')) {
             input.removeAttribute('checked');
+
+        // Otherwise, deselect all other options and select the target input
         } else {
             for (const filter of input.closest('form').querySelectorAll('input[type="radio"]')) {
                 filter.removeAttribute('checked');
@@ -42,11 +53,13 @@ let updateInputStates = function(targetFilter) {
             input.setAttribute('checked', '');
         }
 
+    // For input groups that allow multiple selections
     } else if (input.type === 'checkbox'){
 
+        // Retrieve and store input clones
         let clones = [...input.closest('form').querySelectorAll(`[value="${input.value}"]`)];
 
-        // If there are clones,
+        // If there are one or more clones,
         if (clones.length > 1) {
 
             // Get the original input
@@ -58,55 +71,56 @@ let updateInputStates = function(targetFilter) {
             }
         } 
 
+        // If input is currently selected, deselect it
         if (input.hasAttribute('checked')) {
             input.checked = false;
             input.removeAttribute('checked');
+
+        // Otherwise, select it
         } else {
             input.checked = true;
             input.setAttribute('checked', '');
         }   
 
+        // Store selected and deselected inputs
         let checkedBoxes = input.closest('form').querySelectorAll(':not([data-clone]) input[type="checkbox"]:checked');
         let uncheckedBoxes = input.closest('form').querySelectorAll(':not([data-clone]) input[type="checkbox"]:not(:checked)');
 
-        // If a minimum of active boxes is defined,
-        if (targetFilter.min && checkedBoxes.length <= targetFilter.min) {
+        // If selected inputs are equal to or smaller than the optionally defined minimum,
+        if (min && checkedBoxes.length <= min) {
 
-            // Disable checked boxes
+            // Disable selected inputs
             for (const box of checkedBoxes) {
                 box.setAttribute('disabled', '');
             }
 
-        // Otherwise, enable checked boxes
+        // Otherwise, enable selected inputs
         } else {
             for (const box of checkedBoxes) {
                 box.removeAttribute('disabled');
             }
         }
 
-        // If a maximum number of active boxes is defined,
-        if (targetFilter.max && uncheckedBoxes.length >= targetFilter.max) {
+        // If selected inputs are equal to or greater than the optionally defined maximum,
+        if (max && checkedBoxes.length >= max) {
 
-            // Disable unchecked boxes
+            // Disable deselected inputs
             for (const box of uncheckedBoxes) {
                 box.setAttribute('disabled', '');
             }
 
-        // Otherwise, enable unchecked boxes
+        // Otherwise, enable deselected inputs
         } else {
             for (const box of uncheckedBoxes) {
                 box.removeAttribute('disabled');
             }
         }
-
     }
-
 }
 
 /**
  * Filter list
  * @param  {Object} targetFilter The filter object containing the following data
- * @param  {Node} targetFilter.input The input target
  * @param  {Array} targetFilter.values The form values
  * @param  {String} targetFilter.type The filter type
  * @param  {Node} targetFilter.list The filter list container
@@ -115,57 +129,55 @@ let updateInputStates = function(targetFilter) {
  */
 let filterList = function(targetFilter) {
 
-    // console.log('targetFilter', targetFilter);
-
-    updateInputStates(targetFilter);
+    let {values, type, list, items, sort} = targetFilter;
 
     let positiveResults = 0;
 
-    for (const item of targetFilter.items) {
+    for (const item of items) {
 
-        // If the item has a button, and the button is pressed, skip
-        if (item.closest('[data-sublist]') && item.closest('[data-sublist]').hasAttribute('data-filter-ignore')) {   
-             console.log('Skipping'); 
-             continue; 
-        }
-
-        if (targetFilter.type === 'category'){
+        if (type === 'category'){
 
             // Store the item category
             let category = item.dataset.category.toLowerCase();
 
-            // Check item category and show or hide accordingly
-            if (targetFilter.values.includes(category)){
+            // If item category is included, show item
+            if (values.includes(category)){
                 item.removeAttribute('hidden');
                 positiveResults += 1;
+
+            // Otherwise, hide item
             } else {
                 item.setAttribute('hidden', '');
             }
 
-        } else if (targetFilter.type === 'title'){
+        } else if (type === 'title'){
 
             // Store the item title
             let title = item.dataset.title.toLowerCase();
 
-            // Check item title and show or hide accordingly
-            if (targetFilter.values.includes(title)){
+            // If item title is included, show item
+            if (values.includes(title)){
                 item.removeAttribute('hidden');
                 positiveResults += 1;
-            } else {
+
+            // Otherwise, hide item unless it contains a checked input
+            } else if (!item.querySelector(':checked')) {
                 item.setAttribute('hidden', '');
             }
 
-        } else if (targetFilter.type === 'bookmark'){
+        } else if (type === 'bookmark'){
 
-            // Check bookmark state and show or hide accordingly
+            // If item is bookmarked, show item
             if (item.hasAttribute('data-bookmark')){
                 item.removeAttribute('hidden');
                 positiveResults += 1;
+
+            // Otherwise, hide item
             } else {
                 item.setAttribute('hidden', '');
             }
 
-        } else if (targetFilter.type === 'all'){
+        } else if (type === 'all'){
 
             // Show all items
             item.removeAttribute('hidden');
@@ -175,9 +187,9 @@ let filterList = function(targetFilter) {
         
     }
 
-    if (targetFilter.sort) {
+    if (sort) {
 
-        let targetSort = targetFilter.sort;
+        let targetSort = sort;
     
         if (targetSort.input) {
             targetSort.type = JSON.parse(targetSort.input.value);
@@ -189,22 +201,19 @@ let filterList = function(targetFilter) {
 
     }
 
-    if (targetFilter.list) {
+    if (list) {
 
-        let errorMessage = targetFilter.list.querySelector('.error');
+        let errorMessage = list.querySelector('.error');
    
         if (errorMessage){
             
-            // If there are no positive results,
-            // if (positiveResults === 0 && !targetFilter.list.querySelector(':checked') && errorMessage !== undefined) {
+            // If there are no positive results, reveal the error message
             if (positiveResults === 0) {
+                list.querySelector('.error').removeAttribute('hidden');
     
-                // Reveal the error message
-                targetFilter.list.querySelector('.error').removeAttribute('hidden');
-    
+            // Otherwise, hide the error message
             } else {
-                // Reveal the error message
-                targetFilter.list.querySelector('.error').setAttribute('hidden', '');
+                list.querySelector('.error').setAttribute('hidden', '');
             }
         }
 
@@ -217,52 +226,78 @@ let filterList = function(targetFilter) {
  * @param  {Object} targetSort The sort object containing the following data
  * @param  {String} targetSort.type The sort type
  * @param  {Node} targetSort.list The sort list container
+ * @param  {Node} targetSort.sublists The sort sublist containers
  * @param  {Nodelist} targetSort.items The sort list items
  */
 let sortList = function(targetSort) {
 
-    console.log('targetSort', targetSort);
+    let {type, list, sublists, items} = targetSort;
 
-    if (targetSort.type.list) {
+    if (type.list) {
+
+        console.log(`Sorting List by ${type.list.id}`);
+
+        console.log('list', list.dataset);
 
         // Remove cloned items
-        [...targetSort.list.querySelectorAll('[data-clone]')].forEach((item) => item.remove());
+        [...list.querySelectorAll('[data-clone]')].forEach((item) => item.remove());
 
         // Reset items list
-        targetSort.items = targetSort.list.querySelectorAll('[data-item]');
+        items = list.querySelectorAll('[data-item]');
 
         // Filter list to only include active (shown) items
-        targetSort.items = Array.from(targetSort.items).filter((item) => {
+        items = Array.from(items).filter((item) => {
             return !item.hasAttribute('hidden');
         })
 
         // If list has sublists and there is no sublist sort defined, hide them
-        if (targetSort.sublists && !targetSort.type.sublist) {
-            for (let sublist of targetSort.sublists){
+        if (sublists && !type.sublist) {
+            for (let sublist of sublists){
                 sublist.setAttribute('hidden', '');
             }
         }
 
-        targetSort.items.sort((a,b) => {
-            if (targetSort.type.list.id === 'byName'){
+        // If sorting by priority,
+        if (type.list.id === 'byPriority'){
+
+            // Presort the list alphabetically
+            items.sort((a,b) => {
                 a = a.dataset.title;
                 b = b.dataset.title;
                 if (a < b) return -1;
                 if (a > b) return 0;
                 return 0;
-            } else if (targetSort.type.list.id === 'byDate'){
+            })
+
+            // Ensure all items have priority assigned
+            for (let item of items) {
+                if (!item.dataset.priority) {
+                    item.dataset.priority = 0;
+                }
+            }
+
+        }
+
+        items.sort((a,b) => {
+            if (type.list.id === 'byName'){
+                a = a.dataset.title;
+                b = b.dataset.title;
+                if (a < b) return -1;
+                if (a > b) return 0;
+                return 0;
+            } else if (type.list.id === 'byDate'){
                 a = Date.parse(a.dataset.date);
                 b = Date.parse(b.dataset.date);
                 return b - a;
-            } else if (targetSort.type.list.id === 'byDateNumAsc'){
+            } else if (type.list.id === 'byDateNumAsc'){
                 a = a.dataset.date;
                 b = b.dataset.date;
                 return a - b;
-            } else if (targetSort.type.list.id === 'byDateNumDesc'){
+            } else if (type.list.id === 'byDateNumDesc'){
                 a = a.dataset.date;
                 b = b.dataset.date;
                 return b - a;
-            } else if (targetSort.type.list.id === 'byPriority'){
+            } else if (type.list.id === 'byPriority'){
                 a = a.dataset.priority;
                 b = b.dataset.priority;
                 return b - a;
@@ -270,80 +305,60 @@ let sortList = function(targetSort) {
         
         })
 
+        if (list.hasAttribute('data-list-priority-selected')) {
+            console.log('Priority Sorting');
+            items.sort((a,b) => {
+                a = a.querySelector(':checked') ? 1 : 0;
+                b = b.querySelector(':checked') ? 1 : 0;
+                return b - a;
+            })
+        }
+
         // If sorting by priority, add each item to the bottom of the list
         // * this accounts for the rounded corner styling of the article search bar *
-        if (targetSort.type.list.id === 'byPriority'){
+        if (type.list.id === 'byPriority'){
 
-            targetSort.items.forEach((elem) => {
-                targetSort.list.lastElementChild.after(elem);
+            items.forEach((elem) => {
+                list.lastElementChild.after(elem);
             });
 
         // Otherwise, reverse the results and add each sorted item to the top of the list
         } else {
 
-            targetSort.items.reverse().forEach((elem) => {
-                targetSort.list.firstElementChild.before(elem);
+            items.reverse().forEach((elem) => {
+                list.firstElementChild.before(elem);
             })
 
         }   
 
     }
 
-    if (targetSort.type.sublist){
+    if (type.sublist){
+
+        console.log(`Sorting List by ${type.sublist.id}`);
+
+        // Update sort object
+        targetSort.items = items;
 
         sortBySublist(targetSort);
 
     }
-
 }
 
 /**
  * Sort list items by group
  * @param  {Object} targetSort The sort object containing the following data
- * @param  {Node} targetSort.list The sort list container
+ * @param  {String} targetSort.type The sort type
+ * @param  {Node} targetSort.sublists The sort sublist containers
  * @param  {Nodelist} targetSort.items The sort list items
  */
 let sortBySublist = function(targetSort) {
 
-    // if (targetSort.type.sublist.id === 'byCondition'){
+    let {type, sublists, items} = targetSort;
 
-    //     // Get the true and false sublists
-    //     let trueSublist = targetSort.list.querySelector('[data-sublist-true]');
-    //     let falseSublist = targetSort.list.querySelector('[data-sublist-false]');
+    if (type.sublist.id === 'byName') {
 
-    //     // Get the bins
-    //     let trueBin = trueSublist.querySelector('[data-sublist-bin]') ? trueSublist.querySelector('[data-sublist-bin]') : trueSublist;
-    //     let falseBin = falseSublist.querySelector('[data-sublist-bin]') ? falseSublist.querySelector('[data-sublist-bin]') : falseSublist;
-
-    //     console.log(trueBin, falseBin);
-
-    //     for (let item of targetSort.items) {
-
-    //         // If the item meets the condition add it to the true bin
-    //         if (item.matches(targetSort.type.sublist.condition)){
-
-    //             // If settings require a clone, clone it
-    //             if (targetSort.type.sublist.clone === true) {
-    //                 let clone = item.cloneNode(true);
-    //                 clone.setAttribute('data-clone', '');
-    //                 trueBin.append(clone);
-
-    //             // Otherwise, move it
-    //             } else {
-    //                 trueBin.append(item);
-    //             }
-
-    //         // Otherwise, add it to the false bin
-    //         } else {
-    //             falseBin.append(item);
-    //         }
-
-    //     }
-
-    // } else if (targetSort.type.sublist.id === 'byName') {
-    if (targetSort.type.sublist.id === 'byName') {
-
-        for (let sublist of targetSort.sublists) {
+        for (let sublist of sublists) {
 
             // Get the sublist bin
             let bin = sublist.querySelector('[data-sublist-bin]') ? sublist.querySelector('[data-sublist-bin]') : sublist;
@@ -351,7 +366,7 @@ let sortBySublist = function(targetSort) {
             // Get the sublist name
             let name = sublist.dataset.sublistName;
 
-            for (let item of targetSort.items) {
+            for (let item of items) {
 
                 // If the item is a clone, skip
                 if (item.hasAttribute('data-clone')) continue;
@@ -382,55 +397,25 @@ let sortBySublist = function(targetSort) {
                 }
             }
 
-        }
-
-    }
-
-    for (let sublist of targetSort.sublists) {
-
-        let bin = sublist.querySelector('[data-sublist-bin]') ? sublist.querySelector('[data-sublist-bin]') : sublist;
-
-        // If a sublist contains at least one item, show it
-        if (bin.querySelectorAll('[data-item]:not([hidden])').length > 0 || !bin.querySelector('.error').hasAttribute('hidden')) {
-            sublist.removeAttribute('hidden')
-        
-        // Otherwise, hide it
-        } else {
-            sublist.setAttribute('hidden', '');
-        }
-
-    }
-
-    for (let sublist of targetSort.sublists) {
-
-        let counter = sublist.querySelector('.counter');
-
-        if (counter){
-
-            let children = sublist.querySelectorAll('[data-item]:not([hidden])');
-
-            counter.innerHTML = children.length;
-
-        }
-
-        let errorMessage = sublist.querySelector('.error');
-   
-        // if (errorMessage){
+            // If a sublist contains at least one item, show it and update the counter
+            if (bin.querySelectorAll('[data-item]:not([hidden])').length > 0) {
             
-        //     // If there are no positive results,
-        //     if (errorMessage !== undefined) {
-    
-        //         // Reveal the error message
-        //         sublist.querySelector('.error').removeAttribute('hidden');
-    
-        //     } else {
-        //         // Reveal the error message
-        //         sublist.querySelector('.error').setAttribute('hidden', '');
-        //     }
-        // }
+                sublist.removeAttribute('hidden');
 
+                // Get the counter
+                let counter = sublist.querySelector('.counter');
+
+                if (counter){        
+                    let children = sublist.querySelectorAll('[data-item]:not([hidden])');
+                    counter.innerHTML = children.length;
+                }
+            
+            // Otherwise, hide it
+            } else {
+                sublist.setAttribute('hidden', '');
+            }
+        }
     }
-
 }
 
 /**
@@ -439,17 +424,19 @@ let sortBySublist = function(targetSort) {
  */
 let searchList = function(targetSearch) {
 
+    let {input, value, type, list, items, sort} = targetSearch;
+
     let stopWords = ['a', 'an', 'and', 'are', 'aren\'t', 'as', 'by', 'can', 'cannot', 'can\'t', 'could', 'couldn\'t', 'how', 'is', 'isn\'t', 'it', 'its', 'it\'s', 'that', 'the', 'their', 'there', 'they', 'they\'re', 'them', 'to', 'too', 'us', 'very', 'was', 'we', 'well', 'were', 'what', 'whatever', 'when', 'whenever', 'where', 'with', 'would', 'yet', 'you', 'your', 'yours', 'yourself', 'yourselves', 'the'];
 
     // Create a regex for each query
-    let regMap = targetSearch.value.toLowerCase().split(' ').filter((word) => {
+    let regMap = value.toLowerCase().split(' ').filter((word) => {
         return word.length && !stopWords.includes(word);
     }).map((word) => {
         return new RegExp(word, 'i');
     });
     
     // Get and sort the results
-    let results = Array.from(targetSearch.items).reduce((results, item) => {
+    let results = Array.from(items).reduce((results, item) => {
 
         // Reset priority
         item.removeAttribute('data-priority');
@@ -470,19 +457,14 @@ let searchList = function(targetSearch) {
 
                 // Check whether post title starts with search query
                 titleWords.forEach((word) => {
-                    if (word.toLowerCase().startsWith(targetSearch.value.toLowerCase())) {
+                    if (word.toLowerCase().startsWith(value.toLowerCase())) {
 
                         // If so, add to priority
                         priority += 1000;
     
                     }
                 });                
-
             }
-
-            // Check whether post content includes search query
-            // let occurences = item.dataset.content.match(reg);
-            // if (occurences) { priority += occurences.length; }
         }
 
         // If any matches, push to results
@@ -497,15 +479,91 @@ let searchList = function(targetSearch) {
 
     // Display the results
     filterList({
-        input: targetSearch.input,
+        input: input,
         values: results.map((item) => {
             return item.dataset.title.toLowerCase();
         }),
-        type: targetSearch.type,
-        list: targetSearch.list,
-        items: targetSearch.items,
-        sort: targetSearch.sort 
+        type: type,
+        list: list,
+        items: items,
+        sort: sort 
     });
+
+}
+
+
+let createInputObject = function(target, objType) {
+            
+    if(!target || !objType) return;
+    
+    let obj = {};
+
+    let group = target.closest(`[data-${objType}-group]`);
+
+    obj.input = target;
+
+    // Set value(s)
+    if (objType === 'search') obj.value = target.value; 
+    if (objType === 'filter') obj.values = Array.from(group.querySelectorAll('input:checked, select')).map((input) => input.value);
+    
+    // Set type
+    if (objType === 'search') obj.type = target.dataset.searchType;
+    if (objType === 'filter') obj.type = target.dataset.filterType;
+    if (objType === 'sort') obj.type = {
+        list: group.dataset.sortType ? JSON.parse(group.dataset.sortType).list : JSON.parse(target.value).list,
+        sublist: group.dataset.sortType ? JSON.parse(group.dataset.sortType).sublist : JSON.parse(target.value).sublist,
+    }
+
+    // Set min/max
+    if (objType === 'filter') {
+        obj.min = group.dataset.filterItemsMinSelected ? parseInt(group.dataset.filterItemsMinSelected) : undefined;
+        obj.max = group.dataset.filterItemsMaxSelected ? parseInt(group.dataset.filterItemsMaxSelected) : undefined;
+    }
+
+    // Set list
+    obj.list = document.querySelector(group.dataset[`${objType}ListSelector`]);
+   
+    // Set items
+    obj.items = group.dataset[`${objType}ItemsSelector`] ? obj.list.querySelectorAll(group.dataset[`${objType}ItemsSelector`]) : obj.list.querySelectorAll('[data-item]');
+
+    // Set sublists
+    if (objType === 'sort') obj.sublists = group.dataset[`${objType}SublistsSelector`] ? obj.list.querySelectorAll(group.dataset[`${objType}SublistsSelector`]) : obj.list.querySelectorAll('[data-sublist]');
+
+    // Create sort object
+    let sortObj = {}
+
+    // If a sort input is defined, capture type from it
+    if (document.querySelector(group.dataset[`${objType}SortSelector`])) {
+        sortObj.input = document.querySelector(group.dataset[`${objType}SortSelector`]);
+        sortObj.type = {
+            list: JSON.parse(sortObj.input.value).list,
+            sublist: JSON.parse(sortObj.input.value).sublist
+        }
+    
+    // Otherwise, check group for type info
+    } else {
+        sortObj.input = undefined;
+        sortObj.type = {
+            list: group.dataset[`${objType}SortType`] ? JSON.parse(group.dataset[`${objType}SortType`]).list : undefined,
+            sublist: group.dataset[`${objType}SortType`] ? JSON.parse(group.dataset[`${objType}SortType`]).sublist : undefined,
+        }
+    }
+
+    // Set sort list, items, and sublists
+
+    // NEED TO FIX BELOW, TIMELINE LIFESPANS ARE GETTING MIXED UP WITH THE FILTERING OF THE
+
+    sortObj.list = group.dataset[`${objType}SortListSelector`] ? document.querySelector(group.dataset[`${objType}SortListSelector`]) : obj.list;
+    sortObj.items = group.dataset[`${objType}SortItemsSelector`] ? sortObj.list.querySelector(group.dataset[`${objType}SortItemsSelector`]) : obj.items;
+    sortObj.sublists = obj.sublists;
+
+    // Only add the sort object to search and filter
+    if (objType === 'search' || objType === 'filter') obj.sort = sortObj;
+
+    console.log(objType, obj);
+
+    return obj;
+
 
 }
 
@@ -526,92 +584,80 @@ document.addEventListener('input', (event) => {
         console.log('>>> SEARCH EVENT FIRES');
 
         let group = target.closest('[data-search-group]');
-        let input = group.querySelector('input');
         let list = document.querySelector(group.dataset.searchListSelector);
-        let items = group.dataset.searchItemsSelector ? list.querySelectorAll(group.dataset.searchItemsSelector) : list.querySelectorAll('[data-item]');
-        let sublists = group.dataset.searchSublistsSelector ? list.querySelectorAll(group.dataset.searchSublistsSelector) : list.querySelectorAll('[data-sublist]');
 
-        if (input.value.length > 2){
-            searchList({
-                input: input,
-                value: input.value,
-                type: input.dataset.searchType,
-                list: list,
-                items: items,
-                sort: {
-                    list: list,
-                    items: items,
-                    type: {
-                        list: group.dataset.searchSortType ? JSON.parse(group.dataset.searchSortType).list : undefined,
-                        sublist: group.dataset.searchSortType ? JSON.parse(group.dataset.searchSortType).sublist : undefined
-                    },
-                    sublists: sublists ? sublists : undefined
+        console.log('Search List', list);
+
+        if (group.dataset.searchType) {
+
+            if (group.dataset.searchType === 'fill') {
+
+                // If the search value is greater than or equal to the min characters
+                if (target.value.length >= group.dataset.searchMinCharacters) {
+
+                    // Search and filter the list
+                    searchList(createInputObject(target,'search'));
+
+                    // Reveal the list
+                    list.removeAttribute('hidden');
+
+                // Otherwise,
+                } else {
+
+                    // Hide the list
+                    list.setAttribute('hidden', '');
+
                 }
-            });
-            list.removeAttribute('hidden');
-        } else if (!list.querySelector(":checked")) {
-            list.setAttribute('hidden', '');
+
+            } else if (group.dataset.searchType === 'refine'){
+
+                if (target.value.length >= 1) {
+
+                    // Search and filter the list
+                    searchList(createInputObject(target,'search'));
+
+                } else {
+
+                    let items = list.querySelectorAll(group.dataset.searchItemsSelector);
+                    let selectedItems = list.querySelectorAll(`${group.dataset.searchItemsSelector}:has(:checked)`);
+                    let deselectedItems = list.querySelectorAll(`${group.dataset.searchItemsSelector}:not(:has(:checked))`);
+
+                    let max;
+
+                    // Get the list's maximum number of visible items if defined, otherwise revert to length of list 
+                    max = list.dataset.listItemsMaxVisible ? list.dataset.listItemsMaxVisible : items.length;
+
+                    // To preserve visibility of selected items, remove number from max
+                    max = Number(max) - Number(selectedItems.length);
+
+                    // Show and hide items
+                    for (let i = 0; i < deselectedItems.length; i++) {
+                        if (i < max){
+                            deselectedItems[i].removeAttribute('hidden');
+                        } else {
+                            deselectedItems[i].setAttribute('hidden', '');
+                        }
+                    }
+
+                    sortList(createInputObject(target, 'sort'));
+
+                }
+
+            }
         }
 
     }
 
-    if (target.matches('[data-filter-trigger')) {
-
+    if (target.matches('[data-filter-trigger]')) {
         console.log('>>> FILTER EVENT FIRES');
-
-        let group = target.closest('[data-filter-group]');
-        let list = document.querySelector(group.dataset.filterListSelector);
-        let items = group.dataset.filterItemsSelector ? list.querySelectorAll(group.dataset.filterItemsSelector) : list.querySelectorAll('[data-item]');
-        let sublists = group.dataset.filterSublistsSelector ? list.querySelectorAll(group.dataset.filterSublistsSelector) : list.querySelectorAll('[data-sublist]');
-        let sort = document.querySelector(group.dataset.filterSortSelector);
-
-        console.log(sort);
-
-        filterList({
-            input: event.target,
-            values: Array.from(group.querySelectorAll('input:checked, select')).map((input) => input.value),
-            type: event.target.dataset.filterType,
-            min: group.dataset.filterMin ? parseInt(group.dataset.filterMin) : undefined,
-            max: group.dataset.filterMax ? parseInt(group.dataset.filterMax) : undefined,
-            list: list,
-            items: items,
-            sort: {
-                input: sort ? sort : undefined,
-                type: {
-                    list: sort ? JSON.parse(sort.value).list : undefined,
-                    sublist: sort ? JSON.parse(sort.value).sublist : undefined
-                },
-                list: list,
-                items: items,
-                sublists: sublists ? sublists : undefined
-            }
-        });
-
+        updateInputStates(createInputObject(target, 'filter'));
+        filterList(createInputObject(target, 'filter'));
     }
 
     if (target.matches('[data-sort-trigger')) {
-
         console.log('>>> SORT EVENT FIRES');
-
-        let group = target.closest('[data-sort-group]');
-        let list = document.querySelector(group.dataset.sortListSelector);
-        let items = group.dataset.sortItemsSelector ? list.querySelectorAll(group.dataset.sortItemsSelector) : list.querySelectorAll('[data-item]');
-        let sublists = group.dataset.sortSublistsSelector ? list.querySelectorAll(group.dataset.sortSublistsSelector) : list.querySelectorAll('[data-sublist]');
-
-        sortList({
-            input: event.target,
-            type: {
-                list: group.dataset.sortType ? JSON.parse(group.dataset.sortType).list : JSON.parse(event.target.value).list,
-                sublist: group.dataset.sortType ? JSON.parse(group.dataset.sortType).sublist : JSON.parse(event.target.value).sublist
-            },
-            list: list,
-            items: items,
-            sublists: sublists ? sublists : undefined
-        })
-
-
-    }  
-
+        sortList(createInputObject(target, 'sort'));
+    }
 
 })
 
@@ -656,10 +702,14 @@ document.addEventListener('submit', (event) => {
 
 document.addEventListener('keydown', (event) => {
 
+    // Only run on arrow down and up
+    if (event.key !== "ArrowDown" && event.key !== "ArrowUp") return;
+
     let target = event.target;
     let group = target.closest('[data-search-group]');
 
-    if (group.matches('#search-articles')) {
+    // If the target is nested inside a search form
+    if (group && group.matches('#search-articles')) {
         
         let activeElement = document.activeElement;
         let input = group.querySelector('[data-search-trigger]');
@@ -699,28 +749,44 @@ document.addEventListener('keydown', (event) => {
 
 })
 
+// TIMELINE - UNDER CONSTRUCTION
 document.addEventListener('click', (event) => {
 
     let target = event.target;
 
     if (target.matches('.show-more')){
 
-        let list = target.closest('[data-list-bin]');
+        let list = target.closest('[data-list]') ? target.closest('[data-list]') : target.parentElement.querySelector('[data-list]');
+
+        console.log(list, target.parentElement);
         
         if (!list) return;
+
+        let max = list.dataset.listItemsMaxVisible;
+        let increment = list.dataset.listExtensionIncrement;
+
+        max = Number(max) + Number(increment);
+
+        list.dataset.listItemsMaxVisible = max;
 
         let hiddenItems = list.querySelectorAll('[data-item][hidden]');
 
         if (hiddenItems.length > 0){
 
-            for (let i = 0; i < hiddenItems.length && i < 5; i++) {
+            for (let i = 0; i < hiddenItems.length && i < increment; i++) {
+
+                // Show the item
                 hiddenItems[i].removeAttribute('hidden');
+
+                // Set the item priority to zero so they flow to the bottom of the list
+                hiddenItems[i].setAttribute('data-priority', 0);
             }
 
         }
 
-    }
+        sortList(createInputObject(target, 'sort'));
 
+    }
 
 })
 
@@ -728,34 +794,28 @@ document.addEventListener('click', (event) => {
 // Check url for query string parameters
 let params = getParams();
 
-// If url contains parameters,
-if (params.filter){
+// Get filter groups
+let filterGroups = document.querySelectorAll('[data-filter-group]');
 
-    // Check to see if the page contains a filter group
+// If url contains parameters,
+if (params.filter && filterGroups.length > 0){
+
+    // Check to see if the page contains a matching filter group
     for (const group of filterGroups){
         let inputs = group.querySelectorAll('input');
-        let targetInput = group.querySelector(`input[value="${params.filter}"]`)
+        let target = group.querySelector(`input[value="${params.filter}"]`)
 
         // If it does, apply the filter
-        if (targetInput) {
+        if (target) {
 
             // Remove the checked attribute to account for pre-checked filters
             for (const input of inputs){
                 input.removeAttribute('checked');
             }
 
-            let list = document.querySelector(group.dataset.listSelector);
-            let items = list.querySelectorAll('[data-item]');
+            updateInputStates(createInputObject(target, 'filter'));
+            filterList(createInputObject(target, 'filter'));
 
-            filterList({
-                input: targetInput,
-                values: [params.filter],
-                type: targetInput.dataset.type,
-                list: list,
-                items: items
-            });
         }
     }
 }
-
-

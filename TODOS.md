@@ -3,15 +3,15 @@
 - Allow project switching from the header nav?
 - Hover effect could be a white rounded rectangle?
 - Phone | Switch search to button (so search bar reveals on touch)
+- When clicking away or focus away from search bar, collapse it even if it has a value
 
 # Home
 
 - Reimplement with these sections:
-  - Jump Back In (last three articles accessed, stored in session storage)
-  - Recently Updated Articles
   - My Projects
-    - Include a Card Grid and List view (default to list if there are so many projects)
-    - Show all button to reveal if the list is very long
+    - Include a Card Grid and List view (default to list if there are so many projects) - Opted for compact card instead
+    - For project list, large card for the two most recently accessed/updated projects, compact for the rest. (if doing the 2/3 column, to 1/3 column layout)
+    - Recent articles could use a project tag to show which one they are associated with.
 
 # Project
 
@@ -21,32 +21,29 @@
 
 - Implement expand and back to top buttons
 - Implement mobile responsiveness
-- Figure out show lifespan form
-- If show lifespan is active and you filter out category, lifespan is not hidden (2024-04-16)
+- LIFESPAN FUNCTIONALITY
+  - Show counter of how many you can have active at once (0/3)
+  - Fix Show more button style (icon?)
+  - if button is active and you deselect while search is enabled, it doesn't dissapear (maybe not a bad thing?)
+  - If show lifespan is active and you filter out category, lifespan is not hidden (2024-04-16)
 
 # Stories
 
 - [] Create a story layout (fence it off?), Maybe see if you can use the netlify authentication on it?
 
-# Collections
-
-- Collection page layout, form elements are broken
-- 
-
 # Article List
 
-- Should it also have a jump back in section at the top? Three most recently accessed articles?
+- Should the category article links, be replaced with just a single hyperlink to the category?
 
 ## Collections 
 
 - Collapse all option for collections view
 - Tabbing during collections view is broken (2024-04-16)
-
+- Collection page layout, form elements are broken
 
 # Article Page
 
-- Should the sidebar be recently updated articles, or accessed? If using as a wiki, recently accessed if more useful, but if you don't have that data, than recently updated fallback would make sense. Could keep as 'Recent Article' and priority is to access, but if none in that category were accessed recently, than default to most recently updated.
-- Meta of published, could be swapped to Updated.
+- Meta of published, could be swapped to Updated. Possibly even published (original) and updated for most recent update.
 - Wiki link preview go off the page: http://localhost:3000/garuda/places/khuyens-den (2024-04-16)
 - Wiki link preview z-index issue when close to a neighbouring icon, same page as above
 
@@ -70,3 +67,5 @@
 
 # CSS
 - Move media queries into nested elements, instead of at the end of the stylesheet
+
+

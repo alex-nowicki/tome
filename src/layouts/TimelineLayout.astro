@@ -29,7 +29,11 @@ let postsWithLifespan = projectPosts.filter((post) => {
             ))
 
         );
-})
+}).sort((a,b) => {
+    if (a.frontmatter.title < b.frontmatter.title) return -1;
+    if (a.frontmatter.title > b.frontmatter.title) return 0;
+    return 0;
+});
 
 ---
 
@@ -48,9 +52,9 @@ let postsWithLifespan = projectPosts.filter((post) => {
                 <form 
                 data-filter-group 
                 data-filter-list-selector="section.timeline ul.list" 
-                data-filter-items-selector="li.event" 
-                data-filter-sort-selector="section.timeline [data-sort-trigger]" 
-                data-filter-min="1">
+                data-filter-items-selector="li.event"
+                data-filter-items-min-selected="1"
+                data-filter-sort-selector="section.timeline [data-sort-trigger]">
                     {activeCategories.map((category) => {
                         return (
                             <label class="btn-m">
@@ -84,9 +88,15 @@ let postsWithLifespan = projectPosts.filter((post) => {
                     <label>Show lifespan</label>
                     <fieldset class="search-form"
                     data-search-group
-                    data-search-list-selector="#show-lifespan .search-results [data-list-bin]" 
+                    data-search-type="refine"
+                    data-search-list-selector="#show-lifespan .search-results [data-list]" 
                     data-search-items-selector="li.result"
-                    data-search-sort-type='{ "list": { "id": "byPriority" } }'>
+                    data-search-sort-type='{ "list": { "id": "byPriority" } }'
+                    
+                    data-sort-group 
+                    data-sort-list-selector="#show-lifespan .search-results [data-list]" 
+                    data-sort-items-selector="li.result" 
+                    data-sort-type='{ "list": { "id": "byName" } }'>
                         <input class="search-input" class="text-field" type="search"  minlength="3" placeholder={"Filter articles"} autocomplete="off" 
                         data-search-trigger 
                         data-search-type="title"/>
@@ -98,23 +108,30 @@ let postsWithLifespan = projectPosts.filter((post) => {
                             </svg>
                         </button>
                     </fieldset>
-                    <fieldset class="search-results" 
-                    data-list 
+                    <fieldset class="search-results"
                     data-filter-group
                     data-filter-list-selector="section.timeline ul.list" 
                     data-filter-items-selector="li.compare"
-                    data-filter-max="3" 
+                    data-filter-items-max-selected="3" 
+                    data-filter-sort-list-selector="section.timeline ul.list" 
+                    data-filter-sort-items-selector="li.compare"
+
                     data-sort-group 
-                    data-sort-list-selector="#show-lifespan .search-results [data-list-bin]" 
+                    data-sort-list-selector="#show-lifespan .search-results [data-list]" 
                     data-sort-items-selector="li.result" 
                     data-sort-type='{ "list": { "id": "byName" } }'>
-                        <ul data-list-bin>
+                        <p><span>0</span> / 3 Selected</p>
+                        <ul 
+                        data-list
+                        data-list-items-max-visible="3"
+                        data-list-extension-increment="3"
+                        data-list-priority-selected >
                             {postsWithLifespan.map((post, index) => {
                                 return (
                                     <li class="result" 
                                     data-item 
                                     data-title={post.frontmatter.title.toLowerCase()} 
-                                    hidden={index < 1 ? null : ''}>
+                                    hidden={index < 3 ? null : ''}>
                                         <label class="btn-s">
                                             <span class="icon-group" set:html={getCatIconAndLabel(post.frontmatter.category).icon}></span>
                                             <span class="title">{post.frontmatter.title}</span>
@@ -127,13 +144,11 @@ let postsWithLifespan = projectPosts.filter((post) => {
                                     </li>
                                 )
                             })}
-                            <li class="error" hidden>
-                                <p>No matches were found.</p>
-                            </li>
-                            <li>
-                                <button class="btn-s show-more">Show More</button>     
-                            </li>
                         </ul>
+                        <div class="error" hidden>
+                            <p>No matches were found.</p>
+                        </div>
+                        <button class="btn-s show-more">Show More</button>
                     </fieldset>
                 </form>
                 

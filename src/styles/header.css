@@ -470,6 +470,7 @@ nav.articles {
     & ul {
         list-style: none;
         padding: 0;
+        margin: 0;
     }
     
     & a {
@@ -482,7 +483,7 @@ nav.articles {
         }
     }
     
-    & :is(.bookmarks-panel, .tree-panel) a {
+    & .accordion-panel a {
         display: flex;
         align-items: center;
         position: relative;
@@ -516,18 +517,18 @@ nav.articles {
         display: none;
     }
     
-    & :is(.bookmarks, .tree) .icon-group span {
+    & .accordion .icon-group span {
         font-size: 1rem;
         font-weight: 600;
         margin-left: 0.5rem;
     }
     
-    & :is(.bookmarks, .tree) .accordion-panel li.is-active a::before {
+    & .accordion .accordion-panel li.is-active a::before {
         border-color: var(--teal-100);
         background-color: var(--teal-60);
     }
     
-    & :is(.projects, .bookmarks, .tree) .accordion-toggle span {
+    & .accordion .accordion-toggle span {
         font-size: 0.75rem;
         font-weight: 600;
         margin-right: 0.375rem; 
@@ -539,14 +540,22 @@ nav.articles {
         margin: var(--spacing) 0 var(--spacing);
         gap: calc(var(--spacing) * 0.75);
     }
-    
-    
-    /* Bookmarks */
-    
-    & .bookmarks li {
+
+    & .accordion-panel li {
         display: flex;
         justify-content: space-between;
     }
+
+    & .accordion-toggle svg {
+        width: 0.75rem;
+    }
+    
+    & .accordion-toggle[aria-expanded="true"] > svg {
+        transform: rotate(90deg);
+    }
+    
+    
+    /* Bookmarks */
     
     & .bookmark-toggle {
         display: flex;
@@ -560,13 +569,7 @@ nav.articles {
  
     /* Tree */
     
-    & .accordion-toggle svg {
-        width: 0.75rem;
-    }
-    
-    & .accordion-toggle:not(#projects-toggle1)[aria-expanded="true"] > svg {
-        transform: rotate(90deg);
-    }
+
     
     & .tree-panel {
         flex-flow: column nowrap;
