@@ -36,14 +36,15 @@ posts.sort((a, b) => {
                 )
             }
 
-            if (index === 6) {
-                return (
-                    <li>
-                        <a class="btn-s" href={`/${activeProject.toLowerCase()}?filter=${category.toLowerCase()}`}>View All {category} <IconArrow classes={'icon-controls'}/></a>    
-                    </li>
+            // REMOVED 20241202
+            // if (index === 6) {
+            //     return (
+            //         <li>
+            //             <a class="btn-s" href={`/${activeProject.toLowerCase()}?filter=${category.toLowerCase()}`}>View All {category} <IconArrow classes={'icon-controls'}/></a>    
+            //         </li>
 
-                )
-            }
+            //     )
+            // }
 
         })}
     </ul>

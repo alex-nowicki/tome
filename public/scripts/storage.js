@@ -12,7 +12,7 @@
 
 let dateFormatter = new Intl.DateTimeFormat('en-US', {
     dateStyle: 'medium',
-    timeStyle: 'short' 
+    // timeStyle: 'short' 
 });
 
 /**
@@ -275,57 +275,59 @@ let updateBookmarks = function(event) {
 }
 
 /**
- * Get recent articles and update page
+ * Get recently accessed articles and update page
  */
-let initRecentArticles = function() {
+let initRecentlyAccessedArticles = function() {
 
-    // Get the recent articles from local storage
-    let storedRecentArticles = JSON.parse(localStorage.getItem('recent'));
-
-    console.log(storedRecentArticles[0].icon);
-    console.log(storedRecentArticles[0].category);
+    // Get the recently accessed articles from local storage
+    let storedRecentlyAccessedArticles = JSON.parse(localStorage.getItem('recent'));
 
     // Get the main container
     let main = document.querySelector('main');
 
     if (main.classList.contains('home')){
 
-        let recentArticlesSection = main.querySelector('.recent');
-        let recentArticlesSectionCardGroup = recentArticlesSection.querySelector('.card-group');
+        let recentlyAccessedArticlesSection = main.querySelector('.recently-accessed');
+        let recentlyAccessedArticlesSectionCardGroup = recentlyAccessedArticlesSection.querySelector('.card-group > ul');
 
-        // Check if there are any stored recent articles
-        if (storedRecentArticles){
+        // Check if there are any stored recently accessed articles
+        if (storedRecentlyAccessedArticles){
 
-            let markup = storedRecentArticles.map((article) =>
-                `<li class="card compact">
-                    <div class="info-group">
-                        <h3>${article.title}</h3>
-                        <p class="category">${JSON.parse(article.icon)}<span>${article.category}</span></p>
-                        <p class="description">${article.description ? article.description : ''}</p>
-                        <div class="meta">
-                            <p class="date">Accessed ${dateFormatter.format(Date.parse(article.date))}</p>
-                        </div>
-                    </div>
-                    <a href="${article.url}" aria-label="Open Article"><span>Open Article</span> 
-                        <svg class="icon arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path vector-effect="non-scaling-stroke" d="m6.5 1 11 11-11 11"></path>
-                        </svg>
-                    </a>    
-                </li>`
-            ).join(' ');
-
-            console.log(markup);
+            let markup = storedRecentlyAccessedArticles.map((article, index) => {
+                if (index < 3) {
+                    return (
+                        `<li class="card compact">
+                            <div class="info-group">
+                                <h3>${article.title}</h3>
+                                <p class="category">${JSON.parse(article.icon)}<span>${article.category}</span></p>
+                                <p class="description">${article.description ? article.description : ''}</p>
+                                <div class="meta">
+                                    <p class="project">Project: ${article.project}</p>
+                                    <p class="date">Accessed ${dateFormatter.format(Date.parse(article.date))}</p>
+                                </div>
+                            </div>
+                            <a href="${article.url}" aria-label="Open Article"><span>Open Article</span> 
+                                <svg class="icon arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path vector-effect="non-scaling-stroke" d="m6.5 1 11 11-11 11"></path>
+                                </svg>
+                            </a>    
+                        </li>`
+                    );
+                } else {
+                    return '';
+                }
+            }).join(' ');
 
             // Update the DOM with the generated links
-            recentArticlesSectionCardGroup.innerHTML = markup;
+            recentlyAccessedArticlesSectionCardGroup.innerHTML = markup;
 
-            // Show recent articles section
-            recentArticlesSection.removeAttribute('hidden');
+            // Show recently accessed articles section
+            recentlyAccessedArticlesSection.removeAttribute('hidden');
 
         } else {
 
-            // Hide recent articles section
-            recentArticlesSection.setAttribute('hidden', '');
+            // Hide recently accessed articles section
+            recentlyAccessedArticlesSection.setAttribute('hidden', '');
 
         }
 
@@ -337,17 +339,17 @@ let initRecentArticles = function() {
         // If the article nav is present, repopulate the list based on recently visited articles
         if (articlesNav){
 
-            // Get the recent articles section elements
-            let recentArticlesSection = articlesNav.querySelector('.recent');
-            let recentArticlesSectionToggle = recentArticlesSection.querySelector('.accordion-toggle');
-            let recentArticlesSectionPanel = recentArticlesSection.querySelector('.recent-panel');
-            let recentArticlesSectionDivider = recentArticlesSection.nextElementSibling;
+            // Get the recently accessed articles section elements
+            let recentlyAccessedArticlesSection = articlesNav.querySelector('.recent');
+            let recentlyAccessedArticlesSectionToggle = recentlyAccessedArticlesSection.querySelector('.accordion-toggle');
+            let recentlyAccessedArticlesSectionPanel = recentlyAccessedArticlesSection.querySelector('.recent-panel');
+            let recentlyAccessedArticlesSectionDivider = recentlyAccessedArticlesSection.nextElementSibling;
             
-            // Check if there are any stored recent articles
-            if (storedRecentArticles){
+            // Check if there are any stored recently accessed articles
+            if (storedRecentlyAccessedArticles){
                            
-                // Generate recent article links for the recent articles section
-                let markup = storedRecentArticles.map((article) => 
+                // Generate recent article links for the recently accessed articles section
+                let markup = storedRecentlyAccessedArticles.map((article) => 
                     `<li class="${article.url === window.location.pathname ? 'is-active' : ''}">
                         <a href="${article.url}">${article.title}</a>
                         <button class="bookmark-toggle" data-title="${article.title}" data-url="${article.url}" data-project="${article.project}">
@@ -359,25 +361,25 @@ let initRecentArticles = function() {
                 ).join('');
 
                 // Update the DOM with the generated links
-                recentArticlesSectionPanel.innerHTML = markup;
+                recentlyAccessedArticlesSectionPanel.innerHTML = markup;
                 
-                // Show recent articles section and divider
-                recentArticlesSection.removeAttribute('hidden');
-                recentArticlesSectionDivider.removeAttribute('hidden');
+                // Show recently accessed articles section and divider
+                recentlyAccessedArticlesSection.removeAttribute('hidden');
+                recentlyAccessedArticlesSectionDivider.removeAttribute('hidden');
 
-                // Expand accordion panel to show recent articles
-                recentArticlesSectionToggle.setAttribute('aria-expanded', 'true');
-                recentArticlesSectionPanel.removeAttribute('hidden');
+                // Expand accordion panel to show recently accessed articles
+                recentlyAccessedArticlesSectionToggle.setAttribute('aria-expanded', 'true');
+                recentlyAccessedArticlesSectionPanel.removeAttribute('hidden');
 
             } else {
                 
                 // Hide bookmark section and divider
-                recentArticlesSection.setAttribute('hidden', '');
-                recentArticlesSectionDivider.setAttribute('hidden', '');
+                recentlyAccessedArticlesSection.setAttribute('hidden', '');
+                recentlyAccessedArticlesSectionDivider.setAttribute('hidden', '');
                 
                 // Collapse accordion panel
-                recentArticlesSectionToggle.setAttribute('aria-expanded', 'false');
-                recentArticlesSectionPanel.setAttribute('hidden', '');
+                recentlyAccessedArticlesSectionToggle.setAttribute('aria-expanded', 'false');
+                recentlyAccessedArticlesSectionPanel.setAttribute('hidden', '');
                 
             } 
 
@@ -391,7 +393,7 @@ let initRecentArticles = function() {
  * Update recently accessed articles on page load
  * @param  {Event} event The event object
  */
-let updateRecentArticles = function(event) {
+let updateRecentlyAccessedArticles = function(event) {
 
     let bookmarkBtn = document.querySelector('main.post article section.header .bookmark-toggle');
 
@@ -433,8 +435,8 @@ let updateRecentArticles = function(event) {
 // Inits & Event Listeners
 //
 
-initRecentArticles();
-updateRecentArticles();
+initRecentlyAccessedArticles();
+updateRecentlyAccessedArticles();
 initBookmarks();
 document.addEventListener('click', updateBookmarks);
 

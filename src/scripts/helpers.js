@@ -21,7 +21,7 @@ export const detectType = function(elem){
 
 export const dateFormatter = new Intl.DateTimeFormat('en-US', {
     dateStyle: 'medium',
-    timeStyle: 'short' 
+    // timeStyle: 'short' 
 });
 
 /**

@@ -7,11 +7,10 @@
 
 # Home
 
-- Reimplement with these sections:
-  - My Projects
-    - Include a Card Grid and List view (default to list if there are so many projects) - Opted for compact card instead
-    - For project list, large card for the two most recently accessed/updated projects, compact for the rest. (if doing the 2/3 column, to 1/3 column layout)
-    - Recent articles could use a project tag to show which one they are associated with.
+- Show All button for Projects?
+- Conditional formatting depending on how many projects?
+  - Initial state Large Card 1-4 on screen with a show more button. If you click the show more, the list switches to compact full width
+- Compact should all be an <a>?
 
 # Project
 
@@ -33,7 +32,7 @@
 
 # Article List
 
-- Should the category article links, be replaced with just a single hyperlink to the category?
+- 
 
 ## Collections 
 
@@ -43,9 +42,9 @@
 
 # Article Page
 
-- Meta of published, could be swapped to Updated. Possibly even published (original) and updated for most recent update.
 - Wiki link preview go off the page: http://localhost:3000/garuda/places/khuyens-den (2024-04-16)
 - Wiki link preview z-index issue when close to a neighbouring icon, same page as above
+  - Possibly implement a new version that open in a fixed dialog at the bottom of the page instead. Include description and a link to the article, X to dismiss it or click elsewhere on the page. Would be accessible on mobile devices.
 
 ## Breakpoint Desktop
 

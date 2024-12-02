@@ -3,6 +3,8 @@ import BaseLayout from "./BaseLayout.astro";
 import CardGroup from "../components/CardGroup.astro";
 import IconArrow from "../components/IconArrow.astro";
 
+import "../styles/home.css";
+
 const { activeProject } = Astro.props;
 
 const projects = await Astro.glob('../pages/*.md');
@@ -15,26 +17,10 @@ const filteredPosts = posts.filter(post => {
 
 <BaseLayout pageTitle={'Tome'} activeProject={activeProject}>
     <main class="home">
-		<h1>Recent Updates</h1>
-        {
-            posts.length > 0 ? (
-                <section class="recent" hidden>
-                    <h2>Jump Back In</h2>
-                    <ul class="card-group"></ul>
-                </section>
-            ) : ''
-        }
-        {
-            posts.length > 0 ? (
-                <section>
-                    <h2>Recently Updated Articles</h2>
-                    <CardGroup posts={filteredPosts} numToShow={3} sort={'byDateDesc'} />
-                </section>
-            ) : ''
-        }
+		<h1>My Tome</h1>
         { 
             projects.length > 0 ? (
-                <section>
+                <section class="projects">
                     <div class="heading-link-group">
                         <h2>My Projects</h2>
                         <a class="btn-s" href="/projects">View All Projects <IconArrow classes={'icon-controls'}/></a>  
@@ -48,7 +34,25 @@ const filteredPosts = posts.filter(post => {
                 </section>
             )
         }
+        {
+            posts.length > 0 ? (
+                <section class="recent">
 
+                    <section class="recently-accessed" hidden>
+                        <h2>Jump Back In</h2>
+                        <div class="card-group">
+                            <ul></ul>
+                        </div>
+                    </section>
+
+                    <section class="recently-updated">
+                        <h2>Recently Updated</h2>
+                        <CardGroup posts={filteredPosts} numToShow={3} sort={'byDateDesc'} view={'compact'}/>
+                    </section>
+
+                </section>
+            ) : ''
+        }
 
 	</main>
 </BaseLayout>

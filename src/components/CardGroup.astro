@@ -7,9 +7,7 @@ import { getCatIconAndLabel } from "../scripts/helpers.js"
 
 import "../styles/cards.css"
 
-const { posts } = Astro.props;
-const { numToShow } = Astro.props;
-const { sort } = Astro.props;
+const { posts, numToShow, sort, view, featured } = Astro.props;
 
 const allPosts = await Astro.glob('../pages/*/*/*.md');
 
@@ -66,47 +64,49 @@ if (sort === 'byDateDesc'){
 
 
 ---
+<div class="card-group">
+    <ul>
+        {posts.map((post, index) => {
+            if (index < numToShow){
 
-<ul class="card-group">
-    {posts.map((post, index) => {
-        if (index < numToShow){
+                // Get the category icon and singular label
+                let icon = getCatIconAndLabel(post.frontmatter.category).icon;
+                let label = getCatIconAndLabel(post.frontmatter.category).label;
 
-            // Get the category icon and singular label
-            let icon = getCatIconAndLabel(post.frontmatter.category).icon;
-            let label = getCatIconAndLabel(post.frontmatter.category).label;
+                let postType
+                if (post.frontmatter.category === 'Collections' || post.frontmatter.category === undefined){
+                    postType = label;
+                } else {
+                    postType = 'Article';
+                }
 
-            let postType
-            if (post.frontmatter.category === 'Collections' || post.frontmatter.category === undefined){
-                postType = label;
-            } else {
-                postType = 'Article';
+                let meta;
+                if (postType === 'Article'){
+                    meta = `
+                        <p class="project">Project: ${post.frontmatter.project}</p>
+                        <p class="date">Updated ${dateFormatter.format(Date.parse(post.frontmatter.date))}</p>
+                    `;
+                } else {
+                    let numArticleString = post.frontmatter.numArticles !== undefined ? `<p class="num-articles">${post.frontmatter.numArticles} Articles</p>` : '';
+                    let recentDateString = post.frontmatter.recentEditDate !== undefined && post.frontmatter.recentEditDate > 0 ? `<p class="date">Updated ${dateFormatter.format(post.frontmatter.recentEditDate)}</p>` : '';
+                    meta = numArticleString + recentDateString;
+                }
+
+                return  <li class={view ? `card ${view}` : 'card'}>
+                            <div class="info-group">
+                                <h3>{post.frontmatter.title}</h3>
+                                <p class="category"><Fragment set:html={icon} /><span>{label}</span></p>
+                                <p class="description">{post.frontmatter.description}</p>
+                                <div class="meta" set:html={meta}></div>
+                            </div>
+                            <a href={post.url} aria-label="Open Article"><span>Open {postType}</span><IconArrow/></a>    
+                        </li>
+            
             }
-
-            let meta;
-            if (postType === 'Article'){
-                meta = `
-                    <p class="date">Updated ${dateFormatter.format(Date.parse(post.frontmatter.date))}</p>
-                `;
-            } else {
-                let numArticleString = post.frontmatter.numArticles !== undefined ? `<p class="num-articles">${post.frontmatter.numArticles} Articles</p>` : '';
-                let recentDateString = post.frontmatter.recentEditDate !== undefined && post.frontmatter.recentEditDate > 0 ? `<p class="date">Updated ${dateFormatter.format(post.frontmatter.recentEditDate)}</p>` : '';
-                meta = numArticleString + recentDateString;
-            }
-
-            return  <li class="card">
-                        <div class="info-group">
-                            <h3>{post.frontmatter.title}</h3>
-                            <p class="category"><Fragment set:html={icon} /><span>{label}</span></p>
-                            <p class="description">{post.frontmatter.description}</p>
-                            <div class="meta" set:html={meta}></div>
-                        </div>
-                        <a href={post.url} aria-label="Open Article"><span>Open {postType}</span><IconArrow/></a>    
-                    </li>
-        
-        }
-        
-    })}
-</ul>
+            
+        })}
+    </ul>
+</div>
 
 <!-- <li class="card">
     <div class="info-group">

@@ -1,0 +1,39 @@
+/*
+** MAIN
+------------------------------*/
+
+main.home {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    "title title"
+    "projects recent";
+    column-gap: 4rem;
+
+    & h1 {
+        grid-area: title;
+    }
+
+    & section.projects {
+        grid-area: projects;
+    }
+
+    & section.recent {
+        grid-area: recent;
+        display: grid;
+        row-gap: 2rem;
+
+        & h2 {
+            font-size: 1.5rem;
+        }
+    }
+
+    & .heading-link-group {
+        margin: 0 0 1.5rem;
+
+        & h2 {
+            margin: 0;
+        }
+    }
+}

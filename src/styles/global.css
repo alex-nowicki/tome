@@ -540,14 +540,6 @@ main > *:last-child {
     margin-bottom: 0 !important;
 }
 
-.home .heading-link-group {
-    margin: 0 0 1.5rem;
-}
-
-.home .heading-link-group h2 {
-    margin: 0;
-}
-
 
 /*
 ** BREADCRUMBS
