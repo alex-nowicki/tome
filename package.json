@@ -1,16 +1,23 @@
 {
-  "name": "documents-github-tome",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "astro": "^2.1.7",
-    "marked": "^7.0.4"
-  }
+	"name": "documents-github-tome",
+	"type": "module",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro"
+	},
+	"dependencies": {
+		"astro": "^5.13.5",
+		"@astrojs/markdoc": "^0.15.5",
+		"@astrojs/react": "^4.3.0",
+		"@astrojs/netlify": "^6.5.9",
+		"@keystatic/core": "^0.5.47",
+		"@keystatic/astro": "^5.0.6",
+		"react": "^19.1.0",
+		"react-dom": "^19.1.0",
+		"typescript": "^5.9.2",
+		"marked": "^7.0.4"
+	}
 }
