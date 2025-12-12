@@ -1,0 +1,4 @@
+[[headers]]
+for = "/mystuff/*"
+[headers.values]
+  Basic-Auth = "alex-nowicki:${MYSTUFF_PASSWORD}"
